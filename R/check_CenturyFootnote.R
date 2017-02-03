@@ -119,8 +119,24 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       .[["posx"]] %>%
       mean
     
+    fn100_page <- 
+      footnote_by_page_and_postion[fno. == 100L, .(page, col = if_else(posx < page_middle, 1, 2))][["page"]]
+    
+    fn100_col <- 
+      footnote_by_page_and_postion[fno. == 100L, .(page, col = if_else(posx < page_middle, 1, 2))][["col"]]
+    
+    min_footnote_in_fn100 <-
+      footnote_by_page_and_postion %>%
+      .[, column := if_else(posx < page_middle, 1, 2)] %>%
+      .[, .(fno. = min(fno.)), by = .(page, column)] %>%
+      .[page == fn100_page & column == fn100_col] %>%
+      .[["fno."]]
+    
     footnote_by_page_and_postion[, column := if_else(posx < page_middle, 1, 2)]
     footnote_by_page_and_postion <- footnote_by_page_and_postion
+    
+    CenturyFootnote_before_min_footnote_in_fn10 <- 
+      grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE) < grep(paste0("footnote@@@", aux_contents, min_footnote_in_fn100))
     
     whereis_CenturyFootnote <-
       grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE, value = TRUE) %>%
@@ -139,6 +155,9 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[, column := dplyr::if_else(posx > page_middle, 2, 1)] %>%
           .[, .(page, column)]
       }
+    
+    ## CenturyFootnote number should be x - 1 where x is the minimum footnote
+    ## with the same position and page as footnote 100
     
     where_should_CenturyFootnote_go <-
       # Find footnote100's position and move to previous column
@@ -161,8 +180,9 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[, .(page, column)]
       }
     # list(x = whereis_fn100, page_middle = page_middle)
-    if (!identical(where_should_CenturyFootnote_go,
-                   whereis_CenturyFootnote)){
+    if (AND(!identical(where_should_CenturyFootnote_go,
+                       whereis_CenturyFootnote), 
+        )){
       CenturyFootnote_suspect <- TRUE
       if (strict){
         stop("\\CenturyFootnote fell in p.",
