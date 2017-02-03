@@ -136,7 +136,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
     footnote_by_page_and_postion <- footnote_by_page_and_postion
     
     CenturyFootnote_before_min_footnote_in_fn10 <- 
-      grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE) < grep(paste0("footnote@@@", aux_contents, min_footnote_in_fn100))
+      any(grepl(paste0("newlabel{@CenturyFootnote@@@", min_footnote_in_fn100 - 1), aux_contents, fixed = TRUE))
     
     whereis_CenturyFootnote <-
       grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE, value = TRUE) %>%
@@ -155,6 +155,13 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[, column := dplyr::if_else(posx > page_middle, 2, 1)] %>%
           .[, .(page, column)]
       }
+    
+    whereis_CenturyFootnote_page <- whereis_CenturyFootnote[["page"]]
+    whereis_CenturyFootnote_column <- whereis_CenturyFootnote[["column"]]
+    
+    CenturyFootnote_same_page_column_as_fn100 <-
+      AND(whereis_CenturyFootnote_page == fn100_page, 
+          whereis_CenturyFootnote_column == fn100_col)
     
     ## CenturyFootnote number should be x - 1 where x is the minimum footnote
     ## with the same position and page as footnote 100
@@ -180,9 +187,8 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[, .(page, column)]
       }
     # list(x = whereis_fn100, page_middle = page_middle)
-    if (AND(!identical(where_should_CenturyFootnote_go,
-                       whereis_CenturyFootnote), 
-        )){
+    if (!AND(CenturyFootnote_before_min_footnote_in_fn10, 
+             CenturyFootnote_same_page_column_as_fn100)){
       CenturyFootnote_suspect <- TRUE
       if (strict){
         stop("\\CenturyFootnote fell in p.",
