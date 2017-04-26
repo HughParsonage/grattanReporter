@@ -6,7 +6,7 @@
 \usage{
 checkGrattanReport(path = ".", output_method = c("console", "twitter",
   "gmailr"), compile = FALSE, pre_release = FALSE, release = FALSE,
-  .proceed_after_rerun, .no_log = FALSE, embed = TRUE,
+  .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
   update_grattan.cls = TRUE)
 }
 \arguments{
