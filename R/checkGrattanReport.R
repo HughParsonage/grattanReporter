@@ -36,7 +36,7 @@ checkGrattanReport <- function(path = ".",
                                pre_release = FALSE,
                                release = FALSE,
                                .proceed_after_rerun,
-                               .no_log = FALSE, 
+                               .no_log = TRUE, 
                                embed = TRUE, 
                                update_grattan.cls = TRUE){
   if (release && (!pre_release || !compile)){
