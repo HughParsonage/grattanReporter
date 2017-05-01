@@ -223,6 +223,8 @@ pdf
 pdflatex
 pdflink
 phantomsection
+PHN
+PHNs
 PIIGS
 Plunkett
 politicised
