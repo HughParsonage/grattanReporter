@@ -297,7 +297,7 @@ check_spelling <- function(filename,
                   "|",
                   "(?:N(?:orthern? )?T(?:erritory)?)",
                   "|",
-                  "(?:A(?:ustralian )?|C(?:apital )?T(?:erritory)?)"),
+                  "(?:A(?:ustralian )?C(?:apital )?T(?:erritory)?)"),
            ") government",
            "(?!\\s(?:schools?))")
 
