@@ -78,8 +78,9 @@ check_cite_pagerefs <- function(filename, .report_error){
   }
   
   # https://stackoverflow.com/questions/267399/how-do-you-match-only-valid-roman-numerals-with-a-regular-expression
-  roman_numeral <- paste0("(?:M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3}))|", 
-                          "(?:m{0,4}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3}))")
+  roman_numeral <- paste0("(?:M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|VI{0,3}))|", 
+                          "(?:m{0,4}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|vi{0,3}))")
+  
   
   if (any(grepl(paste0("\\bp?p(?:(?:\\.[^~])|(?:[^.][~\\s]))((?:[0-9]+)|(?:", roman_numeral, "))\\b"), lines, perl = TRUE))){
     line_no <- grep(paste0("\\bp?p(?:(?:\\.[^~])|(?:[^.][~\\s]))((?:[0-9]+)|(?:", roman_numeral, "))\\b"), lines, perl = TRUE)[[1]]

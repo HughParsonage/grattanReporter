@@ -27,3 +27,7 @@ test_that("Page reference ok if in correct format", {
   expect_error(check_cite_pagerefs("./check-cite-pagerefs/bad-cite-p-in-text-postnote-2.tex"), regexp = "Page reference not in correct format")
   expect_error(check_cite_pagerefs("./check-cite-pagerefs/bad-cite-p-in-text-postnote.tex"), regexp = "Page reference not in correct format")
 })
+
+test_that("Cite pagerefs false positives", {
+  expect_null(check_cite_pagerefs("./check-cite-pagerefs/ok-page-ref-4pm.tex"))
+})
