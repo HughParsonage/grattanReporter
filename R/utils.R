@@ -65,11 +65,18 @@ rev_forename_surname_bibtex <- function(author_fields){
 }
 
 nth_max <- function(x, n){
-  n <- length(x)
-  sort(x, partial = n - 1)[n - 1]
+  if (n == 1) {
+    return(max(n))
+  } else {
+    lx <- length(x)
+    sort(x, partial = lx - n + 1)[lx - n + 1]
+  }
 }
 
 nth_min <- function(x, n){
+  if (n == 1) {
+    return(min(x))
+  }
   sort(x)[n]
 }
 
