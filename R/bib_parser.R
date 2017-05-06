@@ -118,7 +118,7 @@ bib2DT <- function(file.bib, to_sort = FALSE){
 
   if (n_ats != n_closing_braces){
     cat("@'s: ", n_ats, "\n",
-        "}'s: ", n_closing_braces, "\n")
+        "}'s: ", n_closing_braces, "\n", sep = "")
     stop("Unable to parse: Braces to close a bib entry should be on their own line.")
   }
 
@@ -248,6 +248,14 @@ bib2DT <- function(file.bib, to_sort = FALSE){
 reorder_bib <- function(file.bib, outfile.bib = file.bib){
   out_no <- bib2DT(file.bib, to_sort = TRUE)[["Line_no"]]
   y <- readLines(file.bib, encoding = "UTF-8")
-  writeLines(y[out_no], outfile.bib, useBytes = TRUE)
+  out <- y[out_no]
+  outws <- trimws(out)
+  before_equals <- gsub("[=].*", "", outws[nchar(outws) > 0], perl = TRUE)
+  
+  if (any(before_equals == shift(before_equals, fill = "sdfsdfsd"))) {
+    warning("Some entries collapsed:")
+    print(outws[before_equals == shift(before_equals, fill = "sdfsdfsd")])
+  }
+  writeLines(out, outfile.bib, useBytes = TRUE)
 }
 
