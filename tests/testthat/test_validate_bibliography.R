@@ -18,6 +18,11 @@ test_that("Duplicate entries error", {
                regexp = "[Dd]uplicate entries in bibliography")
 })
 
+test_that("Duplicate keys noticed", {
+  expect_error(any_bib_duplicates(c("./validate-bib/dup-keys-1.bib", "./validate-bib/dup-keys-2.bib")), 
+               regexp = "[Dd]uplicate bib key")
+})
+
 test_that("Broken fields detected", {
   expect_error(validate_bibliography(file = "./validate-bib/field-broken-over2lines.bib"), 
                regexp = "which is neither a key, nor field")
