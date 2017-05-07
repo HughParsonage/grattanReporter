@@ -8,9 +8,15 @@ any_bib_duplicates <- function(bib.files, .report_error){
   if (missing(.report_error)){
     .report_error <- function(...) report2console(...)
   }
-  KEY <- key <- field <- NULL
+  
+  .fread_bib <- function(file.bib) {
+    fread_bib(file.bib) %>% 
+      .[, bib_file := file.bib]
+  }
+  
+  KEY <- key <- field <- bib_file <- NULL
   bibDT <- 
-    lapply(bib.files, fread_bib) %>% 
+    lapply(bib.files, .fread_bib) %>% 
     rbindlist(use.names = TRUE, fill = TRUE) %>% 
     .[, KEY := toupper(key)]
   
