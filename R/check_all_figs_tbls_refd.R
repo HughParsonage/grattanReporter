@@ -6,6 +6,16 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
   }
 
   lines <- read_lines(filename)
+  
+  may_be_left_unreferenced <- NULL
+  if (any(grepl("^[%] may_be_left_unreferenced[:]", lines, perl = TRUE))){
+    may_be_left_unreferenced <-
+      lines[grepl("^[%] may_be_left_unreferenced[:]", lines, perl = TRUE)] %>%
+      gsub("% may_be_left_unreferenced: ", "", ., fixed = TRUE) %>%
+      trimws %>%
+      strsplit(split = " ", fixed = TRUE) %>%
+      unlist
+  }
 
   lines <- strip_comments(lines)
 
@@ -41,31 +51,34 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
       vapply(function(commands){
         grep("^label", commands, perl = TRUE, value = TRUE) %>%
           gsub(pattern = "^label[{]([^\\}]+)[}].*$", replacement = "\\1", x = ., perl = TRUE)
-      }, FUN.VALUE = character(1))
+      }, FUN.VALUE = character(1)) %>%
+      setdiff(may_be_left_unreferenced)
 
-    fig_tbl_labels <-
-      paste0("ref{", grep("^((fig)|tbl)[:]",
-                          label_contents,
-                          perl = TRUE,
-                          value = TRUE))
-
-    for (lab in fig_tbl_labels){
-      if (!any(grepl(lab, lines, fixed = TRUE))){
-        lab <- gsub("ref{", "", lab, fixed = TRUE)
-        if (compile){
-          .report_error(error_message = "Unreferenced figure or table",
-                        advice = paste0("Couldn't find a xref to ", lab, "."))
-          if (pre_release){
-            stop("Couldn't find a xref to ", lab, ".")
-          } else {
-            warning("Couldn't find a xref to ", lab, ".")
+    if (length(label_contents) > 0) {
+      fig_tbl_labels <-
+        paste0("ref{", grep("^((fig)|tbl)[:]",
+                            label_contents,
+                            perl = TRUE,
+                            value = TRUE))
+      
+      for (lab in fig_tbl_labels) {
+        if (!any(grepl(lab, lines, fixed = TRUE))){
+          lab <- gsub("ref{", "", lab, fixed = TRUE)
+          if (compile){
+            .report_error(error_message = "Unreferenced figure or table",
+                          advice = paste0("Couldn't find a xref to ", lab, "."))
+            if (pre_release){
+              stop("Couldn't find a xref to ", lab, ".")
+            } else {
+              warning("Couldn't find a xref to ", lab, ".")
+            }
           }
+          all_figs_tbls_refd <- FALSE
+          figs_tbls_not_refd <- c(figs_tbls_not_refd, lab)
         }
-        all_figs_tbls_refd <- FALSE
-        figs_tbls_not_refd <- c(figs_tbls_not_refd, lab)
       }
     }
-
+    
   }
 
   if (any(grepl("\\\\(?:(?:Chaps?ref)|(?:topref))", lines, perl = TRUE))){

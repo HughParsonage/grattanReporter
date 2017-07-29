@@ -16,3 +16,7 @@ test_that("Error when not labeled", {
 test_that("No error when commented out", {
   expect_null(check_all_figs_tbls_refd("./check-all-figs-tbls-refd/ok-as-fig-in-comment.tex", compile = TRUE, pre_release = TRUE))
 })
+
+test_that("No error if explicitly allowed", {
+  expect_null(check_all_figs_tbls_refd("./check-all-figs-tbls-refd/ok-as-fig-may-be-unrefd.tex", compile = TRUE, pre_release = TRUE))
+})
