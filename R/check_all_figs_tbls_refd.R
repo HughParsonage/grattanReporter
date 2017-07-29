@@ -58,11 +58,12 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
       ref_contents <- 
         lines %>%
         grep("ref{", ., fixed = TRUE, value = TRUE) %>%
-        strsplit(split = " ") %>%
+        strsplit(split = " ", fixed = TRUE) %>%
         unlist %>%
         grep("ref{", ., fixed = TRUE, value = TRUE) %>%
         gsub("^.*ref[{]", "", ., perl = TRUE) %>%
         gsub("[}].*$", "", ., perl = TRUE) %>%
+        # for Vref{fig:a,fig:b}
         strsplit(split = ",", fixed = TRUE) %>%
         unlist
       
