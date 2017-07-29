@@ -15,7 +15,7 @@ extract_validate_abbreviations <- function(lines){
     lines_w_abbrev_last <-
       lines_w_abbrev %>%
       gsub("[{,.]", " ", x = ., perl = TRUE) %>%
-      gsub("\\s+(?:(?:of)|(?:and)|(?:the)|(?:to))\\s+", " ", x = ., perl = TRUE) %>%
+      gsub("\\s+(?:(?:of)|(?:and)|(?:the)|(?:to)|(?:in))\\s+", " ", x = ., perl = TRUE) %>%
       gsub("\\s+", " ", x = ., perl = TRUE) %>%
       # drop the plural
       gsub("s)", ")", x = ., fixed = TRUE) %>%
