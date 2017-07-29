@@ -108,22 +108,46 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                     warn = FALSE))
     }
   }
+  
+  report_specific_phrases <- c("This report was written by",
+                               "The opinions in this report are those of the authors",
+                               "This report may be cited as")
+  report_specific_phrases_regex <- sprintf("(%s)", paste0(report_specific_phrases, collapse = ")|("))
 
   if (AND(any(grepl("\\ReportOrWorkingPaper{Working Paper}",
                     lines_before_begin_document,
                     fixed = TRUE)),
-              any(grepl("This report was written by",
+              any(grepl(report_specific_phrases_regex,
                         lines_before_begin_document,
                         perl = TRUE)))){
     
-    .report_error(error_message = "Working paper / Report inconsistency",
-                  advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t'This report was written by'\nstill present in document.",
-                                  "\n\n",
-                                  "If your report is a working paper, say 'This working paper was written by'; ",
-                                  "\n\n",
-                                  "otherwise, do not include\n\t\\ReportOrWorkingPaper{Working Paper}",
-                                  collapse = ""))
-    stop("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t'This report was written by'\nstill present in document.")
+    bad_phrases <- report_specific_phrases
+    for (i in seq_along(report_specific_phrases)) {
+      if (!any(grepl(report_specific_phrases[i], lines_before_begin_document))) {
+        bad_phrases[i] <- NA_character_
+      }
+    }
+    bad_phrases <- bad_phrases[!is.na(bad_phrases)]
+    
+    if (length(bad_phrases) > 1) {
+      .report_error(error_message = "Working paper / Report inconsistency",
+                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statements\n\t", 
+                                    paste0(bad_phrases, collapse = "\n\t"),
+                                    "\nstill present in document.",
+                                    "\n\n",
+                                    "If your document is a working paper, amend the above phrases to be consistent with a working paper.",
+                                    collapse = ""))
+      stop("Working paper / Report inconsistency")
+    } else {
+      .report_error(error_message = "Working paper / Report inconsistency",
+                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t", 
+                                    bad_phrases,
+                                    "\nstill present in document.",
+                                    "\n\n",
+                                    "If your document is a working paper, amend the above phrases to be consistent with a working paper.",
+                                    collapse = ""))
+      stop("Working paper / Report inconsistency")
+    }
   }
 
   if (AND(any(grepl("This working paper was written by",

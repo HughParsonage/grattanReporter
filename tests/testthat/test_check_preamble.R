@@ -8,7 +8,9 @@ test_that("todonotes even if disabled not acceptable", {
 
 test_that("Working paper inconsistency", {
   expect_error(check_preamble("./check-preamble/working-paper/working-paper-with-report-not.tex"), 
-               regexp = "ReportOrWorkingPaper set to .Working Paper. but statement")
+               regexp = "Working paper / Report inconsistency")
   expect_error(check_preamble("./check-preamble/working-paper/report-with-working-paper.tex"), 
-               regexp = "ReportOrWorkingPaper not set to .Working Paper. but")
+               regexp = "ReportOrWorkingPaper not set to.*Working Paper")
+  expect_error(check_preamble("./check-preamble/working-paper/almost-working-paper.tex"), 
+               regexp = "Working paper / Report inconsistency")
 })
