@@ -54,38 +54,51 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
       }, FUN.VALUE = character(1)) %>%
       setdiff(may_be_left_unreferenced)
 
-    if (length(label_contents) > 0) {
-      fig_tbl_labels <-
-        paste0("ref{", grep("^((fig)|tbl)[:]",
-                            label_contents,
-                            perl = TRUE,
-                            value = TRUE))
+    if (not_length0(label_contents)) {
+      ref_contents <- 
+        lines %>%
+        grep("ref{", ., fixed = TRUE, value = TRUE) %>%
+        strsplit(split = " ") %>%
+        unlist %>%
+        grep("ref{", ., fixed = TRUE, value = TRUE) %>%
+        gsub("^.*ref[{]", "", ., perl = TRUE) %>%
+        gsub("[}].*$", "", ., perl = TRUE) %>%
+        strsplit(split = ",", fixed = TRUE) %>%
+        unlist
       
-      for (lab in fig_tbl_labels) {
-        if (!any(grepl(lab, lines, fixed = TRUE))){
-          lab <- gsub("ref{", "", lab, fixed = TRUE)
-          if (compile){
-            .report_error(error_message = "Unreferenced figure or table",
-                          advice = paste0("Couldn't find a xref to ", lab, "."))
-            if (pre_release){
-              stop("Couldn't find a xref to ", lab, ".")
-            } else {
-              warning("Couldn't find a xref to ", lab, ".")
+      if (any(label_contents %notin% ref_contents)) {
+        fig_tbl_labels <-
+          paste0("ref{", grep("^((fig)|tbl)[:]",
+                              label_contents,
+                              perl = TRUE,
+                              value = TRUE))
+        
+        for (lab in fig_tbl_labels) {
+          if (!any(grepl(lab, lines, fixed = TRUE))){
+            lab <- gsub("ref{", "", lab, fixed = TRUE)
+            if (compile){
+              .report_error(error_message = "Unreferenced figure or table",
+                            advice = paste0("Couldn't find a xref to ", lab, "."))
+              if (pre_release){
+                stop("Couldn't find a xref to ", lab, ".")
+              } else {
+                warning("Couldn't find a xref to ", lab, ".")
+              }
             }
+            all_figs_tbls_refd <- FALSE
+            figs_tbls_not_refd <- c(figs_tbls_not_refd, lab)
           }
-          all_figs_tbls_refd <- FALSE
-          figs_tbls_not_refd <- c(figs_tbls_not_refd, lab)
         }
       }
     }
     
   }
-
+  
   if (any(grepl("\\\\(?:(?:Chaps?ref)|(?:topref))", lines, perl = TRUE))){
     chapter_line_nos <-
       sort(union(grep("\\addchap", lines, fixed = TRUE),
                  grep("\\chapter", lines, fixed = TRUE)))
-
+    
     labels_following_chapters <-
       gsub("^.*\\\\label[{](.*[:][^\\}]*)[}].*$",
            "\\1",
