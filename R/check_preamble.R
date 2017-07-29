@@ -291,7 +291,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     }
 
     if (!OR(lines_before_begin_document[isbn_line - 3] %in% c("This report may be cited as:",
-                                                              "This working paper may be cited as:")
+                                                              "This working paper may be cited as:"),
             OR(identical(lines_before_begin_document[isbn_line - c(4:3)],
                          c("This report may be cited as:", "\\newline")),
                identical(lines_before_begin_document[isbn_line - c(4:3)],
