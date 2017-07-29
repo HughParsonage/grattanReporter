@@ -165,6 +165,8 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                                   collapse = ""))
     stop("\\ReportOrWorkingPaper not set to {Working Paper} but\n\t'This working paper was written by'\nexists in document.")
   }
+  
+  
 
   current_year <-
     if (!any(grepl("\\YEAR", lines_before_begin_document, fixed = TRUE))){
@@ -288,10 +290,13 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       stop(paste0("Invalid ISBN. Checksum was ", check_sum))
     }
 
-    if (!OR(lines_before_begin_document[isbn_line - 3] == "This report may be cited as:",
-            identical(lines_before_begin_document[isbn_line - c(4:3)],
-                      c("This report may be cited as:", "\\newline")))){
-      stop("When parsing the document preamble, I could not find 'This report may be cited as:' on the 3rd or 4th lines before 'ISBN: '.", "\n",
+    if (!OR(lines_before_begin_document[isbn_line - 3] %in% c("This report may be cited as:",
+                                                              "This working paper may be cited as:")
+            OR(identical(lines_before_begin_document[isbn_line - c(4:3)],
+                         c("This report may be cited as:", "\\newline")),
+               identical(lines_before_begin_document[isbn_line - c(4:3)],
+                         c("This working paper may be cited as:", "\\newline"))))) {
+      stop("When parsing the document preamble, I could not find 'This report/working paper may be cited as:' on the 3rd or 4th lines before 'ISBN: '.", "\n",
            "You must place that text on one of those lines for the check to continue.")
     }
 
