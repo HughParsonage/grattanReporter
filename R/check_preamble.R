@@ -168,18 +168,18 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
   
   
 
-  current_year <-
-    if (!any(grepl("\\YEAR", lines_before_begin_document, fixed = TRUE))){
-      year_provided <- FALSE
-      format(Sys.Date(), "%Y")
-    } else {
-      year_provided <- TRUE
-      year_line <- grep("\\YEAR", lines_before_begin_document, fixed = TRUE)
-      if (length(year_line) != 1L){
-        stop("Multiple \\YEAR provided.")
-      }
-      gsub("[^0-9]", "", lines_before_begin_document[year_line])
+  
+  if (!any(grepl("\\YEAR", lines_before_begin_document, fixed = TRUE))){
+    year_provided <- FALSE
+    current_year <- format(Sys.Date(), "%Y")
+  } else {
+    year_provided <- TRUE
+    year_line <- grep("\\YEAR", lines_before_begin_document, fixed = TRUE)
+    if (length(year_line) != 1L){
+      stop("Multiple \\YEAR provided.")
     }
+    current_year <- gsub("[^0-9]", "", lines_before_begin_document[year_line])
+  }
 
   if (pre_release){
     if (release){
@@ -198,7 +198,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
         GrattanReportNumberArg <- gsub("^.*[{](.*)[}].*$", "\\1", GrattanReportNumber, perl = TRUE)
         
         if (substr(GrattanReportNumberArg, 0, 4) != current_year){
-          if (year_provided){
+          if (!year_provided){
             stop("GrattanReportNumber using ", substr(GrattanReportNumberArg, 0, 4),
                  " for the year of publication, but today's date is ",
                  Sys.Date(),
