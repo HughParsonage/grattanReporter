@@ -16,6 +16,9 @@
 #' Set to \code{FALSE} when checking the \code{grattex} repo itself.
 #' @return Called for its side-effect.
 #' @export
+#' @import data.table
+#' @importFrom dplyr if_else
+#' @importFrom dplyr coalesce
 #' @importFrom magrittr %>%
 #' @importFrom magrittr and
 #' @importFrom magrittr or
