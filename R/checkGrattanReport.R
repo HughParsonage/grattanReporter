@@ -29,6 +29,7 @@
 #' @importFrom utils download.file
 #' @importFrom stats complete.cases
 #' @importFrom readr read_lines
+#' @import TeXCheckR
 
 checkGrattanReport <- function(path = ".",
                                output_method = c("console", "twitter", "gmailr"),
