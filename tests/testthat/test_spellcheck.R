@@ -58,5 +58,6 @@ test_that("Lower-case governments should error", {
 
 test_that("Lower-case governments ok in some cases", {
   expect_null(check_spelling("./spelling/Govt/lc-govt-ok.tex"))
+  expect_null(check_spelling("./spelling/Govt/plural-ok.tex"))
 })
 

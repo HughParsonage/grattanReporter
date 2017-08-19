@@ -298,7 +298,7 @@ check_spelling <- function(filename,
                   "(?:N(?:orthern? )?T(?:erritory)?)",
                   "|",
                   "(?:A(?:ustralian )?C(?:apital )?T(?:erritory)?)"),
-           ") government",
+           ") government(?!s)",
            "(?!\\s(?:schools?))")
 
   if (any(grepl(lc_govt_pattern, lines, perl = TRUE))){
