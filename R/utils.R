@@ -65,11 +65,18 @@ rev_forename_surname_bibtex <- function(author_fields){
 }
 
 nth_max <- function(x, n){
-  n <- length(x)
-  sort(x, partial = n - 1)[n - 1]
+  if (n == 1) {
+    return(max(n))
+  } else {
+    lx <- length(x)
+    sort(x, partial = lx - n + 1)[lx - n + 1]
+  }
 }
 
 nth_min <- function(x, n){
+  if (n == 1) {
+    return(min(x))
+  }
   sort(x)[n]
 }
 
@@ -95,3 +102,11 @@ move_to <- function(to.dir, from.dir = ".", pattern = "\\.((pdf)|(tex)|(cls)|(st
   setwd(to.dir)
   cat("   Attempting compilation in temp directory:", to.dir, "\n")
 }
+
+r2 <- function(a, b) sprintf("%s%s", a, b)
+r3 <- function(a, b, d) sprintf("%s%s%s", a, b, d)
+r4 <- function(a, b, d, e) sprintf("%s%s%s%s", a, b, d, e)
+r5 <- function(a, b, d, e, f) sprintf("%s%s%s%s%s", a, b, d, e, f)
+r9 <- function(a1, a2, a3, a4, a5, a6, a7, a8, a9) sprintf("%s%s%s%s%s%s%s%s%s", a1, a2, a3, a4, a5, a6, a7, a8, a9)
+
+trimws_if_char <- function(x) if (is.character(x)) trimws(x) else x

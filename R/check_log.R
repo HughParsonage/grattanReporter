@@ -1,12 +1,16 @@
 
 
-check_log <- function(path = ".", final = FALSE, check_for_rerun_only = FALSE){
+check_log <- function(path = ".", final = FALSE, check_for_rerun_only = FALSE, .report_error){
+  if (missing(.report_error)){
+    .report_error <- function(...) report2console(...)
+  }
+  
   log_files <- dir(path = path, pattern = "\\.log$", full.names = TRUE)
   if (length(log_files) != 1){
     stop("Path does not contain a single log file.")
   }
 
-  log_file <- readLines(log_files[[1]])
+  log_file <- read_lines(log_files[[1]])
   
   if (FALSE){
   file_list_start <- grep("*File List*", log_file, fixed = TRUE)
@@ -27,13 +31,16 @@ check_log <- function(path = ".", final = FALSE, check_for_rerun_only = FALSE){
   }
 
   if (any(grepl("undefined references", log_file, fixed = TRUE))){
-    stop(grep("undefined references",
-              log_file,
-              fixed = TRUE,
-              value = TRUE)[[1]])
+    which_line <- grep("undefined references", log_file, fixed = TRUE)
+    cat(which_line, "\n", log_files[which_line])
+    .report_error(error_message = "Undefined cross-references.", 
+                  advice = "Check each use of Vref and Cref and that it contains a valid \\label.")
+    stop("Undefined references.")
   }
 
   if (any(grepl("LaTeX Warning: There were multiply-defined labels.", log_file, fixed = TRUE))){
+    .report_error(error_message = "Multiply-defined labels",
+                  advice = "You have used \\label{} with the same key more than once.")
     stop("LaTeX Warning: There were multiply-defined labels.")
   }
   
@@ -46,7 +53,37 @@ check_log <- function(path = ".", final = FALSE, check_for_rerun_only = FALSE){
     if (check_for_rerun_only){
       return("Rerun LaTeX.")
     } else {
-      stop("LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.")
+      # CRAN NOTE avoidance
+      line_no <- line_tx <- NULL
+      log_DT <- 
+        data.table(line_no = seq_along(log_file),
+                   line_tx = log_file)
+      
+      straddling_pages <- NULL
+      page_number_vref_straddles <-
+        log_DT %>%
+        # label 1@xvr changed:
+        # macro:->{}{5}
+        # macro:->{}{4}
+        .[or(grepl("^label.*changed:", shift(line_tx, n = 1), perl = TRUE),
+             grepl("^label.*changed:", shift(line_tx, n = 2), perl = TRUE))] %>%
+        unique(by = "line_tx") %>%
+        .[, "straddling_pages" := gsub("^.*\\{([0-9]+)\\}$", "\\1", line_tx, perl = TRUE)] %>%
+        # fill = -2L present to avoid NAs (will always be FALSE)
+        .[, "group" := if_else(line_no - 1 == shift(line_no, fill = -2L), shift(line_no), line_no)] %>%
+        setorderv("straddling_pages") %>%
+        .[, .(page_ranges = paste0(straddling_pages, collapse = "--")), by = "group"]
+      
+      
+      if (nrow(page_number_vref_straddles) > 0) {
+        .report_error(error_message = "Unstable Vref.",
+                      advice = paste0("Cross-references are unstable. Look at cross-references straddling the pages boundaries:\n\t",
+                                      paste0(page_number_vref_straddles[["page_ranges"]], collapse = "\t\n"),
+                                      ".\nIf appropriate, change them to use \\Cref rather than \\Vref."))
+        stop("Unstable Vref. (LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.)")
+      } else {
+        stop("LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.")
+      }
     }
   }
 

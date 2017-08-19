@@ -17,6 +17,5 @@ lint_bib(bib_file, outfile = bib_file, leading_spaces = 2L)
 Tidy bibliography so equals signs align
 }
 \details{
-Aligns the equals signs in \code{bib_file} and puts a constant
+Aligns the equals signs in \code{bib_file}, standardizes the case of entry types and fields.
 }
-

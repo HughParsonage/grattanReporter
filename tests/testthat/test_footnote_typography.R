@@ -2,6 +2,7 @@ context("Footnote typography")
 
 test_that("Valid typography passes", {
   expect_null(check_footnote_typography("valid-footnote-typography.tex"))
+  expect_null(check_footnote_typography("./fnote-typogr/ok-ends-with-dbl-quote.tex"))
 })
 
 test_that("Invalid typography stops", {
@@ -9,7 +10,9 @@ test_that("Invalid typography stops", {
   expect_error(check_footnote_typography("./fnote-typogr/doesnt-end-with-period.tex"),
                regexp = "does not end with full stop")
   expect_error(check_footnote_typography("./fnote-typogr/full-stop-after.tex"),
-               regexp = "[fF]ull stop after")
+               regexp = "[pP]unctuation after footnote")
+  expect_error(check_footnote_typography("./fnote-typogr/full-stop-after-fcite.tex"),
+               regexp = "[pP]unctuation mark after footcite")
 })
 
 test_that("Space before footnotes.", {
@@ -40,3 +43,14 @@ test_that("Works for footcite mishaps too", {
 test_that("Leading space in footnote text", {
   expect_error(check_footnote_typography("./fnote-typogr/space-footnotetext.tex"))
 })
+
+test_that("Two footnotes same line will error", {
+  expect_error(check_footnote_typography("./fnote-typogr/two-footnotes-same-line.tex"),
+               regexp = "cannot occur twice")
+})
+
+test_that("Footcites and footcite in same document don't get confused about dots after", {
+  expect_error(check_footnote_typography("./fnote-typogr/dot-after-footcites.tex"), 
+               regexp = "Punctuation mark")
+})
+

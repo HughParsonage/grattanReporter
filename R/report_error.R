@@ -4,6 +4,7 @@
 #' @param line_no The line number locating the source of the error.
 #' @param context THe content of the file to provide context to the error.
 #' @param error_message The error message to display beyond the console.
+#' @param advice Advice to the user: how should the detected error be resolved in general?
 #' @param report_name Name of project whose errors are being reported.
 #' @param build_status What should the build status be reported as?
 #' @param authors Text to alert the authors (such as a twitter handle).
@@ -19,6 +20,7 @@
 report2console <- function(line_no = NULL,
                            context = NULL,
                            error_message = NULL,
+                           advice = NULL,
                            build_status = NULL,
                            authors = NULL,
                            report_name = NULL,
@@ -29,7 +31,15 @@ report2console <- function(line_no = NULL,
   ## 2. Line no (if applicable)
   ## 3. Context
   ## 4. Suggeston.
-  cat("\n", bgRed(symbol$cross), " ", line_no, ": ", unlist(extra_cat_ante), context, unlist(extra_cat_post), sep = "")
+  
+  # crayon::red(NULL) -> Error in mypaste(...) need character strings
+  Red <- function(x) if (!is.character(x)) x else red(x)
+  bold_red <- function(x) if (!is.character(x)) x else bold(red(x))
+  cat("\n", 
+      bold(red(error_message)), "\n",
+      bold_red(symbol$cross), " ", Red(line_no), ": ", unlist(extra_cat_ante), Red(context), unlist(extra_cat_post), "\n",
+      bold_red(advice), "\n",
+      sep = "")
   
   # To return the directory if applicable
   on.exit({
@@ -53,7 +63,7 @@ report2console <- function(line_no = NULL,
       
       data.table(Time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                  build_status = build_status, 
-                 error_message = error_message) %>%
+                 error_message = if (is.null(error_message)) "(No error msg provided.)" else error_message) %>%
         fwrite("./travis/grattanReport/error-log.tsv",
                sep = "\t",
                append = append)

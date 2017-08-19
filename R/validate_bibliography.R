@@ -20,9 +20,31 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
   }
 
   bib <-
-    readLines(bib_file, warn = FALSE, encoding = "UTF-8") %>%
-    trimws %>%
-    .[!grepl("% Valid", ., fixed = TRUE)]
+    read_lines(bib_file) %>%
+    trimws 
+  
+  # Protect from misshapen bibliography entries
+  is_key <- grepl("^@", bib, perl = TRUE)
+  is_field <- grepl("^[a-z]+\\s* = \\{", bib, perl = TRUE)
+  is_closing = bib == "}"
+  is_null <- bib == ""
+  
+  if (!all(is_key | is_field | is_closing | is_null)){
+    bad_lines <- which(!(is_key | is_field | is_closing | is_null))
+    first_bad_line <- bad_lines[[1]]
+    .report_error(line_no = first_bad_line,
+                  context = bib[first_bad_line],
+                  error_message = paste0(bib_file, " contains line which is neither a key, nor field, nor closing.") 
+                  ,advice = paste0("Ensure every line in bibliography is one:\n\t@<EntryType>,\n\t",
+                                  "field = {  <- including spaces around equals sign\n\t",
+                                  "or is a single closing brace, or a blank line. ",
+                                  "If you can, run\n\tlint_bib('", bib_file, "')")
+                  )
+    stop(bib_file, " contains line which is neither a key, nor field, nor closing.")
+  }
+  
+  bib <- 
+    bib[!grepl("% Valid", bib, fixed = TRUE)]
   
   if (any(grepl(".[}]$", bib, perl = TRUE))){
     line_no <- grep(".[}]$", bib, perl = TRUE)[[1]]
@@ -35,16 +57,18 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
   # Abbreviated names
   inst_pattern <-
     paste0("^\\s+(author).*",
-           "(",
-           "(Productivity Commission)",
+           "(?:",
+           "(?:(?:Australian )?Bureau of Statistics)",
            "|",
-           "((Australian )?Bureau of Statistics)",
+           "(?:Australian Labor Party)",
            "|",
-           "(Australian Labor Party)",
+           "(?:Australian Institute of Health and Welfare)",
            "|",
-           "(Australian Institute of Health and Welfare)",
+           "(?:Australian Taxation Office)",
            "|",
-           "(Word Health Organi[sz]ation)",
+           "(?:Productivity Commission)",
+           "|",
+           "(?:World Health Organi[sz]ation)",
            ")")
 
   if (any(grepl(inst_pattern, bib, perl = TRUE))){
@@ -147,8 +171,17 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
     journal_actual_vs_journal_expected[journal_actual != journal]
 
   if (nrow(incorrect_journal_entries) > 0){
-    cat(crayon::bgRed(symbol$cross, "Inconsistent treatment of article journal.\n"))
+    cat(red(symbol$cross), red("Inconsistent treatment of article journal.\n"))
     print(incorrect_journal_entries)
+    .report_error(error_message = "",
+                  context = paste0("In entry", "\n\t",
+                                   incorrect_journal_entries[1][["key"]], "\n\n",
+                                   "I see:", "\n\t",
+                                   "url = {", incorrect_journal_entries[1][["url"]], "}", "\n\n",
+                                   "which suggests", "\n\t",
+                                   "journal = {", incorrect_journal_entries[1][["journal"]], "} ,", "\n\n",
+                                   "but\n\t",
+                                   "journal = {", incorrect_journal_entries[1][["journal_actual"]], "} ."))
     stop("In entry", "\n\t",
          incorrect_journal_entries[1][["key"]], "\n\n",
          "I see:", "\n\t",
@@ -159,11 +192,33 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
          "journal = {", incorrect_journal_entries[1][["journal_actual"]], "} .")
   }
   
+  check_legislation <- function(bb){
+    is_bill_title <- 
+      and(grepl("^(?:@Misc).*(?:Bill)", 
+                shift(bib, type = "lag"),
+                perl = TRUE, 
+                ignore.case = TRUE),
+          grepl("^(?:title).*(?:Bill)",
+                bib, 
+                perl = TRUE, 
+                ignore.case = TRUE))
+    
+    if (any(!grepl("\\textup", bb[is_bill_title], fixed = TRUE))){
+      .report_error(line_no = which(is_bill_title)[1], 
+                    context = bb[is_bill_title[1]], 
+                    error_message = "Bill title in upright font.")
+      stop("When citing a Bill of Parliament, the title must be in upright font.", "\n",
+           "Use\n\ttitle = {\\textup{...}},\n\t\t\t\t\tin the .bib file.")
+    }
+      
+  }
+  
+  check_legislation(bib)
+  
   ## Grattan Institute
   
   ## All TechReports should use the /report/ url
   ## All TechReports should have a number
-  
   
   check_Grattan_entries <- function(trimmed_bib){
     
