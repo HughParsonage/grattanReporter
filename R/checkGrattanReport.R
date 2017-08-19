@@ -345,9 +345,8 @@ checkGrattanReport <- function(path = ".",
         break
       }
       
-      if (missing(.proceed_after_rerun) && reruns_required > 9){
-          stop("Emergency stop: pdflatex had to rerun more than 9 times but could not stabilize cross-references or the bibliography. ",
-               "Consult an expert: Hugh Parsonage or Cameron Chisholm or https://tex.stackexchange.com.")
+      if (missing(.proceed_after_rerun) && reruns_required > 3){
+        check_log(check_for_rerun_only = FALSE)
       }
     }
     cat("\n")
