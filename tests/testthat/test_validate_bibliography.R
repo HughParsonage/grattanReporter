@@ -7,6 +7,7 @@ test_that("Bills of Parliament", {
 })
 
 test_that("Duplicate fields noticed", {
+  skip_if_not(packageVersion("TeXCheckR") < package_version("0.2.1"))
   expect_error(fread_bib("./validate-bib/dup_fields.bib"), 
                regexp = "Duplicate fields found in RMS2010Hunter")
 })
