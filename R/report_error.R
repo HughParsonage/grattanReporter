@@ -35,11 +35,13 @@ report2console <- function(line_no = NULL,
   # crayon::red(NULL) -> Error in mypaste(...) need character strings
   Red <- function(x) if (!is.character(x)) x else red(x)
   bold_red <- function(x) if (!is.character(x)) x else bold(red(x))
-  cat("\n", 
-      bold(red(error_message)), "\n",
-      bold_red(symbol$cross), " ", Red(line_no), ": ", unlist(extra_cat_ante), Red(context), unlist(extra_cat_post), "\n",
-      bold_red(advice), "\n",
-      sep = "")
+  if (!identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattanReporter")) {
+    cat("\n", 
+        bold(red(error_message)), "\n",
+        bold_red(symbol$cross), " ", Red(line_no), ": ", unlist(extra_cat_ante), Red(context), unlist(extra_cat_post), "\n",
+        bold_red(advice), "\n",
+        sep = "")
+  }
   
   # To return the directory if applicable
   on.exit({
