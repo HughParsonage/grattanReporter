@@ -67,6 +67,18 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
         strsplit(split = ",", fixed = TRUE) %>%
         unlist
       
+      refrange_contents <- 
+        lines %>%
+        grep("refrange{", ., fixed = TRUE, value = TRUE) %>%
+        strsplit(split = "(?<![!])\\\\(?=([VCcv]refrange))", perl = TRUE) %>%
+        unlist %>%
+        grep("^[VCcv]refrange", . , value = TRUE, perl = TRUE) %>%
+        sub("^Vrefrange\\{(.*?)\\}\\{(.*?)\\}.*$", "\\1 \\2", x = ., perl = TRUE) %>%
+        strsplit(split = " ", fixed = TRUE) %>%
+        unlist
+      
+      ref_contents <- c(refrange_contents, ref_contents)
+      
       if (any(label_contents %notin% ref_contents)) {
         fig_tbl_labels <-
           paste0("ref{", grep("^((fig)|tbl)[:]",

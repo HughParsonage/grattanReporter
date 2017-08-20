@@ -1,0 +1,18 @@
+\documentclass{article}
+
+\begin{document}
+
+Sometimes you want two figures on the same page, use the code in \Vrefrange{fig:dbl-example-figure-A}{fig:dbl-example-figure-B}.
+
+\doublecolumnfigure{
+\caption{Figure caption\label{fig:dbl-example-figure-A}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\notes{Notes}
+}{
+\caption{Figure caption\label{fig:dbl-example-figure-B}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\source{Source}
+}
+\end{document}

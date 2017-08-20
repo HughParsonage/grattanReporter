@@ -24,3 +24,8 @@ test_that("No error if explicitly allowed", {
 test_that("No error if in a comma'd list", {
   expect_null(check_all_figs_tbls_refd("./check-all-figs-tbls-refd/ok-as-fig-may-be-unrefd.tex", compile = TRUE, pre_release = TRUE))
 })
+
+test_that("No error if Vrefrange", {
+  expect_null(check_all_figs_tbls_refd("./check-all-figs-tbls-refd/ok-as-vrefrange.tex"))
+  expect_true(all_figs_tbls_refd)
+})
