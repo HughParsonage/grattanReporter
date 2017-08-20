@@ -61,3 +61,7 @@ test_that("Lower-case governments ok in some cases", {
   expect_null(check_spelling("./spelling/Govt/plural-ok.tex"))
 })
 
+test_that("Vrefrange keys are ok", {
+  expect_null(check_spelling("./spelling/vrefrange.tex"))
+})
+

@@ -119,8 +119,9 @@ checkGrattanReport <- function(path = ".",
   }
   filename <- tex_file[[1]]
   
+  
   .report_error <- function(...){
-    report2console(...)
+    report2console(..., .no_log = .no_log)
   }
   
   report_name <- gsub("^(.*)\\.tex$", "\\1", tex_file)

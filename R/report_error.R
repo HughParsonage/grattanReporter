@@ -25,7 +25,8 @@ report2console <- function(line_no = NULL,
                            authors = NULL,
                            report_name = NULL,
                            extra_cat_ante = NULL,
-                           extra_cat_post = NULL){
+                           extra_cat_post = NULL, 
+                           .no_log = TRUE) {
   # Printing requirements:
   ## 1. Cross
   ## 2. Line no (if applicable)
@@ -44,33 +45,35 @@ report2console <- function(line_no = NULL,
   }
   
   # To return the directory if applicable
-  on.exit({
-    if (dir.exists("travis") && dir.exists("travis/grattanReport")){
-      if (file.exists("./travis/grattanReport/error-log.tsv")){
-        prev_build_status <-
-          fread("./travis/grattanReport/error-log.tsv") %>%
-          last %>%
-          .[["build_status"]]
-        append <- TRUE
-      } else {
-        prev_build_status <- "None"
-        append <- FALSE
+  if (!.no_log) {
+    on.exit({
+      if (dir.exists("travis") && dir.exists("travis/grattanReport")){
+        if (file.exists("./travis/grattanReport/error-log.tsv")){
+          prev_build_status <-
+            fread("./travis/grattanReport/error-log.tsv") %>%
+            last %>%
+            .[["build_status"]]
+          append <- TRUE
+        } else {
+          prev_build_status <- "None"
+          append <- FALSE
+        }
+        
+        if (prev_build_status %in% c("Broken", "Still failing")){
+          build_status <- "Still failing"
+        } else {
+          build_status <- "Broken"
+        }
+        
+        data.table(Time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
+                   build_status = build_status, 
+                   error_message = error_message %||% "(No error msg provided.)") %>%
+          fwrite("./travis/grattanReport/error-log.tsv",
+                 sep = "\t",
+                 append = append)
       }
-      
-      if (prev_build_status %in% c("Broken", "Still failing")){
-        build_status <- "Still failing"
-      } else {
-        build_status <- "Broken"
-      }
-      
-      data.table(Time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
-                 build_status = build_status, 
-                 error_message = if (is.null(error_message)) "(No error msg provided.)" else error_message) %>%
-        fwrite("./travis/grattanReport/error-log.tsv",
-               sep = "\t",
-               append = append)
-    }
-  }, add = TRUE)
+    }, add = TRUE)
+  }
 }
 
 #' @rdname report_error

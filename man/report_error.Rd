@@ -9,7 +9,8 @@
 \usage{
 report2console(line_no = NULL, context = NULL, error_message = NULL,
   advice = NULL, build_status = NULL, authors = NULL,
-  report_name = NULL, extra_cat_ante = NULL, extra_cat_post = NULL)
+  report_name = NULL, extra_cat_ante = NULL, extra_cat_post = NULL,
+  .no_log = TRUE)
 
 report2twitter(preamble = NULL, report_name, build_status, error_message,
   line_no = NULL, context = NULL, authors, extra_cat_ante = NULL,
