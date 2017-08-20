@@ -266,21 +266,21 @@ checkGrattanReport <- function(path = ".",
 
   cat(green(symbol$tick, "Labels checked.\n"))
 
-  all_figs_tbls_refd <- figs_tbls_not_refd <- NULL
-  check_all_figs_tbls_refd(filename, compile = compile, pre_release = pre_release)
+  unrefd_figs_tbls <- figs_tbls_unrefd(filename, check.labels = FALSE)
 
-  if (pre_release){
+  if (is.null(unrefd_figs_tbls)) {
     cat(green(symbol$tick, "All figures and tables have a Xref.\n"))
   } else {
-    if (is.null(all_figs_tbls_refd)){
-      stop("Emergency stop: This is a bug. Please report.")
-    }
-    
-    if (!all_figs_tbls_refd){
+    if (!pre_release) {
       notes <- notes + 1L
       cat(if (compile) "WARNING:" else  "NOTE:", 
           "Not all figures and tables referenced. ", 
           figs_tbls_not_refd)
+    } else {
+      .report_error(error_message = "Unreferenced figure or table",
+                    advice = paste0("Couldn't find a xref to ", lab, "."))
+      
+      stop("Couldn't find a xref to ", lab, ".")
     }
   }
 
