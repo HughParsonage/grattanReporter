@@ -15,6 +15,7 @@
 #' @importFrom twitteR updateStatus
 #' @param extra_cat_ante Character vector extra messages (placed before \code{context}).
 #' @param extra_cat_post Character vector extra messages (placed after \code{context}).
+#' @param .no_log If \code{TRUE} (the default), the error this function reports is not written to the file \code{error_log.tsv}.
 
 #' @rdname report_error
 report2console <- function(line_no = NULL,

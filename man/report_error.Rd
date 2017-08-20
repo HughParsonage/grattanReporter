@@ -39,6 +39,8 @@ report2gmail(preamble = NULL, report_name, build_status, error_message,
 
 \item{extra_cat_post}{Character vector extra messages (placed after \code{context}).}
 
+\item{.no_log}{If \code{TRUE} (the default), the error this function reports is not written to the file \code{error_log.tsv}.}
+
 \item{preamble}{Message to appear before other messages.}
 
 \item{globalEnv}{The environment in which tweet statuses should be assigned. 
