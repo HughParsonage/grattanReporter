@@ -15,3 +15,5 @@ check_timing <- function(comment = "", date = Sys.time()){
     .[, comment := comment] %>%
     fwrite("./timings/checkGrattanReport.csv", append = TRUE)
 }
+
+check_timing()

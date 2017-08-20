@@ -234,7 +234,7 @@ check_spelling <- function(filename,
          lines,
          perl = TRUE)
 
-  lines <- remove_valid_contractions(lines)
+  lines[grep("[a-z]'[a-z]", lines, perl = TRUE)] <- remove_valid_contractions(lines[grep("[a-z]'[a-z]", lines, perl = TRUE)])
 
   # Ignore phantoms
   lines <- replace_LaTeX_argument(lines, command_name = "phantom", replacement = "PHANTOM")
