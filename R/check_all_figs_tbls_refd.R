@@ -45,14 +45,15 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
   figs_tbls_not_refd <- character(0)
 
   if (not_length0(lines_with_labels)){
-    label_contents <-
+    all_label_contents <-
       lines[lines_with_labels] %>%
       strsplit(split = "\\", fixed = TRUE) %>%
       vapply(function(commands){
         grep("^label", commands, perl = TRUE, value = TRUE) %>%
           gsub(pattern = "^label[{]([^\\}]+)[}].*$", replacement = "\\1", x = ., perl = TRUE)
-      }, FUN.VALUE = character(1)) %>%
-      setdiff(may_be_left_unreferenced)
+      }, FUN.VALUE = character(1))
+      
+      label_contents <- setdiff(all_label_contents, may_be_left_unreferenced)
 
     if (not_length0(label_contents)) {
       ref_contents <- 
@@ -67,6 +68,7 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
         strsplit(split = ",", fixed = TRUE) %>%
         unlist
       
+
       refrange_contents <- 
         lines %>%
         grep("refrange{", ., fixed = TRUE, value = TRUE) %>%
@@ -74,10 +76,25 @@ check_all_figs_tbls_refd <- function(filename, .report_error, compile = FALSE, p
         unlist %>%
         grep("^[VCcv]refrange", . , value = TRUE, perl = TRUE) %>%
         sub("^Vrefrange\\{(.*?)\\}\\{(.*?)\\}.*$", "\\1 \\2", x = ., perl = TRUE) %>%
-        strsplit(split = " ", fixed = TRUE) %>%
+        strsplit(split = " ", fixed = TRUE)
+      
+      # Now need to all the ranges in case the Vrefrange
+      # includes figures/tables between the endpoints
+      
+      # LaTeX guarantes that the figure order is the same 
+      # *for the same environment* but not for figure*
+      refrange_extent <- function(el) {
+        lower <- which(all_label_contents == el[1])
+        upper <- which(all_label_contents == el[2])
+        all_label_contents[seq.int(lower, upper)]
+      }
+      
+      refrange_extents <- 
+        refrange_contents %>%
+        lapply(refrange_extent) %>%
         unlist
       
-      ref_contents <- c(refrange_contents, ref_contents)
+      ref_contents <- c(refrange_extents, ref_contents)
       
       if (any(label_contents %notin% ref_contents)) {
         fig_tbl_labels <-
