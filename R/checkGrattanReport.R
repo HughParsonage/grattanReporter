@@ -275,7 +275,7 @@ checkGrattanReport <- function(path = ".",
       notes <- notes + 1L
       cat(if (compile) "WARNING:" else  "NOTE:", 
           "Not all figures and tables referenced. ", 
-          figs_tbls_not_refd)
+          unrefd_figs_tbls)
     } else {
       .report_error(error_message = "Unreferenced figure or table",
                     advice = paste0("Couldn't find a xref to ", lab, "."))
