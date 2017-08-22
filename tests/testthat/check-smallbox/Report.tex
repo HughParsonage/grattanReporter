@@ -1,0 +1,398 @@
+\documentclass[submission]{grattan}
+% Comments are deployed by the % sign; everything after % is ignored by the compiler.
+% Please do not put comments before \documentclass as these are reserved for TeX directives.
+
+\addbibresource{bib/Grattan-Master-Bibliography.bib}
+
+% add_to_dictionary: SSBs
+
+\author{John Daley}
+\title{1 Orange Balloon}
+
+\GrattanReportNumber{2017-00}
+
+\acknowledgements{%
+This report was written by Peter Goss, Julie Sonnemann, and Kate Griffiths.
+Carmela Chivers provided extensive research assistance and made substantial contributions to the report.
+
+We would like to thank the members of Grattan Institute's School Education Program Reference Group for their helpful comments, as well as numerous government and industry participants and officials for their input.
+
+The opinions in this report are those of the authors and do not necessarily represent the views of Grattan Institute's founding members, affiliates, individual board members reference group members or reviewers.
+Any remaining errors or omissions are the responsibility of the authors.
+
+Grattan Institute is an independent think-tank focused on Australian public policy.
+Our work is independent, practical and rigorous.
+We aim to improve policy outcomes by engaging with both decision-makers and the community.
+
+For further information on the Institute's programs, or to join our mailing list, please go to: \textcolor{blue}{\url{http://www.grattan.edu.au/}}.
+
+{\footnotesize
+This report may be cited as:
+Daley, J., Goss, P., Sonnemann, J., Griffiths, K., and Chivers, C\@. (2017). \emph{\mytitle}. Grattan Institute.
+
+ISBN: 978-1-925015-96-6
+
+All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\par
+}
+}
+
+
+
+
+\begin{document}
+
+
+\begin{overview}
+This is the overview. 
+The word \textbf{Overview} appears in the contentspage at \verb=\contentspage= as an unnumbered entry.
+The gap between the overview heading and the overview text should be the same as in regular chapters. 
+Set over two columns, the first and last baseline of the text in each column have the same vertical positions.
+
+(But only if the overview is large enough!
+If the text is too brief, the algorithm might prefer some other arrangement.
+This is unlikely.) 
+
+The first line of the overview starts at a fixed vertical position but the height of the text is determined by the constraint of matching the baselines.
+In particular if the overview is too large, it will overflow the page.
+
+Footnotes are not permitted in the overview.
+
+Note that neither \LaTeX{} nor any other checks will stop or even warn you if the overview text overflows the bottom margin.
+This is probably something that I could do, but it's not really my fault if you're that inattentive\dots . 
+\end{overview}
+
+\begin{recommendations}
+\recommendation{Recommendation}\label{rec:use-labels}
+Some text under a recommendation.
+\end{recommendations}
+
+\contentspage
+
+\chapter{Chapter title}\label{chap:example}
+This demonstrates the markup commands for sectioning. 
+If you want to cross-reference a chapter/section/\etc\ later, you need to add a label, as on the line two lines (in the source) above this, and throughout.
+Although \LaTeX{} doesn't require it, every label must have a specific prefix followed by a colon, as throughout this document.
+Furthermore, every chapter must be labelled, even if it is never referenced.
+
+To refer to a chapter, use \Chapref{chap:example}, % not \Vref{chap:example}, 
+otherwise the hyperlink points to the baseline of the first text of the chapter, rather than the chapter title.
+To refer to a chapter range, \Chaprefrange{chap:example}{chap:citations}.
+
+Hugh forgot that you want to use the word `appendix', not `chapter' when referring to a chapter-level heading in the appendix.
+If you can see this text, that bug should be fixed.
+Thanks to Carmela for filing. 
+For a bit more information about appendices, see \Chapref{chap:appendices} on \vpageref{chap:appendices}. 
+
+(Do you see what we did there?
+Sometimes you might want to refer something on a page not connected to a heading or caption,\footnote{Known generally as `counters'.} such as a paragraph in the middle of a section.
+To do so, you have to mark the location with a `phantom section', as demonstrated in \Vref{paragraph:sentence-ending-periods}.
+Note that the hyperlink with the cross-reference points to the location of the paragraph, not merely to the whole page.
+To mention the page number, we say \vpageref{paragraph:sentence-ending-periods}.
+This command is safe in one important respect: it will expand to `on this page', if the locations converge on the same page, so that the page number's appearance is never jarring.)
+
+\section{Section title}\label{sec:example}
+\subsection{Subsection title}\label{subsec:example}
+\subsubsection{Sub-subsection title}\label{subsubsec:example}
+Some text in one paragraph. 
+Some text in one paragraph. 
+Some text in one paragraph. 
+
+Some text in the next paragraph. 
+Some text in the next paragraph. 
+Some text in the next paragraph. 
+
+Since single newlines are ignored, put different sentences on different lines.
+
+\begin{enumerate}
+	\item An enumerated list
+	\item Another item
+	\begin{enumerate}
+		\item A sub-item of the second item
+		\item Another sub-item
+
+		New paragraphs are the same as in the body text
+	\end{enumerate}
+\end{enumerate}
+
+Another list:
+\begin{itemize}
+	\item A bulleted/non-enumerated list
+	\item Another item
+	\begin{itemize}
+		\item A sub-item.
+	\end{itemize}
+\end{itemize}
+
+\chapter{Figures and tables}\label{chap:figs-and-tbls}
+An initial cross-reference to \Vref{fig:first-example-figure}.
+
+\begin{figure}
+\caption{Figure caption\label{fig:first-example-figure}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\noteswithsource{Notes}{Source}
+\end{figure}
+
+A cross-reference to \Vref{box:example}.
+
+\begin{verysmallbox}{A very small box}{box:very-small-box-example}
+Contents of very smallbox.
+
+A paragraph with a footnote.
+
+Some text in a very small box. 
+Some text in a very small box. 
+Some text in a very small box. 
+\end{verysmallbox}
+
+\begin{smallbox}{A small box}{box:example}
+A smallbox. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box.%
+\footnote{Footnote entry.}
+
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box.
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text.%
+\footnote{All footnotes must end with a full stop.} 
+Some other text.%
+\footnote{(Or a closing parenthesis, which itself must be preceded by a full stop.)}
+To refer to a footnote, use footnote~\ref{fn:example} \vpageref{fn:example}, rather than \Vref{fn:example} which will link to a different counter; 
+the label command \emph{must} be inside the footnote.%
+\footnote{\label{fn:example}For example, refer here.}
+\end{smallbox}
+
+A cross-reference to \Vref{fig:2nd-example-figure}, with a different cross-reference that will never print the page number: \Cref{fig:first-example-figure}.
+
+\phantomsection\label{paragraph:sentence-ending-periods}
+If a sentence ends with a capital letter, you must use backslash-@ immediately before the full stop.
+Many governments have tried to change the GST\@. 
+But few have succeeded.
+
+\begin{figure}
+\caption{A second figure caption\label{fig:2nd-example-figure}}
+\units{Figure units}
+\includegraphics{logos/GrattanSVGLogo.pdf}
+\noteswithsource{Notes}{Source}
+\end{figure}
+
+A table:
+
+\begin{table}
+\caption{Table caption}\label{tbl:one-table}
+\begin{tabularx}{\linewidth}{XXR}
+%
+\toprule
+\textbf{Column title}                           & \textbf{Column type}                              & \textbf{Ragged left title} \\
+\midrule
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\
+Move from one cell to the next cell in the same row by using an ampersand & Move to the next line by using a double backslash & Use toprule, midrule, and bottomrule. \\[15.5pt]
+Use the optional argument & to the double backslash & to specify the precise distance between rows. \\
+\cmidrule(lr){2-3}
+Never use vertical rules & But sometimes horizontal rules are appropriate. & Use cmidrule(lr) \\
+\bottomrule
+\end{tabularx}
+\noteswithsource{Notes}{Source}
+
+
+
+\end{table}
+Another table, cross-referenced in the same way \Vref{tbl:one-table}.
+
+A big box, occupying two pages floats with respect to the body text.
+
+\begin{bigbox*}{Big box title}{box:big-example}
+Far far away, behind the word mountains, far from the countries Snoot and Boot, there live the blind texts.
+Separated they live in Bookmarks grove right at the coast of the Semantics, a large language ocean.
+
+A small river named Carlton flows by their place and supplies it with the necessary regalia.
+It is a paradise country, in which roasted parts of sentences fly into your mouth.
+
+Even the all-powerful pointing has no control about the blind texts it is an almost non-orthographic life One day however a small line of blind text by the name of  decided to leave for the far World of Grammar.
+
+The Big Ox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semi, but the Little Blind Text didn't listen.
+She packed her seven verse, put her initial into the belt and made herself on the way.
+
+When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her home-town Bookmarks grove, the headline of Alphabet Village and the sub-line of her own road, the Line Lane.
+Pitiful a rhetoric question ran over her cheek, then she continued her way.
+
+On her way she met a copy.
+The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word ``and" and the Little Blind Text should turn around and return to its own, safe country.
+But nothing the copy said could convince her and so it didn't take long until a few insidious Copy Writers ambushed her, made her drunk with Long Tongue and Parole and dragged her into their agency, where they abused her for their pleasure.
+\end{bigbox*}
+
+\chapter{Citations}\label{chap:citations}
+The database is contained in a .bib file.\footnote{A footnote.} 
+Citations to appear in-line with the text are inserted like: \textcite{Daley-etal-2016-SAPTO}.
+Citations to appear in a footnote use the structure of this sentence.\footcite{Daley-etal-2016-Assessing-2016-super-tax-reforms}
+To refer to a page number: \textcite[][30]{Daley-etal-2016-SAPTO}.
+To refer to something other than page number.\footcite[][Chapter~4]{Daley-etal-2016-SAPTO}
+
+Use the plural forms of these commands to cite multiple works (\textcites{Piketty2013}{Leigh-2013-BattlersBillionaires}) at the same point.
+Square brackets / optional arguments are placed before the key.\footcites{AtkinsonStiglitz1976}[][42]{MirrleesAdamBesleyEtAl2011}
+
+
+You can include a document in the bibliography without it appearing in the main matter. %: %\nocite{*}.
+The above command cites \emph{all} entries in the document. 
+You should remove this line before compiling. 
+
+Some two-author citations: \textcite{Norton2014Doubtfuldebtrising}.\footcites{DuckettBreadon-2014-Unlocking-skills}{Duckett-2016-Premium-policy-getting-more-from-PBS}{Norton2015Universityfeeswhat}{Norton2015cashnexushow}
+
+\chapter{Testing suite 1 (this chapter title may need to span two columns)}\label{chap:test-1}
+The box on the right (\Cref{box:test-two-line-caption}) should have a top-aligned caption (re \#80):
+
+\section{Blind section}
+A small river named Carlton flows by their place and supplies it with the necessary regalia.
+It is a paradise country, in which roasted parts of sentences fly into your mouth.
+
+Even the all-powerful pointing has no control about the blind texts it is an almost non-orthographic life One day however a small line of blind text by the name of  decided to leave for the far World of Grammar.
+
+The Big Ox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semi, but the Little Blind Text didn't listen.
+She packed her seven verse, put her initial into the belt and made herself on the way.
+
+When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her home-town Bookmarks grove, the headline of Alphabet Village and the sub-line of her own road, the Line Lane.
+Pitiful a rhetoric question ran over her cheek, then she continued her way.
+
+On her way she met a copy.
+The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word ``and" and the Little Blind Text should turn around and return to its own, safe country.
+But nothing the copy said could convince her and so it didn't take long until a few insidious Copy Writers ambushed her, made her drunk with Long Tongue and Parole and dragged her into their agency, where they abused her for their pleasure.
+
+\begin{smallbox}{This is a long long caption which may be over more than one line}{box:test-two-line-caption}
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+\end{smallbox}
+
+In addition to personal costs, obese people, on average, receive more healthcare than other people, with taxpayers funding most of the costs of those services.
+Obese people also have lower rates of employment, receive more social services payments, and contribute less income tax than people in the normal weight range.
+Together, this foregone tax and additional health and welfare expenses mean that taxpayers are about \$5.3~billion worse off each year. 
+
+This report calls for a tax on sugar-sweetened beverages.
+We recommend an excise tax of 40 cents per 100 grams of sugar on non-alcoholic, water-based beverages that contain added sugar.
+This will increase the price of a two-litre bottle of soft drink by about 80 cents.
+This tax would raise about \$500~million a year, generate a drop of about 15 per cent in consumption of SSBs and likely result in a small decrease in obesity rates, as people switch to water and other drinks not subject to the tax. 
+
+\chapter{Testing suite 2}\label{chap:test-2}
+The box on the right (\Cref{box:test-one-line-caption}) should have a top-aligned caption (re \#80):
+
+\begin{smallbox}{This is a short caption}{box:test-one-line-caption}
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box. 
+Some other text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some text in a small box. 
+Some other text in a small box.  
+\end{smallbox}
+\appendix
+
+\chapter{Appendices and back matter}\label{chap:appendices}
+To start the appendix area, just invoke \verb=\appendix= as above. 
+There's nothing else special about it.
+Elements such as glossaries and indexes are not supported by this class file, though can be implemented.
+
+The bibliography is not an appendix, but appears after the appendix. 
+
+
+\printbibliography
+
+
+\end{document}

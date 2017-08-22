@@ -278,9 +278,9 @@ checkGrattanReport <- function(path = ".",
           unrefd_figs_tbls)
     } else {
       .report_error(error_message = "Unreferenced figure or table",
-                    advice = paste0("Couldn't find a xref to ", lab, "."))
+                    advice = paste0("Couldn't find a xref to ", unrefd_figs_tbls, "."))
       
-      stop("Couldn't find a xref to ", lab, ".")
+      stop("Couldn't find a xref to ", unrefd_figs_tbls, ".")
     }
   }
 
@@ -352,6 +352,8 @@ checkGrattanReport <- function(path = ".",
     }
     cat("\n")
     cat(green(symbol$tick, ".log file checked.\n"))
+    
+    check_smallbox_caption_positions()
     
     if (pre_release){
       CenturyFootnote_suspect <- NULL
