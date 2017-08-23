@@ -248,6 +248,8 @@ checkGrattanReport <- function(path = ".",
 
   check_spelling(filename, 
                  .report_error = .report_error,
+                 known.correct = c(grattan_correctly_spelled_words,
+                                   grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE),
                  pre_release = pre_release,
                  bib_files = bib_files)
   if (!pre_release && exists("authors_in_bib_and_doc") && not_length0(authors_in_bib_and_doc)){

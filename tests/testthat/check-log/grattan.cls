@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/08/19 v1.3.0 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2017/08/22 v1.3.1 Reports of the Grattan Institute, Melbourne]
 
 \LoadClass[%
 a4paper,
@@ -226,7 +226,7 @@ numbers=noenddot,
     \begin{minipage}[\textheight]{\linewidth}
       \begin{mdframed}[style=GrattanFrameBox]%
       \setlength{\parskip}{\currentparskip} % restore the value
-      \@boxcaption{#2\label{#3}}
+      \@boxcaption{\zsavepos{smallbox@@@#3}#2\label{#3}\label{smallbox@@@#3}}
       \RaggedRight
 }{%
       \end{mdframed}%
@@ -238,9 +238,9 @@ numbers=noenddot,
 % smallbox but centred in the one page
 \newenvironment{centredsmallbox}[2]{%
   \setlength{\currentparskip}{\parskip}% save the value
-  \begin{boxe}
+  \@dblfloat{boxe}
   \centering
-    \begin{minipage}[\textheight]{0.5\linewidth}
+    \begin{minipage}[\textheight]{\columnwidth}
       \begin{mdframed}[style=GrattanFrameBox]%
       \setlength{\parskip}{\currentparskip} % restore the value
       \@boxcaption{#1\label{#2}}
@@ -249,7 +249,7 @@ numbers=noenddot,
       \end{mdframed}%
     \null\vfill\null%
   \end{minipage}%
-\end{boxe}
+\end@dblfloat
 }
 
 
@@ -336,9 +336,20 @@ numbers=noenddot,
   \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Source:\ #1\@addpunct{.}}
 }
+
 \newcommand*{\notes}[1]{%
   \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Notes:\ #1\@addpunct{.}}
+}
+
+\newcommand*{\sources}[1]{%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Sources:\ #1\@addpunct{.}}
+}
+
+\newcommand*{\note}[1]{%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=3pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
 }
 
 \newcommand*{\noteswithsource}[2]{%
@@ -346,6 +357,27 @@ numbers=noenddot,
   \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
   \caption*{Notes:\ #1\@addpunct{.}}
   \caption*{Source:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\notewithsource}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\notewithsource' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
+  \caption*{Source:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\notewithsources}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\notewithsources' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Note:\ #1\@addpunct{.}}
+  \caption*{Sources:\ #2\@addpunct{.}}
+}
+
+\newcommand*{\noteswithsources}[2]{%
+  \ifstrempty{#2}{\ClassWarning{'\noteswithsources' has second argument empty}}{}%
+  \captionsetup{format=plain, font={footnotesize, it}, skip=2.5pt, justification=RaggedRight, singlelinecheck=false, position=below}
+  \caption*{Notes:\ #1\@addpunct{.}}
+  \caption*{Sources:\ #2\@addpunct{.}}
 }
 
 \newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
