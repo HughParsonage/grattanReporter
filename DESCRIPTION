@@ -20,4 +20,4 @@ Imports: magrittr,
   zoo
 LazyData: TRUE
 RoxygenNote: 6.0.1
-Suggests: testthat, devtools
+Suggests: testthat, devtools, hutils
