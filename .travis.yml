@@ -13,6 +13,8 @@ r_packages:
 - drat
 - devtools
 - roxygen2
+- hutils
+- TeXCheckR
 
 after_failure:
 - Rscript -e 'devtools::test()'
