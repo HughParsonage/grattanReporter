@@ -4,15 +4,12 @@
 \alias{checkGrattanReport}
 \title{Check Grattan Report}
 \usage{
-checkGrattanReport(path = ".", output_method = c("console", "twitter",
-  "gmailr"), compile = FALSE, pre_release = FALSE, release = FALSE,
-  .proceed_after_rerun, .no_log = TRUE, embed = TRUE, rstudio = FALSE,
-  update_grattan.cls = TRUE)
+checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
+  release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
+  rstudio = FALSE, update_grattan.cls = TRUE)
 }
 \arguments{
 \item{path}{Path to search for the tex source file.}
-
-\item{output_method}{How errors should be reported.}
 
 \item{compile}{Should \code{pdflatex} be run on the report so the logs may be checked?}
 
@@ -28,6 +25,8 @@ or incompletely formatted bibliographies.}
 
 \item{embed}{If \code{FALSE}, not attempt to embed the fonts using Ghostscript is attempted. Useful if Ghostscript cannot easily be installed.
 Set to \code{TRUE} for debugging or repetitive use (as in benchmarking).}
+
+\item{rstudio}{Use the RStudio API if available.}
 
 \item{update_grattan.cls}{Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
 Set to \code{FALSE} when checking the \code{grattex} repo itself.}

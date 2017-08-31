@@ -2,7 +2,6 @@
 #' @description Check Grattan reports written is LaTeX for typing errors, significant warnings, 
 #' and inconsistent style.
 #' @param path Path to search for the tex source file.
-#' @param output_method How errors should be reported.
 #' @param compile Should \code{pdflatex} be run on the report so the logs may be checked?
 #' @param pre_release Should the document be assumed to be final? Runs additional checks.
 #' @param release Should a final pdf be prepared for publication?
@@ -12,6 +11,7 @@
 #' @param .no_log Make no entry in the log file on the check's outcome.
 #' @param embed If \code{FALSE}, not attempt to embed the fonts using Ghostscript is attempted. Useful if Ghostscript cannot easily be installed.
 #' Set to \code{TRUE} for debugging or repetitive use (as in benchmarking). 
+#' @param rstudio Use the RStudio API if available.
 #' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
 #' Set to \code{FALSE} when checking the \code{grattex} repo itself.
 #' @return Called for its side-effect.
@@ -35,7 +35,6 @@
 #' @import TeXCheckR
 
 checkGrattanReport <- function(path = ".",
-                               output_method = c("console", "twitter", "gmailr"),
                                compile = FALSE,
                                pre_release = FALSE,
                                release = FALSE,
@@ -65,8 +64,6 @@ checkGrattanReport <- function(path = ".",
   current_wd <- getwd()
   setwd(path)
   on.exit(setwd(current_wd))
-  
-  output_method <- match.arg(output_method)
   
   if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
     download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
@@ -132,33 +129,6 @@ checkGrattanReport <- function(path = ".",
   }
   
   report_name <- gsub("^(.*)\\.tex$", "\\1", tex_file)
-  
-  switch(output_method, 
-         "twitter" = {
-           stopifnot(file.exists("~/twitteR/grattan-reporter.R"))
-           source("~/twitteR/grattan-reporter.R")
-           twitter_handle <- name <- NULL
-           authors_twitter_handles <-
-             Grattan_staff %>%
-             .[and(name %in% the_authors,
-                   nchar(twitter_handle) > 0)] %>%
-             .[["twitter_handle"]] %>%
-             paste0("@", .)
-           
-           .report_error <- function(...){
-             report2twitter(...,
-                            authors = authors_twitter_handles,
-                            build_status = "Broken:",
-                            report_name = report_name)
-           }
-         }, 
-         "gmailr" = {
-           .report_error <- function(...){
-             report2gmail(...,
-                          report_name = report_name, 
-                          authors = the_authors)
-           }
-         })
   
   # Actual checking begins here
   notes <- 0L
@@ -449,15 +419,6 @@ checkGrattanReport <- function(path = ".",
   
   if (prev_build_status %in% c("None", "Broken", "Still failing")){
     build_status <- "Fixed"
-    if (output_method == "gmailr"){
-      message <- gmailr::mime(
-        To = "hugh.parsonage@gmail.com", #email_addresses, 
-        From = "hugh.parsonage@gmail.com",
-        Subject = paste0("Fixed: ", report_name)
-      ) %>%
-        gmailr::html_body(body = paste0(c("grattanReporter returned no error.")))
-      gmailr::send_message(message)
-    }
   } else {
     build_status <- "OK"
   }
