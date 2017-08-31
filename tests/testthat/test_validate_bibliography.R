@@ -21,7 +21,7 @@ test_that("Duplicate entries error", {
 
 test_that("Duplicate keys noticed", {
   expect_error(any_bib_duplicates(c("./validate-bib/dup-keys-1.bib", "./validate-bib/dup-keys-2.bib")), 
-               regexp = "[Dd]uplicate bib key")
+               regexp = "[Dd]uplicate")
 })
 
 test_that("Broken fields detected", {

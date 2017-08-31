@@ -41,7 +41,8 @@ checkGrattanReport <- function(path = ".",
                                release = FALSE,
                                .proceed_after_rerun,
                                .no_log = TRUE, 
-                               embed = TRUE, 
+                               embed = TRUE,
+                               rstudio = FALSE,
                                update_grattan.cls = TRUE){
   if (release && (!pre_release || !compile)){
     stop("release = TRUE but pre_release and compile are not both TRUE also.")
@@ -120,8 +121,14 @@ checkGrattanReport <- function(path = ".",
   filename <- tex_file[[1]]
   
   
-  .report_error <- function(...){
-    report2console(..., .no_log = .no_log)
+  if (.no_log) {
+    .report_error <- function(...){
+      report2console(..., rstudio = rstudio, file = filename)
+    }
+  } else {
+    .report_error <- function(...){
+      report2console(..., log_file = "./travis/grattanReport/error-log.tsv", rstudio = rstudio, file = filename)
+    }
   }
   
   report_name <- gsub("^(.*)\\.tex$", "\\1", tex_file)
@@ -174,9 +181,14 @@ checkGrattanReport <- function(path = ".",
   cat(green(symbol$tick, "Preamble OK.\n"), sep = "")
   
   check_input <- function(filename){
+    
     inputs <- inputs_of(filename)
     if (length(inputs) > 0){
-      for (input in inputs){
+      for (input in inputs) {
+        if (rstudio) {
+          .report_error <- function(...) report2console(..., file = input, rstudio = TRUE)
+        }
+        
         check_input(input)
         cat(input)
       
@@ -251,7 +263,8 @@ checkGrattanReport <- function(path = ".",
                  known.correct = c(grattan_correctly_spelled_words,
                                    grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE),
                  pre_release = pre_release,
-                 bib_files = bib_files)
+                 bib_files = bib_files, 
+                 rstudio = rstudio)
   if (!pre_release && exists("authors_in_bib_and_doc") && not_length0(authors_in_bib_and_doc)){
     notes <- notes + 1L
     
