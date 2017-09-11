@@ -13,7 +13,7 @@
 #' Set to \code{TRUE} for debugging or repetitive use (as in benchmarking). 
 #' @param rstudio Use the RStudio API if available.
 #' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
-#' Set to \code{FALSE} when checking the \code{grattex} repo itself.
+#' Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.
 #' @return Called for its side-effect.
 #' @export
 #' @import data.table
