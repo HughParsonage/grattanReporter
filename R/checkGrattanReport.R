@@ -80,7 +80,9 @@ checkGrattanReport <- function(path = ".",
       download_logos_failure <- 
         download.file(paste0("https://raw.githubusercontent.com/HughParsonage/grattex/master/logos/", l), 
                       destfile = file.path(".", "logos", l), 
+                      mode = "wb",
                       quiet = TRUE)
+      
       if (download_logos_failure) {
         stop(l, " failed to download from master branch. (May be out-of-date.)")
       }
