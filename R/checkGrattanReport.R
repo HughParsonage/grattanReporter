@@ -72,6 +72,21 @@ checkGrattanReport <- function(path = ".",
     if (download_failure){
       stop("grattan.cls failed to download from master branch (and be updated).")
     }
+    
+    logos <- 
+      c("Bhp.pdf", "GrattanSVGLogo.pdf", "UOM-Pos_S_PMS.pdf", "Vic_Gov_Logo-2016.pdf", "aus-gov-logo-stacked-black.pdf")
+    
+    for (l in logos) {
+      download_logos_failure <- 
+        download.file(paste0("https://raw.githubusercontent.com/HughParsonage/grattex/master/logos/", l), 
+                      destfile = file.path(".", "logos", l), 
+                      quiet = TRUE)
+      if (download_logos_failure) {
+        stop(l, " failed to download from master branch. (May be out-of-date.)")
+      }
+    }
+    
+    
   }
   
   if (!dir.exists("./travis/grattanReport/")){
