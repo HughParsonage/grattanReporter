@@ -4,7 +4,7 @@ warnings_are_errors: true
 before_install:
 - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator
   needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize
-- Rscript -e 'rq <- function(x) {sapply(x, function(y) if (!requireNamespace(y, quietly = TRUE)) install.packages(y))};rq(c("clisymbols", "crayon", "devtools", "data.table", "dplyr", "hunspell", "magrittr", "readr", "stringi", "zoo", "TeXCheckR"))'
+- Rscript -e 'rq <- function(x) {sapply(x, function(y) if (!requireNamespace(y, quietly = TRUE)) install.packages(y))};rq(c("clisymbols", "crayon", "devtools", "data.table", "dplyr", "hunspell", "magrittr", "readr", "stringi", "zoo", "fastmatch"))'
 - Rscript -e 'install.packages("hutils", repos = "https://hughparsonage.github.io/drat", type = "source")'
 - Rscript -e 'devtools::install_github("HughParsonage/TeXCheckR")'
 addons:
