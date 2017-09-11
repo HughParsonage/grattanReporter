@@ -426,6 +426,12 @@ checkGrattanReport <- function(path = ".",
       fread("./travis/grattanReport/error-log.tsv") %>%
       last %>%
       .[["build_status"]]
+    
+    if (is.null(prev_build_status) || 
+        prev_build_status %notin% c("None", "Broken", "Still failing")) {
+      prev_build_status <- "None"
+    }
+    
     append <- TRUE
   } else {
     prev_build_status <- "None"
