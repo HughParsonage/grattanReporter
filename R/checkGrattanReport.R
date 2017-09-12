@@ -235,7 +235,7 @@ checkGrattanReport <- function(path = ".",
     gsub("^\\\\addbibresource[{](.+\\.bib)[}]$", "\\1", .)
   
   for (bib_file in bib_files){
-    validate_bibliography(file = bib_file)
+    validate_bibliography(file = bib_file, rstudio = rstudio)
     cat(green(symbol$tick, bib_file, "validated.\n"))
   }
   
