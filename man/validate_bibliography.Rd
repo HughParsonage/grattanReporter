@@ -14,7 +14,7 @@ validate_bibliography(path = ".", file = NULL, .report_error,
 
 \item{.report_error}{How errors should be reported.}
 
-\item{rstuido}{Use the RStudio API?}
+\item{rstudio}{Use the RStudio API?}
 }
 \value{
 \code{NULL} if bibliography validated.
