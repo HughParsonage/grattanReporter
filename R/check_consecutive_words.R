@@ -94,10 +94,10 @@ check_consecutive_words <- function(path = ".", latex_file = NULL, md5sum.ok = N
   first_words <- gsub("^(\\w+)\\b.*$", "\\1", valid_typeset_lines, perl = TRUE)
 
   is_repeated <-
-    first_words == data.table::shift(first_words,
-                                     type = "lag",
-                                     n = 1L,
-                                     fill = "Unlikely to be repeated") &
+    first_words == shift(first_words,
+                         type = "lag",
+                         n = 1L,
+                         fill = "Unlikely to be repeated") &
     nchar(first_words) > 0 &
     # Not only numbers
     !grepl("^[0-9]+$", first_words, perl = TRUE)

@@ -294,7 +294,7 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
 
   year_date_same_entry <-
     and(grepl("^((year)|(date))", just_years_and_dates, perl = TRUE),
-        grepl("^((year)|(date))", lead(just_years_and_dates), perl = TRUE))
+        grepl("^((year)|(date))", shift(just_years_and_dates, type = "lead"), perl = TRUE))
 
   if (any(year_date_same_entry)){
     bad_entry <- just_years_and_dates[which(year_date_same_entry)[[1]] + c(-1, 0, 1, 2)]

@@ -17,15 +17,12 @@
 #' @return Called for its side-effect.
 #' @export
 #' @import data.table
-#' @importFrom dplyr if_else
-#' @importFrom dplyr coalesce
+#' @importFrom hutils if_else
+#' @importFrom hutils coalesce
 #' @importFrom magrittr %>%
 #' @importFrom magrittr and
 #' @importFrom magrittr or
 #' @importFrom magrittr not
-#' @importFrom dplyr if_else
-#' @importFrom dplyr lead
-#' @importFrom dplyr lag
 #' @importFrom clisymbols symbol
 #' @importFrom crayon green red bgGreen bgRed bold
 #' @importFrom grDevices embedFonts

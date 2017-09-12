@@ -1,8 +1,12 @@
 
 
-check_cite_pagerefs <- function(filename, .report_error){
+check_cite_pagerefs <- function(filename, .report_error, rstudio = FALSE){
   if (missing(.report_error)){
-    .report_error <- function(...) report2console(...)
+    if (rstudio) {
+      .report_error <- function(...) report2console(file = filename, ..., rstudio = TRUE)
+    } else {
+      .report_error <- function(...) report2console(...)
+    }
   }
   lines <- 
     read_lines(filename) %>% 

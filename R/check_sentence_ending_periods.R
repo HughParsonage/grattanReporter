@@ -11,12 +11,12 @@ check_sentence_ending_periods <- function(filename, .report_error){
     trimws
   
   if (any(grepl("[A-Z]\\.\\s+[A-Z]", lines, perl = TRUE)) || 
-      any(and(lag(grepl("[A-Z]\\.$", lines, perl = TRUE)),
+      any(and(shift(grepl("[A-Z]\\.$", lines, perl = TRUE)),
               grepl("^[A-Z]", lines, perl = TRUE)))){
     
     line_nos <- 
       which(or(grepl("[A-Z]\\.\\s+[A-Z]", lines, perl = TRUE),
-               and(lag(grepl("[A-Z]\\.$", lines, perl = TRUE)),
+               and(shift(grepl("[A-Z]\\.$", lines, perl = TRUE)),
                    grepl("^[A-Z]", lines, perl = TRUE))))
     
     first_line_no <- line_nos[[1]]
