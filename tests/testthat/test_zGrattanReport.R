@@ -37,5 +37,32 @@ test_that("Engaging-students", {
   file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
 })
 
+test_that("Check NEM 2017 Sep paper", {
+  skip_on_travis()
+  skip_if_not(file.exists('C:/Program Files/gs/gs9.20/bin/gswin64c.exe'))
+  Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
+  expect_null(checkGrattanReport("./NEM-capacity-markets/", update_grattan.cls = FALSE))
+  expect_null(checkGrattanReport("./NEM-capacity-markets/",
+                                 compile = TRUE, 
+                                 pre_release = TRUE, 
+                                 release = TRUE))
+  expect_true(file.exists("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf"))
+})
+
+if (file.exists("./SchoolFunding/travis/grattanReport/md5/2016-SchoolFunding.bib")) {
+  file.remove("./SchoolFunding/travis/grattanReport/md5/2016-SchoolFunding.bib")
+}
+
+if (file.exists("./Engaging-students/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")) {
+  file.remove("./Engaging-students/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
+}
+
+if (file.exists("./Engaging-students/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")) {
+  file.remove("./Engaging-students/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
+}
+
+if (file.exists("./NEM-capacity-markets/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")) {
+  file.remove("./NEM-capacity-markets/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
+}
 
 

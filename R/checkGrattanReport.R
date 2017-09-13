@@ -234,8 +234,31 @@ checkGrattanReport <- function(path = ".",
     trimws %>%
     gsub("^\\\\addbibresource[{](.+\\.bib)[}]$", "\\1", .)
   
-  for (bib_file in bib_files){
-    validate_bibliography(file = bib_file, rstudio = rstudio)
+  
+  for (bib_file in bib_files) {
+    hutils::provide.dir(paste0("travis/grattanReport/md5/", dirname(bib_file)))
+    full_bib_file <- normalizePath(bib_file)
+    md5 <- as.character(tools::md5sum(normalizePath(bib_file)))
+    md5_record <- file.path("travis", "grattanReport", "md5", bib_file)
+    if (file.exists(md5_record)) {
+      md5.ok <- scan(file.path("travis", "grattanReport", "md5", bib_file),
+                     what = character(),
+                     n = 1, 
+                     quiet = TRUE)
+      if (md5 == md5.ok) {
+        cat(green(symbol$tick, bib_file, "previously validated.\n"))
+        next
+      }
+    } else {
+      validate_bibliography(file = bib_file, rstudio = rstudio)
+    }
+    if (grepl("ropbox", full_bib_file, fixed = TRUE)) {
+      cat("N: Not marking MD5 sum of valid file as the project", 
+          "\n   is on Dropbox and writing files directly is unwise.", 
+          "\n")
+    } else {
+      cat(md5, file = md5_record)
+    }
     cat(green(symbol$tick, bib_file, "validated.\n"))
   }
   
