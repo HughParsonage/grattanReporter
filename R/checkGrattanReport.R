@@ -234,8 +234,10 @@ checkGrattanReport <- function(path = ".",
     trimws %>%
     gsub("^\\\\addbibresource[{](.+\\.bib)[}]$", "\\1", .)
   
-  
+  bib_files_still_ok <- logical(length(bib_files))
+  i <- 0
   for (bib_file in bib_files) {
+    i <- i + 1
     hutils::provide.dir(paste0("travis/grattanReport/md5/", dirname(bib_file)))
     full_bib_file <- normalizePath(bib_file)
     md5 <- as.character(tools::md5sum(normalizePath(bib_file)))
@@ -246,6 +248,7 @@ checkGrattanReport <- function(path = ".",
                      n = 1, 
                      quiet = TRUE)
       if (md5 == md5.ok) {
+        bib_files_still_ok[i] <- TRUE
         cat(green(symbol$tick, bib_file, "previously validated.\n"))
         next
       }
@@ -262,8 +265,18 @@ checkGrattanReport <- function(path = ".",
     cat(green(symbol$tick, bib_file, "validated.\n"))
   }
   
-  any_bib_duplicates(bib.files = bib_files)
-  cat(green(symbol$tick, "No obvious duplicates in bibliography.\n"))
+  if (all(bib_files_still_ok)) {
+    cat(green(symbol$tick, "Duplicates previously checked.\n"))
+  } else {
+    tryCatch(any_bib_duplicates(bib.files = bib_files),
+             error = function(e) {
+               for (bib_file in bib_files) {
+                 file.remove(file.path("travis", "grattanReport", "md5", bib_file))
+               }
+               stop(e)
+             })
+    cat(green(symbol$tick, "No obvious duplicates in bibliography.\n"))
+  }
 
   check_spelling(filename, 
                  .report_error = .report_error,
@@ -443,30 +456,31 @@ checkGrattanReport <- function(path = ".",
     }
   }
   
-  if (file.exists("./travis/grattanReport/error-log.tsv")){
-    prev_build_status <-
-      fread("./travis/grattanReport/error-log.tsv") %>%
-      last %>%
-      .[["build_status"]]
-    
-    if (is.null(prev_build_status) || 
-        prev_build_status %notin% c("None", "Broken", "Still failing")) {
+  if (!.no_log){
+    if (file.exists("./travis/grattanReport/error-log.tsv")){
+      prev_build_status <-
+        fread("./travis/grattanReport/error-log.tsv") %>%
+        last %>%
+        .[["build_status"]]
+      
+      if (is.null(prev_build_status) || 
+          prev_build_status %notin% c("None", "Broken", "Still failing")) {
+        prev_build_status <- "None"
+      }
+      
+      append <- TRUE
+    } else {
       prev_build_status <- "None"
+      append <- FALSE
     }
     
-    append <- TRUE
-  } else {
-    prev_build_status <- "None"
-    append <- FALSE
-  }
-  
-  if (prev_build_status %in% c("None", "Broken", "Still failing")){
-    build_status <- "Fixed"
-  } else {
-    build_status <- "OK"
-  }
-  
-  if (!.no_log){
+    if (prev_build_status %in% c("None", "Broken", "Still failing")){
+      build_status <- "Fixed"
+    } else {
+      build_status <- "OK"
+    }
+    
+    
     data.table(Time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                build_status = build_status, 
                error_message = "NA") %>%
@@ -482,5 +496,5 @@ checkGrattanReport <- function(path = ".",
     } 
   }
   
-invisible(NULL)
+  invisible(NULL)
 }
