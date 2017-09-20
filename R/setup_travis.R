@@ -5,8 +5,46 @@
 
 setup_travis <- function() {
   travis_cache <- "/home/travis/texlive/texmf-var/web2c/tlmgr.log"
-  if (!file.exists(travis_cache) || T ||
-      as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30) {
+  
+  should_rebuild <- 
+    tryCatch({
+      system("tlmgr list --only-installed > installed_texlive_packages.txt")
+      installed_packages <- read_lines("installed_texlive_packages.txt")
+      required_packages  <- 
+        c("acronym",
+          "bigfoot",
+          "blindtext",
+          "chngcntr",
+          "cmap",
+          "nowidow",
+          "mdframed",
+          "navigator",
+          "needspace",
+          "tablefootnote",
+          "tocloft",
+          "xpatch",
+          "multirow",
+          "bbding",
+          "mathastext",
+          "isomath",
+          "relsize")
+      
+      any(required_packages %notin% installed_packages)
+    },
+    error = function(e) {
+      cat(e$message)
+      invisible(TRUE)
+    },
+    warning = function(e) {
+      cat(e$message)
+      invisible(TRUE)
+    })
+  
+  if (OR(should_rebuild,
+         OR(!file.exists(travis_cache),
+            as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30)) {
+    cat("\ngrattanReporter requested rebuild...")
+    
     system("source ./travis/texlive.sh")
     # system("tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize")
     # system("tlmgr update --all")
