@@ -28,3 +28,9 @@ test_that("Broken fields detected", {
   expect_error(validate_bibliography(file = "./validate-bib/field-broken-over2lines.bib"), 
                regexp = "which is neither a key, nor field")
 })
+
+test_that("Near duplicate authors error", {
+  expect_error(validate_bibliography(file = "./validate-bib/near-dup-authors.bib"),
+               regexp = "[Aa]uthors differ only by case")
+})
+
