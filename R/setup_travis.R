@@ -4,7 +4,7 @@
 #' @export
 
 setup_travis <- function() {
-  travis_cache <- "/travis/grattanReport/travis_trattex_built"
+  travis_cache <- "/home/travis/texlive/texmf-var/web2c/tlmgr.log"
   if (!file.exists(travis_cache) ||
       as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30) {
     system("source ./travis/texlive.sh")
@@ -19,6 +19,6 @@ setup_travis <- function() {
     if (!nzchar(Sys.which("biber"))) {
       cat("\nno biber\n")
     }
-    file.create(travis_cache)
+    # file.create(travis_cache)
   }
 }
