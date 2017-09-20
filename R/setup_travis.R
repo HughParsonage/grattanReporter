@@ -45,7 +45,8 @@ setup_travis <- function() {
             as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30))) {
     cat("\ngrattanReporter requested rebuild...")
     
-    shell("source ./travis/texlive.sh")
+    system("./travis/texlive.sh")
+    
     # system("tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize")
     # system("tlmgr update --all")
     # system("sudo apt-get update")
