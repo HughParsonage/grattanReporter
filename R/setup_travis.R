@@ -45,12 +45,21 @@ setup_travis <- function() {
             as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30))) {
     cat("\ngrattanReporter requested rebuild...")
     
-    system("./travis/texlive.sh")
+    # system("./travis/texlive.sh")
+    # Obtain TeX Live
+    system("wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz")
+    system("tar -xzf install-tl-unx.tar.gz")
+    setwd("install-tl-20*")
+      
+      # Install a minimal system
+    system("./install-tl --profile=../support/texlive.profile")
     
-    # system("tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize")
-    # system("tlmgr update --all")
-    # system("sudo apt-get update")
-    # system("sudo apt-get install texlive-bibtex-extra")
+    setwd("..")
+    
+    system("tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize")
+    system("tlmgr update --all")
+    system("sudo apt-get update")
+    system("sudo apt-get install texlive-bibtex-extra")
     # # system('wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"')
     # system('tar xzf biber-linux_x86_64.tar.gz')
     # system('export PATH=$PATH:$PWD')
