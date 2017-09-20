@@ -8,9 +8,10 @@ setup_travis <- function() {
   
   should_rebuild <- 
     tryCatch({
-      system("tlmgr list --only-installed > installed_texlive_packages.txt")
-      installed_packages <- read_lines("installed_texlive_packages.txt")
-      str(installed_packages)
+      
+      system("tlmgr list --only-installed --data name > installed_texlive_packages.csv")
+      installed_packages <- fread("installed_texlive_packages.txt")
+      print(installed_packages)
       required_packages  <- 
         c("acronym",
           "bigfoot",
