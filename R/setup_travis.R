@@ -42,7 +42,7 @@ setup_travis <- function() {
   
   if (OR(should_rebuild,
          OR(!file.exists(travis_cache),
-            as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30)) {
+            as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30))) {
     cat("\ngrattanReporter requested rebuild...")
     
     system("source ./travis/texlive.sh")
