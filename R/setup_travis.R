@@ -15,6 +15,8 @@ setup_travis <- function() {
     system('tar xzf biber-linux_x86_64.tar.gz')
     system('export PATH=$PATH:$PWD')
     system('tlmgr update biber')
-    file.create("travis_grattex_built")
+    if (nzchar(Sys.which("biber"))) {
+      file.create("travis_grattex_built")
+    }
   }
 }

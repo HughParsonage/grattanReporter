@@ -41,7 +41,7 @@ checkGrattanReport <- function(path = ".",
                                rstudio = FALSE,
                                update_grattan.cls = TRUE){
   if (Sys.getenv("TRAVIS") == "true") {
-    print(packageVersion("grattanReporter"))
+    print(utils::packageVersion("grattanReporter"))
   }
   
   if (release && (!pre_release || !compile)){
