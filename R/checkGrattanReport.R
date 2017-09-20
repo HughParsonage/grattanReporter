@@ -40,6 +40,10 @@ checkGrattanReport <- function(path = ".",
                                embed = TRUE,
                                rstudio = FALSE,
                                update_grattan.cls = TRUE){
+  if (Sys.getenv("TRAVIS") == "true") {
+    print(packageVersion("grattanReporter"))
+  }
+  
   if (release && (!pre_release || !compile)){
     stop("release = TRUE but pre_release and compile are not both TRUE also.")
   }
