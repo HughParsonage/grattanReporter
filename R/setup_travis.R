@@ -10,7 +10,7 @@ setup_travis <- function() {
     tryCatch({
       
       system("tlmgr list --only-installed --data name > installed_texlive_packages.csv")
-      installed_packages <- fread("installed_texlive_packages.txt")
+      installed_packages <- fread("installed_texlive_packages.csv")
       print(installed_packages)
       required_packages  <- 
         c("acronym",
