@@ -31,7 +31,7 @@ setup_travis <- function() {
           "isomath",
           "relsize")
       
-      any(required_packages %notin% installed_packages)
+      any(required_packages %notin% installed_packages[["name"]])
     },
     error = function(e) {
       cat(e$message)
