@@ -43,14 +43,15 @@ setup_travis <- function() {
   if (OR(should_rebuild,
          OR(!file.exists(travis_cache),
             as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30))) {
-    cat("\ngrattanReporter requested rebuild...\n")
+    cat("\ngrattanReporter requested rebuild...\n\n")
     
     # system("./travis/texlive.sh")
     # Obtain TeX Live
     system("wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz")
     system("tar -xzf install-tl-unx.tar.gz")
+    cat(grep("install-tl-20", list.dirs(recursive = FALSE), fixed = TRUE, value = TRUE), "\n")
     setwd(grep("install-tl-20", list.dirs(recursive = FALSE), fixed = TRUE, value = TRUE)[1])
-      
+    cat("Dirs:\n\t", list.dirs(recursive = FALSE))
       # Install a minimal system
     system("./install-tl --profile=../support/texlive.profile")
     
