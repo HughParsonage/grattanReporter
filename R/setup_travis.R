@@ -4,8 +4,9 @@
 #' @export
 
 setup_travis <- function() {
-  if (!file.exists("travis_trattex_built") ||
-      as.double(difftime(Sys.time(), file.mtime("travis_trattex_built"), units = "days")) > 30) {
+  travis_cache <- "/travis/grattanReport/travis_trattex_built"
+  if (!file.exists(travis_cache) ||
+      as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30) {
     system("source ./travis/texlive.sh")
     system("tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize")
     system("tlmgr update --all")
@@ -18,6 +19,6 @@ setup_travis <- function() {
     if (!nzchar(Sys.which("biber"))) {
       cat("\nno biber\n")
     }
-    file.create("travis_grattex_built")
+    file.create(travis_cache)
   }
 }
