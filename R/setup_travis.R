@@ -11,12 +11,13 @@ setup_travis <- function() {
     system("tlmgr update --all")
     system("sudo apt-get update")
     system("sudo apt-get install texlive-bibtex-extra")
-    system('wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"')
-    system('tar xzf biber-linux_x86_64.tar.gz')
-    system('export PATH=$PATH:$PWD')
-    system('tlmgr update biber')
-    if (nzchar(Sys.which("biber"))) {
-      file.create("travis_grattex_built")
+    # system('wget "https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/current/binaries/Linux/biber-linux_x86_64.tar.gz"')
+    # system('tar xzf biber-linux_x86_64.tar.gz')
+    # system('export PATH=$PATH:$PWD')
+    # system('tlmgr update biber')
+    if (!nzchar(Sys.which("biber"))) {
+      cat("\nno biber\n")
     }
+    file.create("travis_grattex_built")
   }
 }
