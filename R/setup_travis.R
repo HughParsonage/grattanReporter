@@ -31,7 +31,12 @@ setup_travis <- function() {
           "isomath",
           "relsize")
       
-      any(required_packages %notin% installed_packages[["name"]])
+      if (any(required_packages %notin% installed_packages[["name"]])) {
+        cat(setdiff(required_packages, installed_packages[["name"]]))
+        TRUE
+      } else {
+        FALSE
+      }
     },
     error = function(e) {
       cat(e$message)
@@ -41,6 +46,10 @@ setup_travis <- function() {
       cat(e$message)
       invisible(TRUE)
     })
+  
+  print(should_rebuild)
+  print(!file.exists(travis_cache))
+  print(as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30)
   
   if (OR(should_rebuild,
          OR(!file.exists(travis_cache),
