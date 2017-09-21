@@ -10,7 +10,7 @@ setup_travis <- function() {
     tryCatch({
       
       system("tlmgr list --only-installed --data name > installed_texlive_packages.csv")
-      installed_packages <- fread("installed_texlive_packages.csv")
+      installed_packages <- fread("installed_texlive_packages.csv", header = FALSE)
       print(installed_packages)
       required_packages  <- 
         c("acronym",
@@ -47,7 +47,9 @@ setup_travis <- function() {
       invisible(TRUE)
     })
   
-  print(should_rebuild)
+  cat(should_rebuild)
+  cat("\n")
+  
   print(!file.exists(travis_cache))
   print(as.double(difftime(Sys.time(), file.mtime(travis_cache), units = "days")) > 30)
   
