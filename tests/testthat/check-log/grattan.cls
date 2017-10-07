@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/08/22 v1.3.1 Reports of the Grattan Institute, Melbourne]
-
+\ProvidesClass{grattan}[2017/09/26 v1.3.2 Reports of the Grattan Institute, Melbourne]
+% >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
+% for png files
 \LoadClass[%
 a4paper,
 11pt,
@@ -620,37 +621,37 @@ numbers=noenddot,
 
 % Alternatively, if FrontPage is declared, the file there is used as the frontpage picture
 \DeclareOption{FrontPage}{
-	\IfFileExists{./FrontPage/FrontPage.pdf}{%
-	    %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
-	  }{
-	    \ClassError{grattan}{%
-			'./FrontPage/FrontPage.pdf' does not exist
-	    }{%
-			You have asked for a fullpicture option, but we can't find 
-			a file at './FrontPage/FrontPage.pdf'. Try placing the image
-			there or not using the fullpicture option.
-		}
-	  }
-	\renewcommand\BackgroundPic{%
-		\put(0,0){%
-		\parbox[b][\paperheight]{\paperwidth}{%
-		\vfill
-		\centering
-		% Amend
-		\IfFileExists{./FrontPage/FrontPage.pdf}{%
-			\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
-		}{
-			\ClassError{grattan}{%
-				'./FrontPage/FrontPage' does not exist
-			}{%
-				You have asked for a fullpicture option, but we can't find 
-				a file at './FrontPage/FrontPage'. Try placing the image
-				there or not using the fullpicture option.
-			}
-		}
-	\vfill
-	}}}
-	\renewcommand{\titleTH}{} % FrontPage should be entire.
+  \IfFileExists{./FrontPage/FrontPage.pdf}{%
+      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
+    }{
+      \ClassError{grattan}{%
+      './FrontPage/FrontPage.pdf' does not exist
+      }{%
+      You have asked for a fullpicture option, but we can't find 
+      a file at './FrontPage/FrontPage.pdf'. Try placing the image
+      there or not using the fullpicture option.
+    }
+    }
+  \renewcommand\BackgroundPic{%
+    \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+    \vfill
+    \centering
+    % Amend
+    \IfFileExists{./FrontPage/FrontPage.pdf}{%
+      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
+    }{
+      \ClassError{grattan}{%
+        './FrontPage/FrontPage' does not exist
+      }{%
+        You have asked for a fullpicture option, but we can't find 
+        a file at './FrontPage/FrontPage'. Try placing the image
+        there or not using the fullpicture option.
+      }
+    }
+  \vfill
+  }}}
+  \renewcommand{\titleTH}{} % FrontPage should be entire.
 
 }
 
@@ -666,9 +667,9 @@ numbers=noenddot,
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
-  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \setlength{\parskip}{4pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-20pt} 
+  \vspace{-40pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -692,16 +693,24 @@ numbers=noenddot,
   % par is necessary to centre the last logo
   \par}
   \columnbreak\par
-  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
+  \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
+
+  The Myer Foundation
+
+  National Australia Bank
+
+  Susan McKinnon Foundation
+
+  \vspace{17pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Google 
 
   Medibank Private
-
-  Susan McKinnon Foundation
-
-  \vspace{26pt}
+  
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
 
@@ -717,7 +726,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{26pt}
+  \vspace{17pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -730,8 +739,6 @@ numbers=noenddot,
   GE ANZ
 
   Jemena
-
-  The Myer Foundation
 
   Urbis
 
@@ -984,19 +991,19 @@ numbers=noenddot,
   
 \AtBeginDocument{%
   \pagestyle{empty}
-	\let\mytitle\@title
-	\let\myauthor\@author
-	
-	% TitlePage
-	\onecolumn
-	\AddToShipoutPicture*{\BackgroundPic}
-	\phantom{.}\hfill\titleTH
-	\ClearShipoutPicture
-	\clearpage
-	\twocolumn
+  \let\mytitle\@title
+  \let\myauthor\@author
+  
+  % TitlePage
+  \onecolumn
+  \AddToShipoutPicture*{\BackgroundPic}
+  \phantom{.}\hfill\titleTH
+  \ClearShipoutPicture
+  \clearpage
+  \twocolumn
   % use microtype
   
-	%
+  %
 % Following page.
 \pagestyle{scrheadings}
 \@pagetwo
