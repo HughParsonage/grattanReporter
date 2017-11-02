@@ -1,3 +1,6 @@
+# grattanReporter 0.24.0
+* Permit reordering of recommended citation
+
 # grattanReporter 0.23.1
 * Use a more precise version of `inputs_of` to handle custom inputs like `\includenextfigure`
 

@@ -47,6 +47,7 @@ test_that("Check NEM 2017 Sep paper", {
                                  pre_release = TRUE, 
                                  release = TRUE))
   expect_true(file.exists("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf"))
+  file.remove("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf")
 })
 
 if (file.exists("./SchoolFunding/travis/grattanReport/md5/2016-SchoolFunding.bib")) {

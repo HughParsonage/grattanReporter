@@ -4,12 +4,14 @@
 \alias{get_authors}
 \title{Extract authors from report}
 \usage{
-get_authors(filename, include_editors = TRUE)
+get_authors(filename, include_editors = TRUE, rstudio = FALSE)
 }
 \arguments{
 \item{filename}{The filename whose preamble contains the names of the authors.}
 
 \item{include_editors}{(logical) Should editorial members of staff be included?}
+
+\item{rstudio}{Should the RStudio API be used?}
 }
 \value{
 The names of Grattan staff who were authors in \code{filename}.
