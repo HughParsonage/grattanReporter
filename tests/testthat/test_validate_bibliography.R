@@ -29,3 +29,10 @@ test_that("Broken fields detected", {
                regexp = "which is neither a key, nor field")
 })
 
+test_that("Issue 75: Attorney-Generals", {
+  expect_error(validate_bibliography(file = "./validate-bib/AG-no-hyphen.bib"),
+               regexp = "Attorney")
+  expect_error(validate_bibliography(file = "./validate-bib/AG-unprotected.bib"), 
+               regexp = "Attorney")
+})
+

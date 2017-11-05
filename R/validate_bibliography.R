@@ -298,7 +298,8 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
         grepl("^((year)|(date))", shift(just_years_and_dates, type = "lead"), perl = TRUE))
 
   if (any(year_date_same_entry)){
-    bad_entry <- just_years_and_dates[which(year_date_same_entry)[[1]] + c(-1, 0, 1, 2)]
+    bad_entry <-
+      just_years_and_dates[which(year_date_same_entry)[[1]] + c(-1, 0, 1, 2)]
     cat(crayon::bgRed(symbol$cross),
         bad_entry[1], "\n\t",
         bad_entry[2], "\n\t",
@@ -306,6 +307,68 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
         bad_entry[4], "\n")
     stop("Date and year should not both appear in bibliography.")
   }
+  
+  if (utils::packageVersion("TeXCheckR") > package_version("0.4.4")) {
+    bib_DT <- fread_bib(file.bib = bib_file,
+                        check.dup.keys = FALSE,
+                        strip.braces = FALSE)
+    
+    # Issue 75
+    AG_keys <- 
+      bib_DT[field %in% c("author", "url")] %>%
+      .[or(grepl("Attorney.General.s.Department",
+                 value,
+                 perl = TRUE,
+                 ignore.case = TRUE),
+           grepl("\\bag\\.gov\\.au", value, perl = TRUE))] %>%
+      .[["key"]] %>%
+      unique 
+    
+    AG_authors <- 
+      bib_DT[key %in% AG_keys] %>%
+      .[field == "author"] %>%
+      .[["value"]] 
+    
+    if (any(AG_authors != "{{Attorney-General's Department}}")) {
+      the_entry <-
+        bib_DT[key %in% AG_keys] %>%
+        .[field == "author"] %>%
+        .[value != "{{Attorney-General's Department}}"] %>%
+        .[1]
+      
+      .report_error(line_no = the_entry[["line_no"]], 
+                    error_message = paste0("Author needs to be:\n\t", 
+                                           "{{Attorney-General's Department}}\n",
+                                           "precisely."))
+      stop("Attorney-General's Department: author")
+    }
+    
+    AG_urls <-
+      bib_DT[key %in% AG_keys] %>%
+      .[field == "url"] %>%
+      .[["value"]]
+    
+    if (any(!grepl("\\bag\\.gov\\.au", AG_urls, perl = TRUE))) {
+      the_entry <-
+        bib_DT[key %in% AG_keys] %>%
+        .[field == "url"] %>%
+        .[!is.na(value)] %>%
+        .[nzchar(value)] %>%
+        .[!grepl("\\bag\\.gov\\.au", value, perl = TRUE)] %>%
+        .[1]
+      
+      .report_error(line_no = the_entry[["line_no"]], 
+                    error_message = paste0("Reference to a URL the Cth ",
+                                           "Attorney-General's Department ", 
+                                           "but url did not contain ", 
+                                           ".ag.gov.au"))
+      stop("Attorney-General's Department: url")
+    }
+  }
+  
+  
+  
+  
 
   invisible(NULL)
 }
