@@ -1,6 +1,7 @@
 # grattanReporter 0.25.0
 * Attorney-General's Department: basic validation of entries (#75)
 * New function `compress_FrontPage` for crisper, smaller title pages.
+* New function `fix_labels` to fix prefixes of labels.
 
 # grattanReporter 0.24.0
 * Permit reordering of recommended citation
