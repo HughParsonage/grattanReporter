@@ -309,6 +309,7 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
   }
   
   if (utils::packageVersion("TeXCheckR") > package_version("0.4.4")) {
+    field <- value <- key <- NULL
     bib_DT <- fread_bib(file.bib = bib_file,
                         check.dup.keys = FALSE,
                         strip.braces = FALSE)
