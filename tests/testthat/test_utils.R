@@ -11,3 +11,8 @@ test_that("nth_max and nth_min", {
   expect_equal(nth_max(sample(1:10), 3), 8)
   expect_equal(nth_min(sample(1:10), 4), 4)
 })
+
+test_that("insert", {
+  expect_equal(insert(1:5, 3, -1L),
+               c(1, 2, -1, 3, 4, 5))
+})

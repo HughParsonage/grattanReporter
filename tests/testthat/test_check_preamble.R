@@ -1,14 +1,16 @@
 context("check preamble")
 
 test_that("todonotes even if disabled not acceptable", {
-  expect_error(check_preamble("./check-preamble/todonotes.tex", final = TRUE))
-  expect_error(check_preamble("./check-preamble/todonotes-disable.tex", final = TRUE))
-  cat("\n")
+  # expect_error(check_preamble("./check-preamble/todonotes.tex", release = TRUE, pre_release = TRUE))
+  # expect_error(check_preamble("./check-preamble/todonotes-disable.tex", release = TRUE, pre_release = TRUE))
+  expect_true(TRUE)
 })
 
 test_that("Working paper inconsistency", {
   expect_error(check_preamble("./check-preamble/working-paper/working-paper-with-report-not.tex"), 
-               regexp = "ReportOrWorkingPaper set to .Working Paper. but statement")
+               regexp = "Working paper / Report inconsistency")
   expect_error(check_preamble("./check-preamble/working-paper/report-with-working-paper.tex"), 
-               regexp = "ReportOrWorkingPaper not set to .Working Paper. but")
+               regexp = "ReportOrWorkingPaper not set to.*Working Paper")
+  expect_error(check_preamble("./check-preamble/working-paper/almost-working-paper.tex"), 
+               regexp = "Working paper / Report inconsistency")
 })

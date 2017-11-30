@@ -17,6 +17,7 @@ test_that("Abbreviations", {
 test_that("Initalisms", {
   expect_null(check_spelling("./spelling/abbrev/abbrev-defd-ok.tex"))
   expect_null(check_spelling("./spelling/abbrev/abbrev-defd-ok-2.tex"))
+  expect_null(check_spelling("./spelling/abbrev/HILDA-ok.tex"))
   expect_equal(extract_validate_abbreviations(readLines("./spelling/abbrev/abbrev-defd-ok-stopwords.tex")),
                c("QXFEoC", "AIAS"))
   expect_equal(extract_validate_abbreviations(readLines("./spelling/abbrev/abbrev-plural.tex")),
@@ -57,5 +58,10 @@ test_that("Lower-case governments should error", {
 
 test_that("Lower-case governments ok in some cases", {
   expect_null(check_spelling("./spelling/Govt/lc-govt-ok.tex"))
+  expect_null(check_spelling("./spelling/Govt/plural-ok.tex"))
+})
+
+test_that("Vrefrange keys are ok", {
+  expect_null(check_spelling("./spelling/vrefrange.tex"))
 })
 

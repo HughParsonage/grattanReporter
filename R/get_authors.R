@@ -1,10 +1,11 @@
 #' Extract authors from report
 #' @param filename The filename whose preamble contains the names of the authors.
 #' @param include_editors (logical) Should editorial members of staff be included?
+#' @param rstudio Should the RStudio API be used?
 #' @return The names of Grattan staff who were authors in \code{filename}.
 #' @export
 
-get_authors <- function(filename, include_editors = TRUE){
+get_authors <- function(filename, include_editors = TRUE, rstudio = FALSE) {
   lines <- read_lines(filename)
   file_path <- dirname(filename)
 
@@ -68,6 +69,56 @@ get_authors <- function(filename, include_editors = TRUE){
              "",
              grep("^[%] add_author_to_recommended_citation: ", lines_before_begin_document, perl = TRUE,
                   value = TRUE)))
+  }
+  
+  if (any(grepl("^[%] add_author_to_recommended_citation_at: ", lines_before_begin_document, perl = TRUE))) {
+    line_nos_with_add_author_ats <-
+      grep("^[%] add_author_to_recommended_citation_at: ",
+           lines_before_begin_document,
+           perl = TRUE)
+    
+    lines_with_add_author_ats <-
+      lines_before_begin_document %>%
+      .[line_nos_with_add_author_ats] %>%
+      trimws
+    
+    if (!all(grepl("[0-9]$", lines_with_add_author_ats))) {
+      line_no <-
+        line_nos_with_add_author_ats %>%
+        .[first(!grepl("[0-9]$", lines_with_add_author_ats))]
+      
+      report2console(file = filename,
+                     line_no = line_no,
+                     column = nchar(lines_before_begin_document[line_no]),
+                     context = lines_before_begin_document[line_no],
+                     error_message = paste0("% add_to_author_recommended_citation_at:",
+                                            "  is used, but the line does not end with",
+                                            " a number as required."),
+                     advice = paste0("Either use\n\t `add_author_to_recommended_citation: <author>`\n", 
+                                     "or\n\t `add_author_to_recommended_citation_at: <author> <order>`\n",
+                                     "where <order> is an integer, specifying the order."),
+                     rstudio = rstudio)
+    }
+    
+    for (author_with_order in lines_with_add_author_ats) {
+      the_order <- as.integer(sub("^.* ([0-9]+)$", 
+                                  "\\1",
+                                  lines_with_add_author_ats,
+                                  perl = TRUE))
+      
+      the_author <- sub("^.*add_author_to_recommended_citation_at: (.*) [0-9]+$",
+                        "\\1",
+                        lines_with_add_author_ats,
+                        perl = TRUE)
+      
+      possible_names <-
+        insert(possible_names, the_order, the_author)
+    }
+    
+    
+    
+    
+    
   }
   
   possible_names <- trimws(possible_names)

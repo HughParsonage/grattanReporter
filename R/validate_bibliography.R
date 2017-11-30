@@ -2,13 +2,14 @@
 #' @param path Containing the bib file.
 #' @param file The bib file if specified.
 #' @param .report_error How errors should be reported.
+#' @param rstudio Use the RStudio API?
 #' @return \code{NULL} if bibliography validated.
 #' @export
 
 
-validate_bibliography <- function(path = ".", file = NULL, .report_error){
+validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudio = FALSE) {
   if (missing(.report_error)){
-    .report_error <- function(...) report2console(...)
+    .report_error <- function(...) report2console(file = file, ..., rstudio = rstudio)
   }
   
   if (is.null(file)){
@@ -35,10 +36,21 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
     .report_error(line_no = first_bad_line,
                   context = bib[first_bad_line],
                   error_message = paste0(bib_file, " contains line which is neither a key, nor field, nor closing.") 
-                  ,advice = paste0("Ensure every line in bibliography is one:\n\t@<EntryType>,\n\t",
-                                  "field = {  <- including spaces around equals sign\n\t",
-                                  "or is a single closing brace, or a blank line. ",
-                                  "If you can, run\n\tlint_bib('", bib_file, "')")
+                  ,advice = paste0("Ensure every line in bibliography is one of the following:", 
+                                   "\n\n", 
+                                   "An entry type,\n\t",
+                                    "@<EntryType>\n",
+                                   "\n",
+                                   "a field,\n\t",
+                                  "field = {  \t<- including spaces around the equals sign\n", 
+                                   "\n",
+                                  "a single closing brace,\n\t", 
+                                    "}\n",
+                                    "\n",
+                                    "or a blank line.\n",
+                                    "\n\n",
+                                    "If you can, run\n\t", 
+                                    "lint_bib('", bib_file, "')")
                   )
     stop(bib_file, " contains line which is neither a key, nor field, nor closing.")
   }
@@ -283,10 +295,11 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
 
   year_date_same_entry <-
     and(grepl("^((year)|(date))", just_years_and_dates, perl = TRUE),
-        grepl("^((year)|(date))", lead(just_years_and_dates), perl = TRUE))
+        grepl("^((year)|(date))", shift(just_years_and_dates, type = "lead"), perl = TRUE))
 
   if (any(year_date_same_entry)){
-    bad_entry <- just_years_and_dates[which(year_date_same_entry)[[1]] + c(-1, 0, 1, 2)]
+    bad_entry <-
+      just_years_and_dates[which(year_date_same_entry)[[1]] + c(-1, 0, 1, 2)]
     cat(crayon::bgRed(symbol$cross),
         bad_entry[1], "\n\t",
         bad_entry[2], "\n\t",
@@ -294,6 +307,69 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error){
         bad_entry[4], "\n")
     stop("Date and year should not both appear in bibliography.")
   }
+  
+  if (utils::packageVersion("TeXCheckR") > package_version("0.4.4")) {
+    field <- value <- key <- NULL
+    bib_DT <- fread_bib(file.bib = bib_file,
+                        check.dup.keys = FALSE,
+                        strip.braces = FALSE)
+    
+    # Issue 75
+    AG_keys <- 
+      bib_DT[field %in% c("author", "url")] %>%
+      .[or(grepl("Attorney.General.s.Department",
+                 value,
+                 perl = TRUE,
+                 ignore.case = TRUE),
+           grepl("\\bag\\.gov\\.au", value, perl = TRUE))] %>%
+      .[["key"]] %>%
+      unique 
+    
+    AG_authors <- 
+      bib_DT[key %in% AG_keys] %>%
+      .[field == "author"] %>%
+      .[["value"]] 
+    
+    if (any(AG_authors != "{{Attorney-General's Department}}")) {
+      the_entry <-
+        bib_DT[key %in% AG_keys] %>%
+        .[field == "author"] %>%
+        .[value != "{{Attorney-General's Department}}"] %>%
+        .[1]
+      
+      .report_error(line_no = the_entry[["line_no"]], 
+                    error_message = paste0("Author needs to be:\n\t", 
+                                           "{{Attorney-General's Department}}\n",
+                                           "precisely."))
+      stop("Attorney-General's Department: author")
+    }
+    
+    AG_urls <-
+      bib_DT[key %in% AG_keys] %>%
+      .[field == "url"] %>%
+      .[["value"]]
+    
+    if (any(!grepl("\\bag\\.gov\\.au", AG_urls, perl = TRUE))) {
+      the_entry <-
+        bib_DT[key %in% AG_keys] %>%
+        .[field == "url"] %>%
+        .[!is.na(value)] %>%
+        .[nzchar(value)] %>%
+        .[!grepl("\\bag\\.gov\\.au", value, perl = TRUE)] %>%
+        .[1]
+      
+      .report_error(line_no = the_entry[["line_no"]], 
+                    error_message = paste0("Reference to a URL the Cth ",
+                                           "Attorney-General's Department ", 
+                                           "but url did not contain ", 
+                                           ".ag.gov.au"))
+      stop("Attorney-General's Department: url")
+    }
+  }
+  
+  
+  
+  
 
   invisible(NULL)
 }

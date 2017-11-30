@@ -108,22 +108,46 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                     warn = FALSE))
     }
   }
+  
+  report_specific_phrases <- c("This report was written by",
+                               "The opinions in this report are those of the authors",
+                               "This report may be cited as")
+  report_specific_phrases_regex <- sprintf("(%s)", paste0(report_specific_phrases, collapse = ")|("))
 
   if (AND(any(grepl("\\ReportOrWorkingPaper{Working Paper}",
                     lines_before_begin_document,
                     fixed = TRUE)),
-              any(grepl("This report was written by",
+              any(grepl(report_specific_phrases_regex,
                         lines_before_begin_document,
                         perl = TRUE)))){
     
-    .report_error(error_message = "Working paper / Report inconsistency",
-                  advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t'This report was written by'\nstill present in document.",
-                                  "\n\n",
-                                  "If your report is a working paper, say 'This working paper was written by'; ",
-                                  "\n\n",
-                                  "otherwise, do not include\n\t\\ReportOrWorkingPaper{Working Paper}",
-                                  collapse = ""))
-    stop("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t'This report was written by'\nstill present in document.")
+    bad_phrases <- report_specific_phrases
+    for (i in seq_along(report_specific_phrases)) {
+      if (!any(grepl(report_specific_phrases[i], lines_before_begin_document))) {
+        bad_phrases[i] <- NA_character_
+      }
+    }
+    bad_phrases <- bad_phrases[!is.na(bad_phrases)]
+    
+    if (length(bad_phrases) > 1) {
+      .report_error(error_message = "Working paper / Report inconsistency",
+                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statements\n\t", 
+                                    paste0(bad_phrases, collapse = "\n\t"),
+                                    "\nstill present in document.",
+                                    "\n\n",
+                                    "If your document is a working paper, amend the above phrases to be consistent with a working paper.",
+                                    collapse = ""))
+      stop("Working paper / Report inconsistency")
+    } else {
+      .report_error(error_message = "Working paper / Report inconsistency",
+                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t", 
+                                    bad_phrases,
+                                    "\nstill present in document.",
+                                    "\n\n",
+                                    "If your document is a working paper, amend the above phrases to be consistent with a working paper.",
+                                    collapse = ""))
+      stop("Working paper / Report inconsistency")
+    }
   }
 
   if (AND(any(grepl("This working paper was written by",
@@ -141,19 +165,21 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                                   collapse = ""))
     stop("\\ReportOrWorkingPaper not set to {Working Paper} but\n\t'This working paper was written by'\nexists in document.")
   }
+  
+  
 
-  current_year <-
-    if (!any(grepl("\\YEAR", lines_before_begin_document, fixed = TRUE))){
-      year_provided <- FALSE
-      format(Sys.Date(), "%Y")
-    } else {
-      year_provided <- TRUE
-      year_line <- grep("\\YEAR", lines_before_begin_document, fixed = TRUE)
-      if (length(year_line) != 1L){
-        stop("Multiple \\YEAR provided.")
-      }
-      gsub("[^0-9]", "", lines_before_begin_document[year_line])
+  
+  if (!any(grepl("\\YEAR", lines_before_begin_document, fixed = TRUE))){
+    year_provided <- FALSE
+    current_year <- format(Sys.Date(), "%Y")
+  } else {
+    year_provided <- TRUE
+    year_line <- grep("\\YEAR", lines_before_begin_document, fixed = TRUE)
+    if (length(year_line) != 1L){
+      stop("Multiple \\YEAR provided.")
     }
+    current_year <- gsub("[^0-9]", "", lines_before_begin_document[year_line])
+  }
 
   if (pre_release){
     if (release){
@@ -172,7 +198,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
         GrattanReportNumberArg <- gsub("^.*[{](.*)[}].*$", "\\1", GrattanReportNumber, perl = TRUE)
         
         if (substr(GrattanReportNumberArg, 0, 4) != current_year){
-          if (year_provided){
+          if (!year_provided){
             stop("GrattanReportNumber using ", substr(GrattanReportNumberArg, 0, 4),
                  " for the year of publication, but today's date is ",
                  Sys.Date(),
@@ -264,10 +290,13 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       stop(paste0("Invalid ISBN. Checksum was ", check_sum))
     }
 
-    if (!OR(lines_before_begin_document[isbn_line - 3] == "This report may be cited as:",
-            identical(lines_before_begin_document[isbn_line - c(4:3)],
-                      c("This report may be cited as:", "\\newline")))){
-      stop("When parsing the document preamble, I could not find 'This report may be cited as:' on the 3rd or 4th lines before 'ISBN: '.", "\n",
+    if (!OR(lines_before_begin_document[isbn_line - 3] %in% c("This report may be cited as:",
+                                                              "This working paper may be cited as:"),
+            OR(identical(lines_before_begin_document[isbn_line - c(4:3)],
+                         c("This report may be cited as:", "\\newline")),
+               identical(lines_before_begin_document[isbn_line - c(4:3)],
+                         c("This working paper may be cited as:", "\\newline"))))) {
+      stop("When parsing the document preamble, I could not find 'This report/working paper may be cited as:' on the 3rd or 4th lines before 'ISBN: '.", "\n",
            "You must place that text on one of those lines for the check to continue.")
     }
 

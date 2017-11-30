@@ -4,7 +4,7 @@
 \alias{replace_LaTeX_argument}
 \title{Replace contents of LaTeX argument}
 \usage{
-replace_LaTeX_argument(tex_lines, command_name, replacement, arg = 1L,
+replace_LaTeX_argument(tex_lines, command_name, replacement,
   .dummy_replacer = "ZzZz")
 }
 \arguments{
@@ -14,8 +14,6 @@ replace_LaTeX_argument(tex_lines, command_name, replacement, arg = 1L,
 argument will be replaced.}
 
 \item{replacement}{Replacement for the contents of each argument.}
-
-\item{arg}{The (mandatory) argument that will be replaced.}
 
 \item{.dummy_replacer}{What to replace every \strong{letter} in the argument with during parsing.
 Selecting a \code{.dummy_replacer} that is present in \code{tex_lines} is an error.}

@@ -2,7 +2,6 @@
 #' @description Check Grattan reports written is LaTeX for typing errors, significant warnings, 
 #' and inconsistent style.
 #' @param path Path to search for the tex source file.
-#' @param output_method How errors should be reported.
 #' @param compile Should \code{pdflatex} be run on the report so the logs may be checked?
 #' @param pre_release Should the document be assumed to be final? Runs additional checks.
 #' @param release Should a final pdf be prepared for publication?
@@ -12,33 +11,39 @@
 #' @param .no_log Make no entry in the log file on the check's outcome.
 #' @param embed If \code{FALSE}, not attempt to embed the fonts using Ghostscript is attempted. Useful if Ghostscript cannot easily be installed.
 #' Set to \code{TRUE} for debugging or repetitive use (as in benchmarking). 
+#' @param rstudio Use the RStudio API if available.
 #' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
-#' Set to \code{FALSE} when checking the \code{grattex} repo itself.
+#' Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.
 #' @return Called for its side-effect.
 #' @export
+#' @import data.table
+#' @importFrom hutils if_else
+#' @importFrom hutils coalesce
 #' @importFrom magrittr %>%
 #' @importFrom magrittr and
 #' @importFrom magrittr or
 #' @importFrom magrittr not
-#' @importFrom dplyr if_else
-#' @importFrom dplyr lead
-#' @importFrom dplyr lag
 #' @importFrom clisymbols symbol
 #' @importFrom crayon green red bgGreen bgRed bold
 #' @importFrom grDevices embedFonts
 #' @importFrom utils download.file
 #' @importFrom stats complete.cases
 #' @importFrom readr read_lines
+#' @import TeXCheckR
 
 checkGrattanReport <- function(path = ".",
-                               output_method = c("console", "twitter", "gmailr"),
                                compile = FALSE,
                                pre_release = FALSE,
                                release = FALSE,
                                .proceed_after_rerun,
                                .no_log = TRUE, 
-                               embed = TRUE, 
+                               embed = TRUE,
+                               rstudio = FALSE,
                                update_grattan.cls = TRUE){
+  if (Sys.getenv("TRAVIS") == "true") {
+    print(utils::packageVersion("grattanReporter"))
+  }
+  
   if (release && (!pre_release || !compile)){
     stop("release = TRUE but pre_release and compile are not both TRUE also.")
   }
@@ -61,8 +66,6 @@ checkGrattanReport <- function(path = ".",
   setwd(path)
   on.exit(setwd(current_wd))
   
-  output_method <- match.arg(output_method)
-  
   if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
     download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
                                       destfile = "grattan.cls",
@@ -70,6 +73,23 @@ checkGrattanReport <- function(path = ".",
     if (download_failure){
       stop("grattan.cls failed to download from master branch (and be updated).")
     }
+    
+    logos <- 
+      c("Bhp.pdf", "GrattanSVGLogo.pdf", "UOM-Pos_S_PMS.pdf", "Vic_Gov_Logo-2016.pdf", "aus-gov-logo-stacked-black.pdf")
+    
+    for (l in logos) {
+      download_logos_failure <- 
+        download.file(paste0("https://raw.githubusercontent.com/HughParsonage/grattex/master/logos/", l), 
+                      destfile = file.path(".", "logos", l), 
+                      mode = "wb",
+                      quiet = TRUE)
+      
+      if (download_logos_failure) {
+        stop(l, " failed to download from master branch. (May be out-of-date.)")
+      }
+    }
+    
+    
   }
   
   if (!dir.exists("./travis/grattanReport/")){
@@ -115,38 +135,18 @@ checkGrattanReport <- function(path = ".",
   }
   filename <- tex_file[[1]]
   
-  .report_error <- function(...){
-    report2console(...)
+  
+  if (.no_log) {
+    .report_error <- function(...){
+      report2console(..., rstudio = rstudio, file = filename)
+    }
+  } else {
+    .report_error <- function(...){
+      report2console(..., log_file = "./travis/grattanReport/error-log.tsv", rstudio = rstudio, file = filename)
+    }
   }
   
   report_name <- gsub("^(.*)\\.tex$", "\\1", tex_file)
-  
-  switch(output_method, 
-         "twitter" = {
-           stopifnot(file.exists("~/twitteR/grattan-reporter.R"))
-           source("~/twitteR/grattan-reporter.R")
-           twitter_handle <- name <- NULL
-           authors_twitter_handles <-
-             Grattan_staff %>%
-             .[and(name %in% the_authors,
-                   nchar(twitter_handle) > 0)] %>%
-             .[["twitter_handle"]] %>%
-             paste0("@", .)
-           
-           .report_error <- function(...){
-             report2twitter(...,
-                            authors = authors_twitter_handles,
-                            build_status = "Broken:",
-                            report_name = report_name)
-           }
-         }, 
-         "gmailr" = {
-           .report_error <- function(...){
-             report2gmail(...,
-                          report_name = report_name, 
-                          authors = the_authors)
-           }
-         })
   
   # Actual checking begins here
   notes <- 0L
@@ -169,9 +169,14 @@ checkGrattanReport <- function(path = ".",
   cat(green(symbol$tick, "Preamble OK.\n"), sep = "")
   
   check_input <- function(filename){
+    
     inputs <- inputs_of(filename)
     if (length(inputs) > 0){
-      for (input in inputs){
+      for (input in inputs) {
+        if (rstudio) {
+          .report_error <- function(...) report2console(..., file = input, rstudio = TRUE)
+        }
+        
         check_input(input)
         cat(input)
       
@@ -233,18 +238,57 @@ checkGrattanReport <- function(path = ".",
     trimws %>%
     gsub("^\\\\addbibresource[{](.+\\.bib)[}]$", "\\1", .)
   
-  for (bib_file in bib_files){
-    validate_bibliography(file = bib_file)
+  bib_files_still_ok <- logical(length(bib_files))
+  i <- 0
+  for (bib_file in bib_files) {
+    i <- i + 1
+    hutils::provide.dir(paste0("travis/grattanReport/md5/", dirname(bib_file)))
+    full_bib_file <- normalizePath(bib_file)
+    md5 <- as.character(tools::md5sum(normalizePath(bib_file)))
+    md5_record <- file.path("travis", "grattanReport", "md5", bib_file)
+    if (file.exists(md5_record)) {
+      md5.ok <- scan(file.path("travis", "grattanReport", "md5", bib_file),
+                     what = character(),
+                     n = 1, 
+                     quiet = TRUE)
+      if (md5 == md5.ok) {
+        bib_files_still_ok[i] <- TRUE
+        cat(green(symbol$tick, bib_file, "previously validated.\n"))
+        next
+      }
+    } else {
+      validate_bibliography(file = bib_file, rstudio = rstudio)
+    }
+    if (grepl("ropbox", full_bib_file, fixed = TRUE)) {
+      cat("N: Not marking MD5 sum of valid file as the project", 
+          "\n   is on Dropbox and writing files directly is unwise.", 
+          "\n")
+    } else {
+      cat(md5, file = md5_record)
+    }
     cat(green(symbol$tick, bib_file, "validated.\n"))
   }
   
-  any_bib_duplicates(bib.files = bib_files)
-  cat(green(symbol$tick, "No obvious duplicates in bibliography.\n"))
+  if (all(bib_files_still_ok)) {
+    cat(green(symbol$tick, "Duplicates previously checked.\n"))
+  } else {
+    tryCatch(any_bib_duplicates(bib.files = bib_files),
+             error = function(e) {
+               for (bib_file in bib_files) {
+                 file.remove(file.path("travis", "grattanReport", "md5", bib_file))
+               }
+               stop(e)
+             })
+    cat(green(symbol$tick, "No obvious duplicates in bibliography.\n"))
+  }
 
   check_spelling(filename, 
                  .report_error = .report_error,
+                 known.correct = c(grattan_correctly_spelled_words,
+                                   grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE),
                  pre_release = pre_release,
-                 bib_files = bib_files)
+                 bib_files = bib_files, 
+                 rstudio = rstudio)
   if (!pre_release && exists("authors_in_bib_and_doc") && not_length0(authors_in_bib_and_doc)){
     notes <- notes + 1L
     
@@ -261,21 +305,21 @@ checkGrattanReport <- function(path = ".",
 
   cat(green(symbol$tick, "Labels checked.\n"))
 
-  all_figs_tbls_refd <- figs_tbls_not_refd <- NULL
-  check_all_figs_tbls_refd(filename, compile = compile, pre_release = pre_release)
+  unrefd_figs_tbls <- figs_tbls_unrefd(filename, check.labels = FALSE)
 
-  if (pre_release){
+  if (is.null(unrefd_figs_tbls)) {
     cat(green(symbol$tick, "All figures and tables have a Xref.\n"))
   } else {
-    if (is.null(all_figs_tbls_refd)){
-      stop("Emergency stop: This is a bug. Please report.")
-    }
-    
-    if (!all_figs_tbls_refd){
+    if (!pre_release) {
       notes <- notes + 1L
       cat(if (compile) "WARNING:" else  "NOTE:", 
           "Not all figures and tables referenced. ", 
-          figs_tbls_not_refd)
+          unrefd_figs_tbls)
+    } else {
+      .report_error(error_message = "Unreferenced figure or table",
+                    advice = paste0("Couldn't find a xref to ", unrefd_figs_tbls, "."))
+      
+      stop("Couldn't find a xref to ", unrefd_figs_tbls, ".")
     }
   }
 
@@ -341,13 +385,14 @@ checkGrattanReport <- function(path = ".",
         break
       }
       
-      if (missing(.proceed_after_rerun) && reruns_required > 9){
-          stop("Emergency stop: pdflatex had to rerun more than 9 times but could not stabilize cross-references or the bibliography. ",
-               "Consult an expert: Hugh Parsonage or Cameron Chisholm or https://tex.stackexchange.com.")
+      if (missing(.proceed_after_rerun) && reruns_required > 3){
+        check_log(check_for_rerun_only = FALSE)
       }
     }
     cat("\n")
     cat(green(symbol$tick, ".log file checked.\n"))
+    
+    check_smallbox_caption_positions()
     
     if (pre_release){
       CenturyFootnote_suspect <- NULL
@@ -415,33 +460,31 @@ checkGrattanReport <- function(path = ".",
     }
   }
   
-  if (file.exists("./travis/grattanReport/error-log.tsv")){
-    prev_build_status <-
-      fread("./travis/grattanReport/error-log.tsv") %>%
-      last %>%
-      .[["build_status"]]
-    append <- TRUE
-  } else {
-    prev_build_status <- "None"
-    append <- FALSE
-  }
-  
-  if (prev_build_status %in% c("None", "Broken", "Still failing")){
-    build_status <- "Fixed"
-    if (output_method == "gmailr"){
-      message <- gmailr::mime(
-        To = "hugh.parsonage@gmail.com", #email_addresses, 
-        From = "hugh.parsonage@gmail.com",
-        Subject = paste0("Fixed: ", report_name)
-      ) %>%
-        gmailr::html_body(body = paste0(c("grattanReporter returned no error.")))
-      gmailr::send_message(message)
-    }
-  } else {
-    build_status <- "OK"
-  }
-  
   if (!.no_log){
+    if (file.exists("./travis/grattanReport/error-log.tsv")){
+      prev_build_status <-
+        fread("./travis/grattanReport/error-log.tsv") %>%
+        last %>%
+        .[["build_status"]]
+      
+      if (is.null(prev_build_status) || 
+          prev_build_status %notin% c("None", "Broken", "Still failing")) {
+        prev_build_status <- "None"
+      }
+      
+      append <- TRUE
+    } else {
+      prev_build_status <- "None"
+      append <- FALSE
+    }
+    
+    if (prev_build_status %in% c("None", "Broken", "Still failing")){
+      build_status <- "Fixed"
+    } else {
+      build_status <- "OK"
+    }
+    
+    
     data.table(Time = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
                build_status = build_status, 
                error_message = "NA") %>%
@@ -457,5 +500,5 @@ checkGrattanReport <- function(path = ".",
     } 
   }
   
-invisible(NULL)
+  invisible(NULL)
 }
