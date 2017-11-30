@@ -324,9 +324,10 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                                        ", and ",
                                        last(project_authors_reversed))
     
-    project_authors_textcite_full <- paste0(paste0(project_authors[-length(project_authors)], collapse = ", "),
-                                            ", and ",
-                                            last(project_authors))
+    project_authors_textcite_forename_surname <-
+      paste0(paste0(project_authors[-length(project_authors)], collapse = ", "),
+             ", and ",
+             last(project_authors))
     
     project_authors_textcite_full <- 
       switch(pmin.int(length(project_authors), 3),
@@ -337,13 +338,11 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
              paste0(project_authors_textcite[1], " and ", project_authors_textcite[2]),
              
              # >= 3
-             paste0(paste0(project_authors_textcite[-length(project_authors_textcite)], collapse = ", "),
-                    ", and ",
-                    last(project_authors_textcite)))
+             project_authors_textcite)
     
     recommended_citations <-
       c(paste0(project_authors_textcite_inits, " (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute."), 
-        # paste0(project_authors_textcite, " (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute."), 
+        paste0(project_authors_textcite_forename_surname, " (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute."),
         paste0(paste0(project_authors_textcite_full, " (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute.")))
 
 
@@ -394,11 +393,11 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
              hl_sentinel,
              logical(1))
 
-    if (any(has_hl)){
+    if (any(has_hl)) {
       filenames <- filenames_to_guard[has_hl]
       filename <- filenames[[1]]
       .report_error(context = filename,
-                    extra_cat_post = "Found command \\hl somewhere in ", filename, ". Ensure all comments are removed from the document.",
+                    extra_cat_post = paste0("Found command \\hl somewhere in ", filename, ". Ensure all comments are removed from the document."),
                     error_message = "Found command \\hl in project.")
       stop("Found command \\hl in project while attempting to prepare a final document. ",
            "Commands such as these are not permitted anywhere in the project area when a final document is being prepared.")
