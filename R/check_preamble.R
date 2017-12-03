@@ -30,6 +30,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     stop("Missing \\begin{document}.")
   }
   lines_before_begin_document <-
+    # begin_document == 0 is impossible due to \documentclass{grattan} required on line 1
     lines[1:begin_document]
 
   if (!any(grepl("^\\\\addbibresource", lines_before_begin_document, perl = TRUE))){
@@ -341,9 +342,12 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
              project_authors_textcite)
     
     recommended_citations <-
-      c(paste0(project_authors_textcite_inits, " (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute."), 
-        paste0(project_authors_textcite_forename_surname, ". (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute."),
-        paste0(paste0(project_authors_textcite_full, " (", current_year, "). ", "\\emph{\\mytitle}. Grattan Institute.")))
+      c(paste0(project_authors_textcite_inits, " (", current_year, "). ",
+               "\\emph{\\mytitle}. Grattan Institute."), 
+        paste0(project_authors_textcite_forename_surname, ". (", current_year, "). ",
+               "\\emph{\\mytitle}. Grattan Institute."),
+        paste0(paste0(project_authors_textcite_full, " (", current_year, "). ",
+                      "\\emph{\\mytitle}. Grattan Institute.")))
 
 
     if (lines_before_begin_document[isbn_line - 2] %notin% recommended_citations){
@@ -397,7 +401,8 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       filenames <- filenames_to_guard[has_hl]
       filename <- filenames[[1]]
       .report_error(context = filename,
-                    extra_cat_post = paste0("Found command \\hl somewhere in ", filename, ". Ensure all comments are removed from the document."),
+                    extra_cat_post = paste0("Found command \\hl somewhere in ", filename,
+                                            ". Ensure all comments are removed from the document."),
                     error_message = "Found command \\hl in project.")
       stop("Found command \\hl in project while attempting to prepare a final document. ",
            "Commands such as these are not permitted anywhere in the project area when a final document is being prepared.")
