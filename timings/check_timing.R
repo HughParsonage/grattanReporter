@@ -4,6 +4,7 @@ check_timing <- function(comment = "", date = Sys.time()){
             dir.exists("./tests/testthat/SchoolFunding/"), 
             requireNamespace("data.table", quietly = TRUE))
   library(data.table)
+  library(magrittr)
   checkCircuiBreaker <- function(){
     checkGrattanReport("./tests/testthat/SchoolFunding/")
   }
@@ -14,3 +15,5 @@ check_timing <- function(comment = "", date = Sys.time()){
     .[, comment := comment] %>%
     fwrite("./timings/checkGrattanReport.csv", append = TRUE)
 }
+
+check_timing()

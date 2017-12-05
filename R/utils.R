@@ -4,6 +4,8 @@
 AND <- `&&`
 OR <- `||`
 
+`%||%` <- function(x, y) if (is.null(x)) y else x
+
 not_length0 <- function(x) as.logical(length(x))
 
 # takes a vector of froms and tos and takes their union
@@ -65,11 +67,18 @@ rev_forename_surname_bibtex <- function(author_fields){
 }
 
 nth_max <- function(x, n){
-  n <- length(x)
-  sort(x, partial = n - 1)[n - 1]
+  if (n == 1) {
+    return(max(n))
+  } else {
+    lx <- length(x)
+    sort(x, partial = lx - n + 1)[lx - n + 1]
+  }
 }
 
 nth_min <- function(x, n){
+  if (n == 1) {
+    return(min(x))
+  }
   sort(x)[n]
 }
 
@@ -102,3 +111,20 @@ r4 <- function(a, b, d, e) sprintf("%s%s%s%s", a, b, d, e)
 r5 <- function(a, b, d, e, f) sprintf("%s%s%s%s%s", a, b, d, e, f)
 r9 <- function(a1, a2, a3, a4, a5, a6, a7, a8, a9) sprintf("%s%s%s%s%s%s%s%s%s", a1, a2, a3, a4, a5, a6, a7, a8, a9)
 
+trimws_if_char <- function(x) if (is.character(x)) trimws(x) else x
+
+
+insert <- function(x, i, new) {
+  stopifnot(typeof(new) == typeof(x),
+            between(i, 1, length(x)))
+  out <- c(x, x[1])
+  for (j in seq_along(out)) {
+    if (j == i) {
+      out[j] <- new
+    }
+    if (j > i) {
+      out[j] <- x[j - 1]
+    }
+  }
+  out
+}

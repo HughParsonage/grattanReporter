@@ -2,6 +2,7 @@ context("Footnote typography")
 
 test_that("Valid typography passes", {
   expect_null(check_footnote_typography("valid-footnote-typography.tex"))
+  expect_null(check_footnote_typography("./fnote-typogr/ok-ends-with-dbl-quote.tex"))
 })
 
 test_that("Invalid typography stops", {
@@ -10,6 +11,8 @@ test_that("Invalid typography stops", {
                regexp = "does not end with full stop")
   expect_error(check_footnote_typography("./fnote-typogr/full-stop-after.tex"),
                regexp = "[pP]unctuation after footnote")
+  expect_error(check_footnote_typography("./fnote-typogr/full-stop-after-fcite.tex"),
+               regexp = "[pP]unctuation mark after footcite")
 })
 
 test_that("Space before footnotes.", {

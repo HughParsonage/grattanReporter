@@ -1,5 +1,6 @@
 language: r
 cache: packages
+sudo: true
 warnings_are_errors: true
 before_install:
 - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator
@@ -8,11 +9,31 @@ addons:
   apt:
     packages:
     - libhunspell-dev
-r_packages:
+r_binary_packages:
 - covr
+- devtools
+- roxygen2
+- data.table
+- fastmatch
+- magrittr
+- readr
+- hunspell
+- crayon
+- zoo
+
+r_packages:
 - drat
+- clisymbols
+
+r_github_packages:
+- HughParsonage/hutils
+- HughParsonage/TeXCheckR
+
+after_failure:
+- Rscript -e 'devtools::test()'
 
 after_success:
+- Rscript -e 'devtools::test()'
 - Rscript -e 'covr::codecov()'
 - test $TRAVIS_PULL_REQUEST == "false" && 
         test $TRAVIS_BRANCH == "master" && 

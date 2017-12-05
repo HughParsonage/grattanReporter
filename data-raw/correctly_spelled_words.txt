@@ -19,6 +19,7 @@
 70s
 8ex
 9pm
+ACCC
 accretes
 ACT
 aeroplanes
@@ -41,6 +42,7 @@ Batrouney
 behaviour
 benefitted
 Bennelong
+Berejiklian
 BHP
 bigbox
 BITRE
@@ -78,6 +80,7 @@ constraining
 contentspage
 costings?
 criticised
+CSIRO
 Cth
 Daley
 Danks
@@ -147,11 +150,21 @@ hypothecated
 hypothecating
 hypothecation
 IMF
+incentivise
+incentivised
+incentivised
+incentivises
+incentivises
+incentivising
+incentivising
+incentivize
 indices
 indigeneity
 initialisms
 inline
 Institute's
+interconnector
+interconnectors
 Invargson
 itemsep
 Ittima
@@ -184,6 +197,8 @@ minimisation
 minimised
 minimising
 misperception
+movie
+movies
 multifactor
 NAPLAN
 Newstart
@@ -208,6 +223,8 @@ pdf
 pdflatex
 pdflink
 phantomsection
+PHN
+PHNs
 PIIGS
 Plunkett
 politicised
@@ -216,6 +233,10 @@ pre
 presenteeism
 progressivity
 prosocial
+proxied
+proxies
+proxy
+proxying
 PwC
 Pyne
 Qld
@@ -223,6 +244,7 @@ quintile
 quo
 ragged2e
 RBA
+renewables
 reputational
 resourcing
 Retrospectivity
@@ -264,6 +286,7 @@ Toowoomba
 toprule
 topsep
 trade-offs
+trilemma
 Tullamarine
 Turnbull
 underfull
@@ -272,6 +295,7 @@ underruns
 undersupplied
 undersupply
 undersupplying
+unfranked
 unlegislated
 Unported
 unrealised

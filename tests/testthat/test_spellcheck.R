@@ -17,8 +17,15 @@ test_that("Abbreviations", {
 test_that("Initalisms", {
   expect_null(check_spelling("./spelling/abbrev/abbrev-defd-ok.tex"))
   expect_null(check_spelling("./spelling/abbrev/abbrev-defd-ok-2.tex"))
+  expect_null(check_spelling("./spelling/abbrev/HILDA-ok.tex"))
   expect_equal(extract_validate_abbreviations(readLines("./spelling/abbrev/abbrev-defd-ok-stopwords.tex")),
                c("QXFEoC", "AIAS"))
+  expect_equal(extract_validate_abbreviations(readLines("./spelling/abbrev/abbrev-plural.tex")),
+               c("LVR"))
+})
+
+test_that("Initialism checking doesn't fail if at start of sentence", {
+  expect_null(check_spelling("./spelling/abbrev/abbrev-at-line-start.tex"))
 })
 
 test_that("Add to dictionary, ignore spelling in", {
@@ -47,5 +54,14 @@ test_that("Lower-case governments should error", {
   expect_error(check_spelling("./spelling/Govt/NTgovt.tex"), regexp = "uppercase G")
   expect_error(check_spelling("./spelling/Govt/Queenslandgovt.tex"), regexp = "uppercase G")
   expect_error(check_spelling("./spelling/Govt/WAgovt.tex"), regexp = "uppercase G")
+})
+
+test_that("Lower-case governments ok in some cases", {
+  expect_null(check_spelling("./spelling/Govt/lc-govt-ok.tex"))
+  expect_null(check_spelling("./spelling/Govt/plural-ok.tex"))
+})
+
+test_that("Vrefrange keys are ok", {
+  expect_null(check_spelling("./spelling/vrefrange.tex"))
 })
 

@@ -152,7 +152,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                       perl = TRUE)
         ) %>%
           .[, lapply(.SD, as.numeric), .SDcols = 1:2] %>%
-          .[, column := dplyr::if_else(posx > page_middle, 2, 1)] %>%
+          .[, column := if_else(posx > page_middle, 2, 1)] %>%
           .[, .(page, column)]
       }
     
@@ -182,8 +182,8 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                       perl = TRUE)
         ) %>%
           .[, lapply(.SD, as.numeric), .SDcols = 1:2] %>%
-          .[, column := dplyr::if_else(posx > page_middle, 1, 2)] %>%
-          .[, page := dplyr::if_else(posx > page_middle, page, page - 1L)] %>%
+          .[, column := if_else(posx > page_middle, 1, 2)] %>%
+          .[, page := if_else(posx > page_middle, page, page - 1L)] %>%
           .[, .(page, column)]
       }
     # list(x = whereis_fn100, page_middle = page_middle)
@@ -223,12 +223,17 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[["fno."]]
         
         CenturyFootnote_written_after <- 
-          scan(dir(path = path, pattern = "\\.fn100$", full.names = TRUE)[[1]], 
-               sep = "\n", 
-               quiet = TRUE) %>%
-          last
+          readLines(dir(path = path, pattern = "\\.fn100$", full.names = TRUE)[[1]]) %>%
+          last %>%
+          .[[1]]
         
-        if (last_footnote_no != CenturyFootnote_written_after){
+        CenturyFootnote_written_after <-
+          tryCatch(as.integer(CenturyFootnote_written_after), 
+                   warning = function(e) {
+                     cat(e)
+                   })
+        
+        if (!is.na(CenturyFootnote_written_after) && last_footnote_no != CenturyFootnote_written_after){
           stop("\\CenturyFootnote in correct column but needs to be placed after that column's last footnote: ", 
                last_footnote_no)
         }
