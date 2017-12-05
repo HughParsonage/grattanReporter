@@ -10,3 +10,12 @@ test_that("Errors when expected.", {
   expect_error(check_CenturyFootnote("./check-CenturyFootnote/too-early/", strict = TRUE), regexp = "CenturyFootnote fell")
   expect_error(check_CenturyFootnote("./check-CenturyFootnote/too-late/", strict = TRUE), regexp = "occurs after the 100th")
 })
+
+test_that("CompetitionReport had it erroneously placed", {
+  expect_error(checkGrattanReport("./check-CenturyFootnote/rprt1/",
+                                  compile = TRUE,
+                                  pre_release = TRUE), 
+               regexp = "CenturyFootnote occurs after the 100th footnote")
+  file.remove("./check-CenturyFootnote/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
+  file.remove("./check-CenturyFootnote/travis/grattanReport/md5/bib/Concentration.bib")
+})

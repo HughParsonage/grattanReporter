@@ -19,7 +19,29 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
     stop("Multiple .aux files in 'path'.")
   }
   
-  aux_contents <- readLines(aux_file)
+  
+  # Issue https://github.com/HughParsonage/grattanReporter/issues/76:
+  all_aux_files <- 
+    dir(path = path, pattern = "\\.aux$", full.names = TRUE, recursive = TRUE) %>%
+    normalizePath(winslash = "/", mustWork = FALSE)
+  
+  if (length(all_aux_files) > 1L) {
+    aux_files_used <- 
+      # if inputs_of is NULL, aux file may be still be returned)
+      c(sub("\\.aux$", "", aux_file), 
+        file.path(path, inputs_of(filename = dir(path = path, pattern = "\\.tex$", full.names = TRUE)[1],
+                  append.tex = FALSE))) %>%
+      normalizePath(winslash = "/", mustWork = FALSE) %>%
+      paste0(".aux") %>%
+      .[. %in% all_aux_files]
+    
+    # Since inputs_of returns the inputs in the order they appear in the document,
+    # this will too.
+    aux_contents <- unlist(lapply(aux_files_used, read_lines), use.names = FALSE)
+  } else {
+    aux_contents <- readLines(aux_file)
+  }
+  
   
   footnote_locations <-
     grep("zref@newlabel{footnote@@@", aux_contents, fixed = TRUE, value = TRUE) %>%
@@ -46,43 +68,43 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                 "([0-9]+)", 
                 "\\}", 
                 ".*$"), aux_contents, perl = TRUE, value = TRUE) %>%
-    {
-      data.table(
-        page = gsub(paste0("^.*",
-                           "newlabel\\{footnote@@@[0-9]+\\}", 
-                           "\\{", 
-                           # footnote number
-                           "\\{", 
-                           "([0-9]+)", 
-                           "\\}", 
-                           # 
-                           "\\{",
-                           "([0-9]+)", 
-                           "\\}", 
-                           ".*$"),
-                    "\\2",
-                    .,
-                    perl = TRUE),
+                {
+                  data.table(
+                    page = gsub(paste0("^.*",
+                                       "newlabel\\{footnote@@@[0-9]+\\}", 
+                                       "\\{", 
+                                       # footnote number
+                                       "\\{", 
+                                       "([0-9]+)", 
+                                       "\\}", 
+                                       # 
+                                       "\\{",
+                                       "([0-9]+)", 
+                                       "\\}", 
+                                       ".*$"),
+                                "\\2",
+                                .,
+                                perl = TRUE),
                     
-        fno. = gsub(paste0("^.*",
-                           "newlabel\\{footnote@@@[0-9]+\\}", 
-                           "\\{", 
-                           # footnote number
-                           "\\{", 
-                           "([0-9]+)", 
-                           "\\}", 
-                           # 
-                           "\\{",
-                           "([0-9]+)", 
-                           "\\}", 
-                           ".*$"),
-                    "\\1",
-                    .,
-                    perl = TRUE)
-        )
-      } %>%
-        .[, lapply(.SD, as.integer), .SDcols = 1:2] %>%
-        setkey(fno.)
+                    fno. = gsub(paste0("^.*",
+                                       "newlabel\\{footnote@@@[0-9]+\\}", 
+                                       "\\{", 
+                                       # footnote number
+                                       "\\{", 
+                                       "([0-9]+)", 
+                                       "\\}", 
+                                       # 
+                                       "\\{",
+                                       "([0-9]+)", 
+                                       "\\}", 
+                                       ".*$"),
+                                "\\1",
+                                .,
+                                perl = TRUE)
+                  )
+                } %>%
+    .[, lapply(.SD, as.integer), .SDcols = 1:2] %>%
+    setkey(fno.)
   
   footnote_by_page_and_postion <- 
     footnote_by_page[footnote_locations]
@@ -119,24 +141,8 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       .[["posx"]] %>%
       mean
     
-    fn100_page <- 
-      footnote_by_page_and_postion[fno. == 100L, .(page, col = if_else(posx < page_middle, 1, 2))][["page"]]
-    
-    fn100_col <- 
-      footnote_by_page_and_postion[fno. == 100L, .(page, col = if_else(posx < page_middle, 1, 2))][["col"]]
-    
-    min_footnote_in_fn100 <-
-      footnote_by_page_and_postion %>%
-      .[, column := if_else(posx < page_middle, 1, 2)] %>%
-      .[, .(fno. = min(fno.)), by = .(page, column)] %>%
-      .[page == fn100_page & column == fn100_col] %>%
-      .[["fno."]]
-    
     footnote_by_page_and_postion[, column := if_else(posx < page_middle, 1, 2)]
     footnote_by_page_and_postion <- footnote_by_page_and_postion
-    
-    CenturyFootnote_before_min_footnote_in_fn10 <- 
-      any(grepl(paste0("newlabel{@CenturyFootnote@@@", min_footnote_in_fn100 - 1), aux_contents, fixed = TRUE))
     
     whereis_CenturyFootnote <-
       grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE, value = TRUE) %>%
@@ -155,16 +161,6 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[, column := if_else(posx > page_middle, 2, 1)] %>%
           .[, .(page, column)]
       }
-    
-    whereis_CenturyFootnote_page <- whereis_CenturyFootnote[["page"]]
-    whereis_CenturyFootnote_column <- whereis_CenturyFootnote[["column"]]
-    
-    CenturyFootnote_same_page_column_as_fn100 <-
-      AND(whereis_CenturyFootnote_page == fn100_page, 
-          whereis_CenturyFootnote_column == fn100_col)
-    
-    ## CenturyFootnote number should be x - 1 where x is the minimum footnote
-    ## with the same position and page as footnote 100
     
     where_should_CenturyFootnote_go <-
       # Find footnote100's position and move to previous column
@@ -187,8 +183,8 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[, .(page, column)]
       }
     # list(x = whereis_fn100, page_middle = page_middle)
-    if (!AND(CenturyFootnote_before_min_footnote_in_fn10, 
-             CenturyFootnote_same_page_column_as_fn100)){
+    if (!identical(where_should_CenturyFootnote_go,
+                   whereis_CenturyFootnote)){
       CenturyFootnote_suspect <- TRUE
       if (strict){
         stop("\\CenturyFootnote fell in p.",
