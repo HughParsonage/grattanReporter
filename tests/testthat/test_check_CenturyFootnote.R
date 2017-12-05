@@ -12,6 +12,8 @@ test_that("Errors when expected.", {
 })
 
 test_that("CompetitionReport had it erroneously placed", {
+  skip_on_travis()
+  skip_on_cran()
   expect_error(checkGrattanReport("./check-CenturyFootnote/rprt1/",
                                   compile = TRUE,
                                   pre_release = TRUE), 
