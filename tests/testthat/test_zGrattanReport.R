@@ -50,6 +50,21 @@ test_that("Check NEM 2017 Sep paper", {
   file.remove("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf")
 })
 
+test_that("Competition report", {
+  skip_on_travis()
+  skip_if_not(file.exists('C:/Program Files/gs/gs9.20/bin/gswin64c.exe'))
+  Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
+  expect_null(checkGrattanReport("./CompetitionReport/", update_grattan.cls = FALSE))
+  expect_null(checkGrattanReport("./CompetitionReport/",
+                                 compile = TRUE, 
+                                 pre_release = TRUE, 
+                                 release = TRUE))
+  expect_true(file.exists("./CompetitionReport/RELEASE/Competition-in-Australia--Too-little-of-a-good-thing-.pdf"))
+  file.remove("./CompetitionReport/RELEASE/Competition-in-Australia--Too-little-of-a-good-thing-.pdf")
+  file.remove("./CompetitionReport/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
+  file.remove("./CompetitionReport/travis/grattanReport/md5/bib/Concentration.bib")
+})
+
 if (file.exists("./SchoolFunding/travis/grattanReport/md5/2016-SchoolFunding.bib")) {
   file.remove("./SchoolFunding/travis/grattanReport/md5/2016-SchoolFunding.bib")
 }

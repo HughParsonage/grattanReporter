@@ -1,3 +1,6 @@
+# grattanReporter
+* Fix false pass from `check_CenturyFootnote` when multiple auxiliary files are legitimately produced (say from `\include`).
+
 # grattanReporter 0.25.0
 * Attorney-General's Department: basic validation of entries (#75)
 * New function `compress_FrontPage` for crisper, smaller title pages.
