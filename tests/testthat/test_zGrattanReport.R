@@ -43,6 +43,8 @@ test_that("Engaging-students", {
   
   file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
   invisible(vapply(dir(path = "./Engaging-students/travis/grattanReport/md5/", 
+                       recursive = TRUE,
+                       include.dirs = FALSE,
                        full.names = TRUE), 
                    file.remove, 
                    FALSE))
@@ -59,7 +61,9 @@ test_that("Check NEM 2017 Sep paper", {
                                  release = TRUE))
   expect_true(file.exists("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf"))
   file.remove("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf")
-  invisible(vapply(dir(path = "./NEM-capacity-markets/travis/grattanReport/md5/", 
+  invisible(vapply(dir(path = "./NEM-capacity-markets/travis/grattanReport/md5/",
+                       recursive = TRUE,
+                       include.dirs = FALSE,
                        full.names = TRUE), 
                    file.remove, 
                    FALSE))
