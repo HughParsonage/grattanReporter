@@ -18,6 +18,6 @@ test_that("CompetitionReport had it erroneously placed", {
                                   compile = TRUE,
                                   pre_release = TRUE), 
                regexp = "CenturyFootnote occurs after the 100th footnote")
-  file.remove("./check-CenturyFootnote/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
-  file.remove("./check-CenturyFootnote/travis/grattanReport/md5/bib/Concentration.bib")
+  file.remove("./check-CenturyFootnote/rprt1/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
+  file.remove("./check-CenturyFootnote/rprt1/travis/grattanReport/md5/bib/Concentration.bib")
 })
