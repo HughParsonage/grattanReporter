@@ -28,7 +28,6 @@
 #' @importFrom grDevices embedFonts
 #' @importFrom utils download.file
 #' @importFrom stats complete.cases
-#' @importFrom readr read_lines
 #' @import TeXCheckR
 
 checkGrattanReport <- function(path = ".",

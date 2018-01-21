@@ -16,9 +16,8 @@ Imports:
   stringi,
   clisymbols, 
   crayon,
-  readr,
   utils,
   zoo
 LazyData: TRUE
 RoxygenNote: 6.0.1
-Suggests: testthat, devtools
+Suggests: testthat, devtools, readr
