@@ -19,6 +19,7 @@
 #' @import data.table
 #' @importFrom hutils if_else
 #' @importFrom hutils coalesce
+#' @importFrom hutils %notin%
 #' @importFrom magrittr %>%
 #' @importFrom magrittr and
 #' @importFrom magrittr or
@@ -393,7 +394,7 @@ checkGrattanReport <- function(path = ".",
     
     check_smallbox_caption_positions()
     
-    if (pre_release){
+    if (pre_release) {
       CenturyFootnote_suspect <- NULL
       check_CenturyFootnote()
       if (!CenturyFootnote_suspect){
@@ -402,7 +403,7 @@ checkGrattanReport <- function(path = ".",
         notes <- notes + 1
       }
       
-      if (release){
+      if (release) {
         cat("Now preparing a release...\n")
         if (!dir.exists("RELEASE")){
           dir.create("RELEASE")
@@ -490,8 +491,8 @@ checkGrattanReport <- function(path = ".",
       fwrite("./travis/grattanReport/error-log.tsv",
              sep = "\t",
              append = append)
-    if (notes > 0){
-      if (notes > 1){
+    if (notes > 0) {
+      if (notes > 1) {
         cat("\n\tThere were", notes, "notes.")
       } else {
         cat("\n\tThere was 1 note.")
