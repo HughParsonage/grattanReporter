@@ -15,7 +15,7 @@
 #' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
 #' Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.
 #' @return Called for its side-effect.
-#' @export
+#' @export checkGrattanReport checkGrattanReports
 #' @import data.table
 #' @importFrom hutils if_else
 #' @importFrom hutils coalesce
@@ -39,7 +39,8 @@ checkGrattanReport <- function(path = ".",
                                .no_log = TRUE, 
                                embed = TRUE,
                                rstudio = FALSE,
-                               update_grattan.cls = TRUE){
+                               update_grattan.cls = TRUE,
+                               filename = NULL) {
   if (Sys.getenv("TRAVIS") == "true") {
     print(utils::packageVersion("grattanReporter"))
   }
@@ -130,8 +131,8 @@ checkGrattanReport <- function(path = ".",
   }
 
   tex_file <- dir(path = ".", pattern = "\\.tex$")
-  if (length(tex_file) != 1L){
-    stop("path must contain one and only one .tex file.")
+  if (length(tex_file) != 1L) {
+    stop("`path` must contain one and only one .tex file.")
   }
   filename <- tex_file[[1]]
   
@@ -212,7 +213,7 @@ checkGrattanReport <- function(path = ".",
   check_escapes(filename)
   cat(green(symbol$tick, "No unescaped $.\n"))
   
-  check_dashes(filename)
+  check_dashes(filename, .report_error = .report_error)
   cat(green(symbol$tick, "Dashes correctly typed.\n"))
   
   check_spacing(filename, .report_error = .report_error)
@@ -221,7 +222,7 @@ checkGrattanReport <- function(path = ".",
   check_quote_marks(filename, .report_error = .report_error)
   cat(green(symbol$tick, "Opening quotes correctly typed.\n"))
 
-  check_footnote_typography(filename)
+  check_footnote_typography(filename, .report_error = .report_error)
   cat(green(symbol$tick, "Footnote typography checked.\n"))
   
   check_literal_xrefs(filename, .report_error = .report_error)
@@ -502,3 +503,48 @@ checkGrattanReport <- function(path = ".",
   
   invisible(NULL)
 }
+
+
+checkGrattanReports <- function(path = ".",
+                                compile = FALSE,
+                                pre_release = FALSE,
+                                release = FALSE,
+                                .proceed_after_rerun,
+                                .no_log = TRUE, 
+                                embed = TRUE,
+                                rstudio = FALSE,
+                                update_grattan.cls = TRUE) {
+  current_wd <- getwd()
+  setwd(path)
+  on.exit(setwd(current_wd))
+  
+  tex_files_sans_ext <- tools::file_path_sans_ext(dir(path = ".", pattern = "\\.tex$"))
+  file.rename(dir(path = ".", pattern = "\\.tex$"), paste0(dir(path = ".", pattern = "\\.tex$"), "2"))
+  on.exit({
+    tex2s <- dir(path = ".", pattern = "\\.tex2$")
+    file.rename(tex2s, sub("2$", "", tex2s, perl = TRUE))
+    setwd(current_wd)
+  })
+  
+  for (tex_file_sans_ext in dir(pattern = "\\.tex2$")) {
+    file.rename(tex_file_sans_ext, sub("2$", "", tex_file_sans_ext))
+    cat("==== ", tools::file_path_sans_ext(tex_file_sans_ext), " ====\n")
+    checkGrattanReport(compile = compile, 
+                       pre_release = pre_release,
+                       release = release,
+                       .no_log = .no_log,
+                       embed = embed,
+                       rstudio = rstudio,
+                       update_grattan.cls = update_grattan.cls)
+    file.rename(sub("2$", "", tex_file_sans_ext), tex_file_sans_ext)
+  }
+  
+  tex2s <- dir(path = ".", pattern = "\\.tex2$")
+  invisible(file.rename(tex2s, sub("2$", "", tex2s, perl = TRUE)))
+  setwd(current_wd)
+}
+
+
+
+
+

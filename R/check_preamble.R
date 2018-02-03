@@ -23,6 +23,10 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                   error_message = "Line 1 was not \\documentclass[<options>]{grattan}")
     stop("Line 1 was not \\documentclass[<options>]{grattan}")
   }
+  
+  if (grepl("submission", lines[[1L]], fixed = TRUE)) {
+    return(NULL)
+  }
 
   begin_document <- which(lines == "\\begin{document}") - 1L
   if (length(begin_document) != 1L){
@@ -381,11 +385,11 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       files_w_todonotes <- filenames_to_guard[has_todonotes]
       .report_error(error_message = paste0("Found todonotes"))
 
-      stop(paste0("pre_release = TRUE but found string usepackage{todonotes}' or 'usepackage{soul}' in ",
-                  "the following:\n\t", paste0(filename, collapse = "\n\t"), "\n\n",
-                  "most likely due to \\usepackage{todonotes}. ",
-                  "These strings are not permitted anywhere in the project ",
-                  "(even commented out or disabled) when preparing a finished document."))
+      stop("pre_release = TRUE but found string usepackage{todonotes}' or 'usepackage{soul}' in ",
+           "the following:\n\t", paste0(filename, collapse = "\n\t"), "\n\n",
+           "most likely due to \\usepackage{todonotes}. ",
+           "These strings are not permitted anywhere in the project ",
+           "(even commented out or disabled) when preparing a finished document.")
     }
 
     hl_sentinel <- function(filename){
@@ -395,11 +399,11 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     has_hl <-
       vapply(filenames_to_guard,
              hl_sentinel,
-             logical(1))
+             logical(1L))
 
     if (any(has_hl)) {
       filenames <- filenames_to_guard[has_hl]
-      filename <- filenames[[1]]
+      filename <- filenames[[1L]]
       .report_error(context = filename,
                     extra_cat_post = paste0("Found command \\hl somewhere in ", filename,
                                             ". Ensure all comments are removed from the document."),
