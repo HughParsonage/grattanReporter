@@ -13,11 +13,9 @@ Imports:
   magrittr, 
   hutils, 
   data.table, 
-  stringi,
   clisymbols, 
   crayon,
   utils,
-  zoo
 LazyData: TRUE
 RoxygenNote: 6.0.1
-Suggests: testthat, devtools, readr
+Suggests: testthat, devtools, stringi, readr

@@ -240,7 +240,7 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
     is_TechReport <- techReport_at
     is_TechReport[!or(techReport_at, is_closing)] <- NA
     
-    is_TechReport <- zoo::na.locf.default(is_TechReport, na.rm = FALSE)
+    is_TechReport <- fill_blanks(is_TechReport)
     is_TechReport[is.na(is_TechReport)] <- FALSE
     
     is_GrattanReport_url <-

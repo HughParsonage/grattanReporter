@@ -100,4 +100,33 @@ if (file.exists("./NEM-capacity-markets/travis/grattanReport/md5/bib/Grattan-Mas
   file.remove("./NEM-capacity-markets/travis/grattanReport/md5/bib/Grattan-Master-Bibliography.bib")
 }
 
+test_that("Health report 2018", {
+  temp_dir <- tempdir()
+  setwd(temp_dir)
+  if (.Platform$OS.type == "windows") {
+    download.file(url = "https://github.com/grattan/zzz-2018-Health-Using-data-to-reduce-health-complications/zipball/master",
+                  mode = "wb",
+                  destfile = "Health2018A.zip")
+    unzip("Health2018A.zip", exdir = ".")
+    setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications", 
+               list.dirs("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications-1305221"), 
+               fixed = TRUE, 
+               value = TRUE))
+    checkGrattanReports(compile = TRUE, pre_release = TRUE, release = FALSE, update_grattan.cls = FALSE)
+  } else {
+    download.file(url = "https://github.com/grattan/zzz-2018-Health-Using-data-to-reduce-health-complications/tarball/master",
+                  mode = "wb",
+                  destfile = "Health2018A.tar.gz")
+    untar("Health2018A.tar.gz", exdir = ".")
+    setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications", 
+               list.dirs("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications-1305221"), 
+               fixed = TRUE, 
+               value = TRUE))
+    checkGrattanReports(compile = !identical(Sys.getenv("TRAVIS"), "true"),
+                        pre_release = !identical(Sys.getenv("TRAVIS"), "true"),
+                        release = FALSE, 
+                        update_grattan.cls = FALSE)
+  }
+})
+
 

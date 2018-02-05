@@ -1,10 +1,15 @@
 
-`%notin%` <- Negate(`%in%`)
 
 AND <- `&&`
 OR <- `||`
 
 `%||%` <- function(x, y) if (is.null(x)) y else x
+
+fill_blanks <- function(S) {
+  # from zoo
+  L <- !is.na(S)
+  c(S[L][1L], S[L], use.names = FALSE)[cumsum(L) + 1L]
+}
 
 not_length0 <- function(x) as.logical(length(x))
 
