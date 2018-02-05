@@ -30,7 +30,7 @@ r_github_packages:
 - HughParsonage/TeXCheckR
 
 after_failure:
-- Rscript -e 'devtools::test()'
+- Rscript -e 'devtools::test(filter = "zGrattan")'
 
 after_success:
 - Rscript -e 'devtools::test()'
