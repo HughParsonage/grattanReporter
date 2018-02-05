@@ -2,11 +2,16 @@
 % Please edit documentation in R/checkGrattanReport.R
 \name{checkGrattanReport}
 \alias{checkGrattanReport}
+\alias{checkGrattanReports}
 \title{Check Grattan Report}
 \usage{
 checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
   rstudio = FALSE, update_grattan.cls = TRUE, filename = NULL)
+
+checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
+  release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
+  rstudio = FALSE, update_grattan.cls = TRUE)
 }
 \arguments{
 \item{path}{Path to search for the tex source file.}
@@ -30,6 +35,9 @@ Set to \code{TRUE} for debugging or repetitive use (as in benchmarking).}
 
 \item{update_grattan.cls}{Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
 Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.}
+
+\item{filename}{If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the 
+set to the sole \code{.tex} file within \code{path}.}
 }
 \value{
 Called for its side-effect.

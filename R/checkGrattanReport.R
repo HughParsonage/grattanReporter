@@ -14,6 +14,8 @@
 #' @param rstudio Use the RStudio API if available.
 #' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
 #' Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.
+#' @param filename If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the 
+#' set to the sole \code{.tex} file within \code{path}.
 #' @return Called for its side-effect.
 #' @export checkGrattanReport checkGrattanReports
 #' @import data.table
@@ -130,11 +132,13 @@ checkGrattanReport <- function(path = ".",
     }
   }
 
-  tex_file <- dir(path = ".", pattern = "\\.tex$")
-  if (length(tex_file) != 1L) {
-    stop("`path` must contain one and only one .tex file.")
+  if (is.null(filename)) {
+    tex_file <- dir(path = ".", pattern = "\\.tex$")
+    if (length(tex_file) != 1L) {
+      stop("`path` must contain one and only one .tex file.")
+    }
+    filename <- tex_file[[1]]
   }
-  filename <- tex_file[[1]]
   
   
   if (.no_log) {
@@ -147,7 +151,7 @@ checkGrattanReport <- function(path = ".",
     }
   }
   
-  report_name <- gsub("^(.*)\\.tex$", "\\1", tex_file)
+  report_name <- gsub("^(.*)\\.tex$", "\\1", filename)
   
   # Actual checking begins here
   notes <- 0L
@@ -505,6 +509,7 @@ checkGrattanReport <- function(path = ".",
 }
 
 
+#' @rdname checkGrattanReport
 checkGrattanReports <- function(path = ".",
                                 compile = FALSE,
                                 pre_release = FALSE,
@@ -518,29 +523,17 @@ checkGrattanReports <- function(path = ".",
   setwd(path)
   on.exit(setwd(current_wd))
   
-  tex_files_sans_ext <- tools::file_path_sans_ext(dir(path = ".", pattern = "\\.tex$"))
-  file.rename(dir(path = ".", pattern = "\\.tex$"), paste0(dir(path = ".", pattern = "\\.tex$"), "2"))
-  on.exit({
-    tex2s <- dir(path = ".", pattern = "\\.tex2$")
-    file.rename(tex2s, sub("2$", "", tex2s, perl = TRUE))
-    setwd(current_wd)
-  })
-  
-  for (tex_file_sans_ext in dir(pattern = "\\.tex2$")) {
-    file.rename(tex_file_sans_ext, sub("2$", "", tex_file_sans_ext))
-    cat("==== ", tools::file_path_sans_ext(tex_file_sans_ext), " ====\n")
+  for (filename in dir(pattern = "\\.tex$")) {
+    cat("==== ", tools::file_path_sans_ext(filename), " ====\n")
     checkGrattanReport(compile = compile, 
                        pre_release = pre_release,
                        release = release,
                        .no_log = .no_log,
                        embed = embed,
                        rstudio = rstudio,
-                       update_grattan.cls = update_grattan.cls)
-    file.rename(sub("2$", "", tex_file_sans_ext), tex_file_sans_ext)
+                       update_grattan.cls = update_grattan.cls,
+                       filename = filename)
   }
-  
-  tex2s <- dir(path = ".", pattern = "\\.tex2$")
-  invisible(file.rename(tex2s, sub("2$", "", tex2s, perl = TRUE)))
   setwd(current_wd)
 }
 
