@@ -103,7 +103,6 @@ if (file.exists("./NEM-capacity-markets/travis/grattanReport/md5/bib/Grattan-Mas
 test_that("Health report 2018", {
   temp_dir <- tempdir()
   setwd(temp_dir)
-  provide.dir("Health2018A")
   download.file(url = "https://github.com/grattan/zzz-2018-Health-Using-data-to-reduce-health-complications/zipball/master",
                 mode = "wb",
                 destfile = "Health2018A.zip")
