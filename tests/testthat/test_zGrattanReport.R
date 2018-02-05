@@ -122,7 +122,10 @@ test_that("Health report 2018", {
                list.dirs("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications-1305221"), 
                fixed = TRUE, 
                value = TRUE))
-    checkGrattanReports(compile = TRUE, pre_release = TRUE, release = FALSE, update_grattan.cls = FALSE)
+    checkGrattanReports(compile = TRUE,
+                        pre_release = !identical(Sys.getenv("TRAVIS"), "true"),
+                        release = FALSE, 
+                        update_grattan.cls = FALSE)
   }
 })
 
