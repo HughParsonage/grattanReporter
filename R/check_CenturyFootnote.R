@@ -142,7 +142,12 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       mean
     
     footnote_by_page_and_postion[, column := if_else(posx < page_middle, 1, 2)]
-    footnote_by_page_and_postion <- footnote_by_page_and_postion
+    
+    last_footnote_before_page100 <-
+      footnote_by_page_and_postion %>%
+      .[fno. <= 100L] %>%
+      unique(fromLast = TRUE, by = c("page", "posx")) %>%
+      .[nrow(.) - 1L, .(page, column)]
     
     whereis_CenturyFootnote <-
       grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE, value = TRUE) %>%
@@ -157,7 +162,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                       grep("zref@", x = ., fixed = TRUE, value = TRUE),
                       perl = TRUE)
         ) %>%
-          .[, lapply(.SD, as.numeric), .SDcols = 1:2] %>%
+          .[, lapply(.SD, as.integer), .SDcols = 1:2] %>%
           .[, column := if_else(posx > page_middle, 2, 1)] %>%
           .[, .(page, column)]
       }
@@ -184,7 +189,9 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       }
     # list(x = whereis_fn100, page_middle = page_middle)
     if (!identical(where_should_CenturyFootnote_go,
-                   whereis_CenturyFootnote)){
+                   whereis_CenturyFootnote) &&
+        !identical(last_footnote_before_page100, 
+                   whereis_CenturyFootnote)) {
       CenturyFootnote_suspect <- TRUE
       if (strict){
         stop("\\CenturyFootnote fell in p.",
