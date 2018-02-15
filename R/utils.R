@@ -44,17 +44,17 @@ rev_forename_surname_bibtex <- function(author_fields){
   full_names <-
     lapply(author_fields, strsplit, " and ") %>%
     lapply(unlist, recursive = FALSE)
-
+  
   comma_name <-
     full_names %>%
     lapply(grepl, pattern = ", ", fixed = TRUE)
-
+  
   forename_surnames <-
     full_names %>%
     lapply(strsplit, split = "(, )|(\\s((?!(?:v[ao]n)|(?:der?)|(?:di))(?=(\\w+$))))", perl = TRUE)
-
+  
   out <- forename_surnames
-
+  
   for (field in seq_along(author_fields)){
     for (nom in seq_along(full_names[[field]])){
       if (!comma_name[[field]][[nom]]){
@@ -62,7 +62,7 @@ rev_forename_surname_bibtex <- function(author_fields){
       }
     }
   }
-
+  
   lapply(out, FUN = function(author_name){
     lapply(author_name, paste0, collapse = ", ")
   }) %>%
@@ -72,16 +72,16 @@ rev_forename_surname_bibtex <- function(author_fields){
 }
 
 nth_max <- function(x, n){
-  if (n == 1) {
+  if (n == 1L) {
     return(max(n))
   } else {
     lx <- length(x)
-    sort(x, partial = lx - n + 1)[lx - n + 1]
+    sort(x, partial = lx - n + 1L)[lx - n + 1L]
   }
 }
 
 nth_min <- function(x, n){
-  if (n == 1) {
+  if (n == 1L) {
     return(min(x))
   }
   sort(x)[n]
@@ -95,7 +95,9 @@ strip_comments <- function(lines){
   gsub("(?<!(\\\\))[%].*$", "%", lines, perl = TRUE)
 }
 
-move_to <- function(to.dir, from.dir = ".", pattern = "\\.((pdf)|(tex)|(cls)|(sty)|(Rnw)|(bib)|(png)|(jpg))$"){
+move_to <- function(to.dir,
+                    from.dir = ".",
+                    pattern = "\\.((pdf)|(tex)|(cls)|(sty)|(Rnw)|(bib)|(png)|(jpg)|(txt))$"){
   x <- list.files(path = from.dir,
                   pattern = pattern,
                   full.names = TRUE,
@@ -121,14 +123,14 @@ trimws_if_char <- function(x) if (is.character(x)) trimws(x) else x
 
 insert <- function(x, i, new) {
   stopifnot(typeof(new) == typeof(x),
-            between(i, 1, length(x)))
-  out <- c(x, x[1])
+            between(i, 1L, length(x)))
+  out <- c(x, x[1L])
   for (j in seq_along(out)) {
     if (j == i) {
       out[j] <- new
     }
     if (j > i) {
-      out[j] <- x[j - 1]
+      out[j] <- x[j - 1L]
     }
   }
   out
