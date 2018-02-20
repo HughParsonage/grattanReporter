@@ -55,15 +55,19 @@ checkGrattanReport <- function(path = ".",
     stop("pre_release = TRUE but compile = FALSE.")
   }
   
-  if (compile && Sys.which("pdflatex") == ""){
+  if (compile && Sys.which("pdflatex") == "") {
     stop("pdflatex not on system path. Ensure you have LaTeX installed (MiKTeX, MacTeX, TeXLive) and that it is searchable on PATH. ",
          "(Did you install but leave programs open?)")
   }
   
-  if (embed && release && Sys.getenv("R_GSCMD") == ""){
-    stop("Ghostscript is required but R_GSCMD is not set. Ensure Ghostscript is installed then set R_GSCMD, e.g.\n\t",
-         "Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')")
+  if (embed && release) {
+    gsexe <- tools::find_gs_cmd()
+    if (!nzchar(gsexe)) {
+      stop("Ghostscript is required but R_GSCMD is not set. Ensure Ghostscript is installed then set R_GSCMD, e.g.\n\t",
+           "Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')")
+    }
   }
+    
   
   current_wd <- getwd()
   setwd(path)
