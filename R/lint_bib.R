@@ -63,7 +63,7 @@ lint_bib <- function(bib_file, outfile = bib_file, leading_spaces = 2L){
       out[line] <-
         gsub("^\\s*(\\w+)\\s*[=]\\s*\\{",
              paste0(paste0(rep(" ", leading_spaces), collapse = ""),
-                    "\\L\\1",
+                    "\\L\\1\\E",
                     paste0(rep(" ", spaces_req), collapse = ""),
                     " = {"),
              bib[line],
