@@ -1,6 +1,6 @@
 
 
-check_sentence_ending_periods <- function(filename, .report_error){
+check_sentence_ending_periods <- function(filename, .report_error, ignore_hl = TRUE) {
   if (missing(.report_error)){
     .report_error <- function(...) report2console(...)
   }
@@ -9,6 +9,15 @@ check_sentence_ending_periods <- function(filename, .report_error){
     .[!isR_line_in_knitr(.)] %>%
     gsub("((?<!(\\\\))%).*$", "", ., perl = TRUE) %>%
     trimws
+  
+  if (ignore_hl) {
+    hl_lines <- grep("\\hl{", lines, fixed = TRUE)
+    if (length(hl_lines)) {
+      lines[hl_lines] <- 
+        gsub("\\\\hl\\{[^\\}]++\\}", "", lines[hl_lines],
+             perl = TRUE)
+    }
+  }
   
   if (any(grepl("[A-Z]\\.\\s+[A-Z]", lines, perl = TRUE)) || 
       any(and(shift(grepl("[A-Z]\\.$", lines, perl = TRUE)),
@@ -36,4 +45,8 @@ check_sentence_ending_periods <- function(filename, .report_error){
                 "need to be signalled with a sentence-ending period. (\\@.)"))
   }
 }
+
+
+
+
 
