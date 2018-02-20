@@ -148,7 +148,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       grep("newlabel{@CenturyFootnote", aux_contents, fixed = TRUE, value = TRUE) %>%
       {
         data.table(
-          page = gsub("^.*@cref.*[{]([0-9]+)[}][}]$",
+          page = gsub("^.*@cref.*[^0-9]([0-9]+)[}][}]$",
                       "\\1", 
                       grep("@cref", x = ., fixed = TRUE, value = TRUE), 
                       perl = TRUE),
