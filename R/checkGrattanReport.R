@@ -336,8 +336,8 @@ checkGrattanReport <- function(path = ".",
   
   if (compile){
     full_dir_of_path <- getwd()
-    md5_filename <- paste0(substr(tools::md5sum(filename), 0, 10),
-                           substr(tools::md5sum(bib_file), 0, 10))
+    md5_filename <- paste0(substr(tools::md5sum(filename), 0, sample.int(10, size = 1) + 2),
+                           substr(tools::md5sum(bib_file), 0, sample.int(10, size = 1) + 2))
     temp_dir <- file.path(tempdir(), md5_filename)
     md5_iter <- 1
     while (dir.exists(temp_dir)){
@@ -356,6 +356,8 @@ checkGrattanReport <- function(path = ".",
     }
     
     cat("   Invoking pdflatex... ")
+    current_warn <-  getOption("warn")
+    on.exit(options(warn = current_warn), add = TRUE)
     options(warn = 2)
     system2(command = "pdflatex",
             args = c("-draftmode", filename),
@@ -445,6 +447,7 @@ checkGrattanReport <- function(path = ".",
       }
       
       setwd(full_dir_of_path)
+      options(warn = current_warn)
       cat("\n")
     }
   }

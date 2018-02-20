@@ -109,7 +109,9 @@ move_to <- function(to.dir,
   lapply(x.dirs, dir_create)
   file.copy(x, file.path(to.dir, x), overwrite = TRUE, recursive = FALSE)
   setwd(to.dir)
-  cat("   Attempting compilation in temp directory:", to.dir, "\n")
+  cat("   Attempting compilation in temp directory:",
+      normalizePath(to.dir, winslash = "/"),
+      "\n")
 }
 
 r2 <- function(a, b) sprintf("%s%s", a, b)

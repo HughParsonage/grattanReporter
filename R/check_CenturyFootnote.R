@@ -173,7 +173,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       grep("newlabel{footnote@@@100", aux_contents, fixed = TRUE, value = TRUE) %>%
       {
         data.table(
-          page = gsub("^.*@cref.*[{]([0-9]+)[}][}]$",
+          page = gsub("^.*@cref.*[^0-9]([0-9]+)[}][}]$",
                       "\\1", 
                       grep("@cref", x = ., fixed = TRUE, value = TRUE), 
                       perl = TRUE),
@@ -181,12 +181,13 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                       "\\1",
                       grep("zref@", x = ., fixed = TRUE, value = TRUE),
                       perl = TRUE)
-        ) %>%
-          .[, lapply(.SD, as.numeric), .SDcols = 1:2] %>%
-          .[, column := if_else(posx > page_middle, 1, 2)] %>%
-          .[, page := if_else(posx > page_middle, page, page - 1L)] %>%
-          .[, .(page, column)]
-      }
+        )
+      } %>%
+      .[, lapply(.SD, as.numeric), .SDcols = 1:2] %>%
+      .[, column := if_else(posx > page_middle, 1, 2)] %>%
+      .[, page := if_else(posx > page_middle, page, page - 1L)] %>%
+      .[, .(page, column)]
+    
     # list(x = whereis_fn100, page_middle = page_middle)
     if (!identical(where_should_CenturyFootnote_go,
                    whereis_CenturyFootnote) &&
