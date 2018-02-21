@@ -209,6 +209,8 @@ checkGrattanReport <- function(path = ".",
         cat(".")
         check_sentence_ending_periods(input, .report_error = .report_error)
         cat(".")
+        TeXCheckR:::check_unclosed_parentheses(input, rstudio = rstudio)
+        cat(".")
         cat(" OK\n")
       }
     }
@@ -239,6 +241,9 @@ checkGrattanReport <- function(path = ".",
 
   check_sentence_ending_periods(filename, .report_error = .report_error)
   cat(green(symbol$tick, "Sentence-ending periods ok.\n"))
+  
+  TeXCheckR:::check_unclosed_parentheses(filename, rstudio = rstudio)
+  cat(green(symbol$tick, "No obviously unbalanced parentheses.\n"))
   
   # To check the bibliography
   bib_files <-

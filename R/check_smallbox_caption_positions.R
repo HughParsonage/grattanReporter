@@ -33,13 +33,14 @@ check_smallbox_caption_positions <- function(path = ".", .report_error) {
                        sub("^.*smallbox@@@([^\\}]+)[}].*$", "\\1",
                            x = .,
                            perl = TRUE)),
-        page = sub("^.*[{]([0-9]+)[}][}]$", "\\1", x = ., perl = TRUE)
+        # Flexible for new version of clevref
+        page = sub("^.*[^0-9]([0-9]+)[}][}]$", "\\1", x = ., perl = TRUE)
       )
     }
   
   chapter_pages <- 
     grep("newlabel\\{chap[:].*@cref", aux_contents, perl = TRUE, value = TRUE) %>%
-    gsub("^.*[{]([0-9]+)[}][}]$", "\\1", x = ., perl = TRUE)
+    gsub("^.*[^0-9]([0-9]+)[}][}]$", "\\1", x = ., perl = TRUE)
   
   problem_smallboxes <- 
     smallbox_pages %>%
@@ -47,7 +48,7 @@ check_smallbox_caption_positions <- function(path = ".", .report_error) {
     .[smallbox_locations, on = "smallbox", nomatch=0L] %>%
     .[posy > 31000000]
   
-  if (nrow(problem_smallboxes) > 0) {
+  if (nrow(problem_smallboxes)) {
     .report_error(error_message = "Smallbox intrudes on chapter heading", 
                   advice = paste0("The smallbox with label ", 
                                   problem_smallboxes[["smallbox"]][1],
