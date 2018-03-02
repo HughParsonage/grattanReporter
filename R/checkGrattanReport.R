@@ -412,11 +412,13 @@ checkGrattanReport <- function(path = ".",
     
     if (pre_release) {
       CenturyFootnote_suspect <- NULL
-      check_CenturyFootnote()
-      if (!CenturyFootnote_suspect){
-        cat(green(symbol$tick, "\\CenturyFootnote correctly placed.\n"))
-      } else {
-        notes <- notes + 1
+      if (getOption("check.CenturyFootnote", TRUE)) {
+        check_CenturyFootnote()
+        if (!CenturyFootnote_suspect){
+          cat(green(symbol$tick, "\\CenturyFootnote correctly placed.\n"))
+        } else {
+          notes <- notes + 1
+        }
       }
       
       if (release) {
