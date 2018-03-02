@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"utils\")\n\ntest_that(\"Seq_union always length one\", {\n  expect_equal(Seq_union(1, 5), 1:5)\n  expect_equal(Seq_union(1, c(5, 10)), 1:10)\n  expect_equal(Seq_union(c(73, 100), c(83, 105)), c(73:83, 100:105))\n  expect_equal(Seq_union(c(1, 10), c(9, 19)), 1:19)\n})\n\ntest_that(\"nth_max and nth_min\", {\n  expect_equal(nth_max(sample(1:10), 3), 8)\n  expect_equal(nth_min(sample(1:10), 4), 4)\n})\n",
+    "created" : 1493884706875.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1417241623",
+    "id" : "61674EA3",
+    "lastKnownWriteTime" : 1493884781,
+    "last_content_update" : 1493884781449,
+    "path" : "~/grattanReporter/tests/testthat/test_utils.R",
+    "project_path" : "tests/testthat/test_utils.R",
+    "properties" : {
+    },
+    "relative_order" : 31,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

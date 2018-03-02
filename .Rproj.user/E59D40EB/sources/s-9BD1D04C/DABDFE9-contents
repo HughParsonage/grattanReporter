@@ -1,0 +1,32 @@
+
+check_incoming_feasibility <- function(root_file) {
+  if (!is.null(old.packages(c("hutils", "TeXCheckR", "grattanReporter"), 
+                            repos = c("https://cran.ms.unimelb.edu.au/",
+                                      "https://hughparsonage.github.io/drat")))) {
+    
+  }
+  
+  
+  root_file_lines <- 
+    read_lines(root_file) %>%
+    strip_comments %>%
+    trimws
+  
+  title <- sub("\\\\title\\{[^\\}]++\\}$",
+               "\\1",
+               grep("\\\\title\\{[^\\}]++\\}$",
+                    root_file_lines,
+                    perl = TRUE,
+                    value = TRUE))
+  
+  ReportNumber <-
+    sub("\\\\GrattanReportNumber\\{[^\\}]++\\}$",
+        "\\1",
+        grep("\\\\GrattanReportNumber\\{[^\\}]++\\}$",
+             root_file_lines,
+             perl = TRUE,
+             value = TRUE))
+  
+  
+}
+

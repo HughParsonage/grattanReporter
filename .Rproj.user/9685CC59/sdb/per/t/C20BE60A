@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\ncorrectly_spelled_words_txt <- readLines(\"./data-raw/correctly_spelled_words.txt\", skipNul = TRUE)\ncorrectly_spelled_words_txt <- correctly_spelled_words_txt[order(correctly_spelled_words_txt)]\nwriteLines(correctly_spelled_words_txt, \"./data-raw/correctly_spelled_words.txt\")\n\nCORRECTLY_SPELLED_WORDS_CASE_SENSITIVE <-\n  grep(\"[A-Z]\", correctly_spelled_words_txt, value = TRUE)\n\ncorrectly_spelled_words <- setdiff(correctly_spelled_words_txt, CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE)\n\ndevtools::use_data(correctly_spelled_words,\n                   CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE,\n                   overwrite = TRUE)\n",
+    "created" : 1486649304561.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3513554714",
+    "id" : "C20BE60A",
+    "lastKnownWriteTime" : 1485926272,
+    "last_content_update" : 1485926272,
+    "path" : "~/grattanReporter/data-raw/put-correctly-spelled-words.R",
+    "project_path" : "data-raw/put-correctly-spelled-words.R",
+    "properties" : {
+    },
+    "relative_order" : 40,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

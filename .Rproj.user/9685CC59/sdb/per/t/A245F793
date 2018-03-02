@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(magrittr)\nlibrary(data.table)\nsource(\"./data-raw/put-twocolumn_atop.R\", chdir = TRUE)\n# source(\"./data-raw/put-dictionaryAU.R\", chdir = TRUE)\nsource(\"./data-raw/put-newspaper_by_url.R\", chdir = TRUE)\nsource(\"./data-raw/put-Grattan-staff.R\", chdir = FALSE)\n\ndevtools::use_data(twocolumn_atop,\n                   # dictionaryAU,\n                   newspaper_by_url,\n                   Grattan_staff,\n\n                   internal = TRUE,\n                   overwrite = TRUE)\n",
+    "created" : 1494120448532.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3265667600",
+    "id" : "A245F793",
+    "lastKnownWriteTime" : 1485926272,
+    "last_content_update" : 1485926272,
+    "path" : "~/grattanReporter/data-raw/put-internal-data.R",
+    "project_path" : "data-raw/put-internal-data.R",
+    "properties" : {
+    },
+    "relative_order" : 31,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

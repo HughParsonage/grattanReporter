@@ -1,0 +1,705 @@
+%!TEX root = ../Report.tex
+\chapter{Worsening housing affordability has serious consequences }\label{chap:worsening-housing-affordability-has-serious-consequences}
+
+Australians are spending more of their household budgets on housing than they should. Rising housing costs are eating up a significant share of income growth, especially for low-income earners. Rising housing costs have also contributed to falling home ownership rates, and this has far-reaching implications for our economy and society. More Australians are missing out on the benefits of owning a home, which include a sense of belonging, a sense of prosperity, the motivation for additional savings, and the basis for investing in a business.
+
+Lower ownership means more people are renting, and for longer.
+Given current market structures and government policies, renting is relatively unattractive: it is generally much less secure; many tenants are restrained from making their house into their home; and renters miss out on the tax and welfare benefits of home ownership.
+
+Rising house prices have contributed to greater inequality. Homeowners' wealth has increased dramatically due to rising house prices. Younger people and those with lower incomes who have missed out on buying a house are being left behind.
+Increasingly, getting the benefits of home ownership depends on the wealth of your parents.
+
+Higher levels of household debt may also worsen any future economic shock, because people with higher debt are more likely to cut back their spending.
+
+\section{Australians are spending more on housing than they should}\label{sec:Australians-spending-more-on-housing-than-need-to}
+
+The incomes of most Australian households have increased substantially over the past decade.
+But when housing costs are considered, low and middle-income households are not doing so well.
+
+
+\begin{figure}
+\caption{Gains to real income have been mitigated by increasing housing expenditure }\label{fig:rising-housing-costs-eating-income-growth}
+\units{Change in real equivalised household disposable income including and excluding housing costs growth, 2003-04 to 2015-16, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Housing costs include rents for renters and repayments on loans for owners with mortgages.
+Growth in income excluding housing costs calculated by subtracting growth in housing costs from growth in disposable income.
+Income quintiles are calculated using household disposable income, equivalised by family size.
+Bottom two income percentiles are removed. 2003-04 equivalised household disposable income data from \textcite[][Table 1]{ABS-2017-HouseholdIncomeAndWealth-201516}}
+{Grattan Institute analysis of \textcites{ABS-HES-201516-Microdata}{ABS-HES-200304-Microdata}; \textcite{ABS-2017-HouseholdIncomeAndWealth-201516}.}
+\end{figure}
+
+Rising housing costs matter to everyone.
+If land use planning rules and other government policies make housing more expensive, then Australians have less to spend on other goods and services (\Cref{fig:rising-housing-costs-eating-income-growth}).%
+    \footnote{For a conceptual discussion of the efficiency costs of land use planning restrictions, see \textcite{GlaeserGyourko2017EconImplications}.}
+
+Incomes for the lowest 20 per cent of households have increased by about 27 per cent since 2003-04.
+But with housing costs rising faster than incomes, real incomes \emph{after} housing costs have only grown about 16 per cent over the same period.
+Both homeowners and renters in the bottom 20 per cent of income earners are spending more on housing.
+Rising housing costs have affected higher income earners less. 
+
+
+\section{More Australians are missing out on the opportunity to own a home}\label{sec:falling-home-ownership-rates-are-depriving-more-people-of-the-benefits-of-owning-a-home}
+
+Home ownership rates are falling most dramatically among the young and the poor.
+People who cannot buy a dwelling miss out on the economic and social advantages of home ownership.
+Without change, an increasing proportion of Australians born after 1970 will never get on the property ladder.
+
+\subsection{Home ownership is declining, especially among the young and poor}\label{subsec:home-ownership-is-declining-especially-among-the-young-and-poor}
+
+Home ownership rose rapidly in Australia in the early 1950s, from around 50 per cent to 70 per cent.%
+	\footcite[][2--3]{RBA2015SubmissionHomeOwnershipInquiry}
+Home ownership rose despite rapid population growth, as new homes were built at an unprecedented rate.%
+	\footcite[][4]{Eslake-AIST}
+Overall home ownership remained around 70 per cent for the next 50 years, with a slight decline over the past decade to 67 per cent in 2016.%
+	\footcite{ABS20016Censuspopulationhousing}
+The trends are similar in many other advanced economies.%
+	\footcite[][3]{RBA2015SubmissionHomeOwnershipInquiry}
+
+But the ageing of the Australian population has concealed a greater fall in home ownership rates over the past two decades for all but the oldest households.
+Younger Australians have always had lower incomes and less accumulated savings, and hence lower home ownership rates.
+But between 1981 and 2016, home ownership rates among 25-34 year olds fell from more than 60 per cent to 45 per cent (\Vref{fig:home-ownership-age}).
+Only some of this is the result of people starting work, forming long-term partnerships, and having children later in life.%
+    \footnote{\textcite{Wood-Ong-2012}.
+    There was a small increase in the proportion of 25-34 year olds renting who also owned an investment property between 2003-04 and 2015-16 (sometimes referred to as `rent-vestors': \textcite{Millar2016_rentvestors}).}
+
+\doublecolumnfigure{
+\caption{Home ownership is falling for younger age groups}\label{fig:home-ownership-age}
+\units{Home ownership rate by age, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Per cent of occupied private dwellings. Household age group according to age of household reference person. Excludes households with tenure type not stated}%
+{\textcites{yates2015submission}{ABS20016Censuspopulationhousing}; Grattan analysis}
+}{
+\caption{Home ownership is falling particularly fast for low-income earners}\label{fig:home-ownership-age-income}
+\units{Home ownership rates by age and income, 1981 and 2016}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Updates \textcite{BurkeStoneRalston2014} using ABS Census special request data.
+Household incomes based on Census data are approximate, and so small changes in ownership rates may not be significant.
+Excludes households with tenancy not stated (for 2016) and incomes not stated.}%
+{Grattan analysis of \textcites{BurkeStoneRalston2014}{ABS20016Censuspopulationhousing}.}
+}
+
+Home ownership has also fallen for middle-age households, suggesting that most of the fall in home ownership is due to higher dwelling prices rather than changing preferences for home ownership among the young.%
+	\footnote{\textcites{Gradwell2017HousingBalance}{Eslake2013}.
+	As shown in \Cref{sec:it-is-getting-harder-to-save-for-a-deposit} and \Vref{sec:the-initial-mortgage-burden-hasnt-changed-much-but-borrowers-are-taking-more-risk-for-longer}, falling interest rates have offset rising prices so that the burden of repaying a new or existing home loan is not particularly high by historic standards.
+	But households are taking on more risk for longer, and it is harder to save a deposit.}
+Consequently, without intervention, home ownership rates are unlikely to bounce back over time.
+For 35-44 year olds, home ownership has fallen fast -- from 74 per cent in 1991 to around 62 per cent today -- and home ownership is also declining for 45-54 year olds.
+Current trends are expected to translate into a 10 percentage point fall in home ownership rates for over-65s by 2046.%
+	\footcite{YatesBradbury2010}
+
+The fall in ownership is not the result of changing preferences.%
+	\footnote{\textcite[][6]{Simon-Stone-2017-Property-Ladder}, analysing first home buyer behaviour before and after the global financial crisis, found that falling home ownership rates among younger households are `a reflection of higher housing prices rather than a shift in preferences -- households still have a similar desire to become home owners, however, fewer potential [first home buyers] are actually able to enter the housing market and purchase a home than before'.} 
+Owning a home remains a core aspiration for most Australians. Two-thirds of those aged 25-to-34 responding to a 2017 Australian National University survey thought owning a home was an important `part of the Australian way of life'.%
+	\footnote{\textcites{Sheppardetal2017}{Simon-Stone-2017-Property-Ladder}.
+	According to this survey, ``Emotional security, stability, belonging' was the main reason people purchase a house, with `investment, financial security'' second.
+	Similarly, \textcite[][23]{MissionAustralia2014} found that almost three quarters of 13,600 15-19 year olds considered home ownership `extremely' or `very' important.}
+But more than half of all respondents were `very concerned' that younger generations won't be able to afford a house.
+
+Home ownership is falling particularly fast for low-income households (\Vref{fig:home-ownership-age-income}).
+For 25-34 year olds in the lowest 20 per cent of incomes, home ownership rates plummeted almost 40 percentage points between 1981 and 2016.
+
+
+
+\subsection{People will miss out on the benefits of home ownership as housing has become less affordable}\label{subsec:people-will-miss-out-on-the-benefits-of-home-ownership-as-housing-has-become-less-affordable}
+
+There are plenty of reasons to care about home ownership.
+
+For many, home ownership is a touchstone of progress and prosperity.
+Home ownership has been the norm in Australia since around 1950.%
+	\footcite[][7]{KellyHarrisonHunterEtAl2013}
+And owning a home can provide a sense of community belonging.%
+	\footcite{KellyHarrisonHunterEtAl2013}
+In theory, a home can provide many of these benefits whether it is rented or owned.
+In practice, home owners have more permanence, more ability to personalise their home and more control over their surroundings than renters.
+
+Home ownership is also associated with outcomes such as better health, lower crime, and higher education levels,%
+	\footcite{WaldegraveUrbanova2016}
+although it is less clear whether this reflects the effects of home ownership, or the characteristics of the kind of people who can afford to buy a home.
+
+Most recent evidence points to home ownership improving a person's employment outcomes,%
+	\footcites{Munch-etal-2006-Are-homeowners-really-more-unemployed}{WaldegraveUrbanova2016}{Kantoretal2015homeownership}
+although some earlier studies find that home ownership can discourage people from moving to seek better employment opportunities.%
+	\footcite{Oswald-1999-Housing-market-and-Europes-unemployment}
+
+Home ownership is also associated with better financial outcomes.
+Home ownership can provide the motivation to save more, the basis for setting up a business, and collateral for investing. 
+
+Buying a home and taking on a mortgage is one way for households to commit to saving.
+Home owners tend to save more and build more wealth,%
+	\footnote{US evidence: \textcites{Dietal2007}{TurnerLuea2009}.}
+although it is difficult to determine whether this is because taking on a mortgage imposes savings discipline, or because households with more savings discipline are more likely to buy their home.%
+	\footcites{Dietal2007}{TurnerLuea2009}{DietzandHaurin2003}
+
+A family home can be used as collateral to borrow money at lower interest rates than otherwise, making it easier to build other wealth.%
+	\footcite[][126]{Connollyetal2015}
+Much small business borrowing is backed by security over property.%
+	\footnote{\textcite[][126--142]{Connollyetal2015} find some weak evidence of a positive relationship between housing equity and entrepreneurship, but it is hard to disentangle cause and effect. \textcite{CorradinPopov2015}, using US micro-data, find that more home equity increases the likelihood of people becoming self-employed.
+	\textcite{Schmalzetal2017} obtain similar results for French entrepreneurship.}
+
+Many people use their own home as security to finance the purchase of an investment property.
+Given low interest rates and rapidly escalating prices, leveraging to invest in property has provided high rates of return and increased wealth for those prepared to take the risk over the past few decades.%
+	\footcite{CrowleyLi2016}
+
+Home ownership has been a highway to wealth in part because tax and welfare laws treat it more favourably than other investments (see \Vref{subsec:tax-settings-encourage-people-to-invest-in-housing}).
+In 2013, tax and welfare concessions of \$36 billion a year were available for owned homes but not for other investments.%
+	\footnote{\textcite[][22--29]{KellyHarrisonHunterEtAl2013}.
+	The family home is exempt from capital gains tax and state land taxes, imputed rents are not included in the owner's taxable income, and the pension assets test effectively includes only the first \$200,000 of value of a family home.}
+In addition, government subsidies for aged care are less affected if a person owns a home rather than other assets.%
+	\footcites{DSS-Exempting-Principal-Home-Care-situations}{OnePath-2013-Aged-care-and-the-former-home} %
+Given the substantial private benefits of home ownership, these tax and welfare concessions for home owners appear excessive. 	Indeed, home ownership would remain highly attractive regardless of the level of government support for it.
+
+And home ownership can have costs. While home ownership can be a source of personal wealth, it also exposes households to financial risk. Buying a home can require households to put most of their savings and considerable leverage into one potentially volatile asset, reducing their ability to diversify risk.%
+    \footcite[][8]{KellyHarrisonHunterEtAl2013}
+Meanwhile some research suggests that home owners' relative lack of mobility can, over time, lead to higher levels of unemployment.%
+    \footcite[][8]{KellyHarrisonHunterEtAl2013}
+    
+Home ownership matters because that's the system we have. Many aspects of Australian policy have been built on the assumption that most Australians will own their home, including retirement incomes, access to finance, and rental tenure. While many other developed countries, such as Germany, have lower home ownership, the social outcomes are balanced by different policy settings in many other areas. 
+
+\subsection{Falling home ownership threatens future retirement incomes }\label{subsec:higher-housing-costs-and-falling-home-ownership-rates-threaten-future-retirement-incomes}
+
+Australia's retirement income system has historically assumed that most retirees would own their home outright.%
+	\footcite{Yates2015}
+Retirees who have paid off the mortgage are insulated from rising housing costs,%
+	\footcites{Yates2015}{Eslake-AIST}
+a substantial safety net if they exhaust their retirement savings.
+Home ownership is particularly attractive for retirees because in effect only the first \$203,000 of the value of the home is included in the Age Pension assets test.%
+	\footnote{See \Vref{sec:include-the-family-home-in-age-pension-assets-test} for further details.}
+
+\doublecolumnfigure{
+\caption{Retirees are more likely to live in private rental housing in future}\label{fig:renters-retirees}
+\units{Renters as per cent of population, 2013-14}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\sources{\textcites{Yates2016why}{ABS-201314-occupancy-and-costs}}
+}{
+\caption{Fewer Australians at all ages own their home outright than in the past}\label{fig:outright-owners-age}
+\units{Per cent of households that own their home outright, by age group}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsource{by age of household reference person.
+Chart shows data from all available surveys.
+Data for 65+ for 2005-06, 2007-08, 2009-10, 2011-12 is estimated using population shares of five-year age groups due to lack of data}%
+{\textcites{ABS-SIH-Microdata-200506}{ABS-SIH-Microdata-200708}{ABS-SIH-Microdata-201112}{ABS2015MicrodataIncomehousing}.}
+}
+
+But if current trends continue, a greater proportion of people reaching retirement age will be renting -- and more of them will depend on the private rental market rather than social and public housing (\Vref{fig:renters-retirees}).
+Among home-owners, more will still be paying off their mortgage when they retire -- the proportion of 55-64 year olds who own their houses outright fell from 72 per cent in 1995-96 to 42 per cent in 2015-16 (\Vref{fig:outright-owners-age}).
+Some of these older households will (quite rationally) use some or all of their superannuation savings to pay off their mortgage debt.%
+	\footnote{textcite[][10]{Eslake-AIST}. Of course this undermines the intent of the super system, and means that substantial tax concessions are never used to reduce Age Pension costs.}
+
+
+
+
+\section{Renting is relatively unattractive given current policies }\label{sec:renting-is-relatively-unattractive-under-current-policy-settings}
+
+Home ownership is popular partly because renting is a relatively poor alternative for many Australians.
+As it becomes more difficult to buy a house, more people are renting when they would prefer to own a home.%
+	\footnote{In a 2014 survey of 580 renters, 57 per cent of respondents said they rent because they `can't afford to buy' and 10 per cent were `looking to buy' (\textcite{NSW-Tenants-Union-2014-Survey-report}).}
+Renting has always been common among young people, but more older people are now renting, with 20 per cent of 45-54 year olds privately renting in 2013-14, up from 12 per cent in 1995-96.%
+	\footcites{ABS-SIH-Microdata-200506}{ABS-SIH-Microdata-200708}{ABS-SIH-Microdata-201112}{ABS-HES-201516-Microdata}
+Although renting can offer more flexibility, it has many disadvantages: it is often unstable; tenancy laws restrict renters from personalising their homes; and renters miss out on the generous tax and welfare breaks provided to owner-occupiers and property investors.
+
+\subsection{Many renters feel insecure about their housing situation and worry about having to move}\label{subsec:many-renters-have-little-control-over-when-they-have-to-move-house}
+
+Renters have little assurance that they can stay in a place as long as they want.
+Most tenancy agreements are for a fixed term of one year (or less).%
+	\footcites{Natl-Shelter-2017-Life-in-Aust-private-rental-market}{AHURI-2017-Do-long-leases-long-tenancies}
+They often then convert to periodic leases (often referred to as month-by-month leases).
+
+Renters move much more often than owners.
+More than 65 per cent of private renters had moved in the past two years, compared to 24 per cent of owners with a mortgage (\Vref{fig:renter-satisfaction-moves}).%
+	\footnote{This is consistent with bond repayment data on completed tenancies, which show that in NSW, 66 per cent of tenancies last for two years or less: \textcite{AHURI-2017-Do-long-leases-long-tenancies}.}
+\textcite{OngEtAl-AHURI-2017-Housing-supply-responsiveness} found that private renters are approximately 15 percentage points more likely to move than people who own their home outright.%
+	\footnote{The authors control for time living at address, house value, area unemployment rate, financial stress and housing costs: \textcite[][50]{OngEtAl-AHURI-2017-Housing-supply-responsiveness}.} 
+
+\begin{figure}
+\caption{Renters move more often than owners and are less happy with their lot}\label{fig:renter-satisfaction-moves}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\sources{\textcite{ABS-201314-occupancy-and-costs}; Grattan analysis}
+\end{figure}
+
+Many of these renters were forced to move.%
+	\footnote{\textcites{ABS-201314-occupancy-and-costs}{KellyHarrisonHunterEtAl2013}{Ellis-2017-Speech-Aust-Housing-Researchers}.
+	The difference in mobility between owners and renters in Australia is the highest in the OECD (\textcite{KellyWeidmannWalsh2011}).
+	A 2014 survey of NSW renters found that 14 per cent who had moved in the past three years were evicted by their landlord (\textcite{NSW-Tenants-Union-2014-Survey-report}).}
+Being forced to move, or worrying about the possibility of having to move, is a particular problem for families with children in school, for those who are psychologically distressed by the change (often older people), and for those who struggle to afford the costs of moving (often poor people).%
+	\footnote{Some 92 per cent of respondents to the 2014 survey of NSW renters said they were worried about moving due to concerns about finding a suitable house at a rent they can afford (\textcite{NSW-Tenants-Union-2014-Survey-report}).}
+
+Insecurity of tenure for renters is increased by three factors: state land tax regimes that generate short-term leases; tax incentives that encourage landlords to turn properties over more often to maximise negative-gearing benefits; and standard lease terms and tenancy laws that provide landlords with broad rights to terminate leases unilaterally.%
+	\footcite[][26]{DaleyWood2016-Negative-Gearing-CGT}
+	
+Tenants may also be reluctant to commit to a long lease.
+Under current laws, long-term leases create significant financial risk for tenants if their circumstances change and they need to move, because tenants are liable to pay rent until the end of the fixed-term lease, or until a new tenant is found.%
+	\footnote{\textcite{James-2015-Should-Aust-adopt-10yr-leases}. To encourage longer leases, the Victorian Government is introducing new standard long-term leases (\textcite{VicStateGov2017Homes}).}
+
+\subsubsection{State government land taxes make short-term leases common and contribute to insecurity of tenure }\label{subsec:state-government-land-taxes-make-short-term-leases-common-and-contribute-to-insecurity-of-tenure}
+
+Tenancy laws allow longer leases, but few landlords agree to them.%
+	\footnote{About 94 per cent of fixed-term private rental agreements have a lease lasting 12 months or less (\textcite{Hulse-etal-2011-AHURI-Secure-occupancy-rental-housing}).}
+Short leases are in part a result of state government land taxes that lead to most residential investment properties being owned by small, `mum and dad' landlords.\footcite{AHURI_2018_private_rental_housing_Martin_etal}
+According to 2014-15 taxation statistics, 86 per cent of rental properties are owned by landlords with three properties or fewer (\Vref{fig:rental-owenrship-numbers}).%
+	\footnote{Institutional investors make up a much larger share of landlords in the US and Germany (\textcites{Shaw-2014-theConvo-Renting-for-life}{Chong-2016-theOz-MacqGrey-align-rental-home-market}).}
+
+\begin{figure}
+\caption{Less than 15 per cent of residential investment properties are owned by landlords with more than three properties}\label{fig:rental-owenrship-numbers}
+\units{Share of total investment properties by number of properties owned by investor, 2014-15}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{An interest in a property means the property is either solely owned, or jointly owned for all or part of the year.
+Excludes those that own no residential property other than their primary residence}%
+{\textcite{ATO-2017-Landlords-2006-to-2014}; Grattan analysis}
+\end{figure}
+
+
+
+State government land taxes disadvantage institutional investors relative to `mum and dad' landlords who own only one or two properties.%
+	\footcites[][Volume~1, pp.~261--262]{HenryTaxReview2010}[][15]{DaleyCoates-2015-Property-taxes}[][14]{mclaren2014uniform}[][69]{Hulse-etal-2011-AHURI-Secure-occupancy-rental-housing}
+State land taxes, with generous tax-free thresholds and progressively higher taxes based on a person's total land holdings by value, lead to large landowners paying much higher rates of land tax on a given investment property than if that same property were owned by a small investor (\Vref{fig:land-tax-investors}).%
+    \footnote{Institutional investors do tend to own commercial properties as each property tends to be more valuable, and therefore attracts a higher land tax rate.
+    Consequently, for most commercial properties small-scale investors have much less of a tax advantage. However, small commercial properties, such as post offices, still tend to be owned by small investors (\textcite{Prosper_2014_Freebairn_speech_press_release}).}
+Even a landlord with three properties may be paying minimal land tax if each property is in a different state, because land tax thresholds are based on the aggregate landholdings in any one state.
+But a large landholder would pay land tax of around 2 per cent of the land value (typically 1 per cent of the property value including improvements),%
+	\footcite{DaleyCoates-2015-Property-taxes}
+whereas an individual investor with only one rental property might well pay no land tax at all on the same property.%
+	\footnote{The top land tax rate is typically levied on landholdings over about \$2 million. The top rate is 2.0\% in NSW, 2.225\% in Victoria, 1.75\% in Queensland, 2.67\% in Western Australia, 3.7\% in South Australia, and 1.5\% in Tasmania.}
+
+
+\begin{figure}
+\caption{Progressive land taxes discourage large investors from holding residential property}\label{fig:land-tax-investors}
+\units{Annual land tax paid and post-tax income return, per cent of asset value}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Assumes a small investor owns one property, a medium investor owns five properties and a large investor owns 25 properties. Sydney example based on \$880,000 median-priced dwelling. Melbourne example based on \$720,000 median-priced Melbourne dwelling. Brisbane example based on \$490,000 median-priced Brisbane dwelling and `large investor' is subject to land tax regime for resident individuals. For all three cities, assumes 4 per cent gross rental return and land value is assumed to be half the value of the property.  Ignores deductibility of land tax costs against income in personal and corporate income tax returns}{\textcites{NSW_rev_office_2018_land_tax}{Vic-SRO-2017-Land-tax-current-historical-rates}{StateRevenueQueensland2018_land_tax}{ABS-2017-Residential}; Grattan analysis}
+\end{figure}
+
+The difference is material.
+For example, a small investor might own and rent out one median-priced Sydney home worth \$880,000, and would pay no land tax (assuming \$440,000 land value).
+By comparison, a large investor owning 25 such properties would pay \$7,915 in land tax on each property.%
+	\footnote{Based on NSW land tax rates for the 2016-17 financial year.}
+Assuming a net rental yield of 4 per cent, the large investor loses roughly one quarter of the rental return in land tax (\Vref{fig:land-tax-investors}).
+If individual and institutional investors have similar target rates of return, the individual investor would be prepared to pay about 30 per cent more for a given investment property.\footnote{Institutional investors face less of a disadvantage for high density housing, such as apartments or student accommodation, since the land share of the dwelling cost is lower due to higher construction costs for taller buildings.}
+
+As a result, small investors dominate Australia's rental housing market.
+Mum and dad investors are reluctant to offer long-term leases, or otherwise guarantee more secure tenure to tenants, because they wish to maintain control over an asset that accounts for a large share of their overall wealth holdings, and which they may need to liquidate quickly.%
+	\footnote{\textcite{Wood-Ong-AHURI-2010-factors-affecting-landlords} found that one in four residential property investors exit the market each year.}
+
+\subsubsection{Negative gearing results in shorter lease terms }\label{subsec:negative-gearing-results-in-shorter-lease-terms}
+
+Negatively geared landlords are particularly likely to turn over properties regularly, and are less to care about satisfying tenants' needs.%
+	\footcite[][26]{DaleyWood2016-Negative-Gearing-CGT}
+By contrast, institutional investors in multiple properties who want liquidity will usually have at least one vacant property to sell, even if they provide long-term leases, because of the inevitable turnover of individual tenants.
+
+\subsubsection{Landlords' rights to terminate a lease compound renter insecurity }\label{subsec:landlords-right-to-terminate-a-lease-without-grounds-compounds-renter-insecurity}
+
+Tenancy laws are supposed to ameliorate some of the unequal bargaining power that landlords often have over tenants.
+But landlords often have the upper hand in negotiations if the tenant needs to get a roof over their head quickly -- the consequences of being homeless for a week are much greater than missing out on one week's rent.
+Some argue that current laws are tilted too far in favour of landlords.%
+	\footcites{Power-2017-theConvo-For-renters-housing-affordable-just-the-start}[][8]{Natl-Shelter-2017-Life-in-Aust-private-rental-market}{Irvine-2016-SMH-Hidden-tax-hurts-renters}
+
+One of the most contentious parts of state tenancy laws is allowing landlords to evict tenants `without grounds', albeit with a notice period.
+For example, in Queensland, a landlord can evict a tenant without grounds with two months' notice.%
+	\footnote{\textit{Residential Tenancies and Rooming Accommodation Act 2008} (Qld) s.291, s.329(2)(k)(i).
+	The period of notice varies.
+	In Victoria, the notice period is 90 days at the end of a fixed-term lease, and 120 days for a periodic lease (\textcite{Consumer-Affairs-Vic-Landlord-giving-notice-to-vacate}).
+	In NSW, the notice period is 30 days at the end of a fixed-term lease and 90 days for a periodic lease (\textcite{NSW-Fair-Trading-Giving-termination-notice}).
+	In the ACT, the notice period is 26 weeks (\textcite{Morris-etal-2017-theConvo-Insecurity-private-renters}).}
+Tenancy advocates and some commentators argue that without-grounds evictions are the major contributor to renter insecurity.%
+	\footcites[][66]{Hulse-etal-2011-AHURI-Secure-occupancy-rental-housing}{Power-2017-theConvo-For-renters-housing-affordable-just-the-start}[][8]{Natl-Shelter-2017-Life-in-Aust-private-rental-market}{Irvine-2016-SMH-Hidden-tax-hurts-renters}[][12--13]{Adkins-etal-2002-Tenure-security-Qld}{Martin2017renting}
+Although only a small share of tenants are evicted without grounds -- a recent survey found 17 per cent of renters had been evicted without grounds or with no reason given -- the possibility creates insecurity and stress.%
+	\footnote{\textcite{Morris-etal-2017-theConvo-Insecurity-private-renters} `for at least one in four of our interviewees, the chronic de jure insecurity associated with private renting imbued everyday life with ongoing anxiety and stress'.
+	According to \textcite{NSW-Tenants-Union-2014-Survey-report}, 92 per cent of respondents are worried about moving.}
+Without-grounds evictions can also deter tenants from exercising their rights, such as requesting legitimate repairs or contesting a rent increase.%
+	\footnote{According to \textcite{Natl-Shelter-2017-Life-in-Aust-private-rental-market}, of people who had a problem with their rental property but didn't complain, 37 per cent feared eviction or not having their lease renewed.
+	\textcite[][12]{Adkins-etal-2002-Tenure-security-Qld} found that people are worried about contesting rent increases due to fear of retaliatory `without grounds' eviction.}
+
+In many states, landlords can terminate a lease with even less notice for a variety of reasons, including that the landlord decides to sell the property or live in it themselves.%
+	\footnote{See for example \emph{Residential Tenancies Act 1997} (Vic) ss 258-259.}
+
+\subsection{Renters are less satisfied with their home, and laws restrict renters from making the place they rent feel like their `home'}\label{subsec:renters-are-less-satisfied-with-their-home-and-laws-restrict-renters-from-making-the-place-they-rent-feel-like-their-home}
+
+Renters are generally less satisfied than owners with their home, although this partly reflects how the average renter has a lower income and so lives in lower quality housing. (\Vref{fig:renter-satisfaction-moves}).%
+	\footcite{ABS-201314-occupancy-and-costs}
+Renters are more likely to live in a house with a major structural problem.%
+	\footnote{In 2013-14, 18 per cent of private renters were living in a dwelling with a major structural problem, compared to 11 per cent of owners and 32 per cent of public renters \textcite{ABS-201314-occupancy-and-costs}.}
+Some renters report fearing eviction or a rent increase if they request legitimate repairs or maintenance.%
+	\footnote{Retaliatory evictions are illegal, but it is difficult for tenants to prove the landlord's motive was retaliation.}
+
+Tenancy agreements typically restrict renters from making the place they rent feel like their `home'.%
+	\footcite{KellyHarrisonHunterEtAl2013}
+Tenants usually need their landlord's consent to make even small alterations, such as putting picture hooks in walls or changing the garden.
+And even if tenants can make improvements, usually they lose them if they move.
+Tenants usually need their landlord's consent to keep a pet, even if the property is suitable and a bond is paid.%
+    \footnote{If the value of a pet to a tenant is greater than the cost to the landlord, then in a perfect world, tenants and landlords would contract to allow a pet in return for slightly higher rent (\textcite{Coase_1960_social_cost}).
+    But in practice, the allocation of rights under standard contracts and legislative defaults tends to determine outcomes because they anchor expectations, and because transaction costs are material.}
+Prospective tenants with pets also report feeling discriminated against when applying for a property.%
+	\footcites{Natl-Shelter-2017-Life-in-Aust-private-rental-market}{Sparvell-2016-Vic-renters-may-soon-have-pets}
+
+\subsection{Renters miss out on tax advantages available to home owners and property investors}\label{subsec:renters-miss-out-on-tax-advantages-available-to-home-owners-and-property-investors}
+
+Renters miss out on the significant tax and welfare incentives for home owners and property investors, as described in \Vref{subsec:tax-settings-encourage-people-to-invest-in-housing} and \Vref{subsec:people-will-miss-out-on-the-benefits-of-home-ownership-as-housing-has-become-less-affordable}.
+While renters may benefit a little from tax breaks for property investors, when land supply is constrained due to land use planning rules, tax breaks for property investors are mostly capitalised into house prices rather than passed on as lower rents.
+Some renters benefit from Commonwealth Rent Assistance, but this is less than 6 per cent of the total housing benefits that governments provide.%
+	\footnote{\textcite[][22--29]{KellyHarrisonHunterEtAl2013}. Commonwealth and state governments also spend around \$5~billion each year on social housing.
+	Although social housing is outside the scope of the report, government additions to public rental stock are likely to benefit renters in the private rental sector by reducing rental demand.}
+By contrast, homeowners and investors receive more than 90 per cent of the benefits of major housing policies.
+And some of the burden of land tax is probably borne by tenants via higher rents, because owner-occupied properties are land-tax exempt.%
+	\footcite[][210]{HenryTaxReview2010}
+Partly as a result of these tax and welfare policies, buying was financially more favourable than renting an equivalent house for most of the past three decades in major Australian cities.%
+	\footcite{CrowleyLi2016}
+	
+Many people are renters, particularly the young and poor, by necessity not choice (\Vref{fig:home-ownership-age-income}). Because low income earners are now much less likely to be home owners, tax breaks favouring home ownership increase inequality, especially as these tax breaks become more valuable when house prices rise.
+
+\section{Higher housing prices mean people struggle to live near where most jobs are being created}\label{sec:higher-housing-costs-mean-people-struggle-to-live-near-where-most-jobs-are-being-created}
+
+A generation ago, more jobs, particularly in manufacturing, were dispersed among the suburbs.%
+	\footcite{KellyDonegan2015-City-limits}
+Now, more new jobs are located in and around CBDs.
+With agglomeration, average incomes rise.%
+	\footnote{See above \vpageref{paragraph:cities-increase-incomes}.}
+But as jobs growth is becoming more concentrated, younger generations that can only afford to buy the newly built housing on the city fringe are living further from the city centre than their parents did when they bought their first homes.
+Instead of enduring longer commutes, many young people are instead renting for longer.
+
+New and less expensive housing has always been built on the edge of our cities.
+But the urban fringe is much further away from the centre than 30 years ago.
+In Melbourne, suburbs around 20km from the CBD, such as Glen Waverley, Altona and Bundoora, were new suburbs in 1970s; today the city fringe can be more than 50km from the CBD in the south-east.%
+	\footcite[][Map~1]{VicGovPlanMelb2017}
+In Sydney, new developments in the south-west can be more than 60km from the CBD.%
+	\footcites[][Figure~2]{NSW-DPE-2014-Plan-for-growing-Syd}{Transport-Sydney-2014-Sydneys-urban-growth-history}
+And whereas 30 years ago first home buyers in large capitals had the option of some relatively cheap housing in inner-ring suburbs such as Surry Hills in Sydney, Richmond in Melbourne and New Farm in Brisbane, most of these suburbs have gentrified and are typically beyond the reach of first home buyers.%
+	\footcites{coffee-visualising-pop-change}[][19--20]{KellyMaresHarrisonEtAl2013}
+
+The increasing distance between where jobs are located and where new housing is built has personal and broader economic costs.%
+	\footnote{\textcites{KellyDonegan2015-City-limits}{NBER2017HsiehMoretti}{Cheshireetal_2018_empty_homes}.} 
+The costs of this divide include fewer job opportunities, heavier traffic congestion, longer commute times and a big drop for many people in the quality of their family and social life.%
+	\footcites{KellyDonegan2015-City-limits}{Ryan-Selim-2017-theConvo-Liveable-Sydney-has-clear-winners-and-losers}[][1]{Pawson-et-al-2015-Addressing}{IA_2018_Future_cities}
+Long commutes mean it is harder for both parents to work, with women generally the ones who end up working less than otherwise.%	
+	\footcite{Daley-2015-Guardian-Inner-city-v-outer-suburbs-where-you-live-really-does-determine-what-you-get}
+Female workforce participation in outer suburban areas is typically 20 percentage points lower than for men.%
+	\footcite{KellyMaresHarrisonEtAl2013}
+
+These factors also lead to cities stratifying between lower income households on the fringe and more prosperous households in inner and middle suburbs (see \Vref{subsec:higher-house-prices-are-contributing-to-a-greater-divide-between-the-have-and-have-nots-in-our-cities}).
+
+\section{Higher housing costs have economic costs}\label{sec:higher-housing-costs-have-economic-costs}
+
+Building more new homes in desirable areas near high-paying jobs -- usually towards the centres of capital cities -- doesn't just keep a lid on prices; it can also help the economy.
+Research in the US shows that development restrictions limiting housing near high-paying, productive jobs can significantly reduce economic growth.%
+    \footcites{GlaeserGyourko2017EconImplications}{NBER2017HsiehMoretti}{Parkhomenko2016}{Herkenhoff2017EmpireStates}{AndrewsEtAlHousing}
+Higher housing costs dissuade people from moving to cities where higher-paying jobs are located.
+Recent US studies estimate that GDP would be between 2 and 13 per cent higher if enough housing had been built in cities with strong jobs growth such as New York and San Francisco.%
+    \footnote{\textcites[][22--24]{GlaeserGyourko2017EconImplications}{NBER2017HsiehMoretti}.
+    While the precise estimates of the GDP impact are highly sensitive to assumptions about elasticities of labour demand and the degree of labour mobility, even under conservative assumptions the GDP impact of increasing housing supply in high-productivity cities is large.}
+
+Even when there is no movement between cities, higher housing costs impose economic costs. If people are forced to live on the edge of cities with less access to jobs, then employers have a smaller pool of workers to choose from, and so productivity is lower than otherwise.%
+	\footcite[][1]{Pawson-et-al-2015-Addressing}
+
+
+\section{Rising house prices are widening inequality between generations}\label{sec:rising-house-prices-have-widened-inequality-both-across-and-within-generations}
+
+Rising dwelling prices and falling home ownership rates are increasing wealth divides between generations.
+Older people have benefited from the large increase in house prices over the past 30 years as interest rates fell.
+This is a once-off change that is unlikely to recur to help younger generations.
+Higher housing costs are forcing younger generations to stay at home for longer.
+And the widening inequality \emph{between} generations is beginning to increase inequality \emph{within} generations as more young people are relying on wealthy parents to enter the housing market
+
+
+\subsection{Rising house prices increase the risks that younger generations will be worse off than their parents}\label{subsec:rising-house-prices-increase-the-risks-that-younger-generations-will-be-worse-off-than-their-parents}
+
+Our 2014 report for Grattan Institute, \citetitle{DaleyWoodWeidmannHarrison-2014-Wealth-of-generations}, showed that today's generation of young Australians are at increasing risk of being worse off than their parents.%
+	\footcite{DaleyWoodWeidmannHarrison-2014-Wealth-of-generations}
+Older Australians are capturing an increasing share of the nation's resources.
+Despite the global financial crisis, 65-74 year old households today are \$480,000 wealthier in real terms than households of that age twelve years ago (\Vref{fig:net-wealth-age}).
+Households that were 35-44 years old in 2005-06 increased their average wealth by almost \$600,000 in the following decade.
+\oneraggedpage
+    
+\begin{figure}
+\caption{The wealth of older households has increased in ways that are unlikely to be repeated}\label{fig:net-wealth-age}
+\units{Mean wealth per household, \$2015-16, thousands}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\source{\textcite{ABS-HES-2015-16-Summary}}
+\end{figure}
+
+In part, the wealth of generations diverged because of the boom in housing prices (\Vref{box:who-wins-and-loses}).
+Older households that owned homes at the start of the house price boom made big capital gains.%
+    \footnote{For households headed by 65-74-year-olds and 55-64-year-olds, property contributed about half of the total increase in wealth between 2003-04 and 2015-16 (\textcite{WoodWiltshire2017WoG}).}
+These households enjoyed a significant, untaxed windfall gain from rising prices and they continue to benefit from house prices remaining high.
+Households that did not own property before the boom -- disproportionately the younger generation -- missed out on the windfall boost in wealth from the price rises.
+25-34 year old households today are no more wealthy than the equivalent households a decade before (\Vref{fig:net-wealth-age}).%
+
+The windfall rise in prices is unlikely to be repeated, even if the fundamentals of the real estate market keep house prices high.
+Many observers believe that prices are unlikely to grow in future as quickly as they did over the past two decades, because income growth is likely to be slower, and official interest rates can't fall much further.%
+	\footnote{\textcites{Eslake-why-housing-expensive}{FoxTulip2014overvalued}{CoreLogic2017}[][31]{DaleyWoodWeidmannHarrison-2014-Wealth-of-generations}.
+	At the time of writing, the cash rate, the interest rate set by the Reserve Bank of Australia, was 1.5 per cent.}
+As a result, young people are likely to face higher housing costs for a long time.
+By contrast, older people who have benefited from the boom may face higher housing costs for only a few years, and can spend housing wealth on other things by downsizing or withdrawing equity.
+
+
+\begin{smallbox}{Who wins and loses from higher house prices}{box:who-wins-and-loses}
+Rising house prices are a mixed blessing. They make existing homeowners and investors feel wealthier. But they are usually bad news for those who don't own a home already. The difference reflects how spending on housing has a dual role.
+An owner-occupied home is \emph{both} a place to live and \emph{also} a valuable asset.%
+	\footcite{Freebairn2016Housing} 
+
+Housing is unlike most goods and services, which don't provide a financial return.%
+	\footcite{FlavinYamashita2002Housing}
+And housing is unlike most investments, which are not usually consumed by their owner.
+Most people care more about the value of their home as a place to live than as an investment.%
+	\footcite{IoannidesRosenthal1994Housing}
+
+So whether a person wins or loses from rising house prices depends on their circumstances.%
+    \footnote{Hence \textcite{Lowe2017Householddebt} described rising house prices as a `two-edged sword'.}
+Investment property owners are clear winners.
+Older home-owners are likely to win if they later downsize.
+Younger home-owners benefit even less – their home is worth more, but they still need somewhere to live – and they can be worse off if it costs them more to upgrade to a better home in future.
+Renters are worse off if house prices rise because they reflect expectations of higher housing costs in future.%
+	\footcite{Lowe-national-balance-sheet-speech}
+
+Consequently, rising house prices affect generations differently: they tend to benefit the older at the expense of the young. 
+
+If house prices do rise even further in future, it may benefit younger generations who meanwhile buy a house. But it will also increase housing costs for the following generation even more. 
+
+\end{smallbox}
+
+
+Housing inequality between generations contributes to young people leaving home later.
+Worsening housing affordability is likely a major cause of the stall in the long downward trend in average household size.%
+	\footnote{textcites{Eslake2013}[][24]{McDonaldTemple-2013-Projs-Housing-demand-Aust}; \Vref{subsec:undersupply-led-to-larger-households}.}
+Although sources differ on the scale of the change, young people are leaving home later. 
+Census data shows a small increase in the proportion of people in their 20s and 30s living with their parents, particularly in Melbourne and Sydney, and fewer young people living alone.%
+    \footnote{For example, the proportion of 25-29 year olds in Sydney living with parents or grandparents increased from 19.7 per cent in 2006 to 21.3 per cent in 2016.}
+But the HILDA survey suggests the shift may be larger: it estimates that the proportion of women aged 22-25 living with their parents increased from 27 per cent to 48 per cent between 2002 and 2015, and the proportion of 22-25 year old men living with their parents increased from 43 per cent to 60 per cent.%
+	\footcite[][Figure~2.1]{Wilkins2017-HILDA-Selected-findings}
+And the share of younger Australians aged 20-34 that are starting their own households has fallen sharply since 2001. The share that do start a household is lowest in Sydney and Melbourne where house prices are highest (\Vref{fig:headsip-ratio}).
+
+
+\begin{figure}
+\caption{Younger Australians are adapting to rising housing costs by starting new households much later in life}\label{fig:headsip-ratio}
+\units{Proportion of 20-34 year olds that are the head of their household, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Includes both homeowners and renters. In fact a lot of younger people are renters even when they do move out.}
+{\textcite{Gradwell2017HousingBalance}}
+\end{figure}
+
+ 
+
+
+There is also a growing number of group households and multi-family households.%
+	\footnote{According to the Census, between 2006 and 2016 the proportion of 25-29 year olds living in group households increased from 10 per cent to 13 per cent in Sydney and Melbourne respectively. Using HILDA data, \textcite[][6]{Wilkins2017-HILDA-Selected-findings} found that the proportion of `multiple family' households increased from 2.5 per cent to 4 per cent between 2001 and 2015. In the United Kingdom, younger renters have less space per person in a household than 20 years ago, whereas all owners have more space per person (\textcite{Corlett-Judge-2017-Housing-across-gens}).}
+Particularly in Sydney, people have built many more `granny flats', which often house family members.%
+	\footcites[][21]{Thomas-2016-Housing-supply-outcomes-from-Sydney-codification}{FuaryWagner-2015-Domain-Sydney-in-midst-of-grannyflat-boom}
+
+\subsection{Intergenerational inequality contributes to intra-generational inequality}\label{subsec:rising-house-prices-will-also-contribute-to-intra-generational-inequality-over-time}
+
+The increasing divide between generations can easily become an increasing divide within generations.
+
+For many younger people, the only way they can afford to buy a house is with family assistance.
+Indeed, as house prices have increased, more first home buyers are receiving assistance from family and friends to buy a house (\Vref{fig:assistance-to-buy-house}).%
+	\footnote{\textcite{Ellis-2017-Speech-Aust-Housing-Researchers}.
+	According to National Australia Bank data, 8 per cent of first home buyers taking out a loan in 2015 had a family member acting as a guarantor,
+	 an increase from 6.7 per cent in 2015 and 4.8 per cent in 2010 (\textcite{Yeates-2016-more-parents-guaranteeing-kids}).}
+If home ownership relies more on the `bank of mum and dad', then getting a home depends more on the success of one's parents than on one's own endeavours.%
+	\footnote{\textcite[][6--7]{RBA2014SubmissionAffordableHousingInquiry}.
+This is also occurring overseas: \textcite{Gholipour-etal-2016-theConvo-Higher-property-prices-linked-to-ineq}.}
+
+\begin{figure}
+\caption{More first home buyers are receiving assistance from family and friends}\label{fig:assistance-to-buy-house}
+\units{Share of all first home buyers receiving assistance from family or friends}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\source{\textcite{Ellis-2017-Speech-Aust-Housing-Researchers}.}
+\end{figure}
+
+Patterns of inheritance mean that more intergenerational inequality tends to lead to more inequality within generations. 
+Large inheritances and bequests have not been common in Australia to date.%
+  \footnote{Of the estimated 13 per cent of people receiving an inheritance between 2002 and 2012, more than three quarters received less than \$100,000 and most less than \$50,000 (\textcite[][37]{DaleyWoodWeidmannHarrison-2014-Wealth-of-generations}).} 
+But the strong growth in the wealth of today's older generations, combined with the steady shrinking of the family size from 1960 to 2000, may lead to more and larger inheritances and greater inequality.
+
+Bequests are likely to be larger in future. Older households are much richer today than in the past.
+And most older households -- particularly wealthier households -- largely maintain (and many increase) their wealth in retirement.
+According to one Australian study, the median pensioner dies with residual wealth equal to 90 per cent of the assets recorded at the start of its eight-year investigation.%
+	\footcite[][4]{WuEtAlAgePensioner2015}
+
+Inheritances tend to transmit wealth to children who are already well-off.%
+	\footcite{DaleyWoodWeidmannHarrison-2014-Wealth-of-generations}
+Those who receive an inheritance, and who receive a larger inheritance, are more likely to own their own home already.%
+	\footcite{Barrett-etal-2015-Intergen-xfer-housing-econ-outcomes}
+
+This has been the pattern for a long time internationally, and for at least the past decade in Australia (where data on inheritance is relatively scarce).
+If the patterns continue, then wealth will ultimately be much less equally shared within younger generations.
+
+
+\section{Rising housing costs are widening inequality within generations}\label{sec:rising-house-prices-have-widened-inequality-within-generations}
+
+Rising housing costs have bitten much more into the incomes of households at the bottom.
+Rising housing prices have increased wealth inequality.
+And high house prices have also widened the geographic divide between high- and low-income earners, which tends to translate into even less equal social outcomes.
+
+
+\subsection{Higher housing costs are hurting those with lower incomes the most}\label{subsec:higher-house-prices-hurting-bottom}
+
+Higher house costs are hurting low-income households the most.
+The bottom 20 per cent of households are spending more of their income on housing (\Vref{fig:spending-on-housing-by-income});
+cheaper housing has increased in price by more than more expensive housing (\Vref{fig:house-price-deciles});
+lower-income renters in capital cities are under increasing financial stress (\Vref{fig:rental-stress-by-area});  
+the public housing stock has not kept up with population growth (\Vref{fig:public-housing-stock}); 
+and home ownership rates have fallen the most among those on low incomes (\Vref{fig:home-ownership-age-income}).
+
+
+\subsection{Rising house prices are increasing wealth inequality }\label{subsec:rising-house-prices-increased-wealthinequality}
+
+Rising house prices have contributed to widening wealth inequality.
+Over the past 12 years, the wealth of the richest 20 per cent of households increased by over 50 per cent in real terms, whereas the wealth of the bottom 20 per cent increased by only 10 per cent (\Vref{fig:wealth-income-real-growth}).
+
+Over the same period, income growth was much more even, although the gap between high and low income earners was larger after taking housing costs into account (\Vref{fig:rising-housing-costs-eating-income-growth}). 
+
+\begin{figure}
+\caption{Incomes have risen across the board but wealth has concentrated among the rich}\label{fig:wealth-income-real-growth}
+\units{Real growth from 2003-04 to 2015-16 per equivalised household quintile}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+    \noteswithsource{Income estimates for 2003–04 onwards are not perfectly comparable with estimates for 2015-16 due to improvements in measuring income introduced in the 2007–08 cycle. Bottom two income percentiles are removed in disposable income panel. Disposable income numbers differ slightly to \Cref{fig:rising-housing-costs-eating-income-growth} due to differences between ABS and Grattan Institute calculations of income quintiles.}
+{\textcite{ABS-2017-HouseholdIncomeAndWealth-201516}}
+\end{figure}
+
+
+\subsection{The geographic divide of our cities is widening the gap between haves and have-nots}\label{subsec:higher-house-prices-are-contributing-to-a-greater-divide-between-the-have-and-have-nots-in-our-cities}
+
+There have always been poorer and wealthier areas within our cities, but this geographic inequality is growing, with rising house prices a contributing factor.
+Incomes increasingly determine where you live.
+And location increasingly influences a range of social outcomes.
+
+As house prices rise, how much you earn and how wealthy your parents are will increasingly influence where you live.%
+	\footnote{\textcite[][182--183]{Rethinking-the-economics-of-land-and-housing-2017}.
+	\textcite{Ganong-Shoag-2017-Why-has-regional-income-convergence-declined} argue that reduced mobility resulting from constrained housing supply exacerbates inequality, because when low-income workers move to a state with restricted housing supply, the increases in housing costs can outweigh the potential gains in income.}
+Rapidly rising house prices in established suburbs have pushed many people with lower incomes further away from city centres.%
+	\footcites{DIRD-2015-Sydney-factsheet-State-of-Sydney-cities}{KellyHarrisonHunterEtAl2013}
+
+The geographic concentration of poverty in Australia has increased since the 1970s, reflecting the shift in employment from manufacturing focused in the suburbs to services jobs concentrated towards the centres of our major cities.
+The economic indicators of Australian urban neighbourhoods diverged markedly between 1976 and 1991, largely due to falls in employment rates in poorer neighbourhoods.%
+    \footnote{\textcite{Gregory-Hunter-1995-spatial-disadvantage} found that in 1976, the ratio of the mean household income of Census Collection Districts from the lowest to the highest five percent of SES areas was 60 per cent.
+    But by 1991 the ratio had fallen to 31 percent, implying that incomes within neighbourhoods were becoming more similar, and neighbourhoods were becoming more different from each other.}
+And house prices within suburbs are becoming more uniform,%
+	\footcite[][34, 18]{KellyHarrisonHunterEtAl2013}
+resulting in greater segregation according to income.
+
+As a result, disadvantage is clustering in the outer suburbs of Australian cities.%
+	\footcites{Ryan-Selim-2017-theConvo-Liveable-Sydney-has-clear-winners-and-losers}{Pawson-et-al-2015-Addressing}{Hulse-etal-2014-AHURI-Disadv-places-urban-Aust-analyse-poverty-house-prices}
+Geographic inequality matters.
+With jobs growth more concentrated in `knowledge' jobs in the centre of our major cities, people living in outer suburbs are commuting for longer, have access to fewer jobs, and lower rates of female workforce participation (\Vref{sec:higher-housing-costs-mean-people-struggle-to-live-near-where-most-jobs-are-being-created}).
+Incomes have risen much faster in the inner cities than on the outskirts of Australia's major cities.%
+	\footcite[][9--11]{DaleyWoodChivers2017RegPatterns}
+Residents of poorer suburbs on city fringes generally have higher crime rates and worse health and educational outcomes.%
+	\footcites[][34]{KellyHarrisonHunterEtAl2013}{Katz-etal-2000-Boston-randomized-mobility-experiment}{Glaeser-2007-Econ-Approach-to-cities}
+And unemployment has also become more concentrated in poorer areas.%
+	\footcites{Pawson-et-al-2015-Addressing}[][17]{DaleyWood2015FiscalChallenges}
+
+It is not clear whether these outcomes reflect the backgrounds of people who move to these areas, or are `neighbourhood effects' in which the surrounding social, economic and cultural environment influence people's lives.%
+	\footnote{\textcite[][34]{KellyHarrisonHunterEtAl2013}. But new studies of the `Moving to Opportunity' experiments in the US identify large neighbourhood effects on employment and well-being in the long run (see \eg~\textcite{Rothwell_2015_movingtoopportunity_brookings}).}
+But either way, there is a vicious cycle -- those with higher incomes can afford better housing near higher-paying jobs, as can their partners. And so geographic divides are increasing overall inequality.%
+	\footnote{\textcites{Bill-2005-Neighbourhood-ineq-small-area-interactions-influence-econ-outcomes}[][101--102]{FloodBaker2010}. As \textcite{Sarkar-2016-scaling-income-distr-Aust} notes, the `agglomeration' benefits from large cities flows disproportionately to high-income earners in the form of higher incomes, increasing overall inequality
+	.}
+
+\section{Higher house prices and more debt makes the economy more vulnerable to economic shocks}\label{sec:higher-house-prices-and-more-debt-makes-the-economy-more-vulnerable-to-economic-shocks}
+
+Housing affordability can affect economic stability.
+House prices are rising faster than incomes.
+And households are borrowing more, particularly to invest in housing.
+Growing household debt has made the Australian economy more vulnerable.
+But the debt situation is not as worrying as the aggregate figures suggest.
+Most debt is held by higher-income households, and Australia's banking system is strong.
+The big risk from rising debt levels seems to be a downturn in consumer spending prompted by an economic shock and higher unemployment, or higher interest rates, rather than a banking crisis.
+
+\subsection{Household debt has increased significantly, but is mostly held by higher-income households}\label{subsec:household-debt-has-increased-significantly-but-is-mostly-held-by-higher-income-households}
+
+Debt held by households has grown substantially in recent decades.
+Housing debt was around 70 per cent of to household disposable income in 2000; it is now more than 130 per cent.%
+	\footnote{It is closer to 120 per cent when balances in offset accounts are subtracted (\textcite[][Graph~2.5]{RBAFinancialStabilityOct2017}).}
+\emph{Total} household debt is now a record 190 per cent of household after-tax income, up from about 170 per cent between 2007 and 2015.%
+	\footnote{\textcite{RBA2017selectedratios-e2}.
+	This ratio is higher than most developed countries, but the trend of increasing household debt is apparent in many developed countries (\textcite[][Figure~1]{Simon-Stone-2017-Property-Ladder}).}
+More households are exposed: in 2002, 20 per cent of households had a debt of more than twice their income; today it's 30 per cent.
+
+Although aggregate debt has increased substantially, net wealth of households has also increased and is currently at a record high.%
+	\footcites{Lowe2017Householddebt}{ABS-2017-HouseholdIncomeAndWealth-201516}
+And much of the increase in debt is concentrated among older and wealthier households (\Vref{fig:debt-by-quintile-time}).%
+	\footcite{Lowe2017Householddebt}
+The 40 per cent of households with the lowest incomes did not change their average debt-to-income ratio between 2002 and 2014.
+Because home ownership is becoming more difficult, those who did succeed in buying their first home after the global financial crisis are more financially secure and are behaving more conservatively than those who bought before the crisis.%
+	\footcite{Simon-Stone-2017-Property-Ladder}
+
+\begin{figure}
+\caption{Debt has increased mostly among high-income households}\label{fig:debt-by-quintile-time}
+\units{Household debt-to-income ratio (for households with debt), by income quintile, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\source{Adapted from \textcite{Lowe2017Householddebt}.}
+\end{figure}
+
+\subsection{High debt is not (yet) resulting in higher mortgage stress}\label{subsec:high-debt-is-not-yet-resulting-in-higher-mortgage-stress}
+
+At least in the short term, this increase in debt is not causing defaults.
+Mortgage stress -- defined as spending more than 30 per cent of household income on loan repayments -- has \emph{fallen} over the past five years (\Vref{sec:fewer-households-are-in-mortgage-stress-or-behind-on-their-mortgage}).%
+	\footcite{Mather2017census2016}
+
+But there are risks if interest rates rise.
+Mortgage stress would then also rise quickly (\Vref{fig:new-mortgage-servicing}).
+
+\subsection{Australia's banking system seems robust, but regulators need to remain vigilant}\label{subsec:australias-banking-system-seems-robust-but-regulators-need-to-remain-vigilant}
+
+Higher levels of debt do increase the risks of borrower default and thus the risks of banks getting into trouble, with all the economic chaos that would create.
+But the risks of Australian banking instability are low because relatively few households have high loans-to-total-assets ratios, and Australian banks have strong profits and are well capitalised by international standards.%
+	\footcite{RBAFinancialStabilityOct2017}
+As Reserve Bank Governor Philip Lowe has noted, it's the riskiest borrower who gets into trouble first in a downturn.%
+	\footcite{Lowe2017Householddebt}
+And most of those taking on larger debts in Australia appear to be from wealthier households well placed to service those debts (\Vref{fig:debt-by-quintile-time}).
+
+One-third of borrowers have either no accrued buffer or a buffer of less than one month's repayments.
+This is not historically high -- indeed, it is the lowest since records began in 2002.%
+	\footnote{\textcite[][Box~C]{RBAFinancialStabilityApril2017}.
+	Some households with no buffers are on fixed-rate mortgages that restrict pre-payment and investors where there is a tax advantage from not paying down debt (\textcite[][21]{RBAFinancialStabilityOct2017}).}
+But those with minimal buffers tend to have newer mortgages, or to be lower-income or lower-wealth households.
+
+Although some are concerned that some borrowers misrepresented their income, or were unaware that they were not repaying the principal on their loan,%
+	\footnote{\textcite{Letts-2017-ABC-Soaring-Syd-house-prices-to-spark-mass-migration-north}.
+	A UBS survey of 900 mortgage holders found up to a third of borrowers with an interest-only mortgage were unaware that they were not paying down the principal on their loan.}
+banks have tightened processes around these issues, and these issues do not impair the generally strong loan-to-valuation ratios.
+
+While risks in inner-city apartment markets are higher given additional supply already under construction, especially in Brisbane,%
+	\footcite{Kearns2017ausproperty}
+there are few signs of settlement difficulties, and major banks have limited their exposures to these markets for some time.%
+	\footcites{ABC-2017-ANZ-tighten-apart-lending-rules}{McCauley-2016-newscomau-NAB-blacklists-risky-suburbs}
+
+Of course there is always a risk that banks drop their lending standards as they compete for business.%
+	\footcite{Bullock-2017-Financial-stability-since-GFC}
+That's why Australia's banking regulator, the Australian Prudential and Regulatory Authority (APRA), recently limited banks' new interest-only lending to 30 per cent of total new residential mortgage lending.%
+	\footcite{APRA-2017-announcement-limit-interest-only-loans}
+This followed its move in late-2014 to limit each bank so that its total lending to property investors did not grow by more than 10 per cent each year.%
+	\footcite{APRA-2014-announcement-limit-lending-below-10pc}
+And APRA now requires Australia's four major banks to hold more capital against their loans, in line with recommendations from the 2014 Financial System Inquiry to make Australian banks' capital ratios `unquestionably strong'.%
+	\footnote{Australia's major banks will need to have Tier~1 capital ratios of at least 10.5 per cent (\textcites{APRA-2017-announcement-unquestionably-strong-capital-benchmarks}{APRA-2016-Insight2}{FinancialSystemsInquiry2014}).}
+
+  
+\subsection{Risks from high house prices and leverage are through a slowdown in spending and higher unemployment }\label{subsec:risks-from-high-house-prices-and-leverage-are-through-a-slowdown-in-spending-and-higher-unemployment}
+
+Much more concerning is the risk that higher debts could prompt a rapid fall in household spending in the event of a downturn.%
+	\footcites{Daley-Coates-Wiltshire-2017-InsideStory-What-comes-after-housing-boom}{IMF-2017-Financial-Stability--Is-growth-at-risk}
+Household consumption accounts for well over half of GDP, so any cutback in household spending would have a big impact on overall economic activity.
+
+A rise in unemployment -- perhaps prompted by a slowdown in China -- would force many people to consume less.%
+	\footcite{Grenville-2017-theInterpreter-Chinas-financial-concerns}
+Recent RBA research shows that households with higher debts are more likely to reduce spending if their incomes fall.%
+	\footcites{La-Cava-2016-Hhold-cash-flow-channel}{Lowe2017Householddebt}
+As \Vref{fig:debt-by-quintile-time} shows, many higher-income households are holding high levels of debt,
+with these households likely to cut back on discretionary spending in response to a shock.
+And some people would struggle to pay off their mortgage or meet everyday expenses.
+High debt may depress future spending even without a negative economic shock.
+Recent research by the Bank for International Settlements and the International Monetary Fund
+has found that a run-up in debt beyond normal levels can provide a short-term boost
+but slow economic growth in the medium-term due to a higher debt servicing burden.%
+	\footcites[][Box~III.A]{BIS-87th-Annual-report}{Lombardi-2017-real-effects-of-hhold-debt}
+
+So the biggest risk from an economic shock that increases unemployment or interest rates, or decreases house prices, is that heavily indebted households significantly cut back on household spending and save more.%
+	\footcites{Lowe2017Householddebt}{RBAFinancialStabilityApril2017}{IMF-2017-Financial-Stability--Is-growth-at-risk}
+This would probably slow economic growth, increase unemployment and further reduce house prices.
+
+Falling house prices may also result in reduced consumption if home owners feel poorer.
+But estimates of the size of this effect vary widely.%
+    \footnote{\textcite{Gillitzer-Wang-2016-Housing-wealth-effects} estimated that each dollar of housing wealth lost reduced household consumption by about a quarter of one cent, implying a 0.1 per cent fall in GDP for each 10 per cent fall in house prices.
+    \textcite{Windsor-et-al-2013-homeprices} suggested that such a `wealth effect' could be ten times larger.}
+
+Of course, no one can predict with certainty what will happen to houses prices from here. But history provides some pointers. Past Australian housing booms have tended to end with prices falling modestly, or flat-lining for an extended period, rather than crashing down. Sharper falls are certainly possible – as the US and European experience during the global financial crisis shows – but they are unlikely in Australia while regulators keep a tight rein on bank lending practices, unless there is an economic downturn unrelated to housing.%
+    \footcite{Daley-Coates-Wiltshire-2017-InsideStory-What-comes-after-housing-boom}
+
+
+

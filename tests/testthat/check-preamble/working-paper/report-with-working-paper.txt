@@ -1,8 +1,0 @@
-\documentclass{grattan}
-
-
-
-\acknowledgements{This working paper was written by.}
-
-\begin{document}
-\end{document}

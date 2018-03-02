@@ -1,0 +1,605 @@
+\documentclass{grattan}
+% Comments are deployed by the % sign; everything after % is ignored by the compiler.
+% Please do not put comments before \documentclass as these are reserved for TeX directives.
+
+\input{tex/preamble}
+
+% add_to_dictionary: diversifiable IFA WACC Aurizon Ltd's un- worldview wellbeing CBA CAPM unlevered Pty
+
+\addbibresource{bib/Grattan-Master-Bibliography.bib}
+\addbibresource{bib/discount-rates.bib}
+
+
+\title{Unfreezing discount rates: under embargo until 9pm Sunday 25 February 2018}
+\author{Marion Terrill and Hugh Batrouney}
+
+
+\GrattanReportNumber{2018-03}
+\ReportOrWorkingPaper{Report}
+
+
+\acknowledgements{%
+This report was written by Marion Terrill and Hugh Batrouney.
+
+We would like to thank a range of stakeholders for their helpful comments and input.
+
+The opinions in this report are those of the authors and do not necessarily represent the views of Grattan Institute's founding members, affiliates, individual board members reference group members or reviewers.
+Any remaining errors or omissions are the responsibility of the authors.
+
+Grattan Institute is an independent think-tank focused on Australian public policy.
+Our work is independent, practical and rigorous.
+We aim to improve policy outcomes by engaging with both decision-makers and the community.
+
+For further information on the Institute's programs, or to join our mailing list, please go to: \textcolor{blue}{\url{http://www.grattan.edu.au/}}.
+
+{\footnotesize
+This report may be cited as:
+Terrill, M. and Batrouney, H\@. (2018). \emph{\mytitle}. Grattan Institute.
+
+ISBN: 978-0-6482307-3-1
+
+All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\par
+}
+}
+
+\providecommand{\hl}[1]{\textcolor{red}{#1}}
+
+\begin{document}
+
+\begin{overview}
+
+Australian governments can borrow money more cheaply today than at any time in their history. The combination of cheap money and booming population growth has led to regular calls for more investment in transport infrastructure; with money so cheap, it is easier than ever for a project to generate a return that is greater than the cost of borrowing.
+ 
+And yet Australian governments have been remarkably consistent in sticking with a 7 per cent central `discount rate'. Real borrowing rates are one of the key components of the discount rate, yet whether they have been 8 per cent or 1 per cent, government agencies have chosen to keep their discount rates at 7 per cent since at least 1989.
+
+Discounting may seem an arcane idea, but governments must be able to compare one project with another, by putting costs and benefits that occur at different points in time on an equivalent footing.
+ 
+This report accepts the underlying framework that Australian governments use to rationalise their discount rates, which are supposed to reflect the next-best use of the resources for that project, and with the same level of risk. The next-best project could be in the transport portfolio, in another portfolio, or even a financial investment overseas with the same level of risk.
+ 
+But this report does not accept the way this concept is applied: instead of being stuck at 7 per cent, discount rates should vary when there is material variation in the cost of money. In addition, discount rates should differentiate between projects that are more risky and those that are less risky. This report shows that this can be done in a straightforward and practical way.
+ 
+The type of risk that matters for discounting is the sensitivity of a project’s expected returns to the economy generally -- the systematic risk. Most government transport infrastructure is still used whether the economy is booming or in the doldrums, because most people keep on travelling to work or school and buying transported goods. But some projects are more sensitive than others to the state of the economy, and the discount rate should be higher for them.
+ 
+The cost of money is usually inferred from government borrowing costs, signalled by the 10-year Commonwealth bond rate. Back in 1989, when it seems that the 7 per cent discount rate was established in Australia, the risk-free rate was 6.8 per cent in real terms; in 2017, it was 0.8 per cent. Discount rates should reflect such a dramatic change.
+ 
+Incorporating risk and the cost of low-risk borrowing would lead to discount rates in 2018 of around 3.5 per cent for projects where systematic risk is low, and around 5 per cent where it is high by the standards of transport infrastructure projects. Both rates are substantially below today’s 7 per cent standard central rate.
+ 
+Lower discount rates will help to make clear which are the most valuable transport projects available. But they will also make the economics of all transport projects look better. Our proposal may therefore seem at odds with previous Grattan Institute analysis, showing that Australian governments have systematically underestimated the cost of transport projects, making many appear more attractive than they really were. But our consistent goal is to improve all aspects of project selection and appraisal, so we can build the right projects in the right order.
+
+It may seem that in a world where politicians are too often tempted to waste public money, a high discount rate could serve as a useful counter-balance. But this comes at the cost of distorting public policy priorities too much. Australia should set the bar higher and bring longer-term projects back into the frame. Better discounting would be a big step in that direction.
+
+\end{overview}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{recommendations}
+
+
+\subsection*{Establish an authoritative, evidence-based approach to setting discount rates}
+
+We recommend that the Treasurer ask the Parliamentary Budget Office to provide advice each year on the discount rates regime that will apply to transport infrastructure projects for the year ahead.
+
+To do this, the Parliamentary Budget Office should:
+\begin{itemize}
+\item Publish the risk-free rate to be used for the year ahead, and the basis on which it is calculated;
+\item Review estimates of the market risk premium, and the basis on which they are calculated;
+\item Investigate the systematic risk of public sector infrastructure projects, and publish guidance on the typical values; and
+\item Provide guidance on the project characteristics that should legitimately license a project proponent to argue for a different discount rate to the standard ranges. 
+\end{itemize}
+
+\subsection*{Discount rates should reflect two categories of systematic risk}
+
+As an interim arrangement in advance of the work by the Parliamentary Budget Office outlined above, relevant government departments and agencies should immediately require project proponents to adopt a central discount rate for each project on the basis of whether its systematic risk is very low, somewhat low, or another level.
+\begin{itemize}
+    \item Projects with very low systematic risk should use a discount rate of \textbf{3.5 per cent}. These may typically include bus, urban road, and urban passenger rail projects.
+    \item Projects with somewhat low systematic risk should use a discount rate of \textbf{5 per cent}. These may typically include ferry, freight rail and airport projects.
+\end{itemize}
+
+Sensitivity testing should be required using discount rates 2 percentage points above and below the headline discount rate.
+
+
+\section*{Tighten project appraisals}
+
+As well as the improvements in discounting practice outlined above, we recommend the following changes to project appraisal requirements:
+
+\begin{itemize}
+\item To increase accountability for appraisals, governments should not be able to commit public money to a transport infrastructure proposal until a rigorous, independent, like-for-like evaluation and the underlying business case have been tabled in the state or federal parliament. 
+\item To give the public greater confidence in the analysis used in appraisals, the Productivity Commission should publish reliability ratings of all transport infrastructure business cases, within one month of their publication.
+\item To build understanding of the impacts of transport projects and to counter `optimism bias', the Council of Australian Governments should add a new category of infrastructure services to the terms of reference for the annual Report on Government Services, produced by the Productivity Commission. 
+\end{itemize}
+
+
+
+
+\end{recommendations}
+
+
+
+\contentspage
+\listoffigures
+
+
+\chapter{What is discounting and why does it matter?}\label{chap:what-is-discounting}
+
+The discount rate is the tool that puts costs and benefits occurring at different points in time onto a comparable footing. It expresses how much we value costs and benefits in the future relative to costs and benefits occurring today. 
+
+The discount rate is a core element of cost-benefit analysis, used to assess the merits of different proposals for projects and policies. \Vref{box:what-is-the-discount-rate} explains the mechanics of the discount rate. This report focuses on the discount rates used by Australian governments for transport projects, particularly proposals to build new or upgraded roads and railway lines, and other forms of transport infrastructure.
+
+There are many views about what the discount rate should be, and what factors should affect it. It is one of the most controversial aspects of cost-benefit analysis. Yet despite this controversy and disagreement, almost all Australian jurisdictions have opted, since at least 1989, to use a discount rate of 7 per cent for most transport and other infrastructure projects, irrespective of project risk and real interest rates.%
+    \footnote{Unless otherwise specified, all discount rates in this report are `real'; that is, they have been adjusted for inflation.} 
+In the private sector and in many agencies that regulate non-transport infrastructure, it is standard practice to vary the discount rate according to the level of risk entailed in a project. There is no rationale, aside from the difficulty of agreeing on how to do it in practice, for not taking the same approach when doing cost-benefit analysis for transport projects.
+
+\begin{smallbox}[H]{The mechanics of the discount rate}{box:what-is-the-discount-rate}
+
+A government project, such as an infrastructure investment or a new regulation, will affect the future, creating both costs and benefits. Their net effect is a measure of the economic merits of the project. It is therefore important to put onto a comparable footing the benefits and costs that occur in different time periods. That process is called `discounting'.  
+
+A future benefit or cost needs to be converted into today’s dollars because future dollars have a different value to today’s dollars. Even ignoring the effects of inflation, people usually value a dollar today more than a dollar at some future date. 
+When a project's benefits mostly come about in the more distant future, a high discount rate treats those benefits more sceptically than a low discount rate would.
+
+The chosen discount rate evaluates future costs and benefits by specifying exactly what discount \emph{factor} needs to apply to the costs and benefits that fall in each year. The formula is:
+\[\text{Discount factor for year \(n\)} =  \frac{1}{(1+\text{discount rate})^n}\]
+Some examples are shown in the table below. Separate to the impact of inflation, the impact of the discount rate on the present value of a \$100 benefit arising in 50 years' time is:
+\begin{center}
+\begin{tabular}{rcccc}
+ %\midrule
+ Discount rate & 0\% & 3.5\% & 7\% & 10\% \\
+ \cmidrule{1-5}
+ Discount factor for 2068 & 1 & 0.1791 & 0.0339 & 0.0085 \\
+ \cmidrule{1-5}
+ Today's value of \$100 in 2068 & \$100 & \$18 & \$3 & 85 cents \\ 
+ %\midrule
+\end{tabular}
+\end{center}
+\end{smallbox}
+
+There have been mounting calls over the past few years for Australian governments to change the 7 per cent standard discount rate. With interest rates at record-low levels, many economists have been making the case that governments should be investing more in public infrastructure. Larry Summers, for example, has made the case that: 
+\begin{quote}
+\textquotedblleft {\small This is an especially good time to prioritise infrastructure investment because the return on infrastructure investment is high compared to the government borrowing rate, which is currently close to zero, adjusted for inflation.''}%
+    \footnote{\textcite{Brookings-Summers-Glaeser-2017-debate-infrastructure-spending}. Specific to Australia, the IMF has commented that: ``Boosting public investment would support demand, take pressure off monetary policy, and insure against downside risks'' (\textcite{IMF-press-release-2015-Australian-consultation}).}
+\end{quote}
+ 
+
+
+Those calling for change suggest that if a 7 per cent discount rate made sense when interest rates were much higher, it cannot also make sense when interest rates are at historically low levels (see \Vref{fig:risk-free-rate-10-year-government-bond}). They argue that the cost of accruing additional debt is much lower than it was a decade or two ago, so the discount rate should also be lower. We agree.
+
+If discount rates are higher than they should be, two consequences follow. First, some projects will be assessed as not worth building when they would be assessed as worthwhile under a lower discount rate. Second, the ranking of potential projects may change; in particular, very long-lived projects may get less priority than they otherwise would. The following sections explain these impacts.
+
+\begin{figure}
+\caption{Real risk-free rates have fallen dramatically since discount rates were set at 7 per cent  \label{fig:risk-free-rate-10-year-government-bond}}%
+\units{Real Australian Government 10-year bond yields, per cent per annum}
+\includegraphics[page=16]{Charts/ChartPackDiscountRates.pdf}
+\noteswithsources{Inflation data is year-ended inflation -- excluding interest and tax changes. Bond yield data is for Australian Government 10-year bonds. Data has been smoothed using a three-month rolling average.}%
+{\textcite{RBA-2018-CPI-table}, \textcite{RBA-2018-Government-bonds-monthly}, \textcite{RBA-2013-Government-bonds-monthly-historical}}
+\end{figure}
+
+
+
+
+\section{Some good projects may be assessed as not worth building}\label{subsec:artificially-high-DR-makes-good-projects-not-worthwhile}
+For many proposed projects, the choice of discount rate is pivotal to determining whether the benefits outweigh the costs. Most infrastructure projects involve costs in the construction phase, followed by benefits, typically for at least 30 years.
+
+\Vref{fig:BCRs-using-different-discount-rates} shows the impact of the choice of discount rate on four major Australian rail projects. At a discount rate of 4 per cent, each of the four projects has benefits that outweigh its costs. But at a discount rate of 7 per cent, Inland Rail and Melbourne Metro are both rather marginal. And at a discount rate of 10 per cent, only the Murray Basin Rail project would be worth building.
+
+While these four projects are not unusual in their sensitivity to the discount rate, they are unusual in that a detailed business case for each is in the public domain, so we are able to make comparisons. Unfortunately, such detailed business cases are very rarely available in Australia, and this curtails our capacity to understand the real-world impact of different discount rates.
+
+Of course, this comparison assumes that the key assumptions in these business cases are as accurate-as-possible an estimate of costs and benefits, made on a like-for-like basis. History suggests that the accuracy of estimates is variable; they are much more likely to be optimistic than pessimistic.%
+    \footcite{Terrill-etal-2016-Cost-overruns-in-transport-infrastructure}
+
+
+\section{The discount rate can change the ranking of projects}\label{subsec:artificially-high-DR-may-change-project-rankings} 
+The choice of discount rate can affect not only whether a project is assessed as worthwhile, but also which project among several is assessed as the most worthwhile. 
+
+\begin{figure}[H]
+\caption{The choice of discount rate can change whether projects are assessed as worth building, and in what order\label{fig:BCRs-using-different-discount-rates}}%
+\units{Benefit-cost ratio}
+\includegraphics[page=19]{Charts/ChartPackDiscountRates.pdf}
+\noteswithsources{Melbourne Metro business case did not provide economic evaluation results using a 10 per cent discount rate. Canberra Light Rail results include `wider economic benefits' and `land-use' benefits that are not included for the other three projects.}%
+{\textcite{CanberraLightRailBusinessCase}, \textcite{Murray-Basin-Business-Case}, \textcite{Government2016MelbourneMetroBusiness}, and  \textcite{Inland-Rail-Business-Case}}
+\end{figure}
+
+\clearpage
+
+In \Cref{fig:BCRs-using-different-discount-rates}, the ranking of the four projects changes depending on the discount rate. At a discount rate of 4 per cent, Inland Rail has the highest benefit-cost ratio, and Canberra Light Rail the lowest. But at a discount rate of 7 per cent, Murray Basin Rail has the highest net benefits, and Inland Rail falls to having the lowest. As a general rule, projects with deferred benefits are hit hardest by high discount rates.
+
+Using an inappropriate discount rate is likely to distort the priority that is assigned to different projects, and so distort choices involving billions of dollars of public investment. We may end up building projects in the wrong order, or worse, building the wrong projects.
+
+It is of course difficult to determine the benefits of a new road or railway to future generations. But governments, like private corporations, implicitly make such judgments whenever they decide to invest. And the implications are large: for example, spending \$50 billion on submarines to come into operation between 2030 and 2050,%
+    \footcite{Wroe-2016-The-Age-submarine-fleet-to-cost-150-billion}
+or investing in a response to global warming, necessarily involves a government judgment that this is a better way to spend the money than the alternatives.
+
+One of the biggest distortions to priorities is that too high a discount rate prompts decision makers to prefer projects with near-term benefits over those with benefits that extend long into the future.%
+    \footnote{\textcite[][30]{Grimes-Beyond-Simple-CBA}. The latter includes long-lived transport projects that are designed to raise the productive capacity of the economy.}
+In effect, an artificially high discount rate focuses benefits on current generations at the expense of the interests of younger people and future generations.
+
+
+
+
+
+
+\chapter{What’s wrong with Australia’s existing discounting practice}\label{chap:Australia-existing-discounting-practice}
+
+\section{Australian governments claim to discount on the basis of opportunity cost\dots{}}\label{subsec:governments-claim-to-use-soc}
+
+Australian states and territories and the Commonwealth generally claim to discount on the basis of opportunity cost. The idea is to consider what would have been the next-best use of the resources to be invested in the project, on the grounds that there is no justification for investing in a project with low returns when one with the same risk and higher returns is available. This rationale for discounting is termed the `social opportunity cost of capital'.
+
+The NSW Government's cost-benefit analysis guidelines provide an example of this rationale:
+\begin{quote}\small[t]he theoretical basis for the long term social discount rate used in this Guide is the opportunity cost of capital. This recognises that any Government initiative can occur at the expense of other alternative public investment or private investment.%
+    \footnote{\textcite{New-South-Wales-Treasury-2017-CBA-Guidelines}. See also \textcite{IA-Assessment-Framework-January-2016}.}
+\end{quote}
+
+Establishing the opportunity cost, or the next-best use of resources, involves considering what the government would have done if it had decided against building, for instance, a new highway. The key insight from investment theory is that the alternative investment should be one with the same level of risk.%
+\footnote{Risk is an essential determinant of an asset’s returns: investors demand higher returns to compensate them for investing in riskier projects. The type of risk that is relevant is explained in \Vref{subsec:australia-assumes-public-projects-are-as-risky-as-private-projects}.}
+
+In practice, a government could choose to invest in a different project with the same risk in the transport portfolio, such as a different highway. This is the most likely alternative, because – at least in the near term – governments operate with a basically fixed budget allocation for programs within a portfolio. But if the government chose, it could instead invest in a project with the same risk in a different portfolio, such as a new hospital, or it could make a financial investment with the same risk, such as in a listed infrastructure fund in Australia or overseas.%
+
+Some discounting authorities imply that a public sector project inevitably reduces or displaces private sector investment.%
+    \footnote{See for example \textcite{Harrison-Valuing-the-Future}, who consequently recommends using a discount rate based on a weighted average of the consumption rate of interest, the marginal rate of return to investment, and the marginal cost of foreign funds.}
+However, this seems at most a minor concern for a small open economy like Australia’s, given our ready access to foreign capital, workers, equipment and materials. This point was made in a seminal paper by Robert Lind in 1990, who concluded that, because of international capital mobility, 
+\begin{quote}\small the crowding out [of private investment by public investment] that has been the focus of most of the closed economy models does not appear to be very important to the analysis of the social discount rate.%
+    \footnote{\textcite{Lind-1990-Reassessing-the-governments-discount-rate}. Even strong proponents of `crowding out', such as \textcite{Harrison-Valuing-the-Future}, do not present empirical evidence for the displacement of private sector investment by public projects.}
+\end{quote}
+
+At worst, there may be short-term competition for resources when the economy is operating at capacity, but even during the mining investment boom, Australia was also able to break its previous record for public sector transport investment.%
+    \footnote{\textcites{Tulip-2014-RBA-Bulletin-The-effect-of-the-mining-boom}{Terrill_2016}. In addition, a Commonwealth Treasury working paper (\textcite{treasury2010link-between-fiscal-policy-and-interest-rates}) finds that Australian general government net debt has little or no impact on the real interest margin.}
+
+In fact, rather than competing with the private sector, governments typically build transport infrastructure precisely to enable and support private sector activity.%
+\footcite{Venables-2017-incorporating-WEBs-into-transport-cba}
+Good transport links can encourage firms to invest more and scale up, and this `crowding in' may be happening at present, according to the Reserve Bank.%
+\footcite{Minutes-of-RBA-Board-meeting-5-December-2017}
+
+
+\section{\dots{}but in reality discounting practice has been frozen because of a historical convention}\label{subsec:discounting-practice-relies-on-historical-convention}
+
+The claim is that discounting in Australia is based on the social opportunity cost of capital. The reality is that existing practice has been frozen because of a historical convention. 
+
+Infrastructure Australia rationalises its choice of discount rate (for projects seeking a Commonwealth funding contribution) by referring to the advice of state governments and several other authorities.%
+    \footnote{According to the 2016 Infrastructure Australia guidelines, `the 7 per cent proposed for the central case by IA (and sensitivity testing) is consistent with the majority of current national, state and territory guidelines on CBA [cost-benefit analysis] and is based on the opportunity cost of capital in the market sector' (\textcite{IA-Assessment-Framework-January-2016}). The 2017 guidelines make a similar claim in less detailed terms (\textcite{IA-Assessment-Framework-June-2017}).}
+There is, however, a degree of circularity. Most states themselves defer to Infrastructure Australia in selecting a discount rate -- most obviously in the economic evaluations of projects that are submitted to Infrastructure Australia for assessment (see \Vref{fig:formal-sources-of-discounting-advice}).% 
+    \footnote{It is also evident that most authorities take cues from Mark Harrison's 2010 paper, which recommended a central rate of 8 per cent based on a weighted-cost-of-funds approach, with two core assumptions: first, that public sector projects displace private sector investment (\textcite[][32]{Harrison-Valuing-the-Future}), and second, that public sector projects pose the same degree of systematic risk as the average private sector project (\textcite[][60]{Harrison-Valuing-the-Future}). In the context of Australian transport infrastructure projects, Harrison puts forward no evidence for these two assumptions. Nor do we find such evidence, as outlined in \Cref{subsec:governments-claim-to-use-soc} above, and explained further in \Cref{subsec:australia-assumes-public-projects-are-as-risky-as-private-projects} below, where we present evidence to the contrary, indicating that systematic risk is typically below average for transport infrastructure projects.}
+
+\begin{figure}
+\caption{Who is responsible for setting discount rates? \label{fig:formal-sources-of-discounting-advice}}%
+\units{}
+\includegraphics[page=20]{Charts/ChartPackDiscountRates.pdf}
+\notewithsources{Transport Ministers' advice is provided through the Transport and Infrastructure Council, which is responsible for the Australian Transport Assessment and Planning guidelines.}%
+{\textcite{ATAP-CBA-Guidelines-2016}, \textcite{Victorian-government-2013-economic-evaluation-guidelines}, \textcite{New-South-Wales-Treasury-2017-CBA-Guidelines}, \textcite{Qld-CBA-Guidelines-2016}, \textcite{IA-Assessment-Framework-January-2016}, \textcite{IA-Assessment-Framework-June-2017}, \textcite{OBPR-CBA-Guidance-Note-Feb-2016}, and  \textcite{Commission2014PublicInfastructure}.}
+\end{figure}
+
+The circularity of guidance may explain why discount rates as usually applied in Australia have been frozen and are a poor approximation of the opportunity-cost-of-capital approach on which they are meant to be based. 
+
+The two key shortcomings are that discount rates in Australia do not vary over time, as they should, and they do not vary according to a project’s systematic risk, as they should. The following two sections explain how discount rates \textit{should} work under a social-opportunity-cost-of-capital approach. \Cref{subsec:DRs-tend-lower} then points to other reasons to believe that current discounting practice leads to the wrong rates. 
+
+
+
+
+
+
+\section{Discount rates should vary over time}\label{subsec:australian-discount-rates-are-time-invariant}
+
+Around the world, discount rates vary over time. But in Australia, the rate has been frozen. A standard discount rate of 7 per cent has been in place here since at least 1989, when the NSW Government stipulated this rate for cost-benefit analysis and cost-effectiveness analysis.%
+    \footnote{\textcite[][6]{Douglas-and-Brooker-Review-of-Transport-Project-Appraisal-in-NSW}. While 7 per cent was first incorporated into official guidance in 1989, its use in practice appears to pre-date this by many years: \textcite{Douglas-and-Brooker-Review-of-Transport-Project-Appraisal-in-NSW} also present an example of the 7 per cent discount rate used in a transport project evaluation in 1972.}
+This rate seems to have set a standard that has been mirrored ever since by most other Australian jurisdictions, with the admirable exception of South Australia.%
+    \footnote{\textcite{South-Australia-Treasury-2014-Economic-Evaluation-Guidelines}. South Australia's approach is broadly the same as the approach recommended in this report.}
+
+But the cost of capital has changed significantly over time. There are two important time-varying components of the opportunity cost of capital: the risk-free rate of return, and the return to bearing systematic risk, known as the `market risk premium' (explained in \Vref{box:capm-components}). 
+
+\begin{smallbox}{The components of the discount rate}{box:capm-components}
+The social-opportunity-cost-of-capital approach establishes a discount rate for a project with reference to what would have been the next-best alternative with the same risk. The most commonly used model to value the next-best alternative is the Capital Asset Pricing Model, or CAPM\@. Despite some shortcomings, the CAPM remains very widely used, in various forms. 
+
+The essential features of the CAPM are, first, a risk-free rate of return, and second, an equity risk premium. These elements, added together, can be applied to a public investment, to help establish whether its expected returns are at least as good as another investment with the same risk.
+
+The \textbf{risk-free rate} is the rate of return on an investment that an investor regards as having little or no risk. In practice, its measure is usually a long-term government bond rate.
+
+The \textbf{equity risk premium} for a particular investment reflects systematic, or non-diversifiable, risk. This is the risk that arises when the market as a whole fluctuates; assets with a lower equity risk premium are expected to yield returns in good economic times and bad, whereas those that fluctuate in line with the market or the economy have an equity risk premium that aligns with the market average. The component of the equity risk premium relating to the market as a whole is known as the \textbf{market risk premium}, and the component specific to the project, asset or firm is known as its \textbf{beta}.
+
+\boxsources{\textcite[][]{Damodaran-Valuation}, \textcite{Perold-CAPM}}
+
+\end{smallbox}
+
+
+\subsubsection{The risk-free rate of return}
+The risk-free rate of return affects discount rates because it is one component of the evaluation of the next-best investment opportunity. 
+
+The risk-free rate is the rate that an investor would receive on an asset with little or no risk. The 10-year Commonwealth bond yield is the usual proxy. Back in 1989, when it seems that the 7 per cent discount rate was established in Australia, the real risk-free rate was 6.8 per cent; in 2017, it was 0.8 per cent.%
+    \footnote{Grattan analysis of \textcite{RBA-2018-CPI-table}, \textcite{RBA-2018-Government-bonds-monthly}, \textcite{RBA-2013-Government-bonds-monthly-historical}.}
+In between, it declined steadily, albeit with fluctuations around the trend (see \Vref{fig:risk-free-rate-10-year-government-bond}).
+One would expect official guidance on discount rates to reflect this dramatic fall: a 6 percentage point fall in the risk-free rate should have led to a 6 percentage point fall in discount rates.
+
+Although government bonds are not completely risk-free, they are the closest approximation that is traded in an open market. And although government bond rates can be known only for the past and the present, they are used to approximate future risk-free returns, because current bond rates embody the expectations of capital market participants about the trajectory of future interest rates, and also because no better option is available.
+
+Since the global financial crisis, commentators have regularly claimed, in a hopeful spirit, that risk-free rates are about to pick up. But it is difficult to forecast interest rates, and forecasters largely missed the secular decline of the past three decades.%
+    \footcite[][12]{CEA-July-2015-Long-term-interest-rates-a-survey}
+While commentators continue to forecast interest rate rises, their expectations of both the growth rate and the level of interest rates have become noticeably more subdued in recent times, as low rates have persisted.%
+    \footnote{See for example the expected movements of interest rates in the UK (\textcite{Economic-Research-Council-chart-of-fwd-interest-rates}), and in the US (\textcite[][Chart 7 on page 22]{CEA-July-2015-Long-term-interest-rates-a-survey}).}
+In our view, there is no justification for government authorities to assume that the risk-free component of their discount rate is greater than the current real yield on 10-year Commonwealth bonds.
+
+\subsubsection{The market risk premium}
+
+The market risk premium affects discount rates because, like the risk-free rate, it is a component of the evaluation of the next-best investment opportunity, and also one that varies over time (see \Cref{box:capm-components}). 
+
+The market risk premium is the extra return that investors demand for shifting from risk-free investments to investments that have the average level of market risk. 
+
+The market risk premium cannot be observed directly, and estimating it is difficult.%
+\footnote{Estimates of the market risk premium are also surprisingly varied, even when relying on the same data, due to different decisions regarding time period, risk-free security, and arithmetic or geometric mean (\textcite[][88--90]{Damodaran-Valuation}).}
+It is volatile,%
+    \footcite[][5]{Jorda-etal-2017-rate-of-return-on-everything}
+with a standard deviation of around 20 percentage points.%
+    \footcite[][39]{Harrison-Valuing-the-Future}
+
+The risk-free rate and the market risk premium do not have a fixed relationship, and how they relate to one another appears to have varied widely over time.%
+\footnote{Since 1980, like the risk-free rate, the market risk premium has fallen around the world (\textcites{Jorda-etal-2017-rate-of-return-on-everything} {Cochrane-Stock-gyrations}). By contrast, the market risk premium and the risk-free rate moved in \emph{opposite} directions for much of the preceding decades (\textcite[][Figure~10 on p.~30]{Jorda-etal-2017-rate-of-return-on-everything}).} 
+
+It is beyond the scope of this report to provide an estimate of the market risk premium. Instead, for the purposes of considering discount rates, we accept the standard Australian approach of assuming the current market risk premium to be in the range of 3-to-8 per cent.%
+    \footcite[][39]{Harrison-Valuing-the-Future}
+Most estimates put the current market risk premium at approximately 6 per cent.%
+    \footnote{\textcite{IPART-2017-MRP-estimates}, \textcite{Victorian-government-2013-PPP-guidelines}, \textcite{Commonwealth-government-2008-PPP-guidelines}.}
+Because of difficulties in estimating the market risk premium, sensitivity testing is important.  
+
+In principle, discount rates should reflect changes in the market risk premium over time. But in practice, measurement difficulties make this a step too far. Government authorities responsible for discounting may have grounds for varying this component on occasion, but this is unlikely to be material in most years. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Discount rates should vary according to a project’s systematic risk}\label{subsec:australia-assumes-public-projects-are-as-risky-as-private-projects}
+
+The central discount rate of 7 per cent is applied to almost all public infrastructure projects in Australia, often with sensitivity testing at 4 per cent and 10 per cent.%
+    \footcite[][100]{IA-Assessment-Framework-June-2017} 
+
+The fundamental problem with using a single discount rate for all public sector projects is that it treats public sector projects as if they had the same level of risk as each other. The extent to which the returns on any specific public sector project are expected to fluctuate in line with returns to the market, or the economy as a whole, is very important in choosing the appropriate discount rate for it.%
+
+This type of fluctuation, known as `systematic risk', is a core element of asset valuation in the private sector. Investors care about systematic risk because assets that yield returns in both good times and bad are more valuable than those that yield only in good times. When positive returns are scarce, people value them more than when positive returns are easier to come by. Systematic risk is not the only kind of risk affecting project investments, but it is the only kind relevant to discounting (other types of risk are outlined in \Vref{box:other-kinds-of-risk}).
+
+\begin{smallbox}{The discount rate should not be used to account for all investment risks}{box:other-kinds-of-risk}
+
+There are three distinct types of risk that are relevant to public infrastructure projects, but only one of them -- systematic risk -- should be reflected in the discount rate.%
+ \footcite[][7]{BITRE2005RiskinCostBenefitAnalysis}
+
+The discount rate should \emph{not} include downside risk, or `optimism bias'. This is the risk that the project will cost more -- `construction risk' -- or deliver less than forecast, or both. This is a frequent problem in Australian and international public sector infrastructure decision-making.%
+    \footcites{Terrill-etal-2016-Cost-overruns-in-transport-infrastructure}{Flyvbjerg2009} 
+Optimism bias should be addressed by improvements to cost estimation, including through improved collection and aggregation of post-completion data, rather than via an increment to the discount rate. 
+
+Nor should the discount rate include `idiosyncratic risk' – the normal variation by which any given investment could turn out to outperform or underperform against expectations.  Idiosyncratic risk should be managed by diversification; if the investor, or the government, holds many investments, with the costs and benefits spread widely across the community, strong performance on one investment offsets weak performance on another.
+
+The form of risk that \emph{is} included in the discount rate is `systematic risk'. Systematic risk is the extent to which the returns on a particular project are expected to fluctuate in line with returns to the market, or the economy, as a whole.
+   
+\end{smallbox}
+
+
+The view that public sector projects have the same level of risk as private projects is sometimes expressed explicitly, as in the following:
+\begin{quote}\small
+In the absence of information on the quantity of risk in a government project, it is reasonable to assume that the average government project is no less risky than the average private investment\dots{} The consensus view is that most government projects are highly correlated with returns to the economy as a whole.%
+    \footcite[][60]{Harrison-Valuing-the-Future}
+\end{quote}
+
+While the expected level of systematic risk for any transport infrastructure project has to be inferred rather than observed, two sources of information lend support to the idea that public investments in transport projects have lower levels of systematic risk than private. One is governments' own commercial guidelines regarding the systematic risk for public private partnership (PPP) projects, and the second is Australian regulators' estimates of systematic risk of regulated transport, energy and water assets. 
+
+In both these areas, government engages with private-sector investors, and the private investors accept their guidance. The two sources of information are explained in the following sections.
+
+\subsubsection{Governments' commercial guidelines treat public infrastructure as low risk}
+Governments often articulate their view of the systematic risk of public infrastructure in commercial guidelines when they enter into PPPs, and more generally in their guidance for economic analysis of proposed projects.
+
+And their view, as stated in these documents, contradicts the view that the systematic risk of all public sector projects is on par with the average private sector investment. For instance, South Australia’s economic analysis guidelines state:
+\begin{quote}\small
+Generally, most public sector initiatives will have lower market risk than projects undertaken by the private or commercial sector. General government activities are often characterised as bearing low market risk, as their returns or benefits are not significantly affected by changes in economy-wide factors.%
+    \footcite[][20]{Sth-Aust-2014-guidelines-for-economic-evaluation}
+\end{quote}
+
+A similar perspective, in the context of PPPs, is that: 
+\begin{quote}\small
+These [levels of systematic risk] may be lower than those observable within the general market. This reflects the nature of projects in which government is involved.%
+    \footcite[][18]{Victorian-government-2013-PPP-guidelines}
+\end{quote}
+
+Not only do governments specify that public projects have below-average systematic risk,% 
+    \footnote{The metric for systematic risk in this context is known as the project’s `beta'. Beta is the expected covariance of returns from a project with the returns of the market as a whole, divided by the variance of returns to the market. In this subsection, we adopt the conventional approach to public sector projects and refer to the `asset' or `unlevered' beta as the relevant discount rate parameter. The unlevered beta measures the market risk of the asset irrespective of its capital structure or gearing (\textcite[][17]{Commonwealth-government-2008-PPP-guidelines}).} but they specify how much lower. The consensus is that roads and transport projects have very low or somewhat low systematic risk, and consistently below the general market average.%
+    \footnote{The asset betas cited in governments' PPP guidelines range from 0.3 for roads to 0.8 for public transport projects. See \textcite[][18]{Victorian-government-2013-PPP-guidelines}, \textcite[][21]{Sth-Aust-2014-guidelines-for-economic-evaluation}, \textcite[][24]{Commonwealth-government-2008-PPP-guidelines} and \textcite[][3]{NZ-Treasury-discount-rates-for-CBA}.}
+
+It is not surprising that public sector transport projects have below-average market risk. The services they offer are in demand in both good economic times and bad, because there are often few satisfactory alternatives to the road or railway line, and the service is often provided free or well below the cost of provision.%
+    \footcites[][108--110]{Damodaran-Valuation}[][48--54]{Commonwealth-government-2008-PPP-guidelines}
+Investment advisers also tell their clients that infrastructure assets generally have lower systematic risk than the market as a whole.%
+    \footnote{For instance, Russell Research makes the point that tolls and user fees for many of these assets are tied to inflation, meaning they under-perform in strong markets and outperform in weaker ones. \textcite[][34]{Allen-Consulting-2004-NZ-report} presents evidence that road infrastructure assets have lower betas than those assumed for the whole of government.}
+
+We see no reason not to accept governments' own assessments of the levels of systematic risk affecting public sector transport investments. For some projects, the systematic risk is very low, as the infrastructure is used by the community in both good and bad economic times, and in other cases it is somewhat low but more affected by the state of the market and economy as a whole. 
+
+
+\subsubsection{Regulated assets have below-average systematic risk}
+Many assets once run by departments of state have been corporatised or privatised over the past few decades. For instance, water and water treatment assets, rail infrastructure, and energy generation and transmission are more likely now to operate under corporate structures, with the allowed rate of return subject to independent regulation by bodies such as the Australian Energy Regulator and the NSW Independent Pricing and Regulatory Tribunal.
+ 
+Regulators find the systematic risk to be below average for most assets across the rail track, water and energy sectors.%
+    \footnote{The betas of these regulated assets are below the market average, in the range between 0.5 and 1. In this subsection, we refer to equity betas, not asset betas, consistent with the usual convention for regulated utility assets, and indeed for general commercial assets. For these assets, capital structure and gearing are relevant considerations to investors considering the level of systematic risk of an investment. For those assets and sectors where both equity and asset betas are quoted, the equity betas are higher than the asset betas.} 
+Regulated utility assets are not the same as the typical transport infrastructure asset that a government might be considering funding, and for which it needs an appropriate discount rate. But they are more similar than general market investments across all classes; because utility assets usually originated in the public sector and, like government transport infrastructure assets, tend to have few satisfactory alternatives.
+
+In the process of determining maximum fares that can be charged on public transport in NSW, the regulator finds that bus projects face very low systematic risk, because bus operators are well placed to respond to changes in patronage and have assets that can be redirected readily. The risk is still low, but higher, for light and heavy rail. The risk is highest for ferries, due to the impacts of weather and tourism on their revenue.%
+    \footnote{All beta estimates lie between 0.7 and 1, according to \textcite[][10]{IPART-2015-WACC-information-paper}.}
+Based on the findings of various regulators, freight rail assets have moderate levels of systematic risk, below the market average.%
+    \footnote{For instance, the Queensland Competition Authority estimates Aurizon Network Pty Ltd’s equity beta at 0.8 (\textcite{Frontier-Consulting-2016-equity-beta}). The NSW Rail Network’s beta was estimated at 0.7 to 1 in a 1999 IPART review of the NSW Rail Access Regime, with submissions arguing for various points in the range from 0.3 to 1.2 (\textcite{IPART-1999-Aspects-of-the-NSW-Rail-Access-Regime}).}
+
+In summary, most public sector transport and infrastructure projects have lower systematic risk than projects undertaken by the private or commercial sector. These projects will tend not to be significantly affected by changes in the economy as a whole. Discount rates should reflect that systematic risk is lower for a typical public sector infrastructure project than a general private sector asset, and that public sector projects themselves do not all have the same level of risk.
+
+
+\section{Further reasons discount rates should tend lower rather than higher}\label{subsec:DRs-tend-lower}
+
+More careful discounting practice, with rates that vary over time and according to project risk, would lead to lower rates than the current 7 per cent standard for most public sector transport infrastructure projects. But precision is difficult. Debate has continued for decades now, in academic and government circles, about the best way to put the costs and benefits of proposed projects onto a comparable time basis.
+
+Decision makers can, however, be confident that the 7 per cent standard is too high for most public sector transport infrastructure projects at present.
+
+In addition to the arguments already advanced in this report, a further argument is based on the idea that the market risk premium, in the context of public sector projects, is much lower than the market-derived rates used for commercial investments. 
+
+This way of thinking has been formalised in an approach known as the `consumption CAPM'. Key Australian work on the consumption CAPM has been done by Professor John Quiggin.%
+    \footnote{See \textcite{BITRE2005RiskinCostBenefitAnalysis} and \textcite{Gollier-Pricing-the-planets-future}.}
+This approach leads to discount rates well below those yielded by a conventional CAPM for public sector projects, because in effect the market risk premium is very small in most cases, and below the margin of error for cost-benefit analysis.%
+    \footcite[][11]{BITRE2005RiskinCostBenefitAnalysis}
+
+Another way of thinking about discount rates moves away from the social-opportunity-cost-of-capital framework and towards a `social time preference' approach (see \Vref{box:social-time-preference-approach}). Under a social-time-preference rationale, a discount rate expresses the price at which we are willing to trade a claim to consume in the future with a claim to consume today. 
+
+Social-time-preference rates are used as the basis for discount rates in the UK, France and Sweden. It is beyond the scope of this report to consider the merits of adopting a social-time-preference approach to setting discount rates for Australian public sector transport infrastructure projects, but we note that adopting such an approach would lead to much lower rates than the prevailing 7 per cent. 
+
+
+\begin{smallbox}{The alternative worldview – social time preference}{box:social-time-preference-approach}
+There are two main approaches for choosing the discount rate. One, the social-opportunity-cost-of-capital approach, is the focus of this report and the basis for discount rates in Australia. The other, known as the social-time-preference approach, is the basis for discount rates in the UK, France and Sweden. 
+
+The rate of social-time-preference expresses the price at which we are willing to trade a claim to consume today with a claim to consume in the future. Given that there is no way to know how individuals would view this trade-off, decision makers set a discount rate that reflects their view of society's impatience to consume in the short term, how averse we are to inequality over time, and how wealthy we expect to be in the future. 
+
+A detailed assessment of the merits of this approach is beyond the scope of this report. But we note that it has particular value for policy questions involving impacts on the \emph{distant} future, where reliance on current market rates of return -- the basis for discount rates using the social-opportunity-cost-of-capital approach -- becomes less meaningful, and discounting principles are arguably better formed on the basis of ethical considerations about intergenerational equity (\textcite[][]{Lind-1990-Reassessing-the-governments-discount-rate}). 
+
+Detailed discussion of social-time-preference can be found in \textcite{Boardman-Cost-Benefit-Analysis-4th-Edition}, \textcite{Creedy-2017-discount-rates-NZ-Treasury}, and \textcite{Spackman-2011-the-valuation-of-social-time-preference}.
+\end{smallbox}
+
+
+\chapter{What Australian governments should do}\label{chap:policy-recommendations}
+
+Australian states and territories and the Commonwealth Government have almost universally adopted a discount rate of 7 per cent to evaluate transport infrastructure projects. Their reference point is the social opportunity cost of capital, but they have not applied the framework well.
+
+This report does not argue for a different rationale for discounting, such as the approach adopted in the UK, France and Sweden (see \Vref{box:social-time-preference-approach}).%
+    \footnote{Consideration of the merits of adopting the social-time-preference approach is beyond the scope of this report.}
+Instead, this chapter explains how to implement the existing approach better -- and more consistently with the principles governments themselves claim to be using. 
+
+The approach we outline represents a substantial change from the long-standing use of a default central discount rate of 7 per cent. Instead, discount rates should typically be much lower, and they should change when there are material changes in the economy and different amounts of systematic risk. 
+
+The following sections lay out a path towards a better discounting regime, that varies in line with material changes in the cost of money and that reflects the fact that some projects are more risky than others. As an interim measure, we recommend discount rates of 3.5 per cent and 5 per cent for projects with very low and somewhat low systematic risk. Finally, to ensure that the benefits of lower discount rates are not muffled by other well-documented shortcomings with transport project appraisals, we recommend other big changes to the way Australian project appraisals are governed.
+
+\section{Establish an authoritative, evidence-based approach to setting discount rates}\label{subsec:ongoing-discount-rate-governance}
+
+Australia does not have routine and transparent processes for setting discount rates. Authorities refer to one another in a circular fashion, and rates have been frozen at a 7 per cent central standard for decades.
+
+A new approach is needed. A discount rate that relies on a view about the next-best use of resources cannot be frozen in time. The cost of capital is not immune to changes in the economy, and a discount rate that relies on the idea of the cost of capital should change as the economy changes.
+
+But constant change is not practical for governments, and could be costly if project proponents spend resources arguing for highly customised discount rates. Therefore, we recommend that the Commonwealth Treasurer ask the Parliamentary Budget Office to publish annual guidance on the discount rates regime that will apply to transport infrastructure projects for the year ahead. State and territory governments should adopt this advice regardless of whether they are seeking Commonwealth funding, given that there is minimal difference in the cost of money between the Commonwealth and the states and territories.%
+    \footcite[][21]{Terrill-Emslie-2017-What-price-value-capture}
+
+To do this, the Parliamentary Budget Office should:
+\begin{itemize}
+\item Publish the risk-free rate and the basis on which it is calculated;
+\item Review estimates of the expected market risk premium, and the basis on which they are calculated;
+\item Investigate the systematic risk of public sector infrastructure projects, and publish guidance on the typical values; and
+\item Provide guidance on the project characteristics that should legitimately license a project proponent to argue for a different discount rate to the standard ranges. 
+\end{itemize}
+
+\section{In the short term, move to lower and risk-reflective discount rates for transport project appraisals}\label{subsec:Two-standard-levels-of-project-risk}
+
+Pending a thorough assessment of transport project discount rates by the Parliamentary Budget Office, we recommend most projects be classified as having either `very low' or `somewhat low' systematic risk, as explained in \Cref{subsec:australia-assumes-public-projects-are-as-risky-as-private-projects}. 
+
+\Cref{tbl:our-view-of-the-standard-discount-rates} lays out a typical classification of public sector transport projects into very low and somewhat low risk categories, together with the standard discount rates that would apply in 2018 under our proposal. For the occasional project that has unusual risk characteristics, proponents and treasuries should have license to negotiate a different rate, provided the rate and its basis is transparent. Some projects are more sensitive than others to the state of the economy, and the discount rate should be higher for them. 
+
+As with current practice, sensitivity testing should be used with both levels of risk, largely to acknowledge uncertainty surrounding the market risk premium. We propose discount rates 2 percentage points above and below the central discount rate.  
+
+There have been times over the past 30 years when today's frozen discount rate would have made more sense. But even if 7 per cent was roughly right between the late 1990s and the onset of the global financial crisis in 2008, it has been far too high ever since (see \Vref{fig:the-discount-rate-over-time}). 
+
+\begin{table}[!h]
+\caption{Recommended standard discount rates based on risk characteristics}\label{tbl:our-view-of-the-standard-discount-rates}
+\bgroup
+\def\arraystretch{1.6}
+\begin{tabularx}{\columnwidth}{*1{>{\arraybackslash}X}p{4cm}c}
+ \toprule \textbf{Level of systematic risk} & \textbf{Typical project types} & \textbf{Discount rate}\\ 
+ \cmidrule{1-3}
+ \text{Very low} & Buses, roads, urban passenger rail & 3.5\% \\
+ \text{Somewhat low} & Ferries, freight rail, airports & 5\% \\ 
+ \bottomrule
+\end{tabularx}
+\egroup
+\noteswithsource{This is based on a risk-free rate of 0.5-1.0 per cent, and an expected market risk premium of 6 per cent, the rate typically recommended in governments' commercial guidelines and by regulators. `Very low' risk means a beta of 0.4 and `somewhat low' risk means a beta of 0.7, rates inside the range of betas in government guidelines.}{Grattan analysis.}
+\end{table}
+
+\section{Reduce reliance on an artificially high discount rate by making project appraisals more robust}\label{subsec:tighten-project-appraisals}
+
+Past Grattan Institute reports have revealed significant shortcomings with Australian transport project evaluation and selection. 
+
+\emph{Cost overruns in transport projects}%     
+    \footcite{Terrill-etal-2016-Cost-overruns-in-transport-infrastructure} 
+investigated the cost outcomes of all 836 government transport projects valued at \$20 million or more that were planned or built between 2001 and 2015. It found that over that period, Australian governments spent \$28 billion more on transport infrastructure than they told taxpayers they would -- amounting to nearly a quarter of total project budgets.
+
+\emph{Roads to riches}%
+    \footcite{Terrill_2016}
+found that a large portion of the historically large sums governments spent on transport infrastructure between 2005 and 2015 was spent unwisely. Projects were routinely committed to without a published business case, and in ways that appear at odds with the economic needs of the nation. The overwhelming problem is a lack of transparency in how projects are assessed, which enables politicians to make promises that the media and the public cannot scrutinise. 
+
+An artificially high discount rate is sometimes defended as a counter to these problems, on the basis that it makes it a little harder for decision makers to defend poorly chosen and politicised projects.%
+    \footcite{Terrill-Batrouney-oped-March2017-one-project-at-a-time}
+
+But this attitude exacerbates the bigger problem of improving the overall quality of Australian transport project evaluation, because it creates perverse incentives and it muffles information that could lead to better infrastructure decision making. It creates an environment in which decision makers are discouraged from relying on the findings of project appraisals, or are encouraged to inflate the future benefits of investment projects. 
+
+This process can become self-perpetuating, with high discount rates leading to poor and non-transparent appraisal practices, which then justify the use of high discount rates. This happened in France between 1985 and 2005, when the discount rate for public projects was set too high, at 8 per cent. As a consequence, lobbyists pressured evaluators not to rely on the cost-benefit analyses and to inflate the future social benefits of investments. In fact, the choice of 8 per cent was itself in part justified by this intrinsic optimism bias.%
+    \footcite[][9]{Gollier-Pricing-the-planets-future} 
+
+This point has been made many times. The Productivity Commission, for example, said:
+
+\begin{quote}As indicated, appropriate treatment of risk in cost-benefit analysis is necessary to counter optimism bias. Often, this means ensuring that the costs and benefits used are expected values based on the probability of different outcomes, and that the discount rate is appropriate for the project. Full risk analysis (for example, using Monte Carlo simulations) is generally required for large projects with many uncertain variables\dots{}  Ad hoc approaches, such as using a higher discount rate to counter overly-optimistic cost and benefit forecasts, are likely to perform poorly.%
+    \footcite[][102]{Commission2014PublicInfastructure}
+\end{quote}
+
+\begin{figure}
+\caption{What discount rates should have looked like over the past 30 years \label{fig:the-discount-rate-over-time}}%
+\units{Per cent per annum}
+\includegraphics[page=24]{Charts/ChartPackDiscountRates.pdf}
+\noteswithsources{This is based on betas between 0.4-0.7, a market risk premium of 6 per cent, and the risk-free rate's historical fluctuations. Data has been smoothed using a 12-month rolling average.}%
+{\textcite{RBA-2018-CPI-table}, \textcite{RBA-2018-Government-bonds-monthly}, and  \textcite{RBA-2013-Government-bonds-monthly-historical}}
+\end{figure}
+
+Similarly, the Bureau of Transport and Regional Economics has said that adding a risk premium to the discount rate is a very poor way to correct for optimism bias.%
+\footcite[][ix]{BITRE2005RiskinCostBenefitAnalysis}
+Excessively high discount rates are as likely to increase optimism bias as to offset it. The practice reduces incentives for project proponents to examine risks carefully, and increases incentives for them to exaggerate the benefits of their proposals.%
+\footcite[][475--476]{Spackman-2004-time-discounting-fiscal-studies}
+
+Instead, project appraisal shortcomings need to be acknowledged and addressed head-on. Australia's ambition should be to improve project evaluation and reduce the chance of choosing the wrong projects because of inadequate information about the relative merits of different proposals. And an important element of improved appraisals is transparency of the appraisals. Our recommendations for making appraisals more robust are set out in \Cref{box:recommendations-about-how-to-tighten-project-appraisals}.
+
+\begin{smallbox}{Making project appraisals more robust}{box:recommendations-about-how-to-tighten-project-appraisals}
+To avoid lower discount rates exacerbating shortcomings in existing project appraisals, we recommend the following changes to project appraisal requirements:
+\begin{itemize}
+\item To increase accountability for appraisals, governments should not be able to commit public money to a transport infrastructure proposal until a rigorous, independent, like-for-like evaluation and the underlying business case have been tabled in the state or federal parliament. 
+\item To give the public greater confidence in the analysis used in appraisals, the Productivity Commission should publish reliability ratings of the robustness of all transport infrastructure business cases, within one month of their publication.
+\item To build understanding of the impacts of transport projects and to counter optimism bias, the Council of Australian Governments should add a new category of infrastructure services to the terms of reference for the annual Report on Government Services, produced by the Productivity Commission. 
+\begin{itemize}
+\item This should use the post-completion report the Commonwealth already requires from state governments as a condition of providing final milestone payments for transport infrastructure projects. 
+\item New reporting requirements should be introduced, such as post-completion appraisals of each projects' benefits and costs (which could be done by Infrastructure Australia).
+\end{itemize}
+\end{itemize}
+\end{smallbox}
+
+In conclusion, this report has shown that there is a straightforward and practical way for discount rates to vary with material changes in the cost of money and also according to the level of systematic risk of the investment. The value of better discounting practice is that governments can know which projects are worth building, and in what order. Cost-benefit analysis may be an imperfect tool, but it is the best one we have for comparing project proposals on a like-for-like basis. Armed with information, governments can take advantage of historically cheap money to address booming population growth with well-chosen infrastructure investment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\printbibliography
+
+
+\end{document}

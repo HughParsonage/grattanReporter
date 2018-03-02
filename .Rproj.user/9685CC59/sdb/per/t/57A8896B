@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(readr); library(dplyr); library(rstan)\noptions(mc.cores = parallel::detectCores())\nhugh_data <- read_csv(\"~/Downloads/for-jim.csv\")\n\n\nhugh_data_2 <- hugh_data %>% filter(!is.na(TER), !is.na(Country_of_birth))\n\n# MAke feature matrix\n\nX <- model.matrix(~ Gender + Mode_of_attendance + Attendance_type + Age_EOY, data = hugh_data_2)[,-1]\n\n# Make data list\n\n\ndata_list <- list(N = nrow(hugh_data_2),\n                  G = length(unique(hugh_data_2$FOE_Grattan)),\n                  P = ncol(X),\n                  outcome = as.numeric(hugh_data_2$completed_in_4yrs),\n                  group = as.numeric(as.factor(hugh_data_2$FOE_Grattan)),\n                  ATAR = hugh_data_2$TER/100,\n                  X = scale(X))\n\n# Compile model \n\ncompiled_model <- stan_model(\"~/../Downloads/mod_for_hugh.stan\", save_dso = FALSE)\n\n# Estimate model using three methods\n\n# First use HMC/NUTS. Use the code below if the data are enormous\nstan_est <- sampling(compiled_model, data = data_list)\n\n# Check how the sampler went\nshinystan::launch_shinystan(stan_est)\n\n# If your data are really big, you might want to use this. unfortunately it doesn't capture covariance\n# of the intercepts and slopes well. They use this technique to estimate \n#stan_est <- vb(compiled_model, data = data_list)\n\n\n# Now we want to plot the response within each FOE to a 1 point increase in ATAR\n# Get the array of draws of theta. The first dimension is the MCMC draws\nthetas <- rstan::extract(stan_est, pars = \"theta\", permuted = T)[[1]]\n\n# Let's evaluate inv_logit(intercept + slope * atar) across all draws and atar ranging from 0 to 1\n# Because X is zero centered, this is value\nthetas_2 <- plyr::aaply(thetas, 1, function(x) {\n  t(apply(x, 1, function(y) {\n    arm::invlogit(y[1] + y[2] * seq(from = 0, to = 1, length.out= 40))\n  }))\n})\n\n# Take the quantiles across draws and the expected value\nthetas_lower <- apply(thetas_2, c(2,3), quantile, .1)\nthetas_upper <- apply(thetas_2, c(2,3), quantile, .9)\nthetas_mean <- apply(thetas_2, c(2,3), mean)\n\nplot_data <- data_frame(mean= as.vector(t(thetas_mean)),\n                        lower = as.vector(t(thetas_lower)),\n                        upper = as.vector(t(thetas_upper)),\n                        FOE = rep(unique(as.factor(hugh_data_2$FOE_Grattan)), each = 40),\n                        ATAR = rep(seq(from = 0, to = 100, length.out = 40), 13))\n\n\n# Make a pretty plot\nplot_data %>% \n  ggplot(aes(x= ATAR, group = FOE)) +\n  geom_ribbon(aes(ymin= lower, ymax = upper, fill = FOE), alpha = 0.1) +\n  geom_line(aes(y = mean, colour = FOE)) +\n  facet_wrap(~FOE) +\n  labs(title = \"Probability of dropping out by field\",\n       colour = \"Course of study\",\n       fill = \"Course of study\", \n       y = \"Probability\") +\n  ggthemes::theme_economist()\n\n",
+    "created" : 1488714724026.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1216399638",
+    "id" : "57A8896B",
+    "lastKnownWriteTime" : 1489365623,
+    "last_content_update" : 1489365623,
+    "path" : "C:/Users/hughp/Downloads/run_model_for_hugh.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 22,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

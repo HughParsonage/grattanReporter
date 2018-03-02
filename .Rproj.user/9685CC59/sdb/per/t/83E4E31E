@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: grattanReporter\nType: Package\nTitle: Parses Grattan Reports, possibly creating PDFs also\nDate: 2017-05-06\nVersion: 0.18.2\nAuthor: Hugh Parsonage\nMaintainer: Hugh Parsonage <hugh.parsonage@gmail.com>\nDescription: Checks whether the LaTeX document compiled in accordance with Grattan style.\nLicense: GPL-2\nDepends: R (>= 2.10)\nImports: magrittr, \n  dplyr, \n  data.table, \n  stringi,\n  hunspell, \n  clisymbols, \n  crayon,\n  gmailr,\n  twitteR,\n  readr,\n  zoo\nLazyData: TRUE\nRoxygenNote: 6.0.1\nSuggests: testthat\n",
+    "created" : 1486090883572.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "322725758",
+    "id" : "83E4E31E",
+    "lastKnownWriteTime" : 1494041289,
+    "last_content_update" : 1494041289170,
+    "path" : "~/grattanReporter/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 12,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

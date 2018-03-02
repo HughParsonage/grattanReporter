@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"lint_bib\")\n\ntest_that(\"Correctly tidies known input\", {\n  if (file.exists(\"lint_bib_out.bib\")) file.remove(\"lint_bib_out.bib\")\n  lint_bib(\"lint_bib_in.bib\", \"lint_bib_out.bib\")\n  expect_identical(readLines(\"lint_bib_out.bib\", encoding = \"UTF-8\"),\n                   readLines(\"lint_bib_out_correct.bib\", encoding = \"UTF-8\"))\n})\n\ntest_that(\"Correctly changes entry type and removes bad fields\", {\n  if (file.exists(\"./lint-bib/entry-type-out.bib\")) file.remove(\"./lint-bib/entry-type-out.bib\")\n  lint_bib(bib_file = \"./lint-bib/entry-type-in.bib\", outfile = \"./lint-bib/entry-type-out.bib\")\n  expect_identical(readLines(\"./lint-bib/entry-type-correct.bib\", encoding = \"UTF-8\"),\n                   readLines(\"./lint-bib/entry-type-out.bib\", encoding = \"UTF-8\"))\n})\n\n",
+    "created" : 1494040653971.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2694691465",
+    "id" : "D955043E",
+    "lastKnownWriteTime" : 1494040770,
+    "last_content_update" : 1494040770216,
+    "path" : "~/grattanReporter/tests/testthat/test_lint_bib.R",
+    "project_path" : "tests/testthat/test_lint_bib.R",
+    "properties" : {
+    },
+    "relative_order" : 27,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

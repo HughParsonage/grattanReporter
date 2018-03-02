@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "newspaper_by_url <-\n  data.table::fread(\"newspaper-by-url.tsv\") %>%\n  setkey(journal_from_url)\n",
+    "created" : 1494120431371.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "987342555",
+    "id" : "C8BB019F",
+    "lastKnownWriteTime" : 1485926272,
+    "last_content_update" : 1485926272,
+    "path" : "~/grattanReporter/data-raw/put-newspaper_by_url.R",
+    "project_path" : "data-raw/put-newspaper_by_url.R",
+    "properties" : {
+    },
+    "relative_order" : 30,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

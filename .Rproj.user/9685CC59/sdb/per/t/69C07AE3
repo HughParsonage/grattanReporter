@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\documentclass{article}\n\n\\begin{document}\nA government-led program of investment\n\\end{document}\n",
+    "created" : 1493885741953.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1629930650",
+    "id" : "69C07AE3",
+    "lastKnownWriteTime" : 1493885895,
+    "last_content_update" : 1493885895287,
+    "path" : "~/grattanReporter/tests/testthat/spelling/Govt/lc-govt-ok.tex",
+    "project_path" : "tests/testthat/spelling/Govt/lc-govt-ok.tex",
+    "properties" : {
+    },
+    "relative_order" : 33,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "tex"
+}

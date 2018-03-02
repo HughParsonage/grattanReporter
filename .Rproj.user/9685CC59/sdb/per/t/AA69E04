@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "data {\n  int N; // number of observations\n  int G; // number of groups\n  int P; // number of controls (not including ATAR)\n  int outcome[N]; // your binary outcome\n  int<lower = 1, upper = G> group[N]; // The grouping variable\n  vector[N] ATAR; // guess! \n  matrix[N, P] X; // our controls. These variables should be _pre ATAR_. \n}\nparameters {\n  vector[P] beta; // linear coefficients\n  vector<lower = 0>[2] tau; // scale of random effects\n  corr_matrix[2] Omega; // correlation of random effects\n  matrix[G, 2] z; // we use this to create random effects in the transformed parameters block\n  vector[2] prior_location;\n}\ntransformed parameters {\n  // transformed parameters are constructs of our data and parameters\n  // often we can make the sampler or optimizer work better by using these. \n  \n  matrix[G, 2] theta; // the varying intercepts and slopes\n  \n  // the below is the multivariate equivalent of the statement that if x ~ normal(mu, sigma) then\n  // x = mu + sigma*z for some z ~ normal(0, 1)\n  \n  for(g in 1:G) {\n    theta[g] = (prior_location + cholesky_decompose(quad_form_diag(Omega, tau))*z[g]')';\n  }\n  \n}\nmodel {\n  // priors. Note we only give priors to the parameters, not the transformed parameters\n  beta ~ normal(0, 1);\n  tau ~ cauchy(0, 1);\n  Omega ~ lkj_corr(4);\n  to_vector(z) ~ normal(0, 1);\n  prior_location ~ normal(0, 1);\n  \n  // likelihood\n  for(n in 1:N) {\n    // note how we use the grouping variable to index theta\n    outcome[n] ~ bernoulli(inv_logit(theta[group[n],1] + theta[group[n], 2]*ATAR[n] + X[n]*beta));\n  }\n}",
+    "created" : 1488714728530.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4160810022",
+    "id" : "AA69E04",
+    "lastKnownWriteTime" : 1488714722,
+    "last_content_update" : 1488714722,
+    "path" : "C:/Users/hughp/Downloads/mod_for_hugh.stan",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 23,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "stan"
+}

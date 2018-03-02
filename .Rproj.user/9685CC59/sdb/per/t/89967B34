@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n`%notin%` <- Negate(`%in%`)\n\nAND <- `&&`\nOR <- `||`\n\nnot_length0 <- function(x) as.logical(length(x))\n\n# takes a vector of froms and tos and takes their union\nseq.default.Vectorized <- function(x, y)\n  Vectorize(seq.default, vectorize.args = c(\"from\", \"to\"))(x, y)\n\nSeq_union <- function(x, y){\n  if (length(x) == 1L && length(y) == 1L){\n    seq.int(x, y)\n  } else {\n    if (length(x) == length(y)){\n      unlist(seq.default.Vectorized(x, y))\n    } else {\n      lengthx <- length(x)\n      lengthy <- length(y)\n      if (lengthx != 1L && lengthy != 1L){\n        stop(\"x and y must have the same length if neither have length 1.\")\n      }\n      if (lengthx == 1L){\n        Seq_union(rep(x, lengthy), y) %>%\n          unique.default\n      } else {\n        Seq_union(x, rep(y, lengthx)) %>%\n          unique.default\n      }\n    }\n  }\n}\n\nrev_forename_surname_bibtex <- function(author_fields){\n  full_names <-\n    lapply(author_fields, strsplit, \" and \") %>%\n    lapply(unlist, recursive = FALSE)\n\n  comma_name <-\n    full_names %>%\n    lapply(grepl, pattern = \", \", fixed = TRUE)\n\n  forename_surnames <-\n    full_names %>%\n    lapply(strsplit, split = \"(, )|(\\\\s((?!(?:v[ao]n)|(?:der?)|(?:di))(?=(\\\\w+$))))\", perl = TRUE)\n\n  out <- forename_surnames\n\n  for (field in seq_along(author_fields)){\n    for (nom in seq_along(full_names[[field]])){\n      if (!comma_name[[field]][[nom]]){\n        out[[field]][[nom]] <- rev(out[[field]][[nom]])\n      }\n    }\n  }\n\n  lapply(out, FUN = function(author_name){\n    lapply(author_name, paste0, collapse = \", \")\n  }) %>%\n    sapply(FUN = function(authors){\n      paste0(authors, collapse = \" and \")\n    })\n}\n\nnth_max <- function(x, n){\n  if (n == 1) {\n    return(max(n))\n  } else {\n    lx <- length(x)\n    sort(x, partial = lx - n + 1)[lx - n + 1]\n  }\n}\n\nnth_min <- function(x, n){\n  if (n == 1) {\n    return(min(x))\n  }\n  sort(x)[n]\n}\n\nnth_min.int <- function(x, n){\n  sort.int(x)[n]\n}\n\nstrip_comments <- function(lines){\n  gsub(\"(?<!(\\\\\\\\))[%].*$\", \"%\", lines, perl = TRUE)\n}\n\nmove_to <- function(to.dir, from.dir = \".\", pattern = \"\\\\.((pdf)|(tex)|(cls)|(sty)|(Rnw)|(bib)|(png)|(jpg))$\"){\n  x <- list.files(path = from.dir,\n                  pattern = pattern,\n                  full.names = TRUE,\n                  recursive = TRUE,\n                  include.dirs = FALSE)\n  x.dirs <- file.path(to.dir, \n                      list.dirs(path = from.dir, recursive = TRUE, full.names = TRUE))\n  dir_create <- function(x) if (!dir.exists(x)) dir.create(x)\n  lapply(x.dirs, dir_create)\n  file.copy(x, file.path(to.dir, x), overwrite = TRUE, recursive = FALSE)\n  setwd(to.dir)\n  cat(\"   Attempting compilation in temp directory:\", to.dir, \"\\n\")\n}\n\nr2 <- function(a, b) sprintf(\"%s%s\", a, b)\nr3 <- function(a, b, d) sprintf(\"%s%s%s\", a, b, d)\nr4 <- function(a, b, d, e) sprintf(\"%s%s%s%s\", a, b, d, e)\nr5 <- function(a, b, d, e, f) sprintf(\"%s%s%s%s%s\", a, b, d, e, f)\nr9 <- function(a1, a2, a3, a4, a5, a6, a7, a8, a9) sprintf(\"%s%s%s%s%s%s%s%s%s\", a1, a2, a3, a4, a5, a6, a7, a8, a9)\n\ntrimws_if_char <- function(x) if (is.character(x)) trimws(x) else x\n",
+    "created" : 1485927398252.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2004689451",
+    "id" : "89967B34",
+    "lastKnownWriteTime" : 1493885314,
+    "last_content_update" : 1493885314829,
+    "path" : "~/grattanReporter/R/utils.R",
+    "project_path" : "R/utils.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

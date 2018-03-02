@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Are any bib entries duplicated?\n#' @param bib.files File to check for duplicates\n#' @param .report_error How errors should be logged.\n#' @export \n\n\nany_bib_duplicates <- function(bib.files, .report_error){\n  if (missing(.report_error)){\n    .report_error <- function(...) report2console(...)\n  }\n  \n  .fread_bib <- function(file.bib) {\n    fread_bib(file.bib) %>% \n      .[, bib_file := file.bib]\n  }\n  \n  KEY <- key <- field <- bib_file <- NULL\n  bibDT <- \n    lapply(bib.files, .fread_bib) %>% \n    rbindlist(use.names = TRUE, fill = TRUE) %>% \n    .[, KEY := toupper(key)]\n  \n  if (anyDuplicated(bibDT, by = c(\"KEY\", \"field\"))) {\n    first_duplicate_entry <- bibDT[anyDuplicated(bibDT, by = c(\"KEY\", \"field\"))]\n    print(first_duplicate_entry)\n    .report_error(line_no = first_duplicate_entry$line_no,\n                  error_message = \"Duplicate bib key used.\",\n                  advice = \"Delete the duplicate entry if duplicate; otherwise, choose a different key for above entry.\")\n    stop(\"Duplicate bib key used.\")\n  }\n  \n  bibDT <-\n    bibDT %>%\n    .[field != \"abstract\"] %>%\n    dcast.data.table(formula = key ~ field, value.var = \"value\")\n  \n  if (\"origyear\" %in% names(bibDT)){\n    origyear <- NULL\n    bibDT <- bibDT[is.na(origyear)]\n  }\n  \n  date <- NULL\n  if (\"date\" %notin% names(bibDT)){\n    bibDT[, date := NA_character_]\n  }\n  \n  author <- NULL\n  if (\"author\" %notin% names(bibDT)){\n    bibDT[, author := NA_character_]\n  }\n  \n  title <- NULL\n  if (\"title\" %notin% names(bibDT)){\n    bibDT[, title := NA_character_]\n  }\n  \n  volume <- NULL\n  if (\"volume\" %notin% names(bibDT)){\n    bibDT[, volume := NA_character_]\n  }\n  \n  Author <- Title <- Year <- NULL\n  bibDT %>%\n    .[, Year := if_else(is.na(year),\n                        if_else(is.na(date),\n                                NA_character_,\n                                substr(date, 0, 4)), \n                        as.character(year))] %>%\n    .[, Author := rev_forename_surname_bibtex(author)] %>%\n    .[, Title := tolower(title)] %>%\n    # ABS duplicate if identical without Australia\n    .[, Title := if_else(Author == \"ABS\", \n                         \n                         gsub(\", australia,\", \",\", Title, fixed = TRUE), \n                         Title)]\n  \n  \n  \n  if (anyDuplicated(bibDT, by = c(\"Author\", \"Year\", \"Title\", \"volume\"))){\n    dups_head <- duplicated(bibDT, by = c(\"Author\", \"Year\", \"Title\", \"volume\"))\n    dups_tail <- duplicated(bibDT, by = c(\"Author\", \"Year\", \"Title\", \"volume\"), fromLast = TRUE)\n    DT_with_all_duplicates <- \n      bibDT %>%\n      .[dups_tail | dups_head, .(key, Author, Title, date, year)] %>%\n      .[order(Author, Title)]\n    \n    stopifnot(nrow(DT_with_all_duplicates) %% 2 == 0, nrow(DT_with_all_duplicates) > 1)\n    \n    .report_error(line_no = NULL, context = \"Possible duplicates in bibliographies.\", error_message = \"Possible duplicates in bibliography.\")\n    \n    for (dup in 1:(nrow(DT_with_all_duplicates) / 2)){\n      if (dup == 6){\n        break\n      }\n      cat(\"\\n\")\n      print(DT_with_all_duplicates[c(2 * dup - 1, 2 * dup)], row.names = FALSE)\n    }\n    stop(\"Possible duplicate entries in bibliography. First 5 shown above.\")\n  }\n  invisible(NULL)\n}\n",
+    "created" : 1493899307318.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2543065081",
+    "id" : "25113DA6",
+    "lastKnownWriteTime" : 1494119635,
+    "last_content_update" : 1494119635562,
+    "path" : "~/grattanReporter/R/any_bib_duplicates.R",
+    "project_path" : "R/any_bib_duplicates.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 25,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

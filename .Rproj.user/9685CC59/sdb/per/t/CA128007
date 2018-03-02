@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Check escapes\n#' @description Checks file for unescaped dollar signs. \n#' With these present, there is a risk of constructions like \\code{We gave $10 to a million people at a cost of $10~million dollars.},\n#' which is valid syntax, but incorrectly formatted. Accordingly, math-mode must be more assertively requested using \\code{\\(..\\)}.\n#' @param filename File in which to report the error\n#' @param .report_error How the errors should be reported.\n#' @return An error if unescaped dollar signs are present in \\code{filename}. Otherwise, \\code{NULL} invisibly.\n#' @export\n\ncheck_escapes <- function(filename, .report_error){\n  if (missing(.report_error)){\n    .report_error <- function(...) report2console(...)\n  }\n  lines <- read_lines(filename)\n  \n  if (any(grepl(\"(?<!(\\\\\\\\))[$]\", lines, perl = TRUE))){\n    line_no <- grep(\"(?<!(\\\\\\\\))[$]\", lines, perl = TRUE)[[1]]\n    context <- lines[[line_no]]\n    position <- gregexpr(\"(?<!(\\\\\\\\))[$]\", context, perl = TRUE)[[1]][1] + nchar(line_no) + 5 # to match with X : etc.\n    context <- paste0(substr(context, 0, position + 6), \"\\n\", \n                      paste0(rep(\" \", position - 1), collapse = \"\"), \"^\",\n                      collapse = \"\")\n    .report_error(line_no = line_no, \n                  context = context, \n                  error_message = \"Unescaped $.\",\n                  advice = \"If you meant to print a dollar sign, use \\\\$. If you want to use math-mode, use \\\\(...\\\\), not $...$ .\")\n    stop(\"Unescaped $. If you meant to print a dollar sign, use \\\\$. If you want to use math-mode, use \\\\(...\\\\), not $...$ .\")\n  }\n  \n  if (any(grepl(\"...\", lines, fixed = TRUE)) || any(grepl(\"\\u2026\", lines, fixed = TRUE))){\n    line_no <- which(grepl(\"...\", lines, fixed = TRUE) | grepl(\"\\u2026\", lines, fixed = TRUE))[[1]]\n    context <- lines[[line_no]]\n    .report_error(line_no = line_no,\n                  context = context,\n                  error_message = \"Ellipsis typed without using macro.\",\n                  advice = \"Use \\\\dots{} for an ellipsis, rather than three dots (...) or \\\\u2026 (\\u2026).\")\n    stop(\"Use \\\\dots{} for an ellipsis, rather than three dots (...) or \\\\u2026 (\\u2026).\")\n  }\n  \n  invisible(NULL)\n}\n",
+    "created" : 1486451490838.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2628167543",
+    "id" : "CA128007",
+    "lastKnownWriteTime" : 1486728431,
+    "last_content_update" : 1486728431,
+    "path" : "~/grattanReporter/R/check_escapes.R",
+    "project_path" : "R/check_escapes.R",
+    "properties" : {
+    },
+    "relative_order" : 23,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

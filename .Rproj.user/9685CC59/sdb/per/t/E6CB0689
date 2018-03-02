@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"Footnote typography\")\n\ntest_that(\"Valid typography passes\", {\n  expect_null(check_footnote_typography(\"valid-footnote-typography.tex\"))\n  expect_null(check_footnote_typography(\"./fnote-typogr/ok-ends-with-dbl-quote.tex\"))\n})\n\ntest_that(\"Invalid typography stops\", {\n  expect_error(check_footnote_typography(\"invalid-footnote-typography.tex\"))\n  expect_error(check_footnote_typography(\"./fnote-typogr/doesnt-end-with-period.tex\"),\n               regexp = \"does not end with full stop\")\n  expect_error(check_footnote_typography(\"./fnote-typogr/full-stop-after.tex\"),\n               regexp = \"[pP]unctuation after footnote\")\n  expect_error(check_footnote_typography(\"./fnote-typogr/full-stop-after-fcite.tex\"),\n               regexp = \"[pP]unctuation mark after footcite\")\n})\n\ntest_that(\"Space before footnotes.\", {\n  # a1 b1 b2  Test  Expect  Description\n  #  T  T  T  1     PASS    Tabbed footnote on own line: b2 protects\n  #  T  T  F  2     FAIL    Tabbed footnote without protection.\n  #  T  F  T  3     FAIL    Ordinary space (and txt) before fn % irrelevant -- protective space has no effect\n  #  T  F  F  4     FAIL    Ordinary space (and txt) before fn: lazy dog \\footnote\n  #  F  T  T  5     PASS    Non-tabbed footnote \\footnote at start of text: b2 protects\n  #  F  T  F  6     FAIL    Non-tabbed footnote without protection\n  #  F  F  T  7     PASS    No footnote\n  #  F  F  F  8     PASS    No footnote\n  expect_null(check_footnote_typography(\"./fnote-typogr/1.tex\"))\n  expect_error(check_footnote_typography(\"./fnote-typogr/2.tex\"))\n  expect_error(check_footnote_typography(\"./fnote-typogr/3.tex\"))\n  expect_error(check_footnote_typography(\"./fnote-typogr/4.tex\"))\n  expect_null(check_footnote_typography(\"./fnote-typogr/5.tex\"))\n  expect_error(check_footnote_typography(\"./fnote-typogr/6.tex\"))\n  expect_null(check_footnote_typography(\"./fnote-typogr/7.tex\"))\n  expect_null(check_footnote_typography(\"./fnote-typogr/8.tex\"))\n  expect_null(check_footnote_typography(\"./fnote-typogr/isOK.tex\"))\n})\n\ntest_that(\"Works for footcite mishaps too\", {\n  expect_error(check_footnote_typography(\"./fnote-typogr/bad.tex\"))\n})\n\ntest_that(\"Leading space in footnote text\", {\n  expect_error(check_footnote_typography(\"./fnote-typogr/space-footnotetext.tex\"))\n})\n\ntest_that(\"Two footnotes same line will error\", {\n  expect_error(check_footnote_typography(\"./fnote-typogr/two-footnotes-same-line.tex\"),\n               regexp = \"cannot occur twice\")\n})\n\ntest_that(\"Footcites and footcite in same document don't get confused about dots after\", {\n  expect_error(check_footnote_typography(\"./fnote-typogr/dot-after-footcites.tex\"), \n               regexp = \"Punctuation mark\")\n})\n\n",
+    "created" : 1488608580986.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1283978510",
+    "id" : "E6CB0689",
+    "lastKnownWriteTime" : 1490327095,
+    "last_content_update" : 1490327095,
+    "path" : "~/grattanReporter/tests/testthat/test_footnote_typography.R",
+    "project_path" : "tests/testthat/test_footnote_typography.R",
+    "properties" : {
+    },
+    "relative_order" : 37,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

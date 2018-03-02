@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"Check dashes\")\n\ntest_that(\"Does not error in math mode\", {\n  expect_null(check_dashes(filename = \"./check-dashes/ok-despite-math.tex\"))\n  expect_null(check_dashes(filename = \"./check-dashes/ok-despite-math-2.tex\"))\n  expect_null(check_dashes(filename = \"./check-dashes/ok-despite-math-3.tex\"))\n  expect_null(check_dashes(filename = \"./check-dashes/ok-despite-math-4.tex\"))\n})\n\ntest_that(\"Errors if hyphen wrongly typed\", {\n  expect_error(check_dashes(filename = \"./check-dashes/bad-hyphen.tex\"),\n               regexp = \"[Hh]yphen\")\n  expect_error(check_dashes(filename = \"./check-dashes/bad-outside-math-1.tex\"),\n               regexp = \"[Hh]yphen\")\n})\n\ntest_that(\"Hyphens adjacent are noticed\", {\n  expect_error(check_dashes(\"./check-dashes/hyphens-adj-dash-1.tex\"),\n               regexp = \"[Hh]yphen adjacent to en-dash.\")\n  expect_error(check_dashes(\"./check-dashes/hyphens-adj-dash-2.tex\"),\n               regexp = \"[Hh]yphen adjacent to en-dash.\")\n})\n\ntest_that(\"Emdashes detected\", {\n  expect_error(check_dashes(\"./check-dashes/has-emdash-1.tex\"),\n               regexp = \"[Ee]m-dash\")\n})\n",
+    "created" : 1486464436502.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3067452011",
+    "id" : "81FB942F",
+    "lastKnownWriteTime" : 1488609520,
+    "last_content_update" : 1488609520,
+    "path" : "~/grattanReporter/tests/testthat/test_check_dashes.R",
+    "project_path" : "tests/testthat/test_check_dashes.R",
+    "properties" : {
+    },
+    "relative_order" : 20,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

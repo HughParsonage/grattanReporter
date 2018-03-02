@@ -1,0 +1,419 @@
+%!TEX root = ../Report.tex
+\chapter{Housing is less affordable}\label{chap:housing-is-less-affordable}
+
+Australian housing is becoming increasingly expensive.
+People are spending more of their income on housing.
+Dwelling price rises accelerated in the mid 1990s.
+Real house prices increased by about 2 per cent a year from the 1970s to the mid-1990s.
+Since then, real house prices have risen by about 5 per cent a year.
+Prices rose particularly fast in the major capital cities, but they also rose in regional areas.
+These price rises primarily reflected higher land prices, not more expensive buildings.
+
+Interest rates have fallen, and so repaying a typical first home loan is \emph{not} particularly difficult at the moment.
+But it is harder to save a deposit for a first home, a first home loan now entails more risk, borrowers live with that risk for longer, and inflation is unlikely to erode the cost of repayments as quickly as in the past.
+And rents are higher relative to incomes, particularly for low-income households in capital cities.
+
+\begin{smallbox}{Different ways of measuring housing costs}{box:measuring-housing-costs}
+
+Just as there are different measures of housing affordability, there are different ways of measuring housing costs. 
+
+Housing costs can be measured as the share of income that Australians are \textbf{spending on housing}.
+Economic theory defines this as the actual rent paid by renters, and the `imputed rent' of owning a home -- the amount a household would pay to rent the house they own.%
+    \footnote{Conceptually, imputed rent thinks of a home-owner as paying rent to themselves: they are both the tenant and landlord of the property.
+    Since the home-owner could obtain the equivalent benefit by renting the property out, imputed rent reflects the opportunity cost of housing for owner-occupiers. 
+    For a discussion of how to estimate imputed rent, see \textcite[][Box~2.3]{PC-2015-Housing-decisions-elderly}.} 
+
+Of course, most Australians don't buy a home outright: instead, they borrow to purchase a home. Therefore many people think of housing affordability as the \textbf{mortgage burden} -- the share of household income required to pay the typical mortgage -- property taxes, and the actual rent paid by renters. This approach more closely reflects the cash-flow costs of housing.
+
+Both measures of housing costs are used in this report. And regardless of the measure used, all Australians are spending more of their incomes on housing (\Vref{fig:spending-more-on-housing}).
+
+\end{smallbox}
+
+\section{We're spending more on housing }\label{sec:were-spending-more-on-housing}
+
+Australian spending on housing has increased from about 10 per cent of total pre-tax household income in 1980 to about 14 per cent today (\Cref{fig:spending-more-on-housing}).%
+	\footnote{This includes rent and imputed rent, see definition in notes of \Vref{fig:spending-more-on-housing}.}
+
+\doublecolumnfigure{%
+\caption{Australians are spending more of their income on housing}\label{fig:spending-more-on-housing}
+\units{Housing costs as a share of gross (pre-tax) household income, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{These different surveys calculate housing costs in slightly different ways.
+All of them calculate housing costs to include actual rent paid and water charges. The National Accounts use an aggregate measure and include `imputed rents' in housing costs -- the amount a household would pay to rent the house that they own -- but ignore actual mortgage payments and general rates.
+The income measure is `total gross income' from the Household Income Account.
+By contrast, the Survey of Income and Housing, and the Survey of Household Expenditure, ignore the value of living in an owner-occupied house, but include mortgage interest and principal repayments and general rates as housing costs.
+These two survey measures divide housing costs by gross (pre-tax) household income, but do not include gifts}%
+{\textcites{ABS2016-NationalAccounts-ExpenditureProduct}{ABS2011HES0910Summary}{ABS-201516-occupancy-and-costs}}
+}{
+\caption{All households are spending more of their income on housing, especially low-income earners}\label{fig:spending-on-housing-by-income}
+\units{Housing costs as a share of gross (pre-tax) household income, by equivalised disposable household income quintile, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsource{Uses Survey of Income and Housing definition of housing costs. For definitions of housing costs and income, see \Cref{fig:spending-more-on-housing}. Data interpolated for missing years}%
+{\textcite{ABS-201516-occupancy-and-costs}}
+}
+
+Low-income households have always spent more of their income on housing than others.
+But their spending on housing as a share of income has increased much more than other households over the past decade (\Vref{fig:spending-on-housing-by-income}).
+
+
+It is not surprising that Australians are spending more of their incomes on housing.
+Around the world, as people become richer they tend to spend a greater share of their incomes on housing.%
+	\footnote{\textcites[][20]{Abelsonetal2005}{KohlerandvanderMerwe}. Some of this may be an increase in investment rather than spending on homes. Others argue that spending on homes to live in generally does not increase faster than incomes (\textcites{Albouy-2016-housing-demand}{Windsor-et-al-2013-homeprices}{Rosenthal2014PrivateMarkets}).}
+Over the past 35 years, real GDP per capita increased by 85 per cent in Australia.
+So Australians are both spending more on other goods and services, and spending even more on housing.
+The typical household in each income quintile has more disposable income \emph{after} housing costs in 2016 than 2004 (\Vref{fig:rising-housing-costs-eating-income-growth}).
+Nevertheless, each additional dollar spent on housing is a dollar less to spend on other goods and services, from healthcare to entertainment.
+
+\section{House prices have risen much faster than incomes over 30 years}\label{sec:house-prices-have-risen-much-faster-than-incomes-over-30-years}
+
+Australian dwelling prices have grown much faster than incomes, particularly since the mid-1990s (\Vref{fig:long-run-house-prices-income}).
+Over the long term, prices have risen rapidly in all cities, and most regions, although there are variations from year to year.\footcite{Stapledon2012} \emph{Average} prices have increased from around 2-3 times \emph{average} disposable incomes in the 1980s and early-1990s, to around 5 times more recently.%
+	\footcites{Kent2013Developments}{Ellis-2017-Speech-Aust-Housing-Researchers}{FoxFinlay2012}
+\emph{Median} prices have increased from around 4 times \emph{median} incomes in the early 1990s to more than 7 times today (and more than 8 times in Sydney).%
+	\footnote{The median dwelling price compared to median household disposable income is the best price-to-income measure, but median measures are often not as readily available as average measures: \textcite{CoreLogic2016-affordability}.
+    Other price-to-income measures are even higher due to differences in measuring incomes and prices (for example, \textcite{Demographia-2017-13Annual} calculates Sydney has a price-to-income ratio of~12).}
+
+\begin{figure}
+\caption{House prices have grown much faster than incomes since the mid-1990s}\label{fig:long-run-house-prices-income}
+\units{Real dwelling prices and full-time weekly earnings, index: 1970 = 100}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Data for 1970 to 2010 is from \textcite{Yates}. Data from 2010 is six-monthly growth in the residential property price index from \textcite{ABS-2017-Residential}, deflated by the CPI\@.
+Earnings data is full-time ordinary time earnings from \textcite{ABS-Avg-weekly-earnings-May2017}, deflated by the CPI}%
+{\textcites{Yates}{ABS-2017-Residential}{ABS-Avg-weekly-earnings-May2017}}
+\end{figure}
+
+Price movements can vary between regions over shorter periods. For example, the median dwelling price in Sydney and Melbourne has increased by about 30 per cent since the end of 2014.
+But in the last few years, prices have grown much more slowly in Brisbane and Adelaide and have fallen in Perth and Darwin.%
+    \footcite[][Table~1]{ABS-2017-Residential}
+
+House prices have always been significantly higher in Australia's major cities than in the regions.
+The median house price in Sydney, \$1.1~million, is more than double the median price of \$450,000 in the rest of~NSW\@.%
+	\footnote{Data supplied by Australian Property Monitors.}
+This is not surprising: all around the world, house prices are generally much higher in large cities.%
+\footcite{Eslake-why-housing-expensive} Overall, house prices in Australia are about middle of the pack for advanced economies.%
+	\footnote{\textcite{Ellis-2017-Speech-Aust-Housing-Researchers}.
+	Cross-country comparisons are beset with measurement difficulties, and individual country characteristics can skew results.
+    For example, Australia's houses are generally quite large -- although sizes have fallen more recently (\textcite{Van-onselen-2017-property-rent-seeker}), and the US has always had a low price-to-income ratio because many of its cities have very elastic supply.}
+
+Prices are generally a lower multiple of incomes in regions further from our major capital cities (except in Queensland where the Sunshine Coast and the Gold Coast have higher price-to-income ratios than Brisbane).
+But even in most regional areas, prices have risen rapidly.
+Regional house prices are a higher multiple of regional incomes today than the multiple of house prices to incomes in capital cities 15 years ago (\Vref{fig:house-prices-cities-regions}).
+There is some evidence that median house prices in Australia's regions are high relative to regional areas of equivalent size and distance from major cities in comparable countries.%
+\footcites{Business-2016-housingaffordabilitybunkum}{Demographia-2017-13Annual}
+
+\begin{figure}
+\caption{House-price-to-income ratios have jumped in cities and regions}\label{fig:house-prices-cities-regions}
+\units{Ratio of median dwelling price to median gross household income}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\notewithsource{median household income data modelled by ANU}%
+{\textcite{CoreLogic2016-affordability}}
+\end{figure}
+
+In Australia over the past 20 years, prices grew fastest in areas closer to the centres of all capital cities (\Vref{fig:house-prices-within-cities}).%
+	\footcite{Ellis2015propmarkets}
+This is because capital city populations have grown rapidly, and most of the additional jobs are in city centres,%
+	\footcites{KellyDonegan2015-City-limits}{Daley-productivity-geography}
+but there is little extra land with good access to these jobs.
+And as our cities have grown, traffic congestion has got worse and commuting times have increased, making inner-city houses even more desirable.
+
+\begin{figure}
+\caption{House prices have grown faster in areas closer to city centres}\label{fig:house-prices-within-cities}
+\units{Ratio of inner-ring to outer-ring median prices, detached houses only}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\source{\textcite{Ellis2015propmarkets}}
+\end{figure}
+
+\section{Rising house prices are primarily due to rising land values, not construction costs }\label{sec:rising-house-prices-are-primarily-due-to-rising-land-values-not-construction-costs}
+
+Most of the price of residential property in Australia reflects the value of land, rather than the dwelling built on it (\Vref{fig:aus-property-value}).
+While Australia has an abundance of land, there is a limited supply of well-located land, particularly close to the centre of our major cities.
+
+Over the past 25 years, the price of land rose faster than the price of buildings.%
+\footcites{Knoll-et-al-2017-no-price-like-home}{Abelson-and-Chung-2005-realstoryofhousingprices}{FoxFinlay2012}{KohlerandvanderMerwe}{Ellis2015propmarkets}
+In 2016, land accounted for 70 per cent of the value of residential property, up from 50 per cent in 1990.%
+	\footnote{Grattan analysis of \textcite{ABS-aus-system-of-nat-accounts2016-17} and \textcite{ABS-2017-CPI-Sep}.}
+
+\begin{figure}
+\caption{Dwelling prices increased primarily because of higher land values, although bigger and better buildings also contributed}\label{fig:aus-property-value}
+\units{Real market value of Australian residential property, \$2016, trillions}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{`Residential improvements' consists of the value of the stock of dwelling construction; historical figures are deflated by the Consumer Price Index to \$2016}%
+{\textcites{ABS-aus-system-of-nat-accounts2016-17}{ABS-2017-CPI-Sep}; Grattan analysis}
+\end{figure}
+
+Again, Australian experience is consistent with international trends.
+Across the developed world, land values have risen sharply over the past 30 years.%
+	\footcite{Knoll-et-al-2017-no-price-like-home}
+Some estimate that about 80 per cent of the growth in real house prices in advanced economies in the second half of the 20th century is a result of higher land values rather than more expensive buildings.%
+	\footnote{These studies control for quality improvements and compositional changes: \textcite{Knoll-et-al-2017-no-price-like-home}.
+For Australia, they estimate that land as share of the value of housing increased from 40 per cent in 1980 to 71 per cent in 2010.}
+Land values have generally risen the most in temperate, coastal cities with good access to a variety of high-paying jobs.
+	\footcite[][Chapter~1]{HousingAus17}
+
+While rising land values dominate the price increases, bigger and better buildings have also contributed.
+From the late-1980s to the mid-2000s, the average floor space of newly constructed houses grew by around 45 per cent,%
+	\footcites{Lowe-national-balance-sheet-speech}{Commsec-2016-USovertakesaus}
+although it has fallen over the past five years.%
+	\footnote{\textcite{Van-onselen-2017-property-rent-seeker}. This is partly attributable to apartments accounting for  a larger share of new dwellings.}
+Dwellings are also now better quality.%
+	\footcite[][Graph~2]{KohlerandvanderMerwe}
+\textcite{Abelson-and-Chung-2005-realstoryofhousingprices} estimate that quality improvements explain about one third of the increase in housing prices between 1970 and 2003.%
+	\footcites{Abelson-and-Chung-2005-realstoryofhousingprices}{FoxFinlay2012}
+
+Higher construction costs have contributed only a little to increased house prices.
+Construction costs have increased faster than the CPI, although in line with other labour-intensive services.%
+	\footcite[][Graph~2]{KohlerandvanderMerwe}
+
+Housing affordability is usually measured using the average or median house price, because this data is more readily available.
+However, most first home buyers buy a dwelling that is cheaper than the average or median, especially in Melbourne and Sydney.%
+	\footnote{\textcite[][16]{Simon-Stone-2017-Property-Ladder} found that the median home purchased by a first home buyer is around the 30\textsuperscript{th} percentile of all homes and this has not changed much over the past decade.}
+Cheaper dwellings increased in price more than expensive dwellings over the past 10-15 years.
+The price of a detached house in the 1\textsuperscript{st} and  2\textsuperscript{nd} deciles has increased by more than 100 per cent, while the price of a dwelling in the 6\textsuperscript{th} or 7\textsuperscript{th} decile has increased by only 70 per cent (\Vref{fig:house-price-deciles}).%
+	\footnote{The results are similar when restricted to capital cities only, except prices for the lowest decile increased by about 100 per cent. Analysis of the HILDA survey in  \textcite{Wilkins2016HouseholdIncomeLabour} shows similar results.
+	The price of dwellings at the 10\textsuperscript{th} percentile increased by 108 per cent between 2001 and 2014, compared to 47 per cent at the 90\textsuperscript{th} percentile (in real terms).
+	The price of the median-priced dwelling increased by 77 per cent.}
+The differential is smaller for higher density dwellings because new apartments tend to be more expensive than most of the existing stock (see \Vref{box:Ong-box}).
+As a result, analysing average or median dwelling prices may underplay worsening affordability for first home buyers.
+
+
+\begin{figure}
+\caption{Cheaper dwellings have increased in price more than expensive dwellings over the past decade}\label{fig:house-price-deciles}
+\units{Per cent change in nominal dwelling prices between 2003-04 and 2015-16, by price decile}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsource{Only includes owners (with and without mortgage).
+Owner's estimated sale price if dwelling sold tomorrow. Average dwelling price in each decile. `Apartments, townhouses \etc.' includes semi-detached houses, row or terrace houses, townhouses, flats, units and apartments}%
+{Grattan analysis of \textcites{ABS-HES-201516-Microdata}{ABS-HES-200304-Microdata}}
+\end{figure}
+
+\section{It is getting harder to save a deposit}\label{sec:it-is-getting-harder-to-save-for-a-deposit}
+Saving a deposit is getting harder as prices rise.
+In the early 1990s it took around six years to save a 20 per cent deposit for an typical dwelling for an average household.
+It now takes around nine to ten years.%
+	\footnote{Assuming the median household saves 15 per cent of their gross income and that house prices do not grow faster than incomes.}
+\textcite{Simon-Stone-2017-Property-Ladder} calculate that the median deposit for first home buyers increased from about  \$42,000 in 2008 to almost \$70,000 in 2014.
+In addition, many young households are finding it harder to save for a deposit because they face larger HELP debts and are now forced to save more of their income into superannuation than their parents did 25 years ago.%
+	\footnote{For example, the 9.5 per cent Superannuation Guarantee adds an estimated one year to save a typical deposit on a typical dwelling for an average household, compared to if the Superannuation Guarantee did not exist. The Superannuation Guarantee was only introduced in 1992-93, with compulsory contributions rising from 3 per cent of wages in that year to 9 per cent from 2002-03, before reaching the current 9.5 per cent in 2013-14. The Super Guarantee rate will remain fixed at 9.5 per cent until 2021. It will then increase by half a percentage point each year until it reaches 12 per cent (\textcite[][12]{DaleyCoatesWood-2015-Super-tax-targeting}).}
+
+Although banks no longer insist on a 20 per cent deposit, most people still try to save this much before purchasing a dwelling.%
+	\footcite{Ellis-2017-Speech-Aust-Housing-Researchers}
+The typical leverage of a first home buyer has remained remarkably constant, at about 83 per cent between 2001 and 2014,%
+	\footcite{Simon-Stone-2017-Property-Ladder}
+even though banks loosened lending requirements and became more prepared to provide high-leverage loans.
+Most new home buyers have not taken up higher leverage loans because they are risk-averse, and they also want to avoid paying for lender's mortgage insurance,%
+	\footcites{Ellis2013-Housing-Mortgage-Markets-speech}{Simon-Stone-2017-Property-Ladder}
+which can add around 4-to-5 per cent to the amount borrowed.%
+	\footnote{Lender's mortgage insurance reimburses a lender if the borrower is forced to sell, but the sale price does not cover the outstanding loan.
+	For LMI calculations see \eg~\textcite{Thelander-2017-Canstar-What-is-LMI}.}
+
+The challenge of saving an initial deposit is now typically a bigger barrier to home ownership than the initial burden of mortgage repayments,%
+	\footcite{Simon-Stone-2017-Property-Ladder}
+and so younger households increasingly rely on contributions from the `bank of mum and dad' (see \Vref{subsec:rising-house-prices-will-also-contribute-to-intra-generational-inequality-over-time}).
+On the other hand, the higher deposit hurdle tends to exclude households who are less-disciplined savers, and so arrears rates are falling among young home owners.%
+	\footcite{Simon-Stone-2017-Property-Ladder}
+
+\section{The initial mortgage burden hasn't changed much, but borrowers are taking more risk for longer}\label{sec:the-initial-mortgage-burden-hasnt-changed-much-but-borrowers-are-taking-more-risk-for-longer}
+
+Because most people borrow for their first home, the \textbf{cost of mortgage repayments} relative to income often determines whether a dwelling is affordable.
+This `mortgage burden' is often defined as the proportion of household income spent on repaying a mortgage.
+Depending on the household income measure used, the mortgage burden on a newly purchased first home, assuming a person borrows 80 per cent of the value of the home, is currently lower than much of the period between 2003 and 2012 (\Vref{fig:new-mortgage-servicing}).%
+	\footnote{\textcite{CoreLogic2016-affordability}
+Different measure can be used, such as median rather than mean incomes, pre-tax rather than post-tax incomes, and the 25\textsuperscript{th} percentile dwelling by price rather than the mean.
+Historical peaks and troughs are similar for all these measures.}
+Higher house prices have been offset by record-low interest rates.%
+	\footnote{Indeed, some have argued that record-low interest rates mean that it now easier to pay off a home than in the past, despite higher house prices (\textcites{Sloan-housing-affordability}{Koukoulas-2016-millennials}).}
+As a result, interest payments now comprise the lowest share of national household disposable income since the early-2000s (see \Vref{fig:mortgage-interest-payments}). Principal repayments are relatively high but interest and principal payments combined remain well below the record levels of 2008 to 2011.\footnote{Grattan analysis of \textcites[][Graph 10]{Lowe2017SomeEvolvingQuestions}{Bullock_2018_Household_Indebtednes}.}
+
+\doublecolumnfigure{%
+\caption{The cost of servicing a new mortgage is not particularly high -- provided interest rates don't rise}\label{fig:new-mortgage-servicing}
+\units{Proportion of mean household disposable income to service a new first home mortgage on average residential dwelling at then current interest rates}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Assumes first home buyer mortgage is 80 per cent leveraged. Mean income is gross disposable income from National Accounts measure of income (based on ABS), which includes superannuation income and imputed rent, but excludes actual interest payments. Median household income is gross household income from \textcite{ABS-SIH-201314}. House price is the average Australian residential dwelling price from \textcite{ABS-2017-Residential}, using house price index changes from \textcite{BankforIS-2017-longseries} prior to 2011. Interest rates are standard mortgage rates until 2004, then discounted. Future scenario assumes house prices and incomes grow at 3 per cent a year. Includes principal repayments on a 25-year mortgage}%
+{\textcites{ABS-SIH-201314}{ABS-2017-Residential}{ABSNationalAccounts2017}{BankforIS-2017-longseries}{RBA2017selectedratios-e2}; Grattan analysis}
+}{
+\caption{Mortgages servicing costs are well below peaks – provided interest rates don’t rise}\label{fig:mortgage-interest-payments}
+\units{Aggregate interest payments on housing debt as a share of household disposable income, per cent}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Projection is for December 2019, if mortgage rates increase by 2 percentage points and incomes grow by 3 per cent each year. 
+This aggregate measure is much lower than \Cref{fig:new-mortgage-servicing} because it includes all households, not just those with a new first home loan. Excludes repayments of the principal borrowed.}%
+{\textcites[][Table~E2]{RBA2017selectedratios-e2}; Grattan analysis.}
+}
+
+But a typical first mortgage now entails a lot \textbf{more risk}.
+If interest rates increase by 2 percentage points, mortgage repayments on a new loan will be close to the peak in 2008 but still much lower that the brief period around 1989 -- an experience that scarred a generation of home-owners (\Vref{fig:new-mortgage-servicing}). Of course, the RBA is unlikely to raise rates as quickly as in the past precisely because households will probably change their behaviour more than in the past in response to a 0.5 per cent rate rise (\Vref{subsec:risks-from-high-house-prices-and-leverage-are-through-a-slowdown-in-spending-and-higher-unemployment}).
+
+The \textbf{mortgage burden over the life of the loan} can matter as much as the burden of payments at the beginning of the loan.
+Homebuyers repay their mortgages over periods as long as 30 years.
+The mortgage burden over the life of the loan depends on how fast income grows, and what happens to interest rates.
+
+Most people who bought 20 years ago now use only a relatively small share of their income to pay the mortgage.
+Nominal interest rates fell while nominal wages rose rapidly. \Vref{fig:mortgage-tilt} shows that a homebuyer purchasing the average house in 1990 spent less and less of their income paying off the mortgage as the years went by.
+
+In contrast, a new homebuyer today is likely to continue to spend a large proportion of their income on the mortgage for many years, unless wages start to grow faster than in the past few years.%
+	\footcites{Jacobs2015Whyiswage}{BishopCassidy2017insights}[][Figure~6]{Simon-Stone-2017-Property-Ladder}{Lowe-2017-Speech-RBA-Dinner}
+If interest rates rise faster than wages, then home loan repayments will consume an \emph{increasing} share of income over the life of the loan.
+
+As a result, it is becoming harder for households to pay off a home loan quickly, and fewer now own their home outright.%
+	\footnote{The share of owners with a mortgage has increased from 27 per cent in 1991 to 35 per cent in 2016 (\textcites{ABS20016Censuspopulationhousing}{Kryger2009HomeOwnershipinAustralia}).}
+
+
+\begin{figure}
+\caption{It is getting harder to pay off a home despite low interest rates, because loans are larger and wages are growing slowly}\label{fig:mortgage-tilt}
+\units{Mortgage repayments on an average dwelling, per cent of median household income}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{2017 average dwelling price is \$679,100; 2003 price is \$327,683; 1990 price is \$143,438 (the average Australian residential dwelling price from \textcite{ABS-2017-Residential}, using house price index changes from \textcite{BankforIS-2017-longseries} prior to 2011). Calculates mortgage repayments on an average dwelling, with a 20 per cent deposit, 25-year principal and interest loan. Uses actual wages (Wage Price Index, and prior to 1998 Index of Average ordinary time, full-time earnings) and interest rates to 2017; future projections assume interest rates remain at 2017 level, and that wages grow at current rates.}%
+{\textcites{ABS-SIH-201314}{ABS-2017-Residential}{ABS-WagePriceIndex-Jun2017}{ABS-Avg-weekly-earnings-May2017}{BankforIS-2017-longseries}{RBA2017selectedratios-e2}; Grattan analysis}
+\end{figure}
+
+\section{Fewer households are in mortgage stress or behind on their mortgage}\label{sec:fewer-households-are-in-mortgage-stress-or-behind-on-their-mortgage}
+
+But falling interest rates have reduced the proportion of households in mortgage stress.
+And relatively few Australians are out of work -- unemployment has remained relatively steady and at a level only slightly above what the RBA considers `full employment'.
+Mortgage stress, as measured in the 2016 Census,%
+	\footnote{The ABS defines mortgage stress as `households where mortgage payments are greater than 30 per cent of household income'.
+	The denominator is all occupied private dwellings, including those with a mortgage, rented dwellings, and houses owned outright.}
+was 7 per cent, down from 10 per cent in 2011.%
+	\footnote{\textcite[][20]{RBAFinancialStabilityOct2017} calculated that the share of indebted owner-occupier households making mortgage payments at or above 30 per cent of gross income fell from 28 per cent in 2011 to around 20 per cent in 2016 -- but this includes voluntary repayments, and so overstates the level of mortgage stress.}
+
+Mortgage stress is higher in suburbs on city fringes where most houses are in new developments (\Vref{fig:mortgage-burden-sa2}).
+More households in these suburbs have purchased their house very recently, and so mortgage payments tend to consume a larger share of their income (especially with low wage growth in recent years).
+Mortgage stress is highest in Wollert, a suburb in Melbourne's north, where 23 per cent of households are under mortgage stress.%
+	\footcite{Mather2017census2016}
+
+\begin{figure}
+\caption{Mortgage stress is concentrated on the suburban fringe, and has improved over the past five years}\label{fig:mortgage-burden-sa2}
+\units{Per cent of households spending more than 30 per cent of gross income on mortgage repayments, Greater Melbourne, Statistical Area Level 2}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{See Grattan's online map repository for the \href{https://hughparsonage.github.io/content/post/leaflet-prop-mortgage-stress-2011.html}\textbf{{2011 map}} and the \href{https://hughparsonage.github.io/content/post/leaflet-prop-mortgage-stress.html}{\textbf{2016 map}} for other cities and regions. Grey areas are due to confidentiality issues arising from small populations.}%
+{\textcite{ABS20016Censuspopulationhousing}; Grattan analysis}
+\end{figure}
+
+Low interest rates have also helped households pay off their mortgage.
+More households have a buffer on their loan today than at any time since the HILDA survey began in 2002.%
+	\footnote{\textcite[][Box~C, p.~20--21]{RBAFinancialStabilityApril2017} The average mortgage buffer is around 17~per cent of outstanding loan balances, or 2.5 years of scheduled repayments.
+	The average loan size for a first home buyer has only increased by 5 per cent in the past three years \textcite{ABSHousingFinanceAustraliaAugust2017}.}
+More than a fifth of households are four years ahead on their repayments.
+
+There are a few signs of mortgage stress. About a third of mortgage holders have minimal buffer on their loans.%
+	\footcite{Lowe2017Householddebt}
+Banks' non-performing housing loans have increased a little over the past couple of years, but remain low at three-quarters of one per cent of all housing loans.
+Mortgage arrears rates have increased primarily in areas exposed to the downturn in the mining sector.%
+	\footcite{Kent2017innovativemortgagedata}
+
+\section{Rents have also risen, albeit less quickly than house prices}\label{sec:rents-have-also-risen-albeit-less-quickly-than-house-prices}
+
+Of course, not all Australians own their own homes.
+More than 2.6~million Australian households -- or nearly one in three -- rented privately in 2016.
+
+Over recent years the proportion of households renting has steadily increased from around 27 per cent of households in 1991 to 32 per cent of households in 2016.%
+	\footnote{Census data, excluding dwellings with `tenure type not stated'.}
+So rents matter to housing affordability.
+
+Quality-adjusted rents have grown more slowly than house prices, and over the long term they have more or less tracked wages.
+Most households that rent are not spending a greater share of their income on rent.
+However, low-income households, particularly those living in capital cities, are spending a greater share of their income on rent, and as a result, more are financially stressed.
+
+\subsection{Rents have increased broadly in line with wages}\label{subsec:rents-have-increased-broadly-in-line-with-wages}
+
+Over the past 20 years, rents have grown much more slowly than house prices.
+Rents for a given standard of housing (as measured in the Consumer Price Index) have grown faster than consumer prices but broadly in line with wages (\Vref{fig:rents-v-house-prices}).%
+	\footnote{House prices, as measured by the ABS, use a stratification measure, which partially controls for compositional changes in the housing stock, but not for improvements to houses and increases in size.}
+Overall, renters are spending about 20 per cent more in rent for the same quality housing as two decades ago.
+
+\begin{figure}
+\caption{House prices have increased much faster than rents}\label{fig:rents-v-house-prices}
+\units{Nominal, index 1997 = 100}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsources{Nominal house price growth from \textcite{BankforIS-2017-longseries}; Wage price index (excluding bonuses; private and public). Rents in the CPI are stratified according to location, type and size.}{\textcites{BankforIS-2017-longseries}{ABS-2017-CPI-Sep}{ABS-WagePriceIndex-Jun2017}}
+\end{figure}
+
+Rents have consistently consumed around 16-19 per cent of disposable household income since the early 1990s.%
+	\footnote{\textcite{Kent2013Developments}
+For private renters, rent has remained at 19-20 per cent of renters' gross (after tax) household income \textcite{ABS-201314-occupancy-and-costs}.}
+Rents are a similar proportion of income in other OECD countries.%
+	\footcite[][Table~HC~1.2]{OECD2017housingdatabase}
+Over the last few years, rents in Australia have grown unusually slowly, at less than 1 per cent per year. Other data sources, generally based on advertised rents, suggest that rents increased faster than the CPI index measure shows.%
+	\footnote{\textcite{CoreLogic2017} measured rents growing at 2.5 per cent over the year to July 2017.
+	See also \textcite{SQM-research-weekly-rents}. The CPI measure uses a `stratified sample' according to `location, dwelling type and size of dwelling based on the most recent Census of Population and Housing': \textcite[][66]{ABS-2016cNationalAccounts}.}
+
+And simply comparing median rents to median house prices may overstate the divergence between them.
+More housing is now better quality, and price-to-rent ratios are generally higher for such housing.%
+	\footcites{HillandSyed2016}{Bracke2015houseprices}
+
+\subsection{Housing prices rose faster than rents because low interest rates and tax changes made owning housing more attractive}\label{subsec:housing-prices-rose-faster-than-rents-because-tax-changes-and-low-interest-rates-made-owner-occupancy-and-housing-investment-more-attractive}
+
+Dwelling prices rose faster than rents primarily because yields (\ie~rents) for all asset classes fell, and lower interest rates made investing in assets (including housing) more attractive.
+
+As yields on all asset classes fell, people were prepared to pay more for an asset with a given rental income. This increased the price-to-rent ratio.%
+	\footcites[][Figure~7]{HousingAus17}{Andre2010birds}{hatzviottorents2008}
+For investors who borrow (and most do\footcite[][Figure~9]{DaleyWood2016-Negative-Gearing-CGT}), lower interest rates increased the effective yield on equity.
+Investor yields after tax also increased with changes to the capital gains tax discount in 1999. Higher house prices today may reflect expected increases in rents in future.%
+	\footnote{\textcite{Bracke2015houseprices}. \textcite{Lowe-national-balance-sheet-speech} also highlights that higher house prices may reflect higher expected housing costs in future.}
+And after many years of rapid capital growth, investors have become prepared to pay more for the (not necessarily rational) expectation that there will be substantial capital gains in future.%
+	\footnote{\textcite{FoxTulip2014overvalued}; see also \textcite{KishnorMorley2015}.
+	In a survey of US property booms and busts since its formation, \textcite[][3]{Glaeser-2013-Natio-of-gamblers} notes that high prices paid during property booms and the low prices paid during busts are typically consistent with reasonable models of housing valuation and defensible (if ultimately incorrect) beliefs of future price growth.}
+
+Dwelling prices also rose faster than rents because owner-occupancy became more attractive relative to renting.
+As interest rates fell, new home owners were prepared to pay a higher price because the same monthly mortgage payment would service a larger loan.%
+	\footnote{See \textcites{Sommeretal-2010}{Andre2010birds} for an analysis of what can change the house price to rent ratio.
+    In a survey of Australian house prices from 1970 to 2003, \textcite{Abelsonetal2005} estimate that each 1 per cent fall in real mortgage rates led to a 5.4 per cent increase in real house prices.
+    \textcite{Miles-Pillonca-2008} find that declining mortgage interest rates account for between 30 to 70 per cent of house price increases across a number of European countries over the period from 1990 to 2007.}
+Strong house price growth made the long-standing tax benefits of owning a home
+even more valuable.
+	\footcite{KellyHarrisonHunterEtAl2013}
+There are claims that the non-financial advantages of home-ownership over renting increased, but there is little evidence of this.%
+	\footcite{FoxTulip2014overvalued}
+
+Some argue that the divergence between house prices and rents proves that houses are overpriced.%
+	\footnote{For example \textcites{Soos-2011-bubbling-over}{Janda2014}.
+	But see \textcite{FoxTulip2014overvalued}, `the expectations of future capital gains implied by current house prices are in line with historical norms.
+	That allays some concerns about a housing ``bubble''.'}
+But there is empirical evidence that the house-price-to-rent ratio can move away from its long-term average for an extended period of time, or move to a higher stable level.%
+	\footcites{Ambroseetal2013}{Sommeretal-2010}[][11]{2010BirdsEyeView}
+And the house-price-to-rent ratio may well fall because rents gradually increase while house prices stagnate, rather than because of a sharp fall in house prices.%
+    \footcite{Andre2010birds}
+
+\subsection{Rental stress is higher and rising among low-income households, especially in capital cities }\label{subsec:rental-stress-is-higher-among-low-income-households-especially-in-capital-cities}
+Although overall rents have grown broadly in line with incomes, and most renting households are \emph{not} spending an increasing proportion of their income on rent, low-income earners who rent in capital cities are paying more of their income on housing costs.
+
+Renters tend to be more financially stressed than home-owners (\Vref{fig:financial-stresses}).
+This is not surprising -- renters typically have lower incomes than home owners. However, the average number of financial stresses per household that is renting has fallen since~2009-10.
+
+\begin{figure}
+\caption{Renters tend to be more financially stressed than home owners}\label{fig:financial-stresses}
+\units{Per cent of households facing at least one financial stress, 2015-2016}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsource{Financial stress defined as whether a household due to a money shortage 1) skipped meals; 2) did not heat their home; 3) failed to pay gas, electricity or telephone bills on time; or 4) failed to pay registration insurance on time. The data can also be analysed show the average number of stresses per household in a given category. The financial stress of different categories of household maintain the same relativities whichever measure is used. Financial stress can also be measured by asking which households do not have goods and services that survey participants evaluate as relatively `essential'. Such analysis also produces similar relativities between the categories:
+\textcite{Saunders2011gfc}. `Pension' includes everyone over the age of 65 who receives social assistance benefits in cash of more than \$100 per week. `Welfare' includes those who receive more than \$100 per week from a disability support pension, carer payment, unemployment or student allowance or other government pension.}%
+{Grattan analysis of \textcite{ABS-HES-201516-Microdata}.}
+\end{figure}
+
+Rental stress tends to be higher, and is increasing faster, for low income households, particularly in capital cities. 
+As \Vref{fig:rental-stress-by-area} shows, the proportion of low-income households in capital cities spending more than 30 per cent of their gross income on rent increased from 36 per cent in 2007-08 to 47 per cent in 2015-16.%
+	\footnote{See also \textcite{Yates2016why}.}
+Rental stress is lower, and has not increased as much for low-income households in regional areas, where land values have not increased as much. Only about 20 per cent of middle-income households who rent are spending more than 30 per cent of their income on rent.\footnote{Grattan analysis of \textcite{ABS-HES-201516-Microdata}. This is an estimate as Commonwealth Rent Assistance data for households is only available for some years.}
+
+\begin{figure}
+\caption{Rental stress is higher among low-income households, especially in capital cities}\label{fig:rental-stress-by-area}
+\units{Per cent of low-income renters with housing costs more than 30 per cent of gross household income}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\notewithsource{Low income households are defined as the 40 per cent of households with equivalised disposable household income (excluding Commonwealth Rent Assistance)  at or below the 40th percentile, calculated for greater capital city areas and rest of state, on a state-by-state basis.}
+{\textcite{ABS-201516-occupancy-and-costs}}
+\end{figure}
+
+While there has been little change for other households, 
+a number of factors may explain why
+lower-income households are under increasing rental stress.
+First, the stock of lower rent social housing did not keep pace with population growth (\Vref{subsec:the-supply-of-social-housing-has-not-kept-up-with-population-growth}).%
+    \footnote{Over 60 per cent of low-income renters in the private rental market experience rental stress, compared to only 17 per cent of low-income rental households living in public housing: 	\textcite[][10]{Council-Fed-Fin-Relations-2016-Innovative-models-to-improve-supply-affordable-housing}.}
+Second, rents for cheaper dwellings have grown slightly faster than rents for more expensive dwellings (\Vref{fig:rents-deciles}).%
+	\footnote{\textcite[][20]{HousingAus17} estimates a shortfall of up to 300,000 rental dwellings in 2011 for households in the lowest income quintile and more than 100,000 for those in the second income quintile.}
+Third, Commonwealth Rent Assistance, which provides financial support to low income renters is indexed to CPI, and so it fell behind private market rents which roughly rose in line with wages (\Vref{fig:rents-v-house-prices}).%
+	\footcite{AHURI-2017-Private-rental-for-lower-income-households}
+
+\begin{figure}
+\caption{Rents for cheaper housing increased a little more than rents for more expensive housing}\label{fig:rents-deciles}
+\units{Per cent change in nominal rents between 2003-04 and 2013-14, by private rental decile}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\noteswithsource{Average rent in each decile. `Apartments, townhouses \etc.' includes semi-detached houses, row or terrace houses, townhouses, flats, units and apartments. Excludes public and social housing tenants and those paying less than \$20 per week in rent in 2003-04 and \$31 per week in rent in 2013-14. Approximately 70 per cent of households in the first decile are  renting from family, friends and others and may be paying below-market rent.}%
+{\textcites{ABS-HES-201516-Microdata}{ABS-HES-200304-Microdata}}
+\end{figure}

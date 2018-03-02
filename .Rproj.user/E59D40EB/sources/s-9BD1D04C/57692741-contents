@@ -1,0 +1,393 @@
+%!TEX root = ../Report.tex
+\chapter{Measures to manage demand}\label{chap:measures-to-manage-demand}
+
+Governments can implement a number of reforms to manage demand for housing.
+
+Reforming Commonwealth and state government policies that artificially inflate housing demand would help improve affordability.
+The Commonwealth should reduce the CGT discount, abolish negative gearing, and include owner-occupied housing in the Age Pension assets test.
+State governments should remove the exemption of owner-occupied housing from state land taxes, or better yet, impose a flat-rate property levy on all property.
+While the Commonwealth could tax capital gains on owner-occupied housing, this reform has significant potential downsides.
+
+Commonwealth and state governments can also intervene to regulate housing investors with tighter macro-prudential rules, and to enforce the existing limits on foreign investment properly.
+These will not make a huge difference in the long run, but they cost little.
+
+Reducing immigration would reduce demand, but it would also reduce economic growth per existing resident.
+First-best policy is probably to continue with Australia's demand-driven, relatively high-skill migration, and to increase supply of housing accordingly.
+But Australia is currently in a world of third-best policy: rapid migration, and restricted supply of housing, which is imposing big costs on those who have not already bought housing.
+If states are not going to improve supply with the kind of reforms discussed in \Chapref{chap:boosting-housing-supply-is-critical-to-make-housing-more-affordable}, then the Commonwealth should consider reducing migration as the lesser evil.
+
+But even if Commonwealth and state governments followed all our recommendations to reduce demand, other than taxing the capital gains on owner-occupied housing and reducing migration, such changes will have only a modest impact on Australia's \$7~trillion housing market.
+House prices would be unlikely to fall by more than 10 per cent,%
+	\footnote{Estimated price impact is based on the methodology set out in \textcite[][Box~6]{DaleyWood2016-Negative-Gearing-CGT}, assuming a discount rate of 5 per cent.}
+which is small relative to the house-price rises of recent decades.
+Government has little control over the biggest drivers of stronger demand for housing: higher incomes and record-low global interest rates.%
+	\footcite{SecularDrivers2015}
+
+\section{Reduce the CGT discount and abolish negative gearing}\label{sec:reduce-the-cgt-discount-and-abolish-negative-gearing}
+
+Housing demand would be reduced a little if the Commonwealth Government reduced the capital gains tax discount and abolished negative gearing -- and there would be substantial economic and budgetary benefits.
+
+As recommended in our 2016 report, \emph{Hot Property}, the capital gains tax discount should be reduced from 50 to 25 per cent, and negatively geared investors should no longer be allowed to deduct losses on their investments from labour income.
+The effect on property prices would be modest -- they would be roughly 2 per cent lower than otherwise -- and would-be home owners would win at the expense of investors. House prices at the bottom would probably fall by more since these tax breaks have channelled investors into low-value homes that are lightly taxed under states' progressive land taxes and tax-free thresholds (\Vref{subsec:tax-settings-encourage-people-to-invest-in-housing}).
+And price falls could be larger in sub-markets that are dominated by investors encouraged by tax breaks.%
+    \footnote {\textcites{BIS-2017-interest-rates-house-prices}{Spatial-Herding-Behavior-US-Housing-Market}. In Australia, investors are disproportionately focused on low priced dwellings on which they pay less land tax (\Vref{subsec:tax-settings-encourage-people-to-invest-in-housing}).}
+
+The dominant rationale for these reforms is their economic and budgetary benefits.
+The current tax arrangements distort investment decisions and make housing markets more volatile.
+Our proposed reforms would boost the budget bottom line by around \$5 billion a year.%
+	\footnote{\textcite{DaleyWood2016-Negative-Gearing-CGT}. The Parliamentary Budget Office estimated a similar budgetary impact for the ALP's 2016 election proposal along these lines: \hl{ADD REFERENCE TO PBO, Post-election report of election commitments, \url{www.aph.gov.au/About_Parliament/Parliamentary_Departments/Parliamentary_Budget_Office/General_elections/2016_post-election_report}  p.6}.}
+Contrary to urban myth, rents wouldn't change much, nor would housing markets collapse.%
+    \footnote{Economic theory suggests that higher property taxes and reduced investor demand will lead to some combination of higher rents and lower property prices. But in urban housing markets with tight constraints on supply almost all the impact will be on residential property prices rather than on rents (\textcite[][31]{DaleyWood2016-Negative-Gearing-CGT}).} %
+With tight constraints on supply of land suitable for urban housing, most of the impact will be felt via lower land prices.
+Phasing-in these reforms would make them easier to sell politically, and would dissuade investors from rushing to sell property before the changes come into force.
+
+\section{Include the family home in the Age Pension assets test}\label{sec:include-the-family-home-in-age-pension-assets-test}
+
+Including more of the value of the family home in the Age Pension assets test would improve the allocation of housing assets a little, make pension arrangements fairer, and contribute between \$1 and \$2 billion a year to the budget.
+
+Under the current rules only the first \$203,000 of home equity is counted in the Age Pension assets test, and the remainder is ignored.%
+	\footnote{Home-owning singles are allowed \$253,750 in assessable assets before their pension is reduced, compared to \$456,750 in assets for a single without a home.
+	Home-owning couples are allowed \$380,500 in wealth before their full pension is reduced, while a couple without a home can have \$583,500 (\textcite{DHS-2017-Age-pension}).}
+Inverting this so that all of the value of a home is counted above some threshold -- such as \$500,000 -- would be fairer, and contribute to the budget.
+
+It would also encourage a few more senior Australians to downsize to more appropriate housing, although the effect would be limited given that research shows downsizing is primarily motivated by lifestyle preferences and relationship changes (\Vref{fig:motives-for-downsizing}).%
+	\footcites{PC-2015-Housing-decisions-elderly}{TheAge-2017-Real-reason-retirees-keep-big-homes}
+These considerations dwarf the financial trade-offs between having more cash to spend, but a lower age pension.
+According to surveys, no more than 15 per cent of downsizers are motivated by financial gain.
+Only 1 per cent of seniors listed the impact on their pension as their main reason for not downsizing.
+Stamp duty costs (which are analogous to the threat of losing pension entitlements) were a barrier for a further 5 per cent of those thinking about downsizing.%
+	\footnote{\textcite{JuddEtAlDownsizing2014}. Discussed further \Vref{subsec:replacing-stamp-duties-with-general-property-taxes}.}
+
+Again the dominant rationale for this reform would be budgetary rather than housing affordability.
+Many Age Pension payments are made to households that have substantial property assets.
+Half of the government's spending on age pensions goes to people with more than \$500,000 in assets.%
+	\footnote{Grattan analysis of \textcite{ABS2015MicrodataIncomehousing}. Excludes impact of changes to the Age Pension assets test that took effect from 1 January 2017, reducing the pension entitlements of 326,000 pensioners.
+	However these changes will only reduce overall pension payments to part-rate pensioners by around \$1~billion in 2017-18, which is unlikely to substantially change the distribution of pension payments by net wealth, given total pensions spending of \$45~billion in 2017-18 (\textcites{FairerAccess2017MorrisonMediaRelease}{Budget2017-18-BP1}).}
+If the value of homes above \$500,000 was included in the Age Pension assets test -- and the asset-free area of homeowners was raised to the level that currently applies to non-homeowners -- the budget balance would improve by between \$1  and \$2 billion a year.%
+	\footnote{Grattan analysis of \textcite{ABS2015MicrodataIncomehousing}.} 
+
+The impact on low-income retirees with high-value houses could be mitigated by encouraging them to continue to receive the pension, but reclaiming the over-payment when their house is eventually sold.%
+	\footnote{This would extend the existing pension loans scheme from part-pensioners to all retirees, although take-up of this scheme has been limited: \textcite{TAI-2014-Boosting-retirement-incomes-easy-way}.}
+If retirees responded rationally, the reform would have almost no effect on them -- instead it would primarily reduce inheritances. 
+But there is a concern that in practice pensioners may reduce their expenditure so as to avoid reducing the value of their home (retirees seem to put a very high value on preserving the nominal value of their assets).%
+    \footnote{Grattan analysis of \textcite{ABS2015MicrodataIncomehousing}.
+	A 2015 study found that 90 per cent of pensioners who had died within the eight-year period of the study had assets at death worth at least as much as their assets at the beginning of the study \textcite{WuEtAlAgePensioner2015}.} 
+This risk could be minimised if the charge on the home is explicitly limited so that it will never take the last (say) \$250,000 of the value of the home.
+In practice this threshold is unlikely to be exceeded because as the net value of the home falls, it would have less effect on eligibility for the pension.
+
+It might be argued that such changes to the Age Pension are `unfair' because people have already organised their retirement finances.
+But this is less of a concern with a reform that primarily affects inheritances rather than retirement incomes.
+This reform reduces the unfairness of the current system that treats homes and other assets very differently.
+And it seems unfair that the current system pays welfare to retirees who own homes that many in a younger generation will never be able to buy.
+
+The impact of the change could also be mitigated if the value of owner-occupied housing that is included in the pension assets test was only increased gradually, giving retirees more time to decide how to respond to the new rules.
+
+Alternatively a greater portion of the family home could be included in the means tests for residential aged care.
+The current means test for residential aged care support only incorporates the first \$162,815 of the aged care resident’s home, and only when there are no remaining protected residents such as a spouse or dependent children still living in the family home.%
+    \footcite[][22]{PC-2015-Housing-decisions-elderly}
+When assessing residents' capacity to contribute to their aged care costs, the means test could include the full value of the home, or its value above a threshold.
+
+Since residential care is typically the final place of accommodation in a person’s life, the family home is no longer an accommodation option, nor a vehicle for precautionary saving. Instead the primary motivation for retaining the home in such situations is for bequests. 
+
+Again the primary benefits of this reform would be budgetary: any impact on housing affordability would be modest. Commonwealth Government spending on aged care costs is growing rapidly, and is expected to double as a share of GDP over the next 40 years as the population ages.% 
+    \footnote{Commonwealth Government aged care spending -- including both residential and home-based care -- totalled 0.9 per cent of GDP in 2014-15, and is projected to rise to 1.7 per cent of GDP in 2054-55 (\textcite{Hockey2015IGR}).} 
+Over 40 per cent of residents in aged care have their accommodation costs subsidised and virtually everyone receives a subsidy for the care component.%
+    \footcite[][22]{PC-2015-Housing-decisions-elderly} 
+Including more of the value of the home in the aged care means test would improve equity between home owners and non-home owners, and help to ensure that care recipients with the financial ability to do so should pay for their own accommodation. 
+
+
+
+\section{Broadening land taxes to include owner-occupied housing}\label{sec:broadening-land-taxes-to-include-owner-occupied-housing}
+
+Extending land tax to owner-occupied housing would have a more immediate effect on housing prices, while also boosting state budgets. The principal place of residence is exempt from land tax in all states, which makes owning a home more attractive and further inflates house prices. Even though owner-occupied housing accounts for 75 per cent of all residential land, imposing land tax on it would only raise around \$7 billion nationally because it would be taxed at comparatively low rates under the generous tax-free thresholds and highly progressive rates of land tax currently in force.%
+    \footnote{\textcite[][24]{KellyHarrisonHunterEtAl2013} updated to 2017 using \textcite[][Table~61]{ABS-aus-system-of-nat-accounts2016-17}.}
+Alternatively, imposing a \$2 levy for every \$1,000 of unimproved land value used for owner-occupied housing -- about one tenth of the rate of land tax that applies to large landholders -- would also raise \$7 billion nationally.%
+    \footnote{\textcite[][7]{DaleyCoates-2015-Property-taxes} applying only to owner-occupiers and updated to 2017 using \textcite[][Table~61]{ABS-aus-system-of-nat-accounts2016-17}.}
+Either approach would be expected to reduce land values by between 3 and 6 per cent, and housing prices by roughly 3 per cent.%
+    \footnote{The Victorian Government estimates that exempting the principal place of residence from land tax will cost the state budget \$1.8~billion in 2017-18, compared to total land tax collections of \$2.4~billion (\textcite[][155,171]{VicDTF-Budget-Paper-No5-2017-18}).
+	Assuming the nationwide budgetary cost of the PPR land tax exemption of \$7~billion a year, and following the approach of \textcite[][32]{OrangeBook-2016}, this exemption inflates overall house prices by roughly 3 per cent, and owner-occupied housing specifically by around 4 per cent.} 
+The additional taxes might either pay for escalating costs (particularly in hospitals) or the abolition of more economically costly taxes such as taxes on insurance.%
+    \footcites{DaleyCoates-2015-Property-taxes}{Freebairn-2017-Reform-options-for-state-property-taxes}
+
+\section{Any reforms to the tax treatment of the main residence should proceed with caution}\label{sec:any-reforms-to-the-capital-gains-tax-exemption-on-the-main-residence-should-proceed-with-caution}
+
+Making owner-occupied housing liable for capital gains tax could also reduce housing demand and improve the budget bottom line, generating additional tax revenue of up to \$35 billion a year.%
+	\footnote{Based on Treasury's revenue foregone measure of main residence exemption in 2018-19, assuming tax on 50 per cent of the capital gains on the sale of homes, and excluding mortgage interest and capital works deductions from the cost base in the calculation of capital gains. Once these are included, the actual revenue raised would likely be much less. Taxing the full capital gain (\ie~without the 50 per cent discount) on the sale of the family home would generate up to an additional \$42.5 billion in tax revenue, again ignoring mortgage interest and capital works deductions or second round behavioural responses.   
+	\textcite[][102--103]{Treasury-2018-TES-for-2017}.} %
+Investment would be less biased towards housing, where any capital gains are untaxed, compared to investing in other more productive assets. 
+
+But such a change might have unintended consequences.
+It would discourage people from moving house, since home sales would trigger liability to pay capital gains tax.
+Young purchasers would be tempted to choose oversized housing, to reduce the number of home moves they make over a lifetime.
+It would be difficult to resist calls to allow deduction of interest payments and the cost of any capital improvements made to the home such as renovations, which could wipe out most or all of the benefit to the budget.%
+	\footnote{\textcite[][40--41]{DaleyEtAl-2013-BalancingBudgets}.
+	For example, \textcite[][18]{DaleyEtAl-2013-BalancingBudgets-supporting-analysis} note that deductions accruing in a year for mortgage repayments and home improvements would generally be larger than the annual capital gains tax payable in a given year.
+	Taxing imputed rents -- the value of owning the home that you live in -- would better align the tax treatment of all housing investment and could raise billions more in tax revenues, offsetting the budgetary costs of these deductions.
+	But such a step presents a number of practical policy design and implementation challenges, which is why only five OECD member countries -- the Netherlands; Iceland; Slovenia; Luxembourg and Switzerland -- tax imputed rents, and they often substantially under-estimate the rental value. (\textcites{AndrewsEtAlHousing}[][134]{PC-2015-Housing-decisions-elderly}).}
+And there are reasonable arguments that taxes on long term savings vehicles such as owner occupied housing should be taxed at less than full marginal rates of personal income tax, even if the precise size of the discount is contested.%
+    \footcites[][22]{DaleyCoatesWood-2015-Super-tax-targeting}[][9]{DaleyWood2016-Negative-Gearing-CGT}
+
+The impact would probably be positive overall, but the politics seem intractable.
+House prices would be lower overall, which would improve affordability.
+But lock-in effects would be significant. Home ownership rates would probably fall, because home ownership would become less attractive relative to housing investment.
+The impact on the budget would range from very positive to somewhat negative depending on whether deductions are allowed for mortgage repayments and renovations.
+
+But whatever the policy merits, it is difficult to imagine that it would be politically feasible to impose a very substantial new tax on the dominant asset of 70 per cent of Australian households. 
+
+\section{Macro-prudential rules should be used to manage financial sector risks where required, but not to reduce house prices}\label{sec:macro-prudential-rules-should-be-used-to-manage-financial-sector-risks-where-required-but-not-to-reduce-house-prices}
+
+Macro-prudential rules -- which restrict bank lending -- could be tightened, and this would make housing more affordable.
+But lending should not be restricted just to bring down house prices.%
+	\footcite{Byres-2017-Prudential-perspectives-property-market}
+Instead, Australia's financial regulators -- APRA and ASIC -- should use macro-prudential tools primarily to minimise macro-economic risks if there are signs that bank lending is becoming more risky.%
+	\footcite{Orsmond-Price-2016-Macro-frameworks-tools}
+
+Tightening lending standards would lead to lower house prices than otherwise since they reduce the purchasing power of prospective buyers.%
+	\footnote{For example, \textcite{Price-2014-RBNZ-LVR-restriction-housing-market} found that New Zealand rules restricting loans to higher-risk buyers with small deposits led to house prices 3 per cent lower than otherwise.
+    An international survey of macro-prudential tools found evidence that they slowed growth in both credit and house prices (\textcite{Cerutti-etal-2015-IMF-Effictiveness-Macro-policies}).}
+Australia's banking regulator, the Australian Prudential and Regulatory Authority (APRA), recently limited banks so that new interest-only housing loans must be less than 30 per cent of their total new housing loans.%
+	\footcite{APRA-2017-announcement-limit-interest-only-loans}
+This followed limits it imposed in late 2014 so that each bank did not increase its total lending to property investors by more than 10 per cent each year.%
+	\footcite{APRA-2014-announcement-limit-lending-below-10pc}
+After these changes, the cost of borrowing to invest increased,%
+	\footcite{Kent2017innovativemortgagedata}
+and loans to investors have grown slower,%
+	\footcite[][49]{RBAStatementonMonetaryPolicyAug17}
+so it is likely that the changes have had some impact on house prices.
+
+When used carefully to target financial stability risks, macro-prudential rules provide a net benefit to the community.
+Macro-prudential tools can allow the Reserve Bank to reduce interest rates to promote economic growth.
+Normally the Reserve Bank reduces interest rates if inflation is low, economic growth is slow and unemployment is elevated.
+Inflation is expected to remain near the bottom of the Reserve Bank's target band of 2-to-3 per cent until the end of 2019,%
+    \footcite[][63]{RBAStatementonMonetaryPolicyAug17}
+economic growth is sluggish, and very low wages growth suggests many people are looking to work more.
+But the RBA has been reluctant to reduce rates because it has been worried about increasing levels of household debt, which increase macro-economic risks.
+(\Vref{subsec:risks-from-high-house-prices-and-leverage-are-through-a-slowdown-in-spending-and-higher-unemployment}).%
+	\footnote{For example, see: \textcites{RBAFinancialStabilityApril2017}{RBA-statement-nov-2017}.}
+Macro-prudential tools can help the Reserve Bank to square this circle and keep interest rates low without increasing housing market risks.
+
+But the international evidence is that macro-prudential rules do not limit housing price rises over the long term if there is strong underlying demand or weak supply.%
+	\footcite{Lowe2017Householddebt}
+Over time potential buyers can shift to non-bank finance -- which can increase housing market risks as non-bank lenders are typically much more lightly regulated.
+And macro-prudential tools necessarily also have costs.
+For instance, restricting access to credit will make it harder for some households to purchase a home, particularly first home buyers.%
+	\footcite[][6]{Tripe2014MacroPrudential}
+By imposing restrictions, macro-prudential tools effectively increase bank profit margins, redistributing wealth from borrowers to bank shareholders.%
+    \footnote{For example, \textcite[][173]{ProductivityCommission2018CompetitionFinSector} estimates that macro-prudential measures to slow interest-only lending on residential property in early 2017 resulted in higher interest rates on both new and existing residential investment loans, leading to windfall gains for the banking sector of around \$1 billion a year in additional interest income from investor loans. Between \$300 and \$500 million could have been claimed by investors as income tax deductions.}
+Consequently, it is appropriate that regulators are reluctant to restrict lending just to bring down house prices.%
+	\footcite{Byres-2017-Prudential-perspectives-property-market}
+
+\section{Better enforcing existing rules on foreign investment in housing could make housing more affordable}\label{sec:better-enforcing-existing-rules-on-foreign-investment-in-housing-could-make-housing-more-affordable}
+
+Limiting purchases by foreign investors, and taxing them more, can reduce demand to purchase housing.
+But the effects will be small in the scheme of Australia's \$7~trillion residential housing market.%
+	\footnote{Grattan analysis of \textcite[][Tables~10 and~61]{ABS-aus-system-of-nat-accounts2016-17}.}
+And such restrictions may have the unintended consequence of reducing housing supply, so the overall effect on housing affordability, particularly for rents, in the long term may be mixed.
+
+As detailed above in \Vref{subsec:foreign-investors-have-added-to-already-strong-housing-demand-but-have-also-increased-supply}, foreign buyers own about 2 per cent of Australian property, although they are a larger share of recent purchases.
+
+Australia already has far stricter rules governing foreign investment in housing than most comparable countries (\Vref{tbl:Intl-regulation-of-foreign-real-estate-investment}).
+Foreign investors do not appear to be breaking these laws on a significant scale.
+
+These laws are supposed to channel any foreign investment into new dwellings, thereby \emph{adding} to Australia's housing stock, rather than simply adding to demand for existing homes. The evidence suggests that overall foreign investment has \emph{both} increased prices a little, and increased the supply of housing a little. Overall foreign investors would only reduce dwelling supply for Australian residents if they bought a property and left it vacant. It appears that very few do so. (\Vref{subsec:foreign-investors-have-added-to-already-strong-housing-demand-but-have-also-increased-supply}).
+
+A number of policy measures can maximise how much foreign investment expands Australia's housing supply, minimise how much foreign investment increases house prices, and increase government revenue. These measures have relatively little cost for local residents. But they are unlikely to make much difference to affordability overall.
+
+Many of these policy measures are already in place, and the priority should be on ensuring that they are enforced.
+
+First, the Commonwealth Government needs to \textbf{enforce the existing limits on foreign investors buying established housing}.
+
+Foreign investors illegally purchasing established houses undermines public acceptance of foreign investment in housing and in other sectors.
+Foreign investment rules have been enforced better since they were changed in 2015, and responsibility for enforcement moved to the Australian Taxation Office (\Vref{subsec:foreign-investment-existing-housing}).
+It might be possible to tighten the system further by more explicitly requiring real estate agents to ensure that purchasers are either local residents or have FIRB approval.%
+	\footnote{Third parties are legally prohibited from knowingly assisting another person to breach foreign investment rules.
+    But it appears that this may allow real estate agents to turn a blind eye to whether a purchaser has FIRB approval when buying a house \textcite{FIRB2016ThirdParty}.}
+
+Second, to ensure that foreign investment in housing actually boosts the supply of rental properties and puts downward pressure on rents, governments \textbf{should encourage foreign (and domestic) investors to rent out their investment properties}.
+
+The Commonwealth and Victorian Governments have both introduced vacant dwelling taxes as a `stick' to encourage foreign investors to rent out properties.
+The Commonwealth Government will charge foreign investors \$5,500 for a property priced at less than \$1 million if it is left vacant for more than six months in a year.%
+	\footnote{The tax paid is defined as the foreign investment application fee paid at the time of application.
+    For property purchased for less than \$1~million, the annual charge will be \$5,500 (\textcite{Budget1718-Stronger-rules-foreign-investors-own-Aust-housing}).}
+The Victorian Government tax has a similar magnitude: it taxes vacant properties at the rate of 1 per cent of the property's value -- \$5,000 on a \$500,000 property.
+It applies to both foreign and domestic owners.
+
+But enforcement will be difficult.
+The Victorian Government's tax will be `self-reporting' in its first year of operation in 2018.%
+	\footcite[][14]{VicStateGov2017Homes}
+Most currently vacant homes will be exempt because their owners are temporarily overseas, they are holiday homes, or they are a city unit for work purposes.%
+	\footcites{SGSCensus2017}{DaleyCoates-2017-theAge-Stamp-duty-wont-help-housing-affordability}
+Governments in Paris, Vancouver and Toronto have introduced similar taxes but are yet to demonstrate how to enforce the tax in practice.%
+	\footcite{Pawson-2017-theConvo-Taxing-empty-homes}
+
+Third, \textbf{governments should continue to raise revenue from foreign investors}.
+Because new housing supply is relatively inelastic, and this won't change quickly, taxing foreign investors is generally good policy.
+It raises revenue while imposing few costs on Australians.%
+	\footnote{For example, \textcite[][53]{CaoHoskingKouparitsasEtAl2015}, conclude that levying a broad-based land tax would improve the economic welfare of Australians (\ie~the marginal excess burden is negative) because land tax revenues are paid by foreigners, and then distributed to Australian residents.}
+Such taxes are also politically easy: foreigners don't vote and they are often blamed for higher house prices.%
+	\footcite{RogersetalChineseRealEstate}
+
+The Commonwealth Government has increased FIRB application fees, is stopping foreign and temporary tax residents from claiming the capital gains tax exemption for the main residence, and is tightening the capital gains tax withholding regime.%
+	\footnote{The Government is increasing the withholding rate from 10 per cent to 12.5~per cent, and reducing the withholding tax threshold from \$2~million to \$750,000 (see \textcite{Budget2017-18-BP2}).} Most states have recently introduced or increased stamp duty surcharges for foreign investors.
+The Victorian Government increased the stamp duty surcharge from 3 per cent to 7 per cent and the NSW Government raised its surcharge from 4 per cent to 8 per cent.%
+	\footnote{South Australia has also introduced a 4 per cent stamp duty surcharge and Queensland a 3 per cent surcharge.}
+NSW and Victoria have also introduced land tax surcharges on foreign investors (2~per cent a year in NSW, and 1.5~per cent a year in Victoria).%
+	\footnote{The NSW Government expected to raise \$75~million in 2018-19 from the 2 per cent land tax surcharge on foreign investors and a further \$151 million from the increase in the stamp duty rate on foreign investors from 4 per cent to 8 per cent  (\textcite[][p.~5-3]{NSW-Budget-2017-18-BS1}).}
+
+While these taxes have not deterred foreign investment in the past, more recent evidence suggests they are starting to slow foreign investment.%
+	\footnote{A 15 per cent tax on foreign purchases of real estate in Vancouver, implemented in August 2016, resulted in prices falling significantly, although they have since risen (\eg~see: \textcites{Cranston2017ForeignHome}{BBC2017Vancouver}{CREA2017NationalStats}). Toronto also implemented a 15 per cent tax in April 2017.} 
+Australia already has strict foreign investment laws and relatively high fees and taxes, so state governments should be wary of deterring foreign investment that adds to supply by raising taxes on foreign investors too far.
+
+Fourth, the Commonwealth Government should \textbf{tighten anti money-laundering laws} to stop Australian real estate being used as a store of value for corrupt or black money illegally taken from other countries.%
+	\footcite{FATF-APG-2015-Anti-money-laundering-counter-terrorist-finance-measures-Aust}
+
+Anti-money laundering authorities believe overseas criminals use Australian real estate to launder money.%
+	\footnote{The government body responsible for tackling money laundering, AUSTRAC, has only `some visibility of potential money laundering through real estate', \textcite{AUSTRAC2015RealEstate}.
+	The responsible international agencies found that in Australia `most designated non-financial businesses and professions, including real estate agents and legal professionals, are also not subject to AML/CTF controls or suspicious transaction reporting obligations, even though they are highlighted as being high-risk for ML activities': \textcite[][9, 13]{FATF-APG-2015-Anti-money-laundering-counter-terrorist-finance-measures-Aust}.}
+Real estate agents, lawyers and accountants currently sit outside anti-money laundering rules.%
+	\footcites{AG-2016-Report-on-review-of-Anti-money-laundering-Act}{AG-2016-Consult-paper-real-estate-professionals}
+Reforming the second tranche of the reform of the~\emph{Anti-Money Laundering and Counter-Terrorism Financing Act 2006} (Cth) remains under consideration after nine years.
+The Government should proceed forthwith, and financial institutions should be responsible for assisting with compliance.%
+	\footcite{AUSTRAC2015RealEstate}
+
+Ensuring that foreign investment is channelled towards new housing, and levying higher taxes on foreign investors, would ensure that Australia obtains the benefits of foreign investment in housing, while minimising the costs.
+
+But even sharp curbs on foreign investment in housing would do relatively little to reduce house prices.
+Foreigners don't own much of Australia's housing -- perhaps 2 per cent of the value of the residential stock.
+Foreign purchasers account for a larger share of housing turnover -- around 5-10 per cent of turnover in 2016-17 -- but the bulk of foreign purchases are for new, rather than existing housing (\Vref{subsec:scale-foreign-investment}).
+
+The benefits of foreign investment in property would be larger with reforms to land-use planning rules to boost housing supply (\Vref{sec:state-governments-need-to-increase-housing-supply-in-our-major-cities}).
+If supply responded more to demand, foreign investment would translate more into additional housing, rather than putting upward pressure on the price of housing that would be built anyway.
+
+\section{Reducing immigration would improve housing affordability but probably leave Australians worse off}\label{sec:reducing-immigration-would-improve-housing-affordability-but-probably-leave-australians-worse-off}
+
+A number of commentators have argued that fewer migrants should be allowed into Australia in order to improve housing affordability and reduce congestion in our biggest cities.%
+    \footnote{For example, see \textcites{Hunter-2017-SMH-Tony-Abbott-sez-cut-immi-let-1st-home-buyers-raid-super}{Sloan-2017-theOz-Cut-immi-by-half-for-housing-affordability}{Trembath-2016-ABC-BobCarr-sez-few-immigrants}{Smith2017Westpac}. The New Zealand Labour Government intends to reduce net immigration by 20,000 to 30,000 per year, in part to improve housing affordability (\textcite{NZ_Labour_2018_immigration}).}
+
+Lower migration would make housing more affordable.
+But it would probably leave Australians worse off.
+The first-best policy response would be for governments to make better policy choices on infrastructure and land use planning to boost housing supply.
+But if state governments fail to ensure that planning allows enough development to accommodate additional residents, the Commonwealth Government should consider pulling back on migration numbers.
+
+\subsection{Migration to Australia is relatively high }\label{subsec:migration-to-australia-is-relatively-high}
+
+Much of Australia's population growth is the consequence of migration (\Vref{subsec:high-immigration-boosted-demand-for-housing-particularly-in-major-cities}).
+Over the past decade, Australia has had some of the highest levels of migration in the developed world, and more Australian residents were born overseas than in any OECD country except Luxembourg and Switzerland.%
+	\footcites{OECD2017Migration}[][59]{CommissionMigrantIntake2016}
+Net overseas migration to NSW and Victoria has recently accelerated again to its highest levels 
+in history (\Vref{fig:NOM-states}). 
+
+\subsection{Immigration has benefits}\label{subsec:immigration-has-benefits-and-costs}
+
+This migration has both benefits and costs -- economic, budgetary and social -- for the incumbent Australian population, and for migrants.%
+	\footnote{According to the Productivity Commission, maximising the well-being of existing citizens and permanent residents should be the objective of immigration policy  (\textcite[][91]{CommissionMigrantIntake2016}), although others argue that the well-being of migrants should also be considered (\eg~\textcite{Westland2017Rejoinder}).} 
+
+Because migrants tend to be younger and more educated than the average Australian, they add a little to productivity, and to the economic resources available for each existing resident.
+Overall, the migrants living in Australia today are less likely to work, but they have similar unemployment rates, work similar hours, and earn more per hour than those born in Australia.%
+	\footcite[][147--175]{CommissionMigrantIntake2016}
+Migrants are substantially more likely to be tertiary educated than people born in Australia of a similar age and gender.%
+	\footcite[][132]{CommissionMigrantIntake2016}
+\emph{Skilled} migrants -- now well over half those granted permanent residency%
+    \footnote{Australia granted permanent residency to 204,000 people in 2014-15: 129,000 for the skilled stream, 61,000 for the family stream and 14,000 for the humanitarian program: \textcite[][23]{CommissionMigrantIntake2016} but cf. \textcite[][69]{CommissionMigrantIntake2016}.}
+-- are more likely to be employed than Australian-born residents and to earn higher incomes.%
+	\footcite[][10]{CommissionMigrantIntake2016}
+
+\emph{New} migrants are younger than many previous waves of migrants when they arrived. And they are much younger than the incumbent Australia population.%
+    \footcites[][125]{CommissionMigrantIntake2016}[][Graph~5]{Ellis2017Kellyspeech}
+Consequently, they provide a \emph{demographic dividend} over the medium run by increasing the proportion of Australians in the workforce, thus smoothing the negative economic and budgetary impacts of an ageing population over a longer period.%
+	\footnote{For example, the share of the population aged 65 and over is expected to increase from around 15 per cent in 2014 to around 25 per cent in 2060 if current levels of net migration are maintained, but to around 30 per cent if net migration is cut to zero.
+    Sensitivity analysis conducted for the \emph{Intergenerational Report 2015} implies that cutting Australia's migrant intake to 100,000 a year would reduce the number of working-age Australians aged 15-64 for each Australian aged 65 and over (the `dependency ratio') from 2.7 to 2.4 by 2054-55 and reduce real per capita incomes by \$4,000 a year (\textcite[][Tables~A.1 and~B.2]{Hockey2015IGR}).}
+While immigration does not eliminate the costs of population ageing, since migrants themselves also age, it has smoothed out the baby-boom `bump' that created a cohort much larger than the age group born in the years before or after.%
+	\footnote{\textcite{NortonTanner2017GenY}; \Vref{fig:pop-generations}.}
+
+Contrary to popular perceptions that immigrants take incumbent residents' jobs and reduce their wages,%
+    \footnote{\eg~\hl{add reference Abbott} \url{www.tonyabbott.com.au/2018/02/address-sydney-institute-governor-phillip-tower-sydney/}.}
+migrants add to both the supply \emph{and} demand for labour since they demand goods and services that require additional labour.
+Recent research shows that immigration has had little impact on unemployment and wages in Australia, consistent with the small effects found in most international studies.%
+	\footnote{\textcite{BreunigEtAl2016Immigration} found that after controlling for the fact that immigrants to Australia disproportionately flow into high-skill groups with higher wages and other positive outcomes, immigration has had no impact on the wages of incumbent workers.
+    Most international studies on the aggregate impact of immigration find small (either positive or negative) effects (\textcite[][9]{CommissionMigrantIntake2016}).}
+However, particular workers in specific sectors of the economy with high concentrations of migrant workers could experience higher unemployment.%
+	\footcite[][195]{CommissionMigrantIntake2016}
+
+The combined effects of these factors is that net overseas migration modestly boosts average Australians' living standards.
+Productivity Commission modelling found that if migration continues at the long-term historical average rate, and assuming the same young age profile as the current intake, then GDP per person will be 7 per cent higher in 2060 than if there were zero net migration.%
+	\footnote{\textcite[][15]{CommissionMigrantIntake2016}.
+	Modelling by \textcite{PC-2006-Econ-Impacts-of-Migration-Pop-growth} produced similar results, concluding that `the overall economic effect of migration appears to be positive but small' and, `\dots{} the negative contributions of the foreign ownership of capital, terms of trade, age and lower labour productivity \dots{} are offset by the positive contributions from labour supply, skill composition and lower consumption prices' (p.~XXXII).
+	The impact on GNI is smaller than the impact on GDP because absorbing the extra immigrant labour requires additional capital, some of which is funded from abroad.}
+
+Skilled migrants may also generate positive but small spillover benefits, modestly raising the productivity and incomes of Australian-born workers.%
+	\footnote{For example, \textcite{Parham-etal-2015-Migration-productivity-Aust} find immigrants accounted for 0.17 of a percentage point of annual labour productivity growth between 1994-95 and 2007-08.
+	Yet immigration is unlikely to have substantial spillover impacts on productivity and income per capita because the annual flow of immigrants is small compared to the existing population and the skills composition of immigrants is not all that different from the Australian-born population (\textcite[][214]{CommissionMigrantIntake2016}).}
+Migrants tend to have more `get up and go' because by definition they have already got up and gone.
+But measuring this effect is inherently difficult, and the limited available evidence suggests the effect is small.%
+	\footnote{See the literature review in \textcite[][212--214]{CommissionMigrantIntake2016}.}
+
+\subsection{Immigration has costs, particularly increasing pressure on housing}\label{subsec:immigration-has-costs}
+
+Such modelling does not identify all of the impacts of migration on the incumbent Australian population.
+Migrants themselves may capture more of the increase in GDP if they have above-average incomes.
+
+Migration also adds to costs for the existing population.
+Migrants require additional infrastructure, which the community must fund.
+Migrants require additional housing -- and if this isn't built, migrants increase the price of existing housing.
+
+More GDP per capita may not improve overall community well-being, after accounting for the social and environmental impacts of migration such as increased congestion and environmental degradation.%
+	\footcites[][16--17, 363]{CommissionMigrantIntake2016}{Sobels-2013-Crikey-Pop-v-environ}
+
+In particular, migration materially adds to housing demand.
+Without net migration, Australian population growth over the past decade would have been 0.7 per cent a year rather than the actual 1.7 per cent a year.
+
+Not surprisingly, several studies have found that population growth increases Australian house prices.%
+	\footnote{\textcites{BourassaHendershott-1995-Aust-capital-city-house-prices}{OttoGrowthofHousePrices}.
+	However these studies did not focus on immigration specifically, as opposed to interstate migration effects.
+	The \textcite[][227]{CommissionMigrantIntake2016} stated `Depending on the supply response, [immigration] can contribute to increases in housing prices'. See also \textcite{Andric2015immigration}.
+	Overseas studies generally focus on the impact of immigration on a city or region, rather than a whole country, \eg~\textcite{Saiz2007housepricesrents}.}
+Immigration also contributes to congestion in our major cities, increasing the premium on inner-city land close to jobs and public transport.
+
+Thus migrant demand for housing affects the distribution of wealth in Australia in similar ways to other forces that increase house prices (\Vref{box:who-wins-and-loses}).
+Existing housing investors win because their investments go up in value.
+Existing home owners win because the price of their homes goes up.
+But they often don't benefit until they sell and downsize, because until then they are living in the same home.
+Those who have not yet bought homes are worse off, because they will have to spend more of their income to buy a house, or in rent.
+
+\subsection{The overall effect of immigration depends on how well infrastructure and planning are managed}\label{subsec:the-overall-effect-of-immigration-depends-on-how-well-infrastructure-and-planning-are-managed}
+
+The overall impact of immigration on community well-being depends on the complex interaction of immigration flows on economic, social and environmental outcomes.%
+	\footcites[][83]{CommissionMigrantIntake2016}{Rizvi_2018_immigration_debate_inside_story}
+
+Overall, immigration is almost certainly positive if the required additional infrastructure and housing is built promptly and efficiently.
+
+But if governments make poor infrastructure choices and limit housing supply, many Australians will be worse off because of higher housing costs and more congestion.
+There is plenty of evidence that this is the world we are in.
+Governments have disproportionately funded infrastructure in marginal seats rather than in the cities that have absorbed almost all of the population growth.%
+	\footcite{Terrill2016Roadsrichesbetter}
+Until recently, housing supply has not kept up with population growth (\Vref{sec:strong-demand-for-housing-has-contributed-to-rising-prices}).
+
+Consequently, lower levels of migration might be `second-best' policy that could be better than the alternatives, until Australian governments start to make better choices on infrastructure and planning.
+
+At the very least, the Australian Government should develop and articulate a population policy to be published with the intergenerational report, as the Productivity Commission recommended.%
+	\footcite[][37]{CommissionMigrantIntake2016}
+Ideally, population policy should articulate the optimal level of migration given \emph{actual} infrastructure and planning policy, as well as \emph{optimal} policy.
+If infrastructure and housing policies do not improve, then the Commonwealth government should consider lowering Australia's migrant intake.
+
+If Australia's migration program is to be wound back, any reduction should be modest and be targeted to parts of the migration program that provide the smallest benefit to Australian residents and the migrants themselves.
+However, balancing these interests is difficult, as each part of the migration program has different economic, social and budgetary costs and benefits.\footcite{Rizvi_2018_immigration_debate_inside_story}
+For example, cutting back family reunion visas would likely preserve the economic benefits of the migration program, but generate generate substantial social costs.
+Or the Commonwealth could limit the growth in overseas student numbers, which are the major driver of rising net overseas migration.
+The New Zealand government, for example, is planning to cap overseas student places in lower quality courses.%
+    \footnote{\hl{Add reference \url{www.labour.org.nz/immigration}}.}
+But obviously there would be a cost: international students bring foreign revenue to the Australian economy, and to Australian universities in particular.%
+    \footcite{Norton2015cashnexushow}
+
+Cutting the migrant intake would also hit the Commonwealth Budget in the short term.%
+    \footcite{ABC-2018-Two-senior-ministers-slap-down-Abbott-immigration}    
+Most migrants are of working-age and pay full rates of personal income tax. Many temporary migrants such as 457 visa holders can’t access a range of government services and benefits.%
+    \footcite{ParlLibrary-2018-457}
+More importantly, cutting back on younger, skilled migrants is also likely to hurt the budget in the long-term,%
+    \footcite[][Figure~9.3]{CommissionMigrantIntake2016}
+although cutting back parent visas could produce large budget savings. 
+
+Any policy changes will therefore need to be carefully calibrated or may result in unexpected outcomes, such as more temporary migration if the permanent intake is reduced. For example, cutting the permanent migrant intake may not lead to fewer migrants if temporary migration instead rises.%
+    \footnote{Higher (uncapped) temporary migration accounts for most of the growth in net overseas migration as overseas student numbers rose sharply \textcite{ABC-2018-How-Howard-boosted-foreign-student-immigration}.}
+A detailed discussion of how a potential reduction in the migrant intake should be pursued is beyond the scope of this report.%
+    \footnote{See \hl{add reference \url{www.insidestory.org.au/putting-the-numbers-back-into-the-immigration-debate/}.} for an outline of the issues.}

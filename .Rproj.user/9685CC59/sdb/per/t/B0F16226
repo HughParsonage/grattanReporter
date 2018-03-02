@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "journal\tjournal_from_url\nSydney Morning Herald\tsmh.com.au\nThe Conversation\ttheconversation.com\nThe Australian\ttheaustralian.com.au\nAustralian Financial Review\tafr.com\nInside Story\tinsidestory.org.au\nThe Guardian\ttheguardian.com\nThe Age\ttheage.com.au\nCanberra Times\tcanberratimes.com.au\nGreat Lakes Advocate\tgreatlakesadvocate.com.au\nnews.com.au\tnews.com.au\n",
+    "created" : 1494120300157.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2209285736",
+    "id" : "B0F16226",
+    "lastKnownWriteTime" : 1494120428,
+    "last_content_update" : 1494120428573,
+    "path" : "~/grattanReporter/data-raw/newspaper-by-url.tsv",
+    "project_path" : "data-raw/newspaper-by-url.tsv",
+    "properties" : {
+    },
+    "relative_order" : 29,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

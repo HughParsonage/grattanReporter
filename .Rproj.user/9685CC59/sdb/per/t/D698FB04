@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#' Tidy bibliography so equals signs align\n#' @param bib_file The bib file to tidy.\n#' @param outfile Optionally, the tidied bib file to write to.\n#' @param leading_spaces The number of spaces before each field within an entry.\n#' @details Aligns the equals signs in \\code{bib_file}, standardizes the case of entry types and fields.\n#' @export\n\nlint_bib <- function(bib_file, outfile = bib_file, leading_spaces = 2L){\n  stopifnot(length(bib_file) == 1L, grepl(\"\\\\.bib$\", bib_file, perl = TRUE))\n\n  bib <- readLines(bib_file, encoding = \"UTF-8\", warn = FALSE)\n  # Correct fields\n  # coalesce journal --> journaltitle \n  bib <- gsub(\"^\\\\s*journaltitle\\\\s*[=]\", \"  journal =\", bib, perl = TRUE)\n  # Remove things like type = {report}, which are redundant\n  bib <- bib[!grepl(\"^\\\\s*type\\\\s*[=]\", bib, perl = TRUE)]\n  \n  is_field <- grepl(\"=\", bib, fixed = TRUE)\n  is_entry_type <- grepl(\"^@\", bib, perl = TRUE)\n  \n  field_width <- nchar(trimws(gsub(\"[=].*$\", \"\", bib, perl = TRUE)))\n\n  widest_field <- max(field_width[is_field])\n  \n  field_match_nocase <- sprintf(\"^@%s\", c(\"article\", \n                                          \"book\", \n                                          \"techreport\",\n                                          \"report\",\n                                          \"inproceedings\",\n                                          \"incollection\",\n                                          \"inbook\",\n                                          \"misc\",\n                                          \"phdthesis\",\n                                          \"unpublished\"))\n  \n  field_replacements <- sprintf(\"@%s\", c(\"Article\", \n                                         \"Book\", \n                                         \"TechReport\",\n                                         \"TechReport\",\n                                         \"InProceedings\",\n                                         \"InCollection\",\n                                         \"InBook\",\n                                         \"Misc\",\n                                         \"PhDThesis\",\n                                         \"Unpublished\"))\n  \n  out <- bib\n\n  # Vectorized gsub:\n  for (line in seq_along(bib)){\n    \n    if (is_entry_type[line]) {\n      # Standardize entry type:\n      for (fj in seq_along(field_match_nocase)) {\n        out[line] <- gsub(field_match_nocase[fj], field_replacements[fj], out[line], perl = TRUE, ignore.case = TRUE)\n      }\n    }\n    \n    # Replace every field line with\n    # two spaces + field name + spaces required for widest field + space\n    if (is_field[line]){\n      spaces_req <- widest_field - field_width[line]\n      out[line] <-\n        gsub(\"^\\\\s*(\\\\w+)\\\\s*[=]\\\\s*\\\\{\",\n             paste0(paste0(rep(\" \", leading_spaces), collapse = \"\"),\n                    \"\\\\L\\\\1\",\n                    paste0(rep(\" \", spaces_req), collapse = \"\"),\n                    \" = {\"),\n             bib[line],\n             perl = TRUE)\n    }\n  }\n  \n  # Add commas: \n  out[is_field] <- gsub(\"\\\\}$\", \"\\\\},\", out[is_field], perl = TRUE)\n  \n  writeLines(out, outfile, useBytes = TRUE)\n}\n",
+    "created" : 1486304014201.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2593044185",
+    "id" : "D698FB04",
+    "lastKnownWriteTime" : 1494041022,
+    "last_content_update" : 1494041022029,
+    "path" : "~/grattanReporter/R/lint_bib.R",
+    "project_path" : "R/lint_bib.R",
+    "properties" : {
+    },
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

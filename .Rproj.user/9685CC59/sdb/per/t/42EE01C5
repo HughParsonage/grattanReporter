@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"Spellchecker\")\n\ntest_that(\"School funding report checks out\", {\n  expect_null(check_spelling(\"./SchoolFunding/SchoolFunding.tex\",\n                             known.correct = c(\"SRS\", \"SE.XPD.TOTL.GD.XS\", \"WDI\", \"SSNP\", \"underfunded\", \"overfund[a-z]*\", \"NMS\", \"WPI\", \"DET\", \"phas\", \"NP\", \"SATs\", \"ENG\", \"th\", \"stds\", \"RCTs\", \"CAGR\"), ignore.lines = 1551))\n})\n\ntest_that(\"Check spelling of multiple input document\", {\n  expect_error(check_spelling(\"./spellcheck_multi_input/spellcheck_multi_input.tex\"),\n               regexp = \"failed on above line\")\n})\n\ntest_that(\"Abbreviations\", {\n  expect_error(check_spelling(\"spellcheck-abbrevs.tex\"))\n})\n\ntest_that(\"Initalisms\", {\n  expect_null(check_spelling(\"./spelling/abbrev/abbrev-defd-ok.tex\"))\n  expect_null(check_spelling(\"./spelling/abbrev/abbrev-defd-ok-2.tex\"))\n  expect_equal(extract_validate_abbreviations(readLines(\"./spelling/abbrev/abbrev-defd-ok-stopwords.tex\")),\n               c(\"QXFEoC\", \"AIAS\"))\n  expect_equal(extract_validate_abbreviations(readLines(\"./spelling/abbrev/abbrev-plural.tex\")),\n               c(\"LVR\"))\n})\n\ntest_that(\"Initialism checking doesn't fail if at start of sentence\", {\n  expect_null(check_spelling(\"./spelling/abbrev/abbrev-at-line-start.tex\"))\n})\n\ntest_that(\"Add to dictionary, ignore spelling in\", {\n  expect_error(check_spelling(\"./spelling/add_to_dictionary-wrong.tex\"), regexp = \"[Ss]pellcheck failed\")\n  expect_error(check_spelling(\"./spelling/ignore_spelling_in-wrong.tex\", pre_release = FALSE), regexp = \"[Ss]pellcheck failed\")\n\n  expect_null(check_spelling(\"./spelling/add_to_dictionary-ok.tex\"))\n  expect_null(check_spelling(\"./spelling/ignore_spelling_in-ok.tex\", pre_release = FALSE))\n  expect_null(check_spelling(\"./spelling/ignore_spelling_in-ok-2.tex\", pre_release = FALSE))\n\n  expect_error(check_spelling(\"./spelling/ignore_spelling_in-ok.tex\"), regexp = \"pre_release = TRUE\")\n})\n\ntest_that(\"Stop if present\", {\n  expect_error(check_spelling(\"./stop_if_present/should-stop.tex\"), regexp = \"skillset\")\n  expect_error(check_spelling(\"./stop_if_present/should-stop-2.tex\"), regexp = \"skillset\")\n  expect_error(check_spelling(\"./stop_if_present/stop_even_if_added.tex\"), regexp = \"skillset\")\n  expect_error(check_spelling(\"./stop_if_present_inputs/stop-if-held-in-inputs.tex\"), regexp = \"skillset\")\n  expect_error(check_spelling(\"./stop_if_present/should-stop-3.tex\"), regexp = \"percent\")\n  expect_null(check_spelling(\"./stop_if_present/should-not-stop.tex\"))\n})\n\ntest_that(\"Lower-case governments should error\", {\n  expect_error(check_spelling(\"./spelling/Govt/NSWgovt.tex\"), regexp = \"uppercase G\")\n  expect_error(check_spelling(\"./spelling/Govt/ACTgovt.tex\"), regexp = \"uppercase G\")\n  expect_error(check_spelling(\"./spelling/Govt/NTgovt.tex\"), regexp = \"uppercase G\")\n  expect_error(check_spelling(\"./spelling/Govt/Queenslandgovt.tex\"), regexp = \"uppercase G\")\n  expect_error(check_spelling(\"./spelling/Govt/WAgovt.tex\"), regexp = \"uppercase G\")\n})\n\ntest_that(\"Lower-case governments ok in some cases\", {\n  expect_null(check_spelling(\"./spelling/Govt/lc-govt-ok.tex\"))\n})\n\n",
+    "created" : 1493885714924.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2619801213",
+    "id" : "42EE01C5",
+    "lastKnownWriteTime" : 1493885803,
+    "last_content_update" : 1493885803827,
+    "path" : "~/grattanReporter/tests/testthat/test_spellcheck.R",
+    "project_path" : "tests/testthat/test_spellcheck.R",
+    "properties" : {
+    },
+    "relative_order" : 32,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

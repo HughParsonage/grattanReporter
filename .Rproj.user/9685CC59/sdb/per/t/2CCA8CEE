@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "context(\"Citation formatting\")\n\ntest_that(\"Postnotes detected\", {\n  expect_error(check_cite_pagerefs(\"./check-cite-pagerefs/cite-no-postnote.tex\"), regexp = \"postnote\")\n  expect_error(check_cite_pagerefs(\"./check-cite-pagerefs/cite-p-in-postnote.tex\"), regexp = \"p in postnote\")\n  expect_error(check_cite_pagerefs(\"./check-cite-pagerefs/cite-pp-in-postnote.tex\"), regexp = \"p in postnote\")\n})\n\n# test_that(\"Tweetable check_cite\", {\n#   skip_if_not(file.exists(\"~/twitteR/grattan-reporter.R\"))\n#   source(\"~/twitteR/grattan-reporter.R\")\n#   expect_error(checkGrattanReport(path = \"./twitter/\", output_method = \"twitter\"))\n#   expect_true(deleteStatus(.last.Twitter.status[[1]]))\n#   rm(\".last.Twitter.status\", inherits = TRUE, envir = .GlobalEnv)\n# })\n\n\ntest_that(\"Singular text/footcite with two keys should error\", {\n  expect_error(check_cite_pagerefs(\"./check-cite-pagerefs/29-bad-singular-cite.tex\"),\n               regexp = \"Use of singular form\")\n})\n\n\ntest_that(\"Page reference ok if in correct format\", {\n  expect_null(check_cite_pagerefs(\"./check-cite-pagerefs/ok-page-ref-roman.tex\"))\n  expect_null(check_cite_pagerefs(\"./check-cite-pagerefs/cite-p-in-text-postnote.tex\"))\n  expect_error(check_cite_pagerefs(\"./check-cite-pagerefs/bad-cite-p-in-text-postnote-2.tex\"), regexp = \"Page reference not in correct format\")\n  expect_error(check_cite_pagerefs(\"./check-cite-pagerefs/bad-cite-p-in-text-postnote.tex\"), regexp = \"Page reference not in correct format\")\n})\n\ntest_that(\"Cite pagerefs false positives\", {\n  expect_null(check_cite_pagerefs(\"./check-cite-pagerefs/ok-page-ref-4pm.tex\"))\n})\n",
+    "created" : 1493881105594.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2834264875",
+    "id" : "2CCA8CEE",
+    "lastKnownWriteTime" : 1493881164,
+    "last_content_update" : 1493881164295,
+    "path" : "~/grattanReporter/tests/testthat/test_cites.R",
+    "project_path" : "tests/testthat/test_cites.R",
+    "properties" : {
+    },
+    "relative_order" : 31,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

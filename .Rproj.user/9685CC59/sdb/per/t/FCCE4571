@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\documentclass{grattan}\n\n\\begin{document}\nLoan to Value Ratios (LVRs) for first home buyers have not increased.\n\\end{document}\n",
+    "created" : 1488609654545.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "35773173",
+    "id" : "FCCE4571",
+    "lastKnownWriteTime" : 1488610586,
+    "last_content_update" : 1488610586,
+    "path" : "~/grattanReporter/tests/testthat/spelling/abbrev/abbrev-plural.tex",
+    "project_path" : "tests/testthat/spelling/abbrev/abbrev-plural.tex",
+    "properties" : {
+    },
+    "relative_order" : 39,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "tex"
+}

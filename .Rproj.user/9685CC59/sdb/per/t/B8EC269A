@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\\documentclass{grattan}\n\n\\begin{document}\n\\section{Example section with a label but no prefix}\\label{invalid-prefix}\n\\end{document}\n\n\n",
+    "created" : 1486466491154.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3541518518",
+    "id" : "B8EC269A",
+    "lastKnownWriteTime" : 1485926273,
+    "last_content_update" : 1485926273,
+    "path" : "~/grattanReporter/tests/testthat/check-labels/label-without-prefix.tex",
+    "project_path" : "tests/testthat/check-labels/label-without-prefix.tex",
+    "properties" : {
+    },
+    "relative_order" : 21,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "tex"
+}

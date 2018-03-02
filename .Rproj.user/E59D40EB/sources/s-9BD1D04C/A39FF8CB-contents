@@ -1,0 +1,307 @@
+%!TEX root = ../Report.tex
+\chapter{Proposals that won't help much}\label{chap:proposals-that-wont-help-much}
+
+The policies outlined in \Chapref{chap:measures-to-manage-demand} and \Chapref{chap:boosting-housing-supply-is-critical-to-make-housing-more-affordable} are the most promising for actually improving housing affordability.
+But most of them are politically difficult, involving tough trade-offs and creating losers as well as winners.
+A lot of other policies are raised in the public debate over housing affordability that are much more popular (\Cref{fig:popularity-of-policies}).
+Unfortunately, almost all of these are on the left-hand side of \Cref{fig:policy-choices-matrix}, and will do little to help.
+Many of the popular ideas are in the bottom left of \Cref{fig:policy-choices-matrix}, and will do significant harm: they won't materially improve affordability \emph{and} they are likely to harm either the budget or the economy.
+
+A number of proposals boil down to government putting more money in the pockets of first home buyers.
+These will all cost the budget money, and will make housing affordability worse by boosting dwelling prices even further.
+
+Incentives to encourage seniors to downsize their homes can have big budgetary costs and are unlikely to make much difference to housing affordability.
+Efforts to encourage people to move to regions have historically had very little effect, and they may harm the life prospects of the small number whose choice to move is driven primarily by the policy incentives.
+
+Unfortunately, voter instincts about the key policies to improve housing affordability are misguided.%
+	\footnote{For example, 83 per cent of respondents to a recent ANU poll either supported or strongly supported providing grants to first home owners: see \Vref{fig:popularity-of-policies}.}
+And so governments should lead more strongly in explaining to voters which policies will -- and won't -- improve housing affordability.
+
+\section{Policies to increase the purchasing power of first home buyers are misguided}\label{sec:policies-to-increase-the-buying-power-of-first-home-purchasers-are-misguided}
+
+A number of policies effectively increase the buying power of first home purchasers.
+These come in a variety of flavours, but they all ultimately cost the budget money, and will make housing affordability worse by boosting dwelling prices even further.
+They include policies such as first home buyers' grants, stamp duty concessions for first home buyers, tax concessions for those who save for a home, permissions for people to use their super early to buy a house, and shared-equity schemes.
+
+\subsection{First home buyers' grants and stamp duty concessions}\label{subsec:first-home-buyers-grants-and-stamp-duty-concessions}
+
+Most state governments offer some form of grant or stamp duty concession for first home buyers.
+Many of these schemes are limited to the purchase of a newly constructed dwelling for less than a price threshold set in legislation.%
+	\footnote{For example, the Queensland Government's First Home Owners' Grant provides \$15,000-\$20,000 to buyers of new houses worth less than \$750,000 (the scheme was made more generous in the 2017 Budget) (\textcite{Qld-Treasury-2016-First-home-owners-grant}).
+	For further details of the grants available in each state see \textcolor{blue}{\url{http://www.firsthome.gov.au/}}.}
+Over recent decades, Commonwealth and state governments have spent billions of dollars giving cash and tax concessions to first home buyers.%
+	\footnote{\textcite{Eslake2013}. \textcite[][49]{DaleyEtAl-2013-BalancingBudgets-supporting-analysis}
+	 estimated that abolishing all subsidies for first home buyers could save Commonwealth and state budgets a combined \$1.3~billion a year.}
+These policies have resulted in spikes of first home buyer activity (\Vref{fig:fhb-grants-fhb-financing}), but haven't improved affordability. Typically first home buyers' purchases are brought forward, there is then a lull in activity, and housing affordability does not improve overall.
+
+\begin{figure}
+\caption{First home buyer grants and stamp duty concessions increase demand temporarily}\label{fig:fhb-grants-fhb-financing}
+\units{Number of dwellings financed, first home buyers, seasonally adjusted}
+\includenextfigure{atlas/Charts-for-housing-affordability-report.pdf}
+\notewithsources{Includes refinancing.}%
+{\textcites{ABSHousingFinanceAustraliaAugust2017}{Blight_2012_FHB_grants}}
+\end{figure}
+
+Beyond their sizeable budgetary costs, giveaways to first home buyers have actually \emph{worsened} housing affordability by further inflating demand for housing.
+While first home buyers' grants may help \emph{some} individuals to outbid an investor and buy a house, they do little to make houses affordable at an aggregate level.
+Instead these policies artificially inflate the demand for housing, resulting in house prices being higher than otherwise, with most of the benefit flowing to existing home-owners.%
+	\footcite{COAG-2012-Housing-supply-affordability-reform}
+\textcite{Eslake2013} has suggested they are more accurately described as `second home vendors' grants'.
+
+More recently state governments have switched to offering stamp duty concessions to first home buyers.
+The NSW and Victorian Governments expanded stamp duty concessions for first home buyers in housing packages released in 2017.%
+	\footnote{\textcites{VicStateGov2017Homes}{NSWGovFirstHome2017}.
+For details of the stamp duty concessions made available to first home buyers in each state, see \textcite[][18--21]{NSW-Treasury-2016-Interstate-comparison-taxes-201516}.}
+These have the political advantage that they are `tax expenditures' -- a reduction in tax collected, rather than additional spending that is typically more obvious in government accounts.
+But their economic impact is similar.
+And they still have significant budgetary costs,%
+	\footnote{The stamp duty concessions announced in the NSW Government's 2017 Budget are expected to cost \$1.1~billion over the four years to 2020-21 (\textcite{NSW-Budget-2017-18-BS1}).}
+which would be better spent increasing the \emph{supply} of housing.
+
+Stamp duty concessions act in a similar way to cash grants for first home buyers.%
+	\footcite{Davidoff-Leigh-2013-How-do-stamp-duties-affect-the-housing-market}
+When buyers don't have to pay as much stamp duty, they're prepared to pay more for a property, increasing demand.
+In practice, first home buyers have consistently, over a long period of time, been prepared to borrow an average of 83 per cent of the purchase price (after transaction costs).%
+	\footcite[][13]{Simon-Stone-2017-Property-Ladder}
+If this leverage is the binding constraint, the concession could induce first home buyers to increase the final house price by much more than the value of the stamp duty cuts.%
+	\footnote{A first home buyer with a deposit of \$100,000 would be prepared to pay \$455,000 for a house and, after paying stamp duty at 5\% of \$23,000, would be 83\% leveraged.
+	The same first home buyer would be prepared to pay \$588,000 for a house and, if they did not have to pay stamp duty, would still be 83\% leveraged.}
+The Victorian Government's first home buyer stamp duty concessions likely contributed the increase in prices for new houses in Melbourne's outer suburbs in 2017.\footcites{Worrall_fhb_vic_2018_domain}{Schlesinger_AFR_2017_Melb_price_surge}{Lenaghan_AFR_2017_Melb_stamp_duty}
+
+Nor can stamp duty exemptions for first home buyers be justified on the basis that they are a step on the path to wholesale stamp duty reforms recommended by many policy experts%
+	\footnote{For example, see \textcites{HenryTaxReview2010}{DaleyCoates-2015-Property-taxes}.}
+and discussed in \Vref{subsec:replacing-stamp-duties-with-general-property-taxes}.
+By definition, first home buyers don't face obstacles to moving to a new job or a house that better meets their needs -- they are not locked in to an existing home.%
+	\footcite[][9]{Stevens-2017-Report-to-NSW-Premier-Housing-affordaibility}
+
+\subsection{Extra tax breaks for first home savers }\label{subsec:extra-tax-breaks-for-first-home-savers}
+
+Tax-preferred savings accounts can help people save a deposit and purchase a home, since they pay less tax on the money saved and any accumulated earnings.
+The primary virtue of such accounts is that they can be justified on the basis that they compensate savers who are missing out on the tax advantages available to homeowners.
+But typical policies provide relatively little help in the scheme of things, and they don't help many people.
+
+The Commonwealth Government announced the \textit{First Home Super Saver Scheme} in the 2017 Budget.
+Under this scheme, people intending to buy a house can make voluntary contributions to their superannuation account (from their pre-tax income) of up to \$30,000.
+Contributions are taxed at 15 per cent rather than marginal rates.
+The earnings on these contributions are taxed at only 15 per cent, rather than at the contributor's marginal rate.
+They are allowed to withdraw the saved money and earnings on it to buy a house.
+Withdrawals are taxed at marginal rates less a 30 per cent offset.%
+    \footcite{ATO-2017-First-home-super-save-scheme}
+
+The \textit{First Home Super Saver Scheme} brings the tax treatment of the savings of potential first home buyers a little closer to the tax treatment of owned homes.
+First home buyers typically save in bank deposits, and so all interest earned is taxed at full marginal rates of personal income tax.
+In contrast, owned homes are not taxed on capital gains or imputed rents, and rental property investments are relatively lightly taxed.%
+	\footcite[][18]{DaleyCoatesWood-2015-Super-tax-targeting}
+
+While there is some fairness in this scheme, it will make little difference to affordability.
+Take-up is unlikely to be large: households are reluctant to give up access to their savings because if they decide they can't afford to buy a home, they will be unable to withdraw the money until they turn~60.
+And most studies have found that tax incentives don't increase the total amount saved much -- instead, most of the money that qualifies for the tax incentive is simply transferred from other savings.%
+	\footcite[][20]{DaleyCoatesWood-2015-Super-tax-targeting}
+
+Experience with a similar scheme -- the Rudd Government's \textit{First Home Saver Accounts} -- suggests that the \textit{First Home Super Saver Scheme} will have little impact.
+With \textit{First Home Saver Accounts}, the Commonwealth Government contributed 17 per cent of the amount saved each year, up to a limit of \$850 per year (later raised to \$1,020).
+Although the \textit{First Home Super Saver Scheme} does not have a government contribution, allowing contributions from \textit{pre-tax} earnings is equivalent to a government contribution of between 24 per cent and 27 per cent on after-tax savings.%
+	\footnote{Grattan Institute calculations, assuming a marginal tax rate of either 34.5 per cent for those earning between \$37,000 and \$80,000, or 39 per cent for those earning between \$87,000 and \$180,000 a year (including the Medicare Levy), and after accounting for the tax on withdrawals. The comparison excludes any earnings tax concessions as these are available under both schemes.}
+
+Similar to the new scheme, earnings in the Rudd Government's \textit{First Home Saver Accounts} were taxed at 15 per cent, rather than marginal rates of tax.
+But the maximum \textit{First Home Saver Account} balance was much higher at \$75,000 (later raised to \$90,000).
+The only disadvantage was that savings had to be held in a bank deposit account, likely to have lower returns (but less risk) than many superannuation investments.
+
+Treasury expected \$6.5 billion to be held in \textit{First Home Saver Accounts} by 2012.%
+	\footcite{Swan-2008-1st-Home-Save-Accounts}
+Instead, only \$500 million had been saved in 46,000 accounts by 2014, when Abbott government treasurer Joe Hockey abolished the scheme, citing a lack of take-up.%
+	\footcite{Hockey-2014-1st-Home-Save-Accounts-abolition}
+
+It may be easier for prospective first home buyers to use their existing super account rather than to set up a new account, as was required  for \textit{First Home Saver Accounts}.%
+    \footcite{Chancellor_2011_low_take_up_fhsa}
+But it is unlikely that overall take-up of the new scheme will be higher, given that it provides similar benefits to the old scheme.
+
+However, providing even more generous tax concessions through such schemes to increase take-up would be a mistake.
+Beyond their direct budgetary costs, such schemes inherently increase demand, and worsen affordability for buyers overall.
+Unless supply increases, more people with deposits would simply bid-up the price of existing homes, and the biggest winners would be the people who own them already.
+
+\subsection{Shared-equity schemes }\label{subsec:shared-equity-schemes}
+
+In shared-equity schemes, the government or a not-for-profit organisation shares the cost of purchasing a home with a prospective homeowner in return for a share in future price growth.
+Such schemes typically entail the government stumping up some of the capital to purchase a home, which is returned, together with a share of any property price growth, when the property is sold.
+These schemes assist would-be buyers to purchase a home even if they have not yet saved a large deposit.%
+	\footcite{Mihaylov-Zurbruegg-2014-Socioeconic-impact-shared-appreciationj-SA}
+Repayments are typically lower than on a low-deposit home loan from a commercial lender.
+
+Western Australia and South Australia both operate shared-equity schemes and other home-loan services through government-owned lenders, and the Victorian Government recently announced that it will start a similar scheme.%
+	\footcite[][13]{VicStateGov2017Homes}
+The Western Australian and South Australian lenders offer a wide variety of loans, such as low-deposit loans (without lender's mortgage insurance) and loans for higher-education graduates.
+
+Shared-equity schemes and other concessional loans may help \emph{some} people to enter the housing market.%
+	\footnote{There is some evidence that they can boost home ownership rates in some suburbs.
+	See: \textcite{Li_Mihaylov_Zurbruegg_2016_SA_HomeStart}.}
+But such schemes are unlikely to help many Australians to afford to buy a home, unless the public subsidies are greatly expanded, at significant cost to government budgets.
+For example, less than one-in-five of the 2,500 loans approved in 2015-16 by the Western Australian government-owned lender, \textit{Keystart}, were genuine shared-equity loans.%
+\footcite{Housing-authority-2016-Annual-report}
+ And the Victorian scheme is a pilot for at most 400 first home buyers.
+
+Expanding the size of shared-equity schemes, or the generosity of public subsidies available, would in turn push-up house prices for other purchasers.%
+	\footnote{A 2015 study of the United Kingdom's `Help to Buy' shared-equity and low-deposit scheme found that the scheme added around 3 per cent to the average house price (\textcite{Shelter-2015-How-much-help-is-Help-To-Buy}).}
+Shared-equity schemes have similar effects on housing markets as grants or stamp duty concessions for first home buyers.
+Ultimately they boost the purchasing power of potential buyers.
+This increases prices, given that housing supply is constrained by land-use planning rules in our largest cities.
+The biggest winners will be people who own homes already, and property developers with new homes ready to sell.
+
+Provided income testing is tight enough, shared-equity schemes might be justified as a means to provide housing support targeted to low-income earners.%
+	\footcite[][9]{Rowley-etal-2017-Govt-led-innovations-affordable-housing-delivery}
+However the means tests for these schemes appear far too generous to appropriately target low-income earners.
+For example, Western Australia's \emph{Keystart} shared-equity loans are typically available to households with incomes below \$90,000 (and \$70,000 for singles)%
+	\footcite{Keystart-2017-SharedState-home-loan}
+-- which is around the median household income in Western Australia. South Australia's \emph{HomeStart} does not have an income limit for its shared-equity products, but does offer some loans to low- and middle-income earners only.%
+	\footcite{Home-Start-Finance-2012-Extra-help-for-low-income-earners}
+Victoria's pilot shared-equity scheme, \emph{HomesVic}, will be available to singles with an income up to \$70,000 and families up to \$95,000.%
+	\footcite{Vic-Shared-equity-2017}
+
+\section{Pushing people to the regions in the name of housing affordability is unlikely to succeed}\label{sec:pushing-people-to-the-regions-in-the-name-of-housing-affordability-is-unlikely-to-succeed}
+
+Some have called for incentives for people to move to regional areas to ease housing affordability,%
+    \footcite{ABC-2017-Barnaby-urges-aspiring-homeowners-look-beyond-Syd}
+and the Victorian Government has recently doubled the first home buyer grant to \$20,000 for those who purchase a new home in a regional area.%
+	\footcite{Vic-SRO-2017-FHOG-FAQs}
+
+Encouraging population growth in cheaper regional towns \emph{sounds like} it could improve housing affordability by reducing housing demand in our largest cities.
+But such policies are unlikely to encourage many people to relocate who wouldn't have done so anyway, could have large economic costs if they did, and regional housing is not that much more affordable anyway relative to regional incomes.
+
+Since Federation, state and federal governments~have tried~to lure people, trade and business away from capital cities.
+Australian governments spend more than \$2 billion per year on explicit programs to promote regional growth.%
+	\footcites{DaleyCoates-2017-theAge-Stamp-duty-wont-help-housing-affordability}{DaleyLancy2011-Investing-regions}{Terrill-2017-theOz-Bush-may-not-like-it}
+They spend much more on capital projects specifically aimed at regions.%
+    \footcite[][65--68]{PC-2017-Transitioning-regions}
+It has mostly been an expensive policy failure.
+Despite government policies of decentralisation, the trend to city-centred growth has accelerated in the past decade.
+With the exception of Western Australian and Queensland mining regions, capital city economies over ten years have grown faster than regional economies, both in absolute terms and in GDP per capita.\footcite[][5]{SGS2016_Aus_cities_201516}
+
+Regional growth programs have a poor track record of influencing households' choices.
+The NSW regional relocation home buyers' grant of \$7,000 to those who moved from cities to regions began in 2011.
+Initial take-up was projected at 10,000 per year; in practice only 4,800 grants were made over three years, and many of these were probably made to people who would have moved anyway -- many of them retirees.%
+	\footcite{theOz-2017-NSW-regional-home-buyers-scheme-failure}
+A parallel scheme, the skilled regional relocation incentive, which provided \$10,000 grants to those moving to a regional job, was closed in 2015.%
+	\footnote{\textcite{RevenueNSW-2017-SkilledRegionalReolcationIncentive}.
+The combined budget for the two regional relocation programs was capped at \$10.4~million in 2013-14 following poor take-up in their initial years. (\textcite[][140]{NSW-Finance-Services-201314-Annual-report}).}
+
+In the unlikely event that government policy actually succeeded in encouraging substantially more people to move to regional areas, it \emph{could} reduce house prices in the major cities, but it would also slow growth in incomes.
+Cities are important for innovation and economic growth.
+Cities offer more opportunities to share ideas, which both attracts skilled people and increases their skills once they arrive.
+Despite the rise of the internet and reduced telecommunication costs, innovation seems to rely on regular face-to face contact between people in different firms, which therefore tend to aggregate in large cities.%
+	\footcites{DaleyLancy2011-Investing-regions}{KellyDonegan2015-City-limits}
+The greater productivity of cities is reflected in higher wages, GDP and rates of innovation per person.%
+	\footcite{Romer-cities}
+Pushing people to regional areas may therefore reduce productivity growth and per capita incomes.
+
+Policies to encourage more jobs in regional areas have a poor track record: monetary incentives from government are rarely large enough to outweigh the economic advantages for businesses of locating in cities. Cities tend to provide larger advantages for businesses in the rapidly growing services sector.%
+    \footnote{There is little evidence that such programs succeed (\textcite[][176--187]{PC-2017-Transitioning-regions}) -- partly because they are very rarely evaluated (\textcite[][148--152]{PC-2017-Transitioning-regions}).
+    See also \textcite{DaleyLancy2011-Investing-regions}.}
+
+Another strategy is to encourage the growth of regional towns as dormitory suburbs for people working in cities.
+Obviously this only works for regional towns that are relatively close to capital cities, with good transport links.
+But it is unclear why regional dormitories are better than building suburbs on the city fringe that involve similar travel times to jobs. And in any case the transport infrastructure needed to ferry people from urban fringe homes to jobs is typically very expensive relative to the number of people who use it.%
+    \footcite{Terrill2016Roadsrichesbetter}
+
+Nor is housing much more affordable in regional areas.
+While regional house prices are lower, average incomes are lower too.%
+\footcite[][8]{DaleyWoodChivers2017RegPatterns}
+Regional house prices have risen rapidly in response to falling interest rates (\Vref{fig:house-prices-cities-regions}).
+Median house prices in regional NSW have already risen from 4.2 times annual household incomes in those areas in~2001 to 6.6~times now. In many states, regional house-price-to-income ratios are higher than those in capital cities 15~years ago.
+It is possible that price-to-income ratios in some regional areas have been pushed up due to a growing population of asset-rich, income-poor retirees.
+If more people move to the regions, this would reduce affordability for those already residing in these regional areas.
+
+While regional house prices have always been a lower multiple of regional incomes than in capital cities, the differential between regions and cities has remained relatively constant (\Vref{fig:house-prices-cities-regions}).
+This may seem surprising given that demand has risen much faster in the cities.
+However, many regional cities have not built much new housing due to restrictive planning rules and geographic constraints (\Vref{subsec:housing-construction-did-not-keep-pace-with-increased-demand-and-prices}).
+
+\section{Governments should not spend money to encourage downsizing by seniors}\label{sec:governments-should-not-spend-money-to-encourage-downsizing-by-seniors}
+
+Many argue that governments should give senior Australians more incentives to downsize their homes through stamp duty concessions, exemptions from the Age Pension means test, or additional superannuation tax concessions.%
+	\footnote{For example, see \textcites{Property-Council-2015-Rethink-sub-Unlocking-home-equity}{Ong-etal-2016-theConvo-lack-housing-choice-frustrates-downsizer}.}
+It sounds good: new incentives would encourage seniors to move to housing that better suits their needs, while freeing up equity for their retirement and larger homes for younger families.
+
+In the 2017 Budget, the Commonwealth Government announced incentives for seniors to move to smaller houses.%
+	\footcite{Budget1718-Reducing-barriers-to-downsizing}
+The policy allows people aged 65 and over to make a post-tax contribution into their superannuation of up to \$300,000 from the proceeds of selling their home.%
+    \footnote{\textcite{ATO2017_downsizing_contributions}. The previous Labor government also proposed a trial of allowing pensioners to downsize with some of the proceeds exempt from the Assets Test.}
+
+But such a measure is a classic example of how~governments prefer politically easy options with cosmetic appeal, but little real effect on housing affordability.
+
+For two-thirds of older Australians, the desire to `age in place' is the most important reason for not selling the family home (\Vref{subsec:tax-settings-discourage-people-from-downsizing-increasing-demand-for-well-located-houses}).
+Often they stay put because they can't find suitable housing in the same local area.%
+    \footcite{DaleyCoates-2017-theConvo-Why-old-Aust-wont-downsize}
+In established suburbs where many seniors live, there are few smaller dwellings because planning laws restrict subdivision.
+And even if the new house is next door, there's an emotional cost to leaving a long-standing home, and to packing and moving.
+Therefore when people are considering downsizing, financial incentives are rarely the big things on their minds.
+
+And so most of the budget's financial incentives will go to those who were going to downsize anyway.
+And as the Productivity Commission found, these incentives have a material budget cost, and distort the housing market by adding even more to the long-term tax and welfare incentives to own a home.%
+    \footcite{PC-2015-Housing-decisions-elderly}
+
+Furthermore, the Government has chosen a strange group to help downsize.
+The plan ignores pensioners, the group most disadvantaged by downsizing because their family home is~largely exempt from the Age Pension assets test, but any equity unlocked by downsizing is not (see \Vref{subsec:tax-settings-discourage-people-from-downsizing-increasing-demand-for-well-located-houses}).
+
+Those who will benefit are overwhelmingly self-funded retirees who will be able to make large super contributions even when their super account balance already exceeds \$1.6~million -- and only 35,000 people aged over~65 had a super balance exceeding \$1.6~million in 2014.
+On average, each had a home valued at \$1.3 million, and net wealth of more than \$7 million.%
+	\footnote{Grattan analysis of \textcite{ABS2015MicrodataIncomehousing}.}
+By definition, no one in this group receives any age pension.
+And few of these homes unlocked by downsizing will go to first home buyers.
+While this is a poor policy, Treasury expects it will cost the budget only \$20 million in 2020-21, suggesting that take-up will be small.%
+\footcite[][28]{Budget2017-18-BP2}
+
+If governments really want to encourage seniors to downsize, they should do so by including the family home in the Age Pension assets test (see \Vref{subsec:tax-settings-discourage-people-from-downsizing-increasing-demand-for-well-located-houses} and \Vref{sec:include-the-family-home-in-age-pension-assets-test}) -- which would at least have the virtue of improving the budget bottom line, even if it would have little impact on housing affordability.
+
+\section{Limiting direct borrowing by self-managed super funds will help financial stability, but won't improve housing affordability}\label{sec:restricting-smsf-borrowing}
+
+The ALP has promised to ban self-managed superannuation funds (SMSFs) from borrowing to purchase assets.%
+    \footnote{\textcite[][2--3]{ALP-2017-Housing-plan}. In general, SMSFs can’t borrow, with the exception of limited recourse borrowing arrangements. A limited recourse loan allows an SMSF to borrow for the purposes of acquiring a particular asset -- typically commercial or residential property. If the SMSF is unable to repay the loan then the lender can’t recover losses from the other assets of the SMSF, or the fund members.}
+SMSF borrowing has increased rapidly, from \$1.4~billion in June 2011 to \$25.7~billion in March 2017, more than 90 per cent of which was for residential or commercial property.%
+    \footcites{ATO-SMSF-report-March-2017}{Coorey2017-AFR-housing}
+SMSF debts are still only 4 per cent of total SMSF assets (\$648 billion), but the figure has risen quickly from just 0.35 per cent in June 2011.
+The 2014 Financial System Inquiry recommended SMSF trustees be banned from taking out limited recourse loans%
+    \footnote{\textcite[][84]{FinancialSystemsInquiry2014} concluded that `further growth in superannuation funds' direct borrowing would, over time, increase risk in the financial system.'}
+-- one of few recommendation not taken up by the Commonwealth Government.%
+    \footnote{Instead the Commonwealth Government has commissioned the Council of Financial Regulators and the Australian Taxation Office to monitor leverage and risk in the superannuation system and to report back to government after three years (\textcite{CW-2015-Govt-response-FSI}).}
+ 
+But while the change is probably sensible for maintaining financial stability -- especially in the long term -- it won’t have a big impact on house prices.
+Total SMSF holdings of residential property (\$28.2~billion) remain tiny compared to Australians \$7~trillion residential property market. While SMSFs do own more commercial property (\$78.2~billion), this mainly reflects tax planning by small businesses, rather than genuine commercial property investments by SMSFs.%
+	\footnote{If a small business owner transfers assets from their business into their superannuation fund then, within limits, they do not pay tax on capital gains that have accrued over the life of the asset and these gains do not count towards their non-concessional contributions cap (\textcite[][57]{DaleyCoatesWood-2015-Super-tax-targeting}).}
+
+
+
+
+
+
+
+
+\newenvironment{Conclusion}%
+  {\onecolumn\vtop to 0pt\bgroup\vspace{-25pt}\chapter{Conclusion\label{chap:Conclusion}}\begin{multicols}{2}}%
+  {\end{multicols}\vss\egroup\hfill\twocolumn}
+
+\begin{Conclusion}
+In Australia’s past, both low and high income earners, young and old, owned homes. Homelessness was a less significant social issue. But over the last 35 years, housing in Australia has transformed. 
+
+House prices more than doubled in real terms over the past 20 years. The strains are most acute in Sydney and Melbourne. Since 2012, house prices have risen 50 per cent in Melbourne, and 70 per cent in Sydney.
+
+Today, home ownership largely depends on income, and how wealthy your parents are. Housing is contributing to widening gaps in wealth between rich and poor, old and young. 
+Lower income households are spending more of their income on housing, and are under more rental stress. 
+
+Our cities are more stratified: in fringe suburbs people have less access to jobs, fewer women work, and education rates and incomes are lower. Melbourne and Sydney in particular are struggling to cope with the pressures of rapidly growing populations, weighed down by planning and infrastructure policies that have taken a long time to respond to the challenge 
+
+Without change, the great Australian dream risks turning into a nightmare. 
+
+In the last few years there’s been some progress. Sydney in particular has started to add materially more medium high density along its major transport corridors. It’s probably not enough to unwind the accumulated backlog of a decade of policy inaction, but at least it’s in the right direction. But today’s record level of housing construction is the bare minimum needed to meet record levels of population growth driven by rapid migration. And public resistance is growing, partly because many of the policy changes were made without an extensive public discussion of their rationale.
+
+But mostly, governments have responded with programs that are popular but ineffective. They have largely avoided the politically difficult changes to planning laws that would increase density and make a real difference to affordability.
+
+These are not policy secrets.
+
+But governments have continued both to promise improved affordability, and to prefer the easy options. It is no surprise that trust in government continues to fall.
+
+If governments really want to make a difference, they need to stop offering false hope through policies, such as first home-owners' grants, that are well-known to be ineffective. Governments have no chance of bringing the community with them when they keep telling voters that the easy policies will do the job. Instead they need to explain the hard choices to prepare the ground for the tough decisions that need to be made. Either people accept greater density in \textit{their} suburb, or their children will not be able to buy a home, and seniors will not be able to downsize in the suburb where they live. Economic growth will be constrained. And Australia will become a less equal society – both economically and socially. 
+
+Policy can make a difference. But only if we make the right choices.
+
+\end{Conclusion}
+
+
