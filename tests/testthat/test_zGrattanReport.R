@@ -6,6 +6,11 @@ test_that("SchoolFunding.tex doesn't fail", {
                        full.names = TRUE), 
                    file.remove, 
                    FALSE))
+  invisible(vapply(dir(path = "./SchoolFunding", 
+                       pattern = "((pdf)|(cls))$",
+                       full.names = TRUE), 
+                   file.remove, 
+                   FALSE))
 })
 
 test_that("SchoolFunding.tex", {

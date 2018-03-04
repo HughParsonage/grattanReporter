@@ -233,11 +233,13 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       stop("Lines from 'This report may be cited as:' to 'All material ... Unported License' must be \\footnotesize.")
     }
 
-    if (!any(lines_before_begin_document == "All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\\par")){
+    if (!any(lines_before_begin_document %chin% c("All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\\par",
+                                                  "All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. Front cover photo credit: ``the Commons'' project -- Breathe Architecture, photographer Andrew Wuttke.\\par"))){
       stop("License line not present and correct. Could not find (as a single line)\n>",
            "All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\\par<")
     }
-    licence_line <- which(lines_before_begin_document == "All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\\par")
+    licence_line <- which(lines_before_begin_document  %chin% c("All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License\\par",
+                                                                "All material published or otherwise created by Grattan Institute is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. Front cover photo credit: ``the Commons'' project -- Breathe Architecture, photographer Andrew Wuttke.\\par"))
 
     if (lines_before_begin_document[licence_line + 1] != "}"){
       stop("Line after licence line must be a closing brace.")
