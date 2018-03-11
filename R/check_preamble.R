@@ -357,7 +357,9 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
 
 
     if (lines_before_begin_document[isbn_line - 2] %notin% recommended_citations){
-      .report_error(error_message = "Recommended citation not present.")
+      .report_error(error_message = "Recommended citation not present.",
+                    line_no = lines_before_begin_document[isbn_line - 2],
+                    column = column)
       cat("\n")
       stop("Recommended citation should be two lines before ISBN: . ",
            "I expected one of the the citations\n\t",
