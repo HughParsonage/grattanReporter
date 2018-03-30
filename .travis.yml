@@ -17,6 +17,7 @@ r_binary_packages:
 - fastmatch
 - magrittr
 - readr
+- stringi
 - hunspell
 - crayon
 - zoo
@@ -35,8 +36,8 @@ after_failure:
 after_success:
 - Rscript -e 'devtools::test()'
 - Rscript -e 'covr::codecov()'
-- test $TRAVIS_PULL_REQUEST == "false" && 
-        test $TRAVIS_BRANCH == "publish" && 
+- test $TRAVIS_PULL_REQUEST == "false" &&
+        test $TRAVIS_BRANCH == "master" &&
         bash deploy.sh
 env:
   global:
