@@ -14,6 +14,10 @@ test_that("returns release when present", {
   expect_equal(any(grepl("^[release]", release_status("release-status-compile.tex"))), TRUE)
 })
 
+test_that("Release even if trailing whitespace", {
+  expect_equal(release_status("release-status-compile-ws.tex"), "compile")
+})
+
 
 
 
