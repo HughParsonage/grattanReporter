@@ -12,7 +12,7 @@ get_authors <- function(filename, include_editors = TRUE, rstudio = FALSE) {
   lines_before_begin_document <-
     lines[1:grep("\\begin{document}", lines, fixed = TRUE)]
   
-  if (any(grepl("\\input", lines_before_begin_document, fixed = TRUE))){
+  if (any(grepl("\\input", lines_before_begin_document, fixed = TRUE))) {
     # Ensure the only input in acknowledgements is tex/acknowledgements
     acknowledgements <- 
       paste0(lines_before_begin_document, collapse = " ") %>%
