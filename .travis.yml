@@ -27,7 +27,7 @@ r_packages:
 - clisymbols
 
 before_install:
- - Rscript -e 'update.packages(ask=FALSE)'
+ - Rscript -e 'install.packages("devtools");update.packages(ask=FALSE)'
 
 r_github_packages:
 - HughParsonage/hutils
