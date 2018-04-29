@@ -7,7 +7,7 @@
 \usage{
 checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
-  rstudio = FALSE, update_grattan.cls = TRUE, filename = NULL)
+  rstudio = FALSE, update_grattan.cls = pre_release, filename = NULL)
 
 checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
@@ -22,8 +22,8 @@ checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
 
 \item{release}{Should a final pdf be prepared for publication?}
 
-\item{.proceed_after_rerun}{On the occasions where infinitely many passes of \code{pdflatex} 
-are required, include this to skip the error. Note that this will result in false cross-references 
+\item{.proceed_after_rerun}{On the occasions where infinitely many passes of \code{pdflatex}
+are required, include this to skip the error. Note that this will result in false cross-references
 or incompletely formatted bibliographies.}
 
 \item{.no_log}{Make no entry in the log file on the check's outcome.}
@@ -33,16 +33,22 @@ Set to \code{TRUE} for debugging or repetitive use (as in benchmarking).}
 
 \item{rstudio}{Use the RStudio API if available.}
 
-\item{update_grattan.cls}{Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}? 
+\item{update_grattan.cls}{Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}?
 Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.}
 
-\item{filename}{If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the 
+\item{filename}{If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the
 set to the sole \code{.tex} file within \code{path}.}
 }
 \value{
 Called for its side-effect.
 }
 \description{
-Check Grattan reports written is LaTeX for typing errors, significant warnings, 
+Check Grattan reports written is LaTeX for typing errors, significant warnings,
 and inconsistent style.
+}
+\details{
+Options in the package
+\describe{
+\item{\code{grattanReporter.quiet.progress = FALSE}}{Can be set to \code{TRUE} to avoid printing the output during the check.}
+}
 }

@@ -297,8 +297,13 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       stop(paste0("Invalid ISBN. Checksum was ", check_sum))
     }
 
-    if (!OR(lines_before_begin_document[isbn_line - 3] %in% c("This report may be cited as:",
-                                                              "This working paper may be cited as:"),
+    if (!OR(OR(lines_before_begin_document[isbn_line - 3] %in% c("This report may be cited as:",
+                                                              "This working paper may be cited as:",
+                                                              "This discussion paper may be cited as:",
+                                                              "This background paper may be cited as:"),
+               lines_before_begin_document[isbn_line - 4] %in% c("This report may be cited as:",
+                                                                 "This working paper may be cited as:",
+                                                                 "This background paper may be cited as:")),
             OR(identical(lines_before_begin_document[isbn_line - c(4:3)],
                          c("This report may be cited as:", "\\newline")),
                identical(lines_before_begin_document[isbn_line - c(4:3)],
