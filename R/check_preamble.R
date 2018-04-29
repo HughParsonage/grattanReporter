@@ -23,7 +23,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                   error_message = "Line 1 was not \\documentclass[<options>]{grattan}")
     stop("Line 1 was not \\documentclass[<options>]{grattan}")
   }
-  
+
   if (grepl("submission", lines[[1L]], fixed = TRUE)) {
     return(NULL)
   }
@@ -113,7 +113,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                     warn = FALSE))
     }
   }
-  
+
   report_specific_phrases <- c("This report was written by",
                                "The opinions in this report are those of the authors",
                                "This report may be cited as")
@@ -125,7 +125,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
               any(grepl(report_specific_phrases_regex,
                         lines_before_begin_document,
                         perl = TRUE)))){
-    
+
     bad_phrases <- report_specific_phrases
     for (i in seq_along(report_specific_phrases)) {
       if (!any(grepl(report_specific_phrases[i], lines_before_begin_document))) {
@@ -133,10 +133,10 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       }
     }
     bad_phrases <- bad_phrases[!is.na(bad_phrases)]
-    
+
     if (length(bad_phrases) > 1) {
       .report_error(error_message = "Working paper / Report inconsistency",
-                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statements\n\t", 
+                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statements\n\t",
                                     paste0(bad_phrases, collapse = "\n\t"),
                                     "\nstill present in document.",
                                     "\n\n",
@@ -145,7 +145,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       stop("Working paper / Report inconsistency")
     } else {
       .report_error(error_message = "Working paper / Report inconsistency",
-                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t", 
+                    advice = paste0("\\ReportOrWorkingPaper set to {Working Paper} but statement\n\t",
                                     bad_phrases,
                                     "\nstill present in document.",
                                     "\n\n",
@@ -157,9 +157,9 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
 
   if (AND(any(grepl("This working paper was written by",
                     lines_before_begin_document,
-                    perl = TRUE)), 
-          !any(grepl("\\ReportOrWorkingPaper{Working Paper}", 
-                     lines_before_begin_document, 
+                    perl = TRUE)),
+          !any(grepl("\\ReportOrWorkingPaper{Working Paper}",
+                     lines_before_begin_document,
                      fixed = TRUE)))){
     .report_error(error_message = "Working paper / Report inconsistency",
                   advice = paste0("\\ReportOrWorkingPaper not set to {Working Paper} but statement\n\t'This working paper was written by'\nstill present in document.",
@@ -170,10 +170,10 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                                   collapse = ""))
     stop("\\ReportOrWorkingPaper not set to {Working Paper} but\n\t'This working paper was written by'\nexists in document.")
   }
-  
-  
 
-  
+
+
+
   if (!any(grepl("\\YEAR", lines_before_begin_document, fixed = TRUE))){
     year_provided <- FALSE
     current_year <- format(Sys.Date(), "%Y")
@@ -199,9 +199,9 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       if (length(GrattanReportNumber) >= 1L){
         if (length(GrattanReportNumber) > 1L){
           stop("Multiple \\GrattanReportNumbers in document.")
-        } 
+        }
         GrattanReportNumberArg <- gsub("^.*[{](.*)[}].*$", "\\1", GrattanReportNumber, perl = TRUE)
-        
+
         if (substr(GrattanReportNumberArg, 0, 4) != current_year){
           if (!year_provided){
             stop("GrattanReportNumber using ", substr(GrattanReportNumberArg, 0, 4),
@@ -214,13 +214,13 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
                  lines_before_begin_document[year_line], ".")
           }
         }
-        
+
         is.wholenumber <- function(x){
           x <- as.integer(x)
           and(!is.na(x),
               abs(x - round(x)) < .Machine$double.eps^0.5)
         }
-        
+
         if (!is.wholenumber(gsub("^.{5}", "", GrattanReportNumberArg))){
           stop("GrattanReportNumber not in the form YYYY-z where z is an integer.")
         }
@@ -312,44 +312,44 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     project_authors_reversed_inits <- rev_forename_surname_bibtex(project_authors_initials)
     project_authors_textcite_inits <-
       switch(pmin.int(length(project_authors), 3),
-             gsub("\\.$", 
+             gsub("\\.$",
                   "\\\\@\\.",
                   project_authors_reversed_inits),
-             
-             paste0(project_authors_reversed_inits[1], " and ", gsub("\\.$", 
-                                                                     "\\\\@\\.", 
+
+             paste0(project_authors_reversed_inits[1], " and ", gsub("\\.$",
+                                                                     "\\\\@\\.",
                                                                      project_authors_reversed_inits[2])),
-             
+
              paste0(paste0(project_authors_reversed_inits[-length(project_authors_reversed_inits)], collapse = ", "),
                     ", and ",
-                    gsub("\\.$", 
+                    gsub("\\.$",
                          "\\\\@\\.",
                          last(project_authors_reversed_inits))))
-           
+
     project_authors_reversed <- rev_forename_surname_bibtex(project_authors)
     project_authors_textcite <- paste0(paste0(project_authors_reversed[-length(project_authors_reversed)], collapse = ", "),
                                        ", and ",
                                        last(project_authors_reversed))
-    
+
     project_authors_textcite_forename_surname <-
       paste0(paste0(project_authors[-length(project_authors)], collapse = ", "),
              ", and ",
              last(project_authors))
-    
-    project_authors_textcite_full <- 
+
+    project_authors_textcite_full <-
       switch(pmin.int(length(project_authors), 3),
              # 1
              project_authors_reversed_inits,
-             
+
              # 2
              paste0(project_authors_textcite[1], " and ", project_authors_textcite[2]),
-             
+
              # >= 3
              project_authors_textcite)
-    
+
     recommended_citations <-
       c(paste0(project_authors_textcite_inits, " (", current_year, "). ",
-               "\\emph{\\mytitle}. Grattan Institute."), 
+               "\\emph{\\mytitle}. Grattan Institute."),
         paste0(project_authors_textcite_forename_surname, ". (", current_year, "). ",
                "\\emph{\\mytitle}. Grattan Institute."),
         paste0(paste0(project_authors_textcite_full, " (", current_year, "). ",
@@ -359,7 +359,7 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     if (lines_before_begin_document[isbn_line - 2] %notin% recommended_citations){
       .report_error(error_message = "Recommended citation not present.",
                     line_no = lines_before_begin_document[isbn_line - 2],
-                    column = column)
+                    column = 1)
       cat("\n")
       stop("Recommended citation should be two lines before ISBN: . ",
            "I expected one of the the citations\n\t",
