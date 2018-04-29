@@ -22,6 +22,7 @@
 #' @importFrom hutils if_else
 #' @importFrom hutils coalesce
 #' @importFrom hutils %notin%
+#' @importFrom hutils %pin%
 #' @importFrom magrittr %>%
 #' @importFrom magrittr and
 #' @importFrom magrittr or
@@ -31,6 +32,7 @@
 #' @importFrom grDevices embedFonts
 #' @importFrom utils download.file
 #' @importFrom stats complete.cases
+#' @importFrom stats setNames
 #' @import TeXCheckR
 #'
 #' @details
@@ -38,6 +40,9 @@
 #' \describe{
 #' \item{\code{grattanReporter.quiet.progress = FALSE}}{Can be set to \code{TRUE} to avoid printing the output during the check.}
 #' }
+#'
+#'
+#'
 #'
 
 checkGrattanReport <- function(path = ".",
@@ -48,7 +53,7 @@ checkGrattanReport <- function(path = ".",
                                .no_log = TRUE,
                                embed = TRUE,
                                rstudio = FALSE,
-                               update_grattan.cls = TRUE,
+                               update_grattan.cls = pre_release,
                                filename = NULL) {
   if (Sys.getenv("TRAVIS") == "true") {
     print(utils::packageVersion("grattanReporter"))
@@ -84,14 +89,16 @@ checkGrattanReport <- function(path = ".",
   setwd(path)
   on.exit(setwd(current_wd))
 
-  if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
-    download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
-                                      destfile = "grattan.cls",
-                                      quiet = TRUE)
+  if (update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
+    download_failure <-
+      download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
+                    destfile = "grattan.cls",
+                    quiet = TRUE)
     if (download_failure){
       stop("grattan.cls failed to download from master branch (and be updated).")
     }
 
+    hutils::provide.dir("logos")
     logos <-
       c("Bhp.pdf", "GrattanSVGLogo.pdf", "UOM-Pos_S_PMS.pdf", "Vic_Gov_Logo-2016.pdf", "aus-gov-logo-stacked-black.pdf")
 
