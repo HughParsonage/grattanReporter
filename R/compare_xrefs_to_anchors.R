@@ -45,6 +45,7 @@ compare_xrefs_to_anchors <- function(path = ".",
     figure_xrefs[grepl(sprintf("[%s]", lab), caption_id, fixed = TRUE),
                  .(xref_page = min(xref_page)), by = "caption_id"]
 
+  fig_no <- page_no <- caption <- href <- SINK <- NULL
   figure_captions <-
     aux_contents %>%
     .[grep(paste0("\\\\newlabel\\{", lab, "[:][^@\\}]++\\}"), AUX, perl = TRUE)] %>%
@@ -72,12 +73,13 @@ compare_xrefs_to_anchors <- function(path = ".",
     .[, .(caption_id, fig_page = as.integer(page), fig_no)]
 
   if (requireNamespace("ggplot2", quietly = TRUE)) {
-    rel_page <- NULL
+    rel_page <- label <- NULL
     p <-
       figure_locations[first_figure_xref, on = "caption_id", nomatch=0L] %>%
       .[figure_captions, on = "fig_no"] %>%
       .[, rel_page := xref_page - fig_page] %>%
-      .[abs(rel_page) > 5L, label := substr(paste(fig_no, caption), 0, 50)] %>%
+      .[abs(rel_page) > 5L,
+        label := substr(paste(fig_no, caption), 0, 50)] %>%
       ggplot2::ggplot(ggplot2::aes(x = xref_page, y = fig_page, label = label)) +
       ggplot2::geom_point() +
       ggrepel::geom_label_repel(na.rm = TRUE)
