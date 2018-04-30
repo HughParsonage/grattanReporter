@@ -2,7 +2,9 @@ context("Smallbox captions")
 
 test_that("Errors when smallbox occurs near chapter", {
   skip_on_travis()
-
+  hutils::provide.dir("./check-smallbox/travis/grattanReport/")
+  if (!file.exists("./check-smallbox/travis/grattanReport/log.txt"))
+    file.create("./check-smallbox/travis/grattanReport/log.txt")
   expect_error(checkGrattanReport("./check-smallbox", compile = TRUE,
                                   update_grattan.cls = TRUE),
                regexp = "Smallbox.*intrudes on chapter heading")
