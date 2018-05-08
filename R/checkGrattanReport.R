@@ -68,10 +68,35 @@ checkGrattanReport <- function(path = ".",
     }
   }
     
+
+  
   
   current_wd <- getwd()
   setwd(path)
   on.exit(setwd(current_wd))
+  
+
+
+  if (is.null(filename)) {
+    tex_file <- dir(path = ".", pattern = "\\.tex$")
+    if (length(tex_file) != 1L) {
+      stop("`path` must contain one and only one .tex file.")
+    }
+    filename <- tex_file[[1]]
+  }
+  
+  
+  if("compile" %in% release_status(filename)){
+    compile = TRUE
+  }
+  
+  if("pre_release" %in% release_status(filename)){
+    pre_release = TRUE
+  }
+  
+  if("release" %in% release_status(filename)){
+    release = TRUE
+  } 
   
   if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
     download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
@@ -135,15 +160,6 @@ checkGrattanReport <- function(path = ".",
       }
     }
   }
-
-  if (is.null(filename)) {
-    tex_file <- dir(path = ".", pattern = "\\.tex$")
-    if (length(tex_file) != 1L) {
-      stop("`path` must contain one and only one .tex file.")
-    }
-    filename <- tex_file[[1]]
-  }
-  
   
   if (.no_log) {
     .report_error <- function(...){
