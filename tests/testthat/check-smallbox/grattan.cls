@@ -1,6 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/08/19 v1.3.0 Reports of the Grattan Institute, Melbourne]
-
+\ProvidesClass{grattan}[2018-02-26 v1.3.3 Reports of the Grattan Institute, Melbourne]
+% >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
+% for png files
 \LoadClass[%
 a4paper,
 11pt,
@@ -30,7 +31,10 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=100
+\exhyphenpenalty=900
+\hyphenpenalty=800
+\brokenpenalty=3000
+
 \RequirePackage{cmap}
 \RequirePackage{scrhack}
 \RequirePackage{xcolor}
@@ -134,6 +138,7 @@ numbers=noenddot,
 \newcommand*{\Chapref}[1]{\nameCref{#1}~\topref{#1}}
 \newcommand*{\Chapsref}[1]{\nameCrefs{#1}~\topref{#1}}
 \newcommand*{\Chaprefrange}[2]{\nameCrefs{#1}~\topref{#1} to~\topref{#2}}
+\newcommand*{\Chaprefand}[2]{\nameCrefs{#1}~\topref{#1} and~\topref{#2}}
 
 % Footnote layout (koma)
 % \makebox left-aligned numbers.
@@ -252,6 +257,23 @@ numbers=noenddot,
 \end@dblfloat
 }
 
+\newcommand{\@addboxcaption}[1]{%
+\captionsetup{labelfont={bf,Orange},font={bf,Orange},format=plain,justification=raggedright,singlelinecheck=false, skip=0ex, position=above}
+\caption*{#1}
+\captionsetup{format=plain,font={small,bf,theGrey},labelfont={small,bf,theGrey}, position=above, skip=0pt}
+}
+
+\newenvironment{addsmallbox}[3][htb]{%
+  \setlength{\currentparskip}{\parskip}% save the value
+  \begin{boxe}[#1]
+  \begin{mdframed}[style=GrattanFrameBox]%
+  \setlength{\parskip}{\currentparskip}% restore the value
+  \@addboxcaption{#2\label{#3}}%
+  \RaggedRight
+}{
+  \end{mdframed}%
+  \end{boxe}%
+}
 
 % Big boxes -- over the whole page
 % It is recommended to surround this with an \afterpage{% 
@@ -381,6 +403,9 @@ numbers=noenddot,
 }
 
 \newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
+
+% More consistent fonts for quotes:
+\AtBeginEnvironment{quote}{\small\justifying}
 
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
@@ -600,37 +625,37 @@ numbers=noenddot,
 
 % Alternatively, if FrontPage is declared, the file there is used as the frontpage picture
 \DeclareOption{FrontPage}{
-	\IfFileExists{./FrontPage/FrontPage.pdf}{%
-	    %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
-	  }{
-	    \ClassError{grattan}{%
-			'./FrontPage/FrontPage.pdf' does not exist
-	    }{%
-			You have asked for a fullpicture option, but we can't find 
-			a file at './FrontPage/FrontPage.pdf'. Try placing the image
-			there or not using the fullpicture option.
-		}
-	  }
-	\renewcommand\BackgroundPic{%
-		\put(0,0){%
-		\parbox[b][\paperheight]{\paperwidth}{%
-		\vfill
-		\centering
-		% Amend
-		\IfFileExists{./FrontPage/FrontPage.pdf}{%
-			\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
-		}{
-			\ClassError{grattan}{%
-				'./FrontPage/FrontPage' does not exist
-			}{%
-				You have asked for a fullpicture option, but we can't find 
-				a file at './FrontPage/FrontPage'. Try placing the image
-				there or not using the fullpicture option.
-			}
-		}
-	\vfill
-	}}}
-	\renewcommand{\titleTH}{} % FrontPage should be entire.
+  \IfFileExists{./FrontPage/FrontPage.pdf}{%
+      %\includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage}%
+    }{
+      \ClassError{grattan}{%
+      './FrontPage/FrontPage.pdf' does not exist
+      }{%
+      You have asked for a fullpicture option, but we can't find 
+      a file at './FrontPage/FrontPage.pdf'. Try placing the image
+      there or not using the fullpicture option.
+    }
+    }
+  \renewcommand\BackgroundPic{%
+    \put(0,0){%
+    \parbox[b][\paperheight]{\paperwidth}{%
+    \vfill
+    \centering
+    % Amend
+    \IfFileExists{./FrontPage/FrontPage.pdf}{%
+      \includegraphics[width=\paperwidth,keepaspectratio]{./FrontPage/FrontPage.pdf}%
+    }{
+      \ClassError{grattan}{%
+        './FrontPage/FrontPage' does not exist
+      }{%
+        You have asked for a fullpicture option, but we can't find 
+        a file at './FrontPage/FrontPage'. Try placing the image
+        there or not using the fullpicture option.
+      }
+    }
+  \vfill
+  }}}
+  \renewcommand{\titleTH}{} % FrontPage should be entire.
 
 }
 
@@ -646,9 +671,9 @@ numbers=noenddot,
   \begin{minipage}[t][0.85\textheight][t]{\columnwidth}
   \subsection*{Grattan Institute Support}  
   \begin{multicols}{2}
-  \setlength{\parskip}{5pt plus 8pt minus 5pt}
+  \setlength{\parskip}{4pt plus 8pt minus 5pt}
   \textbf{\textcolor{theGrey}{\normalsize Founding members}}\hfill\par
-  \vspace{-20pt} 
+  \vspace{-40pt} 
   {\centering  
   
   \IfFileExists{aus-gov-logo-stacked-black.pdf}%
@@ -672,20 +697,28 @@ numbers=noenddot,
   % par is necessary to centre the last logo
   \par}
   \columnbreak\par
-  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
   \footnotesize 
+  \textbf{\textcolor{theGrey}{\normalsize Endowment Supporters}}
 
-  Google 
+  The Myer Foundation
+
+  National Australia Bank
+
+  Susan McKinnon Foundation
+
+  \vspace{15pt}
+
+  \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Medibank Private
 
   Susan McKinnon Foundation
-
-  \vspace{26pt}
+  
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
-
-  EY
+ 
+  Google 
 
   Maddocks
 
@@ -697,7 +730,7 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{26pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -711,11 +744,11 @@ numbers=noenddot,
 
   Jemena
 
-  The Myer Foundation
-
   Urbis
 
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Westpac
+
+  Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \eject \normalsize
@@ -758,44 +791,84 @@ numbers=noenddot,
   uniquelist=false, 
   uniquename=init,
   sorting=anyt,
+  date=year, % else bibliography will be e.g. ATO (Jul. 10, 2016c)
   labelalpha,
   maxalphanames=1
 ]{biblatex}
 
 \@ifpackagelater{biblatex}{2016/09/01}{%
-  \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-  \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
-  \ExecuteBibliographyOptions{sorting=gratt}
+% Maintain backwards-compatibility between these dates
+  \@ifpackagelater{biblatex}{2017/11/04}{
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingTemplate{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}\sort{\field{author}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
 
-  \newtoggle{bbx:dowehavemorenames}
-  \DeclareNameFormat{dowehavemorenames}{%
-   \ifboolexpr{
-     test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-     and
-     test \ifmorenames
-   }
-     {\global\toggletrue{bbx:dowehavemorenames}}
-     {\global\togglefalse{bbx:dowehavemorenames}}}
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
 
-  \newcounter{mymaxcitenames}
-  \AtBeginDocument{%
-   \setcounter{mymaxcitenames}{\value{maxnames}}%
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extradate}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+    }
+  }{
+  %% biblatex version 3.7
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
+
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
+
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extrayear}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+    }
   }
-
-  \renewbibmacro*{begentry}{%
-    \begingroup
-      \defcounter{maxnames}{\value{mymaxcitenames}}%
-      \printnames[dowehavemorenames]{labelname}%
-      \iftoggle{bbx:dowehavemorenames}
-        {\printnames{labelname}%
-         \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extrayear}%
-         \space\space\newunit\newblock}
-        {}%
-    \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
-  }
-}
+}%
+% do nothing
+{}
 
 \DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
@@ -884,7 +957,11 @@ numbers=noenddot,
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\boolfalse{cbx:parens}}
   {\usebibmacro{citeindex}%
-  \ifciteibid{Ibid.}{%  % for ibidem
+  % https://github.com/grattaninstitute/AP-Housing-affordability-2017/commit/55757ed2c625d4e18ada5a71edfdb5fbd88f56d1
+  % Ibid. -> Ibid\adddot
+  % Otherwise the . in Ibid. is interprted as the end of a sentence
+  % which means the first letter in a postnote will be uppercase
+  \ifciteibid{Ibid\adddot}{%  % for ibidem
    \iffirstcitekey
      {\setcounter{textcitetotal}{1}}
      {\stepcounter{textcitetotal}%
@@ -964,19 +1041,19 @@ numbers=noenddot,
   
 \AtBeginDocument{%
   \pagestyle{empty}
-	\let\mytitle\@title
-	\let\myauthor\@author
-	
-	% TitlePage
-	\onecolumn
-	\AddToShipoutPicture*{\BackgroundPic}
-	\phantom{.}\hfill\titleTH
-	\ClearShipoutPicture
-	\clearpage
-	\twocolumn
+  \let\mytitle\@title
+  \let\myauthor\@author
+  
+  % TitlePage
+  \onecolumn
+  \AddToShipoutPicture*{\BackgroundPic}
+  \phantom{.}\hfill\titleTH
+  \ClearShipoutPicture
+  \clearpage
+  \twocolumn
   % use microtype
   
-	%
+  %
 % Following page.
 \pagestyle{scrheadings}
 \@pagetwo

@@ -1,30 +1,15 @@
 language: r
-cache: packages
 sudo: true
 warnings_are_errors: true
 before_install:
 - tlmgr install acronym bigfoot blindtext chngcntr cmap nowidow mdframed navigator
   needspace tablefootnote tocloft xpatch multirow bbding mathastext isomath relsize
-addons:
-  apt:
-    packages:
-    - libhunspell-dev
-r_binary_packages:
-- covr
-- devtools
-- roxygen2
-- data.table
-- fastmatch
-- magrittr
-- readr
-- stringi
-- hunspell
-- crayon
-- zoo
 
 r_packages:
 - drat
 - clisymbols
+- fastmatch
+- devtools
 
 r_github_packages:
 - HughParsonage/hutils
