@@ -358,6 +358,7 @@ checkGrattanReport <- function(path = ".",
   cat("\n")
 
   if (compile){
+    options("tinytex.clean" = FALSE)
     full_dir_of_path <- getwd()
     md5_filename <- paste0(substr(tools::md5sum(filename), 0, sample.int(10, size = 1) + 2),
                            substr(tools::md5sum(bib_file), 0, sample.int(10, size = 1) + 2))
@@ -426,7 +427,12 @@ checkGrattanReport <- function(path = ".",
     cat("\n")
     cat(green(symbol$tick, ".log file checked.\n"))
 
-    if (!length(dir(pattern = "\\.aux$"))) system(sprintf("pdflatex -interaction=batchmode %s", filename))
+    if (!length(dir(pattern = "\\.aux$"))) {
+      cat(filename)
+      if (requireNamespace("tinytex", quietly = TRUE)) {
+        tinytex::pdflatex(filename, clean = FALSE)
+      }
+    }
     check_smallbox_caption_positions()
 
     if (pre_release) {
