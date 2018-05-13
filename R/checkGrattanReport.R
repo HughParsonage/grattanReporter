@@ -409,7 +409,7 @@ checkGrattanReport <- function(path = ".",
     while (pre_release && !is.null(log_result) && log_result == "Rerun LaTeX."){
       cat(reruns_required + 1, " ", sep = "")
       system2(command = "pdflatex",
-              args = c("-draftmode", "-halt-on-error", filename),
+              args = c("-batchmode", "-halt-on-error", filename),
               stdout = gsub("\\.tex$", ".log2", filename))
       log_result <- check_log(check_for_rerun_only = TRUE)
 
@@ -426,6 +426,7 @@ checkGrattanReport <- function(path = ".",
     cat("\n")
     cat(green(symbol$tick, ".log file checked.\n"))
 
+    if (!length(dir(pattern = "\\.aux$"))) system(sprintf("pdflatex -interaction=batchmode %s", filename))
     check_smallbox_caption_positions()
 
     if (pre_release) {
