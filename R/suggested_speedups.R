@@ -1,7 +1,7 @@
 
 read_lines <- function(...) {
   if (requireNamespace("readr", quietly = TRUE)) {
-    tryCatch(readr::read_lines(...), error = function(e) {dir(dirname(..1)); stop(e$m)})
+    readr::read_lines(...)
   } else {
     readLines(...)
   }
