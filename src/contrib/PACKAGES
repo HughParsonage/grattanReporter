@@ -2,8 +2,8 @@ Package: grattanReporter
 Version: 0.27.0
 Depends: R (>= 2.10), TeXCheckR (>= 0.4.2)
 Imports: magrittr, hutils, data.table, clisymbols, crayon, utils,
-Suggests: testthat, devtools, stringi, readr, ggplot2, ggrepel
+Suggests: testthat, devtools, stringi, readr, ggplot2, ggrepel, tinytex
 License: GPL-2
-MD5sum: 0f740344d3ca303ad1185efb6c5e2156
+MD5sum: dbda5bc3c509fec986ce37e0a2ddb8a7
 NeedsCompilation: no
 File: grattanReporter_0.27.0.tar.gz
