@@ -68,8 +68,10 @@ checkGrattanReport <- function(path = ".",
   }
 
   if (compile && Sys.which("pdflatex") == "") {
-    stop("pdflatex not on system path. Ensure you have LaTeX installed (MiKTeX, MacTeX, TeXLive) and that it is searchable on PATH. ",
-         "(Did you install but leave programs open?)")
+    if (!nzchar(Sys.which('latexmk')) || requireNamespace("tinytex", quietly = TRUE)) {
+      stop("pdflatex not on system path. Ensure you have LaTeX installed (MiKTeX, MacTeX, TeXLive) and that it is searchable on PATH. ",
+           "(Did you install but leave programs open?)")
+    }
   }
 
   if (embed && release) {
