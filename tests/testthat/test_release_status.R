@@ -14,11 +14,11 @@ test_that("returns release when present", {
 
 test_that("Release even if trailing whitespace", {
   expect_equal(release_status("release-status-compile-ws.tex"),
-               c("release", "pre_release", "compile"))
+               c("compile"))
 })
 
-test_that("returns FALSE when no directive present", {
-  expect_equal(release_status("release-status-no-directive.tex"), FALSE)
+test_that("returns NULL when no directive present", {
+  expect_null(release_status("release-status-no-directive.tex"))
 })
 
 
