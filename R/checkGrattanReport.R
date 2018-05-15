@@ -398,9 +398,11 @@ checkGrattanReport <- function(path = ".",
     current_warn <-  getOption("warn")
     on.exit(options(warn = current_warn), add = TRUE)
     options(warn = 2)
-    system2(command = "pdflatex",
-            args = c("-interaction=batchmode", "-halt-on-error", filename),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    # system2(command = "pdflatex",
+    #         args = c("-interaction=batchmode", "-halt-on-error", filename),
+    #         stdout = gsub("\\.tex$", ".log2", filename))
+    pdflatex(filename)
+
     cat("complete.\n")
     cat("   Invoking biber...\n")
     system2(command = "biber",
