@@ -83,11 +83,11 @@ checkGrattanReport <- function(path = ".",
   if (getOption("grattanReporter.quiet.progress", FALSE)) {
     cat <- function(...) NULL
   }
-  
+
   current_wd <- getwd()
   setwd(path)
   on.exit(setwd(current_wd))
-  
+
 
 
   if (is.null(filename)) {
@@ -97,20 +97,20 @@ checkGrattanReport <- function(path = ".",
     }
     filename <- tex_file[[1]]
   }
-  
-  
+
+
   if("compile" %in% release_status(filename)){
     compile = TRUE
   }
-  
+
   if("pre_release" %in% release_status(filename)){
     pre_release = TRUE
   }
-  
+
   if("release" %in% release_status(filename)){
     release = TRUE
-  } 
-  
+  }
+
   if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
     download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
                                       destfile = "grattan.cls",
@@ -119,7 +119,9 @@ checkGrattanReport <- function(path = ".",
     if (download_failure){
       stop("grattan.cls failed to download from master branch (and be updated).")
     }
+  }
 
+  if (update_grattan.cls) {
     hutils::provide.dir("logos")
     logos <-
       c("Bhp.pdf", "GrattanSVGLogo.pdf", "UOM-Pos_S_PMS.pdf", "Vic_Gov_Logo-2016.pdf", "aus-gov-logo-stacked-black.pdf")
@@ -397,7 +399,7 @@ checkGrattanReport <- function(path = ".",
     on.exit(options(warn = current_warn), add = TRUE)
     options(warn = 2)
     system2(command = "pdflatex",
-            args = c("-draftmode", "-halt-on-error", filename),
+            args = c("-interaction=batchmode", "-halt-on-error", filename),
             stdout = gsub("\\.tex$", ".log2", filename))
     cat("complete.\n")
     cat("   Invoking biber...\n")
@@ -410,7 +412,7 @@ checkGrattanReport <- function(path = ".",
 
     cat("   Rerunning pdflatex. Starting pass number 1")
     system2(command = "pdflatex",
-            args = c("-draftmode", "-halt-on-error", filename),
+            args = c("-interaction=batchmode", "-halt-on-error", filename),
             stdout = gsub("\\.tex$", ".log2", filename))
 
     cat(" 2 ")
@@ -423,7 +425,7 @@ checkGrattanReport <- function(path = ".",
     while (pre_release && !is.null(log_result) && log_result == "Rerun LaTeX."){
       cat(reruns_required + 1, " ", sep = "")
       system2(command = "pdflatex",
-              args = c("-batchmode", "-halt-on-error", filename),
+              args = c("-interaction=batchmode", "-halt-on-error", filename),
               stdout = gsub("\\.tex$", ".log2", filename))
       log_result <- check_log(check_for_rerun_only = TRUE)
 
