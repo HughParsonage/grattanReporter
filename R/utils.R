@@ -44,17 +44,17 @@ rev_forename_surname_bibtex <- function(author_fields){
   full_names <-
     lapply(author_fields, strsplit, " and ") %>%
     lapply(unlist, recursive = FALSE)
-  
+
   comma_name <-
     full_names %>%
     lapply(grepl, pattern = ", ", fixed = TRUE)
-  
+
   forename_surnames <-
     full_names %>%
     lapply(strsplit, split = "(, )|(\\s((?!(?:v[ao]n)|(?:der?)|(?:di))(?=(\\w+$))))", perl = TRUE)
-  
+
   out <- forename_surnames
-  
+
   for (field in seq_along(author_fields)){
     for (nom in seq_along(full_names[[field]])){
       if (!comma_name[[field]][[nom]]){
@@ -62,7 +62,7 @@ rev_forename_surname_bibtex <- function(author_fields){
       }
     }
   }
-  
+
   lapply(out, FUN = function(author_name){
     lapply(author_name, paste0, collapse = ", ")
   }) %>%
@@ -103,7 +103,7 @@ move_to <- function(to.dir,
                   full.names = TRUE,
                   recursive = TRUE,
                   include.dirs = FALSE)
-  x.dirs <- file.path(to.dir, 
+  x.dirs <- file.path(to.dir,
                       list.dirs(path = from.dir, recursive = TRUE, full.names = TRUE))
   dir_create <- function(x) if (!dir.exists(x)) dir.create(x)
   lapply(x.dirs, dir_create)
@@ -137,3 +137,10 @@ insert <- function(x, i, new) {
   }
   out
 }
+
+WINDOWS <- function() {
+  identical(.Platform$OS, "windows")
+}
+
+
+
