@@ -6,7 +6,7 @@
 
 
 pdflatex <- function(filename.tex, interaction = "batchmode", halt_on_error = TRUE) {
-  if (requireNamespace("tinytex", quietly = TRUE) && file.exists("/root/.TinyTeX")) {
+  if (requireNamespace("tinytex", quietly = TRUE) && has_tinytex()) {
     options("tinytex.clean" = TRUE)
     options("tinytex.bib_engine" = "biber")
     tinytex::latexmk(filename.tex, engine = "pdflatex", bib_engine = "biber")
@@ -26,6 +26,10 @@ pdflatex <- function(filename.tex, interaction = "batchmode", halt_on_error = TR
               stderr = tempfile("pdflatexstderr", fileext = ".log"))
     }
   }
+}
+
+has_tinytex <- function() {
+  file.exists("/root/.TinyTeX")
 }
 
 

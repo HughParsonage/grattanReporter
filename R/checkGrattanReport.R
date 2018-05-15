@@ -407,44 +407,46 @@ checkGrattanReport <- function(path = ".",
 
     cat("complete.\n")
     cat("   Invoking biber...\n")
-    system2(command = "biber",
-            args = c("--onlylog", "-V", gsub("\\.tex$", "", filename)),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    if (!has_tinytex()) {
+      system2(command = "biber",
+              args = c("--onlylog", "-V", gsub("\\.tex$", "", filename)),
+              stdout = gsub("\\.tex$", ".log2", filename))
+    }
 
     check_biber()
     cat(green(symbol$tick, "biber validated citations.\n"))
 
-    cat("   Rerunning pdflatex. Starting pass number 1")
-    system2(command = "pdflatex",
-            args = c("-interaction=batchmode", "-halt-on-error", filename),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    if (!has_tinytex()) {
+      cat("   Rerunning pdflatex. Starting pass number 1")
+      pdflatex(filename)
 
-    cat(" 2 ")
-    system2(command = "pdflatex",
-            args = c("-interaction=batchmode", filename),
-            stdout = gsub("\\.tex$", ".log2", filename))
-
-    log_result <- check_log(check_for_rerun_only = TRUE)
-    reruns_required <- 2
-    while (pre_release && !is.null(log_result) && log_result == "Rerun LaTeX."){
-      cat(reruns_required + 1, " ", sep = "")
+      cat(" 2 ")
       system2(command = "pdflatex",
-              args = c("-interaction=batchmode", "-halt-on-error", filename),
+              args = c("-interaction=batchmode", filename),
               stdout = gsub("\\.tex$", ".log2", filename))
+
       log_result <- check_log(check_for_rerun_only = TRUE)
+      reruns_required <- 2
+      while (pre_release && !is.null(log_result) && log_result == "Rerun LaTeX."){
+        cat(reruns_required + 1, " ", sep = "")
+        system2(command = "pdflatex",
+                args = c("-interaction=batchmode", "-halt-on-error", filename),
+                stdout = gsub("\\.tex$", ".log2", filename))
+        log_result <- check_log(check_for_rerun_only = TRUE)
 
-      reruns_required <- reruns_required + 1
-      if (!missing(.proceed_after_rerun) && reruns_required > .proceed_after_rerun){
-        cat("\nW: Skipping checking of LaTeX rerun.")
-        break
-      }
+        reruns_required <- reruns_required + 1
+        if (!missing(.proceed_after_rerun) && reruns_required > .proceed_after_rerun){
+          cat("\nW: Skipping checking of LaTeX rerun.")
+          break
+        }
 
-      if (missing(.proceed_after_rerun) && reruns_required > 3){
-        check_log(check_for_rerun_only = FALSE)
+        if (missing(.proceed_after_rerun) && reruns_required > 3){
+          check_log(check_for_rerun_only = FALSE)
+        }
       }
+      cat("\n")
+      cat(green(symbol$tick, ".log file checked.\n"))
     }
-    cat("\n")
-    cat(green(symbol$tick, ".log file checked.\n"))
 
     if (!length(dir(pattern = "\\.aux$"))) {
       cat(filename)
