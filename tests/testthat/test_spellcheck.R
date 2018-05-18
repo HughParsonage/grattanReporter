@@ -65,3 +65,8 @@ test_that("Vrefrange keys are ok", {
   expect_null(check_spelling("./spelling/vrefrange.tex"))
 })
 
+test_that("Chaprefrange", {
+  expect_null(check_spelling("./spelling/chaprefrange.tex"))
+})
+
+
