@@ -1,3 +1,6 @@
+
+* Checks now skips the second argument of chapter range cross-references
+
 # grattanReporter 0.25.2
 * Fix false pass from `check_CenturyFootnote` when multiple auxiliary files are legitimately produced (say from `\include`).
 * New function `word2tex` for conversion from docx.
