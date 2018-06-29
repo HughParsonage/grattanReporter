@@ -25,7 +25,7 @@ test_script:
   - unzip miktexsetup-x64.zip
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=essential download
-  - (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %ERRORLEVEL% LSS 8 EXIT /B 0
+  - (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
   #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=complete download
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --modify-path install
   #- travis-tool.sh run_tests
