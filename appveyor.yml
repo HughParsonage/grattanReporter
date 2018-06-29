@@ -26,11 +26,12 @@ test_script:
   - miktexsetup --local-package-repository=C:\temp\miktex --package-set=basic download
   - miktexsetup --local-package-repository=C:\temp\miktex --package-set=essential download
   - Rscript -e print(as.character(Sys.time()))
+  - mkdir C:\miktex
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
   - Rscript copy_sources.R
   #- miktexsetup --verbose --local-package-repository=C:\temp\miktex install
   #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
-  - miktexsetup --verbose --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
+  - miktexsetup --verbose --user-install=C:\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
   #- travis-tool.sh run_tests
   - Rscript -e print(as.character(Sys.time()))
 
