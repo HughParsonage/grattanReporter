@@ -32,9 +32,11 @@ test_script:
   - Rscript -e print(as.character(Sys.time()))
   - cd ../../tests/testthat/Engaging-students
   - ps: $env:Path += ";C:\miktex\bin\x64\"
+  - ps: $env:Path += ";C:\miktex\bin\"
   - Rscript -e "Sys.getenv('path')"
   - Rscript -e "Sys.which('pdflatex')"
-  - Rscript -e "Sys.setenv(path = paste0(Sys.getenv('path'), ';C:\\miktex\\bin\\x64;'));Sys.which('pdflatex')"
+  - Rscript -e "Sys.getenv('path')"
+  - Rscript -e "Sys.setenv(PATH = paste0(Sys.getenv('PATH'), ';C:\\miktex\\bin\\x64;C:\\miktex\\bin'));Sys.which('pdflatex')"
   - set PATH=%PATH%;C:\miktex\bin\x64\
   - Rscript -e "Sys.which('pdflatex')"
 
