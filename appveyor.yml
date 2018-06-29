@@ -23,11 +23,11 @@ test_script:
   - Rscript -e print(as.character(Sys.time()))
   - cd data-raw/miktex
   - unzip miktexsetup-x64.zip
-  - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
-  - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=essential download
+  - miktexsetup --local-package-repository=C:\temp\miktex --package-set=basic download
+  #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=essential download
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
-  - Rscript -e "file.copy('sources/moreenum.tar.lzma', 'C:/temp/miktex/moreenum.tar.lzma')"
-  - miktexsetup --verbose --local-package-repository=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
+  #- Rscript -e "file.copy('sources/moreenum.tar.lzma', 'C:/temp/miktex/moreenum.tar.lzma')"
+  - miktexsetup --verbose --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
   #- travis-tool.sh run_tests
   - Rscript -e print(as.character(Sys.time()))
 
