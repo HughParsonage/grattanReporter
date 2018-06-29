@@ -7,3 +7,4 @@
 ^deploy.sh$
 ^tests/testthat/CompetitionReport/\.travis\.yml$
 ^tests/testthat/check-CenturyFootnote/rprt1/\.travis\.yml$
+^appveyor\.yml$

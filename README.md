@@ -1,5 +1,6 @@
 [![Travis-CI Build Status](https://travis-ci.org/HughParsonage/grattanReporter.svg?branch=master)](https://travis-ci.org/HughParsonage/grattanReporter)
 [![codecov.io](https://codecov.io/github/HughParsonage/grattanReporter/coverage.svg?branch=master)](https://codecov.io/github/HughParsonage/grattanReporter?branch=master)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/HughParsonage/grattanReporter?branch=master&svg=true)](https://ci.appveyor.com/project/HughParsonage/grattanReporter)
 
 # grattanReporter
 Parsing grattan reports for errors
