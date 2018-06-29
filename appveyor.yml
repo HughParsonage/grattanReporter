@@ -23,7 +23,7 @@ test_script:
   - Rscript -e print(as.character(Sys.time()))
   - cd data-raw/miktex
   - unzip miktexsetup-x64.zip
-  - miktexsetup --local-package-repository=C:\temp\miktex --package-set=basic download
+  - miktexsetup --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ --package-set=basic download
   #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=essential download
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
   #- Rscript -e "file.copy('sources/moreenum.tar.lzma', 'C:/temp/miktex/moreenum.tar.lzma')"
