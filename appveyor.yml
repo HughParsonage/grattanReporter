@@ -27,8 +27,7 @@ test_script:
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=essential download
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
   - Rscript -e "file.copy('sources/moreenum.tar.lzma', 'C:/temp/miktex/moreenum.tar.lzma')"
-  #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=complete download
-  - miktexsetup --verbose --local-package-repository=C:\temp\miktex --modify-path install
+  - miktexsetup --verbose --local-package-repository=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
   #- travis-tool.sh run_tests
   - Rscript -e print(as.character(Sys.time()))
 
