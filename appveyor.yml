@@ -23,15 +23,17 @@ test_script:
   - Rscript -e print(as.character(Sys.time()))
   - cd data-raw/miktex
   - unzip miktexsetup-x64.zip
-  - miktexsetup --local-package-repository=C:\temp\miktex --package-set=basic download
-  - miktexsetup --local-package-repository=C:\temp\miktex --package-set=essential download
+  # https://github.com/d8euAI8sMs/appveyor-miktex-install/blob/master/miktex-install.bat
+  - miktexsetup.exe --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
+  - miktexsetup.exe --verbose --local-package-repository=C:\temp\miktex --package-set=basic --shared --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
+
   - Rscript -e print(as.character(Sys.time()))
   #- mkdir C:\miktex
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
-  - Rscript copy_sources.R
+  #- Rscript copy_sources.R
   #- miktexsetup --verbose --local-package-repository=C:\temp\miktex install
   #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
-  - miktexsetup --verbose --user-install=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
+  #- miktexsetup --verbose --user-install=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
   #- travis-tool.sh run_tests
   - Rscript -e print(as.character(Sys.time()))
 
