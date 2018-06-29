@@ -4,6 +4,6 @@ Depends: R (>= 2.10), TeXCheckR (>= 0.4.2)
 Imports: magrittr, hutils, data.table, clisymbols, crayon, utils,
 Suggests: testthat, devtools, stringi, readr, ggplot2, ggrepel, tinytex
 License: GPL-2
-MD5sum: e1afa03bebaf0b81e9e1e1b79f10a877
+MD5sum: b2b8d0b60f0d12b5d543fe888796dba9
 NeedsCompilation: no
 File: grattanReporter_0.27.0.tar.gz
