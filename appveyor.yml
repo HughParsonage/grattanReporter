@@ -31,7 +31,7 @@ test_script:
   - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic --shared --modify-path --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
   - Rscript -e print(as.character(Sys.time()))
   - cd ../../tests/testthat/Engaging-students
-  - ps: $env:Path = "C:\miktex\bin\x64\";
+  - ps: $env:Path += ";C:\miktex\bin\x64\"
   - Rscript -e "Sys.getenv('path')"
   - Rscript -e "Sys.which('pdflatex')"
   - Rscript -e "Sys.setenv(path = paste0(Sys.getenv('path'), ';C:\\miktex\\bin\\x64;'));Sys.which('pdflatex')"
