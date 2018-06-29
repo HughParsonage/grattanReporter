@@ -11,9 +11,7 @@ install:
   ps: Bootstrap
 
 cache:
-  - C:\RLibrary
   - C:\temp\miktex
-  - C:\miktex
 
 # Adapt as necessary starting from here
 
@@ -30,6 +28,9 @@ test_script:
   - Rscript -e print(as.character(Sys.time()))
   - cd ../../tests/testthat/Engaging-students
   - Rscript -e "Sys.which('pdflatex')"
+  - set PATH=%PATH%;C:\miktex\bin\x64\
+  - Rscript -e "Sys.which('pdflatex')"
+
   # - Rscript -e "library(grattanReporter);checkGrattanReport(compile = TRUE)"
   #- mkdir C:\miktex
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
