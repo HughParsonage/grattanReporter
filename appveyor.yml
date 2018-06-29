@@ -13,6 +13,7 @@ install:
 cache:
   - C:\RLibrary
   - C:\temp\miktex
+  - C:\miktex
 
 # Adapt as necessary starting from here
 
@@ -28,7 +29,7 @@ test_script:
   - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic --shared --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
   - Rscript -e print(as.character(Sys.time()))
   - cd ../../tests/testthat/Engaging-students
-  - Rscript -e checkGrattanReport(compile = TRUE)
+  - Rscript -e "checkGrattanReport(compile = TRUE)"
   #- mkdir C:\miktex
   #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
   #- Rscript copy_sources.R
