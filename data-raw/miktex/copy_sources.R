@@ -1,6 +1,6 @@
-all(vapply(dir(path = "sources", full.names = TRUE),
+all(vapply(dir(path = "sources"),
            function(x) {
-             file.copy(x, paste0("C:/temp/miktex/", x))
+             file.copy(file.path("sources", x), paste0("C:/temp/miktex/", x))
            },
            TRUE))
 
