@@ -20,10 +20,12 @@ build_script:
   - travis-tool.sh install_deps
 
 test_script:
+  - Rscript -e 'print(as.character(Sys.time()))'
   - cd data-raw/miktex
   - unzip miktexsetup-x64.zip
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=basic download
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=essential download
+  - miktexsetup --verbose --local-package-repository=C:\temp\miktex --package-set=complete download
   - miktexsetup --verbose --local-package-repository=C:\temp\miktex --modify-path install
   - travis-tool.sh run_tests
 
