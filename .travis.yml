@@ -19,10 +19,11 @@ after_failure:
 - Rscript -e 'devtools::test(filter = "zGrattan")'
 
 after_success:
-- Rscript -e 'devtools::test()'
+- Rscript -e 'if (FALSE) devtools::test()'
 - Rscript -e 'covr::codecov()'
 - test $TRAVIS_PULL_REQUEST == "false" &&
         test $TRAVIS_BRANCH == "master" &&
+        test $TRAVIS_BRANCH != "master" &&
         bash deploy.sh
 env:
   global:
