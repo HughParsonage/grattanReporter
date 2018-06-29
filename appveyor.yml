@@ -15,7 +15,7 @@ cache:
 
 environment:
   global:
-    - R_ARCH: x64
+    R_ARCH: x64
 
 # Adapt as necessary starting from here
 
