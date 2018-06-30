@@ -30,7 +30,7 @@ test_script:
   #- miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic download
   - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic --shared --modify-path --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
   - Rscript -e print(as.character(Sys.time()))
-  - Rscript -e "file.exists('C:/miktex/bin/x64/pdflatex.exe')"
+  - Rscript -e "dir(path = 'C:/miktex', pattern = '\\.exe$', full.names = TRUE, recursive = TRUE)"
   - cd ../../tests/testthat/Engaging-students
   - ps: $env:Path += ";C:\miktex\bin\x64\"
   - ps: $env:Path += ";C:\miktex\bin\"
