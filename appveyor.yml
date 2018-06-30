@@ -18,4 +18,4 @@ build_script:
   - cmd: cd tests\testthat\SchoolFunding
   - ps: wget https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls -Outfile grattan.cls
   - cmd: erase SchoolFunding.bbl
-  - cmd: pdflatex -interaction=nonstopmode SchoolFunding.tex
+  - cmd: pdflatex --admin -interaction=nonstopmode SchoolFunding.tex
