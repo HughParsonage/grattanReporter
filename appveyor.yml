@@ -32,7 +32,7 @@ test_script:
   - Rscript -e print(as.character(Sys.time()))
   - dir /a/s "C:/miktex" > dump.log
   - Rscript -e "x <- readLines('dump.log');cat(tail(x), sep = '\n')"
-  - mpm --admin --require@packageListFile.txt
+  - C:/miktex/miktex/bin/x64/mpm.exe --admin --require@packageListFile.txt
   - initexmf --admin -u
   - initexmf --admin --dump
   - initexmf --admin --set-config-value "[MPM]AutoInstall=1"
