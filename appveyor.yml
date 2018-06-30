@@ -12,7 +12,7 @@ install:
   - ps: choco install -y miktex
   - ps: choco update miktex
   - ps: choco install -y r.project
-  - cmd:  refreshenv
+  - cmd: refreshenv
 
 build_script:
   - cmd: cd tests\testthat\SchoolFunding
