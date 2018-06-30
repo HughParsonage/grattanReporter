@@ -4,7 +4,6 @@ image: Visual Studio 2017
 cache:
   - C:\Program Files\MiKTeX 2.9
 
-
 install:
   - ps: choco install -y miktex
   - cmd:  refreshenv
