@@ -6,8 +6,10 @@ cache:
 
 install:
   - ps: choco install -y miktex
+  - ps: choco install -y r.project
   - cmd:  refreshenv
 
 build_script:
   - cmd: cd tests\testthat\SchoolFunding
+  - ps: wget https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls -Outfile grattan.cls
   - cmd: pdflatex -interaction=nonstopmode SchoolFunding.tex
