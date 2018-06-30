@@ -1,83 +1,9 @@
-# DO NOT CHANGE the "init" and "install" sections below
-
-# Download script file from GitHub
-init:
-  ps: |
-        $ErrorActionPreference = "Continue"
-        Invoke-WebRequest http://raw.github.com/hughparsonage/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
-        Import-Module '..\appveyor-tool.ps1'
-
+version: 1.0.{build}
+image: Visual Studio 2017
 install:
-  ps: Bootstrap
-
-cache:
-  - C:\miktex
-
-environment:
-  global:
-    R_ARCH: x64
-
-# Adapt as necessary starting from here
+  - ps: choco install -y miktex
+  - cmd:  refreshenv
 
 build_script:
-  - travis-tool.sh install_deps
-
-test_script:
-  - Rscript -e print(as.character(Sys.time()))
-  - cd data-raw/miktex
-  - unzip miktexsetup-x64.zip
-  # https://github.com/d8euAI8sMs/appveyor-miktex-install/blob/master/miktex-install.bat
-  - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic download
-  - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic --shared --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
-  - Rscript -e print(as.character(Sys.time()))
-  - cmd: refreshenv
-  - dir /a/s "C:/miktex" > dump.log
-  - Rscript -e "x <- readLines('dump.log');cat(tail(x), sep = '\n')"
-  - C:/miktex/miktex/bin/x64/mpm.exe --admin --require@packageListFile.txt
-  - initexmf --admin -u
-  - initexmf --admin --dump
-  - initexmf --admin --set-config-value "[MPM]AutoInstall=1"
-  - Rscript -e "Sys.getenv('path')"
-  - cd ../../tests/testthat/Engaging-students
-  - ps: $env:Path += ";C:\miktex\miktex\bin\x64\"
-  - ps: $env:Path += ";C:\miktex\miktex\bin\"
-  - pdflatex --admin Report.tex
-  - Rscript -e "Sys.getenv('path')"
-  - Rscript -e "Sys.which('pdflatex')"
-  - Rscript -e
-  - Rscript -e "Sys.setenv(PATH = paste0(Sys.getenv('PATH'), ';C:\\miktex\\miktex\\bin\\x64;C:\\miktex\\miktex\\bin'));Sys.which('pdflatex')"
-  - set PATH=%PATH%;C:\miktex\bin\x64\
-  - Rscript -e "Sys.which('pdflatex')"
-
-  # - Rscript -e "library(grattanReporter);checkGrattanReport(compile = TRUE)"
-  #- mkdir C:\miktex
-  #- (robocopy sources C:\temp\miktex *.tar.lzma) ^& IF %%ERRORLEVEL%% LSS 8 EXIT /B 0
-  #- Rscript copy_sources.R
-  #- miktexsetup --verbose --local-package-repository=C:\temp\miktex install
-  #- miktexsetup --verbose --local-package-repository=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
-  #- miktexsetup --verbose --user-install=C:\temp\miktex --remote-package-repository=http://ctan.mirrors.hoobly.com/systems/win32/miktex/tm/packages/ install
-  #- travis-tool.sh run_tests
-  - Rscript -e print(as.character(Sys.time()))
-
-on_failure:
-  - 7z a failure.zip *.Rcheck\*
-  - appveyor PushArtifact failure.zip
-
-artifacts:
-  - path: '*.Rcheck\**\*.log'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.out'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.fail'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.Rout'
-    name: Logs
-
-  - path: '\*_*.tar.gz'
-    name: Bits
-
-  - path: '\*_*.zip'
-    name: Bits
+  - cmd: cd tests\testthat\Engaging-students
+  - cmd: pdflatex .\Report.tex
