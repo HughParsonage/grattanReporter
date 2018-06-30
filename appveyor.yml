@@ -1,9 +1,14 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+
+cache:
+  - C:\Program Files\MiKTeX 2.9
+
+
 install:
   - ps: choco install -y miktex
   - cmd:  refreshenv
 
 build_script:
-  - cmd: cd tests\testthat\Engaging-students
-  - cmd: pdflatex .\Report.tex
+  - cmd: cd tests\testthat\SchoolFunding
+  - cmd: pdflatex -interaction=nonstopmode .\Report.tex
