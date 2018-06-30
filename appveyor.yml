@@ -10,4 +10,4 @@ install:
 
 build_script:
   - cmd: cd tests\testthat\SchoolFunding
-  - cmd: pdflatex -interaction=nonstopmode .\Report.tex
+  - cmd: pdflatex -interaction=nonstopmode Report.tex
