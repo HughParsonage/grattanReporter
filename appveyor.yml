@@ -6,6 +6,7 @@ cache:
 
 install:
   - ps: choco install -y miktex
+  - ps: choco update miktex
   - ps: choco install -y r.project
   - cmd:  refreshenv
 
