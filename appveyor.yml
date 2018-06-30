@@ -11,7 +11,7 @@ install:
   ps: Bootstrap
 
 cache:
-  - C:\temp\miktex
+  - C:\miktex
 
 environment:
   global:
@@ -30,11 +30,11 @@ test_script:
   #- miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic download
   - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic --shared --modify-path --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
   - Rscript -e print(as.character(Sys.time()))
-  - Rscript -e "dir(path = 'C:/miktex', pattern = '\\.exe$', full.names = TRUE, recursive = TRUE)"
+  - mpm --admin --require@packageListFile.txt
   - cd ../../tests/testthat/Engaging-students
   - ps: $env:Path += ";C:\miktex\miktex\bin\x64\"
   - ps: $env:Path += ";C:\miktex\miktex\bin\"
-  - pdflatex Report.tex
+  - pdflatex --admin Report.tex
   - Rscript -e "Sys.getenv('path')"
   - Rscript -e "Sys.which('pdflatex')"
   - Rscript -e "Sys.getenv('path')"
