@@ -5,9 +5,6 @@ environment:
   global:
     APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
 
-cache:
-  #- C:\Program Files\MiKTeX 2.9
-
 install:
   - ps: choco install -y miktex
   - ps: choco update miktex
