@@ -1,7 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 
-env:
+environment:
   global:
     APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
 
