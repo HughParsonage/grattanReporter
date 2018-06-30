@@ -30,12 +30,14 @@ test_script:
   - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic download
   - miktexsetup.exe --local-package-repository=C:\temp\miktex --package-set=basic --shared --user-config=C:\miktex --user-data=C:\miktex --user-install=C:\miktex --common-config=C:\miktex --common-data=C:\miktex --common-install=C:\miktex --use-registry=no install
   - Rscript -e print(as.character(Sys.time()))
+  - cmd: refreshenv
   - dir /a/s "C:/miktex" > dump.log
   - Rscript -e "x <- readLines('dump.log');cat(tail(x), sep = '\n')"
   - C:/miktex/miktex/bin/x64/mpm.exe --admin --require@packageListFile.txt
   - initexmf --admin -u
   - initexmf --admin --dump
   - initexmf --admin --set-config-value "[MPM]AutoInstall=1"
+  - Rscript -e "Sys.getenv('path')"
   - cd ../../tests/testthat/Engaging-students
   - ps: $env:Path += ";C:\miktex\miktex\bin\x64\"
   - ps: $env:Path += ";C:\miktex\miktex\bin\"
