@@ -10,7 +10,7 @@ cache:
   - C:\ProgramData\chocolatey\lib
 
 install:
-  - ps: choco install -silent -y miktex
+  - ps: choco install miktex
   - ps: choco update miktex
   - cmd: refreshenv
   - ps: choco install -y r.project
