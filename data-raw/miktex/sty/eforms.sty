@@ -1,0 +1,1374 @@
+%%
+%% This is file `eforms.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% eforms.dtx  (with options: `copyright,package')
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% eForms package,                                      %%
+%% Copyright (C) 2002-2018  D. P. Story                 %%
+%%   dpstory@uakron.edu                                 %%
+%%                                                      %%
+%% This program can redistributed and/or modified under %%
+%% the terms of the LaTeX Project Public License        %%
+%% Distributed from CTAN archives in directory          %%
+%% macros/latex/base/lppl.txt; either version 1 of the  %%
+%% License, or (at your option) any later version.      %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{eforms}
+ [2018/03/22 v2.9.19 Provides general eforms support (dps)]
+\RequirePackage{ifpdf}[2006/02/20]
+\RequirePackage{ifxetex}[2006/08/21]
+\RequirePackage{ifluatex}
+\RequirePackage{calc}
+\let\ef@driver\@empty
+\DeclareOption{dvipsone}{\def\eq@drivernum{0}%
+    \def\eq@drivername{0}\def\ef@driver{dvipsone}%
+    \PassOptionsToPackage{dvipsone}{insdljs}%
+    \PassOptionsToPackage{dvipsone}{hyperref}%
+}
+\def\eq@drivername{2}
+\DeclareOption{dvips}{\def\eq@drivernum{0}%
+    \def\eq@drivername{1}\def\ef@driver{dvips}%
+    \PassOptionsToPackage{dvips}{insdljs}%
+    \PassOptionsToPackage{dvips}{hyperref}%
+}
+\DeclareOption{pdftex}{%
+    \def\eq@drivernum{1}\def\eq@driver{pdftex}%
+    \def\eq@drivercode{epdftex.def}\def\ef@driver{pdftex}%
+}
+\DeclareOption{luatex}{%
+    \def\eq@drivernum{1}\def\eq@driver{luatex}%
+    \def\eq@drivercode{epdftex.def}\def\ef@driver{luatex}%
+}
+\DeclareOption{dvipdfm}{%
+    \def\eq@drivernum{2}\def\eq@driver{dvipdfm}%
+    \def\eq@drivercode{edvipdfm.def}\def\ef@driver{dvipdfm}%
+    \PassOptionsToPackage{dvipdfm}{insdljs}
+    \PassOptionsToPackage{dvipdfm}{hyperref}
+}
+\DeclareOption{dvipdfmx}{%
+    \def\eq@drivernum{2}\def\eq@driver{dvipdfmx}%
+    \def\eq@drivercode{edvipdfm.def}\def\ef@driver{dvipdfmx}%
+    \PassOptionsToPackage{dvipdfmx}{insdljs}
+    \PassOptionsToPackage{dvipdfmx}{hyperref}
+}
+\DeclareOption{xetex}{%
+    \def\eq@drivernum{2}\def\eq@driver{xetex}%
+    \def\eq@drivercode{edvipdfm.def}\def\ef@driver{xetex}%
+}
+\DeclareOption{textures}{%
+    \def\eq@drivernum{3}\def\eq@driver{textures}%
+    \def\eq@drivercode{epdfmark.def}\def\ef@driver{textures}%
+    \PassOptionsToPackage{textures}{insdljs}%
+    \PassOptionsToPackage{textures}{hyperref}
+}
+\def\eq@driver{dvipsone/dvips}
+\def\eq@drivercode{epdfmark.def}
+\DeclareOption{preview}{\previewtrue}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{insdljs}}
+\@ifundefined{ifpreview}{\newif\ifpreview \previewfalse}{}
+\providecommand{\previewOn}{\previewtrue}
+\providecommand{\previewOff}{\previewfalse}
+\DeclareOption{useui}{\AtEndOfPackage{\ef@InputUIeForms}}
+\def\ef@InputUIeForms{\InputIfFileExists{uieforms.def}%
+    {\PackageInfo{eforms}{Inputting code for useui option}}%
+    {\PackageInfo{eforms}{Cannot find uieforms.def.\MessageBreak
+        Reinstall or refresh your file name database.}}}
+\DeclareOption{setcorder}{\def\inputCalcOrderJS{%
+    \InputIfFileExists{setcorder.def}%
+    {\PackageInfo{eforms}{Inputting code for setcorder option}}%
+    {\PackageWarning{eforms}{Cannot find setcorder.def.\MessageBreak
+        Reinstall or refresh your file name database.}}}}
+\let\inputCalcOrderJS\relax
+\@ifpackageloaded{web}{%
+    \ExecuteOptions{\eq@driver@name}%
+}{%
+    \@ifpackageloaded{exerquiz}{%
+        \ExecuteOptions{\eq@driver}%
+    }{%
+        \ifluatex\ExecuteOptions{luatex}\else
+        \ifpdf\ExecuteOptions{pdftex}\else
+        \ifxetex\ExecuteOptions{xetex}\else
+        \@ifundefined{l@tex@@@@driver}{\ExecuteOptions{dvips}}
+            {\ExecuteOptions{dvipsone}}\fi\fi\fi
+    }%
+}
+\ProcessOptions
+\ifx\ef@driver\@empty
+    \PackageError{eforms}%
+        {You have not specified dvips, dvipsone, pdftex,\MessageBreak
+        dvipdfm, dvipdfmx, or xetex in the option list of\MessageBreak
+        the eforms package}
+        {Place one of the drivers dvips, dvipsone, pdftex,  dvipdfm,
+        dvipdfmx, or xetex
+        \MessageBreak in the option list of the eforms package.}%
+}{}
+\fi
+\newlength\eflength
+\@ifundefined{ifpdfmarkup}{\newif\ifpdfmarkup}{}\pdfmarkupfalse
+\ifpdf\else\ifxetex\else\pdfmarkuptrue\fi\fi
+\RequirePackage{hyperref}
+\ifxetex\else\ifpdf\pdflinkmargin1bp\relax\else
+    \g@addto@macro\Hy@FirstPageHook{%
+    \headerps@out{/HyperBorder {1.00375 PDFToDvips} def}}
+\fi\fi
+\RequirePackage{insdljs}[2017/01/03] % incl conv-xkv
+\@ifpackageloaded{exerquiz}{}{%
+    \AtBeginDocument{\Form}
+    \AtEndDocument{\csname endForm\endcsname}
+}
+\@ifpackageloaded{aeb_pro}{}{%
+    \newcommand{\taggedPDF}{%
+        \ifnum\eq@drivernum=0\relax
+        \literalps@out{[{Catalog} <<%
+            /MarkInfo<</Marked true>>%
+        >> /PUT pdfmark}\fi}%
+}
+\let\ef@YES=y \let\ef@NO=n
+\let\ef@One=1 \let\ef@Zero=0
+\ifnum\eq@drivername<2
+\let\to@usepdfmark\ef@One
+\RequirePackage[structure]{taborder}\else
+\let\to@usepdfmark\ef@Zero
+\RequirePackage{taborder}
+\fi
+\@ifundefined{eq@tmpbox}{\newsavebox{\eq@tmpbox}}{}
+\@ifundefined{eq@tmpdima}{\newdimen\eq@tmpdima}{}
+\@ifundefined{eq@tmpdimb}{\newdimen\eq@tmpdimb}{}
+\newlength\ef@dimena
+\newtoks\ef@scratchtoks
+\newif\ifmakeXasPD \makeXasPDtrue % 12/22
+\newif\ifmakePDasX \makePDasXfalse
+\def\makeXasPDOn{\makeXasPDtrue\makePDasXfalse}
+\def\makeXasPDOff{\makeXasPDfalse}
+\def\makePDasXOn{\makePDasXtrue\makeXasPDfalse}
+\def\makePDasXOff{\makePDasXfalse}
+\providecommand\ckboxColor[1]{\def\@rgi{#1}\ifx\@rgi\@empty
+    \let\ckbox@Color\relax\else
+    \def\ckbox@Color{\color{#1}}\fi}\let\ckbox@Color\relax
+\def\ef@Bbox#1#2{\hbox{\ifpreview
+    \setlength\fboxrule{0.4pt}\setlength\fboxsep{0pt}%
+    \@tempdima=#1\advance\@tempdima by-\fboxrule
+    \@tempdimb=#2\advance\@tempdimb by-\fboxrule \ckbox@Color
+    \fbox{\parbox[b][\@tempdimb][c]{\@tempdima}{\hfill\vfill}}\else
+    \parbox[b][#2][c]{#1}{\hfill\vfill}\fi}%
+}
+\let\Bbox\ef@Bbox
+\let\ef@passedArgs\@empty
+\def\processAppArgs#1#2{%
+    \ifx\end#1% if #1=\end, #2=\@nil.
+        \let\ef@next\relax
+    \else
+        \ifx#1\@empty
+            \def\ef@next{\processAppArgs}%
+        \else
+            \@getCmdName{\ui}\edef\arg@ui{\@CmdName}%
+            \@getCmdName{#1}%
+            \ifx\arg@ui\@CmdName
+                \@ifundefined{@equi}{\PackageError{eforms}%
+                {The user interface '\string\ui' is not defined!%
+                \MessageBreak Use the useui option of eforms
+                and try again}{I said, use the useui option of
+                eforms and try again!}}{}%
+                \def\ef@next{\setkeys{eforms}{#2}%
+                \processAppArgs\presets{\ef@passedArgs}}%
+            \else
+                \@getCmdName{\Ff}\edef\arg@Ff{\@CmdName}%
+                \@getCmdName{#1}%
+                \ifx\arg@Ff\@CmdName  % if \Ff, let's  add arguments
+                    \ifx\eq@Ff\@empty\def\eq@FfValue{0}\else
+                        \expandafter\getFfValue\eq@Ff\@nil\fi
+                    \@tempcnta=\eq@FfValue
+                    \def\eq@arg{#2}%
+                    \ifx\eq@arg\@empty\else
+                    \advance\@tempcnta by#2\fi
+                    \edef\eq@Ff{/Ff \the\@tempcnta}%
+                    \def\ef@next{\processAppArgs}%
+                \else
+                    \@getCmdName{\F}\edef\arg@F{\@CmdName}%
+                    \@getCmdName{#1}%
+                    \ifx\arg@F\@CmdName  % if \Ff, let's  add arguments
+                    \ifx\eq@F\@empty\def\eq@FValue{0}\else
+                        \expandafter\getFValue\eq@F\@nil\fi
+                    \@tempcnta=\eq@FValue
+                    \def\eq@arg{#2}%
+                    \ifx\eq@arg\@empty\else
+                    \advance\@tempcnta by#2\fi
+                    \edef\eq@F{/F \the\@tempcnta}%
+                    \def\ef@next{\processAppArgs}%
+                    \else
+                        \@getCmdName{\presets}%
+                        \edef\arg@presets{\@CmdName}\@getCmdName{#1}%
+                        \ifx\arg@presets\@CmdName
+                            \def\ef@next{\expandafter\processAppArgs#2}%
+                        \else
+                            \csname @eq%
+                            \expandafter\@gobble\string#1\endcsname{#2}%
+                            \def\ef@next{\processAppArgs}%
+                        \fi
+                    \fi
+                \fi
+            \fi
+        \fi
+    \fi
+    \ef@next
+}
+\def\@processEvery{\edef\eqtemp{}\toks0={}\@@processEvery}
+\def\@@processEvery#1{%
+    \ifx#1\end\def\ef@next{\the\toks0 }%
+    \else
+        \edef\eqtemp{\the\toks0 }%
+        \toks0=\expandafter{\eqtemp
+            \expandafter\processAppArgs#1\end\@nil}%
+        \def\ef@next{\@@processEvery}%
+    \fi
+    \ef@next
+}
+\newdimen\eqcenterWidget
+\def\centerWidget#1{%
+    \ifeq@inlineCenter
+        \eqcenterWidget=#1\relax
+        \eqcenterWidget=.5\eqcenterWidget
+        \ifnum\eq@textSize=0\relax
+        \dimen@=-\eq@textSizeDefault bp\else
+        \dimen@=-\eq@textSize bp\fi
+        \dimen@=0.9167\dimen@ % 11/12
+        \dimen@=.5\dimen@
+        \advance\dimen@\eq@W@value bp
+        \ifx\eq@S\@empty\else
+            \def\eq@S@cmp{B}%
+            \ifx\eq@S@value\eq@S@cmp
+                \advance\dimen@ by \eq@W@value bp
+            \else
+                \def\eq@S@cmp{I}%
+                \ifx\eq@S@value\eq@S@cmp
+                    \advance\dimen@ by \eq@W@value bp
+                \else\advance\dimen@ by 1bp
+        \fi\fi\fi
+        \advance\eqcenterWidget by \dimen@
+    \else
+        \eqcenterWidget=#1\relax
+        \eqcenterWidget=.5\eqcenterWidget
+        \advance\eqcenterWidget by -4bp
+    \fi
+}
+\def\@eqF#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@F\@empty\else\def\eq@F{/F #1}\fi}\def\eq@F{}
+\def\@eqBS#1{%
+    \let\eq@BS=0\relax
+    \ifx\eq@W\@empty\else\let\eq@BS=1\fi
+    \ifx\eq@S\@empty\else\let\eq@BS=1\fi
+    \ifx\eq@D\@empty\else\let\eq@BS=1\fi
+    \edef\link@BS{\if\eq@BS1/BS<<\eq@W\eq@S\eq@D>>\fi}%
+    \ifx\eq@W\@empty\let\link@BS\@empty\fi
+}\def\link@BS{}
+\def\@eqpresets#1{#1}%
+\def\@eqW#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@W\@empty\def\eq@W@value{0}\else
+    \def\eq@W@value{#1}\def\eq@W{/W #1}\fi
+    \xdef\g@eq@W@value@bp{\eq@W@value bp}}
+\def\eq@W{}\def\eq@W@value{0}
+\def\g@eq@W@valu@bp{0bp} % dps 12/22
+\def\@eqS#1{\def\eq@S@value{#1}\ifx\eq@S@value\@empty
+    \let\eq@S\@empty\else
+    \def\eq@S{/S/#1}\def\eq@temp{D}%
+    \ifx\eq@S@value\eq@temp
+        \ifx\eq@D\@empty\def\eq@D{/D [3]}\fi
+    \fi\fi}\def\eq@S{}
+\def\@eqD#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@D\@empty\else
+    \def\eq@D{/D [#1]}\fi}\def\eq@D{}
+\def\@eqBorder#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@Border\@empty\else\def\eq@Border{/Border [#1]}\fi}%
+\def\eq@Border{/Border [0 0 0]}
+\def\@eqAP#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AP\@empty\else\def\eq@AP{/AP<<#1>>}\fi}%
+    \let\eq@AP\@empty
+    \def\@eqOn#1{\def\eq@On{/#1}}\def\eq@On{/Yes}
+\def\@eqAS#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AS\@empty\else\ifpdfmarkup\def\eq@AS{/AS(#1) cvn }\else
+    \def\eq@AS{/AS/#1}\fi\fi}\def\eq@AS{}
+\def\ef@gobbleToendmarker#1\ef@endmarker{}
+\let\ef@endmarker\relax
+\def\ef@end{\end}\def\ef@true{true}
+\def\ef@rPage#1{\@tempcnta=#1\relax\advance\@tempcnta-1
+    \edef\rPage##1{\the\@tempcnta}}
+\long\def\ef@searchrPage#1\rPage#2#3\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\rPage{#2}\fi}
+\def\ef@searchmlLink#1\mlLink#2#3\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\let\ef@mlLink\ef@Zero\else
+    \ifx\ef@argii\ef@true\let\ef@mlLink\ef@One\else
+    \let\ef@mlLink\ef@Zero\fi\fi}
+\def\ef@searchGoToR#1/GoToR#2\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\ifx\ef@linktxtcolor@set0%
+    \def\ef@thislinkcolor{\@filecolor}\fi
+    \expandafter\ef@gobbleToendmarker\fi}
+\def\ef@searchURI#1/URI#2\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\ifx\ef@linktxtcolor@set0%
+    \def\ef@thislinkcolor{\@urlcolor}\fi
+    \expandafter\ef@gobbleToendmarker\fi}
+\def\ef@searchCmdURI#1\URI#2\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\ifx\ef@linktxtcolor@set0%
+    \def\ef@thislinkcolor{\@urlcolor}\fi
+    \expandafter\ef@gobbleToendmarker\fi}
+\def\ef@searchNamed#1/Named#2\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\ifx\ef@linktxtcolor@set0%
+    \def\ef@thislinkcolor{\@menucolor}\fi
+    \expandafter\ef@gobbleToendmarker\fi}
+\def\ef@searchCmdNamed#1\Named#2\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\ifx\ef@linktxtcolor@set0%
+    \def\ef@thislinkcolor{\@menucolor}\fi
+    \expandafter\ef@gobbleToendmarker\fi}
+\def\ef@searchLaunch#1/Launch#2\@nil{\def\ef@argii{#2}%
+    \ifx\ef@argii\ef@end\else\ifx\ef@linktxtcolor@set0%
+    \def\ef@thislinkcolor{\@runcolor}\fi
+    \expandafter\ef@gobbleToendmarker\fi}
+\def\ef@preprocessA#1{%
+    \let\rPage\relax\edef\ef@argi{#1}%
+    \ifx\annot@type\annot@type@link
+    \expandafter\ef@searchGoToR\ef@argi/GoToR\end\@nil
+    \expandafter\ef@searchURI\ef@argi/URI\end\@nil
+    \expandafter\ef@searchCmdURI\ef@argi\URI\end\@nil
+    \expandafter\ef@searchNamed\ef@argi/Named\end\@nil
+    \expandafter\ef@searchCmdNamed\ef@argi\Named\end\@nil
+    \expandafter\ef@searchLaunch\ef@argi/Launch\end\@nil
+    \ef@endmarker\fi
+    \let\rPage\ef@rPage
+    \expandafter\ef@searchrPage\ef@argi\rPage\end\@nil
+}
+\def\@eqA#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@A\@empty\else\ef@preprocessA{#1}%
+    \def\eq@A{/A <<#1>>}\fi}\def\eq@A{}
+\def\@eqmlLink#1{\def\eq@arg{#1}\ifx\eq@arg\ef@true
+    \let\ef@mlLink\ef@One\else\let\ef@mlLink\ef@Zero\fi}
+\def\@eqLock#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@Lock\@empty\else\def\eq@Lock{/Lock <<#1>>}\fi}
+    \def\eq@Lock{}
+\newif\ifisCalculate\isCalculatefalse
+\def\ef@searchCalc#1\AACalculate#2\@nil{%
+    \ifx#2\end\else\aftergroup\isCalculatetrue\fi
+}
+\def\@eqAA#1{\def\eq@arg{#1}\ifx\eq@arg\@empty\let\eq@AA\@empty
+    \else\begingroup\ef@searchCalc#1\AACalculate\end\@nil\endgroup
+    \def\eq@AA{/AA <<#1>>}\fi}
+\def\eq@AA{/AA <<\eq@AAmouseup\eq@AAmousedown\eq@AAmouseenter%
+    \eq@AAmouseexit\eq@AAonfocus\eq@AAonblur\eq@AAformat%
+    \eq@AAkeystroke\eq@AAvalidate\eq@AAcalculate\eq@AApageopen%
+    \eq@AApageclose\eq@AApagevisible\eq@AApageinvisible>>}
+\def\@eqAAmouseup#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAmouseup\@empty\else\def\eq@AAmouseup{/U<<\JS{#1}>>}\fi}
+\let\eq@AAmouseup\@empty
+\def\@eqAAmousedown#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAmousedown\@empty\else
+    \def\eq@AAmousedown{/D<<\JS{#1}>>}\fi}
+\let\eq@AAmousedown\@empty
+\def\@eqAAmouseenter#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAmouseenter\@empty\else
+    \def\eq@AAmouseenter{/E<<\JS{#1}>>}\fi}
+\let\eq@AAmouseenter\@empty
+\def\@eqAAmouseexit#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAmouseexit\@empty\else
+    \def\eq@AAmouseexit{/X<<\JS{#1}>>}\fi}
+\let\eq@AAmouseexit\@empty
+\def\@eqAAonfocus#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAonfocus\@empty\else
+    \def\eq@AAonfocus{/Fo<<\JS{#1}>>}\fi}
+\def\@eqAAmousefocus{\@eqAAonfocus}
+\let\eq@AAonfocus\@empty
+\def\@eqAAonblur#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAonblur\@empty\else
+    \def\eq@AAonblur{/Bl<<\JS{#1}>>}\fi}
+\def\@eqAAmouseblur{\def\@eqAAonblur}
+\let\eq@AAonblur\@empty
+\def\@eqAAformat#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAformat\@empty\else
+    \def\eq@AAformat{/F<<\JS{#1}>>}\fi}
+\let\eq@AAformat\@empty
+\def\@eqAAkeystroke#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAkeystroke\@empty\else
+    \def\eq@AAkeystroke{/K<<\JS{#1}>>}\fi}
+\let\eq@AAkeystroke\@empty
+\def\@eqAAvalidate#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAvalidate\@empty\else
+    \def\eq@AAvalidate{/V<<\JS{#1}>>}\fi}
+\let\eq@AAvalidate\@empty
+\def\@eqAAcalculate#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AAcalculate\@empty\else\isCalculatetrue
+    \def\eq@AAcalculate{/C<<\JS{#1}>>}\fi}
+\let\eq@AAcalculate\@empty
+\def\@eqAApageopen#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AApageopen\@empty\else
+    \def\eq@AApageopen{/PO<<\JS{#1}>>}\fi}
+\let\eq@AApageopen\@empty
+\def\@eqAApageclose#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AApageclose\@empty\else
+    \def\eq@AApageclose{/PC<<\JS{#1}>>}\fi}
+\let\eq@AApageclose\@empty
+\def\@eqAApagevisible#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AApagevisible\@empty\else
+    \def\eq@AApagevisible{/PV<<\JS{#1}>>}\fi}
+\let\eq@AApagevisible\@empty
+\def\@eqAApageinvisible#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@AApageinvisible\@empty\else
+    \def\eq@AApageinvisible{/PI<<\JS{#1}>>}\fi}
+\let\eq@AApageinvisible\@empty
+\def\@eqDA#1{\def\eq@DA{#1}}
+\def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+\def\@eqtextFont#1{\def\eq@textFont{/#1}}
+\def\eq@textFont{/Helv}
+\def\@eqtextSize#1{\def\eq@textSize{#1}}
+\def\eq@textSizeDefault{9}
+\edef\eq@textSize{\eq@textSizeDefault}
+\def\eq@RV@Body{<?xml version="1.0"?><body %
+    xfa:APIVersion="Acroform:2.7.0.0" %
+    xfa:contentType="text/html" %
+    xfa:spec="2.1" xmlns="http://www.w3.org/1999/xhtml" %
+    xmlns:xfa="http://www.xfa.org/schema/xfa-data/1.0/">}
+\def\eq@RV@endBody{</body>}
+\def\@eqRV#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@RV\@empty\else\def\eq@RV{/RV(\eq@RV@Body#1%
+    \eq@RV@endBody)\fi}}\def\eq@RV{}
+\def\@eqDS#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@DS\@empty\else\def\eq@DS{/DS(#1)\fi}}\def\eq@DS{}
+\def\@eqtextColor#1{\ef@parsePDFColor{#1}%
+    \HyColor@IfXcolor{%
+        \expandafter\HyColor@FieldColor%
+        \expandafter{\ef@colorSpec@out}{\eq@textColor}{}{}%
+    }{\edef\eq@textColor{\ef@colorSpec@out}}%
+}
+\def\eq@textColor{0 g}
+\def\@eqQ#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@Q\@empty\else\def\eq@Q{/Q #1}\fi}\def\eq@Q{}
+\def\ef@isunicode#1\unicodeStr#2\@nil{\def\argi{#1}%
+    \ifx\argi\@empty\def\ifbool@ef{iftrue}\else
+    \def\ifbool@ef{iffalse}\fi}
+\def\@eqDV#1{\ef@isunicode#1\unicodeStr\@nil
+    \expandafter\csname\ifbool@ef\endcsname\@equDV{#1}\else
+    \def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@DV\@empty\else
+    \ef@pdfCRLFTABDefns\pdfstringdef\ef@uni@temp{#1}%
+    \edef\eq@DV{/DV(\ef@uni@temp)}\makespecialJS\fi\fi}\def\eq@DV{}
+\def\ef@pdfCRLFTABDefns{%
+    \def\r{\textCR}\def\t{\textHT}\def\n{\textLF}}
+\def\@eqnuDV#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@DV\@empty\else\def\eq@DV{/DV(#1)}\fi}
+\def\@equDV#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@DV\@empty\else\def\eq@DV{/DV<#1>}\fi}
+\def\@eqV#1{\ef@isunicode#1\unicodeStr\@nil
+    \expandafter\csname\ifbool@ef\endcsname\@equV{#1}\else
+    \def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@V\@empty\else
+    \ef@pdfCRLFTABDefns\pdfstringdef\ef@uni@temp{#1}%
+    \edef\eq@V{/V(\ef@uni@temp)}\makespecialJS\fi\fi}\def\eq@V{}
+\def\@eqnuV#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@V\@empty\else\def\eq@V{/V(#1)}\fi}
+\def\@equV#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@V\@empty\else\def\eq@V{/V<#1>}\fi}%
+\def\@eqTU#1{\ef@isunicode#1\unicodeStr\@nil
+    \expandafter\csname\ifbool@ef\endcsname\@equTU{#1}\else
+    \def\eq@arg{#1}\let\r@save\r\let\r\textCR
+    \ifx\eq@arg\@empty\let\eq@TU\@empty\else
+    \ef@pdfCRLFTABDefns\pdfstringdef\ef@uni@temp{#1}%
+    \edef\eq@TU{/TU(\ef@uni@temp)}\makespecialJS\fi\fi
+    \let\r\r@save}\def\eq@TU{}
+\def\@equTU#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@TU\@empty\else\def\eq@TU{/TU<#1>}\fi}
+\def\@eqFf#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@Ff\@empty\else\def\eq@Ff{/Ff #1}\fi}
+    \def\eq@Ff{}
+\def\@eqMaxLen#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@MaxLen\@empty\else\def\eq@MaxLen{/MaxLen #1}\fi}%
+    \def\eq@MaxLen{}
+\def\@eqH#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@H\@empty\else\def\eq@H{/H/#1}\fi}\def\eq@H{}
+\def\@eqMK#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@MK\@empty\else\def\eq@MK{/MK << #1 >> }\fi}%
+    \def\eq@MK{}
+    \let\@vertRotate=0
+    \def\@eqR#1{\def\eq@R@value{#1}\ifx\eq@R@value\@empty
+        \let\eq@R\@empty\else
+        \@tempcnta=\eq@R@value\relax
+        \ifnum\@tempcnta<0 \@tempcnta=-\@tempcnta\fi
+        \ifnum\@tempcnta=0 \else\ifnum\@tempcnta=180 \else
+            \let\@vertRotate=1\fi\fi
+        \def\eq@R{/R #1}\fi}
+    \def\eq@R{}
+    \def\@eqBC#1{\edef\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@BC\@empty\else % 2010/07/23
+        \expandafter\ef@isitnamed\eq@arg\ef@nil
+        \ifx\ef@latex@color\ef@y\expandafter
+            \HyColor@XZeroOneThreeFour\expandafter{\eq@arg}{\eq@BC}{}{}%
+            \edef\eq@BC{/BC [\eq@BC]}\else
+            \def\eq@BC{/BC [#1]}\fi
+    \fi}
+    \def\eq@BC{}
+    \def\@eqBG#1{\edef\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@BG\@empty\else % 2010/07/23
+        \expandafter\ef@isitnamed\eq@arg\ef@nil
+        \ifx\ef@latex@color\ef@y\expandafter
+            \HyColor@XZeroOneThreeFour\expandafter{\eq@arg}{\eq@BG}{}{}%
+            \edef\eq@BG{/BG [\eq@BG]}\else
+            \def\eq@BG{/BG [#1]}\fi
+        \fi}
+    \def\eq@BG{}
+    \def\@eqCA#1{\ef@isunicode#1\unicodeStr\@nil
+    \expandafter\csname\ifbool@ef\endcsname\@equCA{#1}\else
+        \def\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@CA\@empty\let\ef@kvCA\@empty
+        \else\ef@pdfCRLFTABDefns
+        \pdfstringdef\ef@uni@temp{#1}%
+        \def\eq@CA{#1}\edef\ef@kvCA{/CA(\ef@uni@temp)}%
+        \makespecialJS\fi\fi}
+    \def\eq@CA{}\def\ef@kvCA{}
+    \def\@equCA#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@CA\@empty\let\ef@kvCA\@empty
+        \else\def\eq@CA{#1}\def\ef@kvCA{/CA<#1>}\fi}
+    \def\@eqRC#1{\ef@isunicode#1\unicodeStr\@nil
+        \expandafter\csname\ifbool@ef\endcsname\@equRC{#1}\else
+        \def\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@RC\@empty\let\ef@kvRC\@empty
+        \else\ef@pdfCRLFTABDefns
+        \pdfstringdef\ef@uni@temp{#1}%
+        \def\eq@RC{#1}\edef\ef@kvRC{/RC(\ef@uni@temp)}%
+        \makespecialJS\fi\fi}
+    \def\eq@RC{}\def\ef@kvRC{}
+    \def\@equRC#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@RC\@empty\let\ef@kvRC\@empty
+        \else\def\eq@RC{#1}\def\ef@kvRC{/RC<#1>}\fi}
+    \def\@eqAC#1{\ef@isunicode#1\unicodeStr\@nil
+        \expandafter\csname\ifbool@ef\endcsname\@equAC{#1}\else
+        \def\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@AC\@empty\let\ef@kvAC\@empty
+        \else\ef@pdfCRLFTABDefns
+        \pdfstringdef\ef@uni@temp{#1}%
+        \def\eq@AC{#1}\edef\ef@kvAC{/AC(\ef@uni@temp)}%
+        \makespecialJS\fi\fi}
+    \def\eq@AC{}\def\ef@kvAC{}
+    \def\@equAC#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+        \let\eq@AC\@empty\let\ef@kvAC\@empty
+        \else\def\eq@AC{#1}\def\ef@kvAC{/AC<#1>}\fi}
+\def\eq@define@IconMK{\def\eq@IconMK{\eq@I\eq@RI\eq@IX\eq@TP
+    /IF<<\eq@SW\eq@ST\eq@PA\eq@FB>>}}
+\let\eq@IconMK\@empty
+\ifpdf\def\eq@relRef#1{0 0 R}\else %{#1\space 0 R}
+    \ifxetex\def\eq@relRef#1{#1}\else
+    \def\eq@relRef#1{{#1}}\fi\fi
+\def\ef@null{null}
+\def\@eqI#1{\ifx\annot@type\annot@type@button
+    \def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@I\@empty\else
+    \def\eq@I{/I \eq@relRef{#1}}%
+    \ifpdf\ifx\eq@arg\ef@null
+    \def\eq@I{/I 0 0 R}\fi\fi
+    \eq@define@IconMK\fi\fi}
+\def\eq@I{}
+\def\@eqRI#1{\ifx\annot@type\annot@type@button
+    \def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@RI\@empty\else
+    \def\eq@RI{/RI \eq@relRef{#1}}%
+    \ifpdf\ifx\eq@arg\ef@null
+    \def\eq@RI{/RI 0 0 R}\fi\fi
+    \eq@define@IconMK\fi\fi}
+\def\eq@RI{}
+\def\@eqIX#1{\ifx\annot@type\annot@type@button
+    \def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@IX\@empty\else
+    \def\eq@IX{/IX \eq@relRef{#1}}%
+    \ifpdf\ifx\eq@arg\ef@null
+    \def\eq@IX{/IX 0 0 R}\fi\fi
+    \eq@define@IconMK\fi\fi}
+\def\eq@IX{}
+\def\@eqTP#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@TP\@empty\else\def\eq@TP{/TP #1}\fi}
+\def\eq@TP{/TP 0} % default 0
+\def\@eqSW#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@SW\@empty\else\def\eq@SW{/SW/#1}\fi}
+\def\eq@SW{/SW/A} % the default, always scale
+\def\@eqST#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@ST\@empty\else\def\eq@ST{/S/#1}\fi}
+\def\eq@ST{/S/P} % the default, proportional scaling
+\def\@eqPA#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@PA\@empty\else\def\eq@PA{/A [#1]}\fi}
+\def\eq@PA{/A [0.5 0.5]} % the default
+\def\@eqFB#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@PA\@empty\else\def\eq@FB{/FB #1}\fi}
+\def\eq@FB{/FB false} % the default
+\def\@eqmkIns#1{\def\eq@mkIns{#1}}\def\eq@mkIns{}
+\def\@eqOpt#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@Opt\@empty\else\def\eq@Opt{/Opt [#1]}\fi}
+    \def\eq@Opt{}
+\def\@eqTI#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@TI\@empty\else\def\eq@TI{/TI #1}\fi}
+    \def\eq@TI{}
+\def\@eqrawPDF#1{\def\eq@rawPDF{#1}}\def\eq@rawPDF{}
+\def\@eqQuadPoints#1{\def\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@QuadPoints\@empty\else
+    \def\eq@QuadPoints{/QuadPoints {#1}}\fi}
+\def\eq@QuadPoints{}
+\def\@eqColor#1{\edef\eq@arg{#1}\ifx\eq@arg\@empty
+    \let\eq@Color\@empty\else
+    \HyColor@XZeroOneThreeFour{#1}{\eq@Color}{}{}%
+    \edef\eq@Color{/C[\eq@Color]}\fi}
+\def\eq@Color{}
+\def\@eqlinktxtcolor#1{%
+    \def\ef@argi{#1}\ifHy@colorlinks
+        \ifx\ef@argi\@empty\let\ef@colorthislink\normalcolor\else
+        \let\ef@linktxtcolor@set=1\def\ef@thislinkcolor{#1}\fi\fi
+}\let\ef@linktxtcolor@set=0
+\def\@eqrectH#1{\def\eq@rectH{#1}\ifx\eq@rectH\@empty\else
+    \setlength\eflength\eq@rectH\edef\eq@rectH{\the\eflength}\fi}
+\def\@eqrectW#1{\def\eq@rectW{#1}\ifx\eq@rectW\@empty\else
+    \setlength\eflength\eq@rectW\edef\eq@rectW{\the\eflength}\fi}
+\def\@eqobjdef#1{\def\ef@arg{#1}\ifx\ef@arg\@empty
+    \let\eq@objdef\@empty\else\def\eq@objdefName{#1}%
+    \def\eq@objdef{/_objdef {#1}}\fi
+}
+\let\eq@objdef\@empty
+\def\@eqtaborder#1{\def\ef@arg{#1}\ifx\ef@arg\@empty
+    \let\eq@taborder\@empty\else
+    \def\eq@taborder{#1}\fi
+}
+\let\eq@taborder\@empty
+\def\ef@y{y}\def\ef@n{n}
+\def\@eqautoCenter#1{\def\ef@arg{#1}\ifx\ef@arg\ef@y
+    \let\autoCenter\ef@y\else\ifx\ef@arg\ef@n
+    \let\autoCenter\ef@n\else\let\autoCenter\ef@y
+    \PackageWarning{eforms}{The value of '#1' is not a
+    supported value\MessageBreak for \string\autoCenter.\MessageBreak
+    Using the default of 'y'}%
+    \fi\fi}
+\let\autoCenter\ef@y
+\newif\ifeq@inlineCenter \eq@inlineCenterfalse
+\let\inlineCenter=n
+\def\@eqinline#1{\eq@inlineCenterfalse
+    \def\ef@arg{#1}\ifx\ef@arg\ef@y
+    \let\inlineCenter\ef@y\eq@inlineCentertrue\else
+    \ifx\ef@arg\ef@n\let\inlineCenter\ef@n\else\let\inlineCenter\ef@n
+    \PackageWarning{eforms}{The value of '#1' is not a
+    supported value\MessageBreak for \string\inline.\MessageBreak
+    Using the default of 'n'}%
+    \fi\fi}
+\def\@eqsymbolchoice#1{\expandafter\ifx\csname eq@#1\endcsname\relax
+   \typeout{exerquiz: `#1' is not an acceptable option
+   for \string\symbolechoice, inserting default, `check'.}
+   \edef\symbol@choice{\eq@check}\else
+   \edef\symbol@choice{\csname eq@#1\endcsname}\fi
+}
+\newif\iffixmlinks \fixmlinkstrue
+\def\mlfixOn{\fixmlinkstrue}
+\def\mlfixOff{\fixmlinksfalse}
+\def\@eqmlfix#1{\def\ef@arg{#1}\ifx\ef@arg\ef@y
+    \mlfixOn\else\ifx\ef@arg\ef@n
+    \mlfixOff\else\mlfixOn
+    \PackageWarning{eforms}{The value of '#1' is not a
+    supported value\MessageBreak for \string\mlfix.\MessageBreak
+    Using the default of 'y'}%
+    \fi\fi}
+\newbox\mlstrutbox
+\def\@eqmlstrut#1{\setbox\mlstrutbox\hbox{#1}%
+  \def\ml@strut{\vrule \@height\ht\mlstrutbox
+    \@depth\dp\mlstrutbox
+    \@width\z@\relax}}
+\def\ml@strut{\relax\ifmmode\copy\mlstrutbox\else
+  \unhbox\mlstrutbox\fi}
+\@eqmlstrut{\strut}
+\def\@eqmlcrackat#1{\def\eq@mlcrackat{#1}}
+\let\eq@mlcrackat\@empty
+\def\@eqmlhyph#1{\def\ef@arg{#1}\ifx\ef@arg\ef@y
+    \def\eq@mlhyph{-}\else\ifx\ef@arg\ef@n
+    \let\eq@mlhyph\@empty\else\let\eq@mlhyph\@empty
+    \PackageWarning{eforms}{The value of '#1' is not a
+    supported value\MessageBreak for \string\mlhyph.\MessageBreak
+    Using the default of 'n'}\fi\fi}
+\let\eq@mlhyph\@empty
+\def\@eqmlignore#1{\let\eq@mlignore\ef@YES}
+\let\eq@mlignore\ef@NO
+\def\@eqmlcrackinsat#1{\def\eq@mlcrackinsat{#1}}
+\let\eq@mlcrackinsat\@empty
+\def\eq@protect#1{\let#1\@empty}
+\begingroup\catcode`\#=12 \catcode`*=6
+  \ifpdfmarkup
+    \gdef\ef@Hx*1*2{\@nameuse{efHex*1*2}}\else
+    \gdef\ef@Hx*1*2{\@nameuse{efHex*1*2}}\fi
+\endgroup
+\def\efHxError{\PackageError{eforms}{The glyph is not supported}{}}
+\def\HGERROR{efHxError}
+\ifpdfmarkup
+    \def\HexGlyph#1#2{\def\arg@ii{#2}\ifx\arg@ii\HGERROR
+    \global\@namedef{efHex#1}{\csname#2\endcsname}\else
+    \global\@namedef{efHex#1}{\expandafter
+        \string\csname#2\endcsname}\fi}
+\else
+  \begingroup\catcode`\#=12 \catcode`*=6
+    \gdef\HexGlyph*1*2{\def\arg@ii{*2}\ifx\arg@ii\HGERROR
+    \global\@namedef{efHex*1}{\csname*2\endcsname}\else
+    \global\@namedef{efHex*1}{#*1}\fi}
+  \endgroup
+\fi
+\def\ef@inputPDFHEX{\InputIfFileExists{pdfdochex.def}
+    {\PackageInfo{eforms}{Inputting pdfdochex.def}}{}}
+\AtEndOfPackage{\ef@inputPDFHEX}
+\def\ef@semicolon{;}
+\def\ef@stripsemi#1;\@nil{\def\ef@colorSpec@out{#1}}
+\def\ef@isitnamed{\let\ef@latex@color\ef@y
+    \@ifnextchar[{\ef@gobbletonil}{%
+    \@tfor\mytok:=.0123456789\do{%
+        \if\mytok\@let@token
+        \let\ef@latex@color\ef@n
+        \@break@tfor\fi}\ef@gobbletonil}}
+\def\ef@gobbletonil#1\ef@nil{}
+\def\ef@parsePDFColor#1{\edef\ef@color@arg{#1}\ef@parsePDFColori}
+\def\ef@parsePDFColori{%
+    \expandafter\ef@@parsePDFColor\ef@color@arg; ; ; ; ; ;\\}
+\def\ef@@parsePDFColor#1 #2 #3 #4 #5 #6\\{%
+    \def\argii{#2}\def\ef@cmp{g;}%
+    \ifx\argii\ef@cmp
+        \expandafter\ifx\csname convertcolorspec\endcsname\relax
+            \def\ef@colorSpec@out{#1 g}\else
+            \def\ef@colorSpec@out{[gray]{#1}}%
+        \fi
+    \else\ifx\argii\ef@semicolon
+        \expandafter\ifx\csname convertcolorspec\endcsname\relax
+            \ef@isitnamed#1\ef@nil
+            \ifx\ef@latex@color\ef@n
+                \ef@stripsemi#1\@nil
+                \edef\ef@colorSpec@out{\ef@colorSpec@out\space g}%
+            \else
+                \ef@stripsemi#1\@nil
+                \PackageWarning{eforms}{Color specification
+                `\ef@colorSpec@out' not supported\MessageBreak
+                without xcolor, using a black color}
+                \def\ef@colorSpec@out{0 g}%
+            \fi
+        \else  % xcolor
+            \ef@isitnamed#1\ef@nil
+            \ifx\ef@latex@color\ef@n
+                \ef@stripsemi#1\@nil
+                \edef\ef@colorSpec@out{[gray]{\ef@colorSpec@out}}%
+            \else
+                \ef@stripsemi#1\@nil
+                \edef\ef@colorSpec@out{\ef@colorSpec@out}%
+            \fi
+        \fi
+    \else % not semicolon
+        \def\argiv{#4}\def\ef@cmp{rg;}%
+        \ifx\argiv\ef@cmp
+            \expandafter\ifx\csname convertcolorspec\endcsname\relax
+                \def\ef@colorSpec@out{#1 #2 #3 rg}\else
+                \def\ef@colorSpec@out{[rgb]{#1,#2,#3}}\fi
+        \else\ifx\argiv\ef@semicolon
+            \expandafter\ifx\csname convertcolorspec\endcsname\relax
+            \ef@stripsemi#1 #2 #3\@nil
+            \edef\ef@colorSpec@out{\ef@colorSpec@out\space rg}\else
+            \ef@stripsemi#3\@nil
+            \edef\ef@colorSpec@out{[rgb]{#1,#2,\ef@colorSpec@out}}\fi
+        \else
+            \def\argv{#5}\edef\ef@cmp{k;}
+        \ifx\argv\ef@cmp
+            \expandafter\ifx\csname convertcolorspec\endcsname\relax
+                \def\ef@colorSpec@out{#1 #2 #3 #4 k}\else
+                \def\ef@colorSpec@out{[cmyk]{#1,#2,#3,#4}}\fi
+        \else
+            \ifx\argv\ef@semicolon
+                \ef@stripsemi#1 #2 #3 #4\@nil
+                \expandafter\ifx\csname convertcolorspec\endcsname\relax
+                \edef\ef@colorSpec@out{\ef@colorSpec@out\space k}\else
+                \ef@stripsemi#4\@nil
+                \edef\ef@colorSpec@out{%
+                    [cmyk]{#1,#2,#3,\ef@colorSpec@out}}\fi
+        \else\ef@parseColor@iv
+    \fi\fi\fi\fi\fi\fi
+}
+\def\ef@parseColor@iv{\PackageError{AeB}{%
+    The number of arguments
+    is incorrect.\MessageBreak I was expecting
+    1, 3, or 4 components of color}{Specify the correct number of
+    components for the color space.}}
+\def\calcOrder#1{\let\efCalcOrder\@gobble
+    \@for\coi:=#1\do{\edef\efCalcOrder{\efCalcOrder,"\coi"}}%
+    \edef\efCalcOrder{[\efCalcOrder]}}
+\@onlypreamble\calcOrder
+\def\efCalcOrder{[]}
+\def\eq@check{4}
+\def\eq@circle{l}
+\def\eq@cross{8}
+\def\eq@diamond{u}
+\def\eq@square{n}
+\def\eq@star{H}
+\let\symbolchoice\@eqsymbolchoice
+\symbolchoice{check}
+\providecommand{\JS}[1]{/S/JavaScript/JS(#1)}
+\newcommand{\URI}[1]{/S/URI/URI(#1)}
+\providecommand{\Named}[1]{/S/Named/N/#1}
+\newcommand{\Next}[1]{/Next<<#1>>}
+\providecommand{\toggleAttachmentsPanel}[2]{%
+    \setLink[\Border{0 0 0}\A{\Named{ShowHideFileAttachment}}]
+    {\textcolor{#1}{#2}}}%
+\newcommand{\AAMouseUp}[1]{/U<<#1>>}
+\newcommand{\AAMouseDown}[1]{/D<<#1>>}
+\newcommand{\AAMouseEnter}[1]{/E<<#1>>}
+\newcommand{\AAMouseExit}[1]{/X<<#1>>}
+\newcommand{\AAOnFocus}[1]{/Fo<<#1>>}
+\newcommand{\AAOnBlur}[1]{/Bl<<#1>>}
+\newcommand{\AAFormat}[1]{/F<<\JS{#1}>>}
+\newcommand{\AAKeystroke}[1]{/K<<\JS{#1}>>}
+\newcommand{\AAValidate}[1]{/V<<\JS{#1}>>}
+\newcommand{\AACalculate}[1]{/C<<\JS{#1}>>}
+\newcommand{\AAPageOpen}[1]{/PO<<\JS{#1}>>}
+\newcommand{\AAPageClose}[1]{/PC<<\JS{#1}>>}
+\newcommand{\AAPageVisible}[1]{/PV<<\JS{#1}>>}
+\newcommand{\AAPageInvisible}[1]{/PI<<\JS{#1}>>}
+\newcommand{\definePath}[1]{\def\ef@ctrlName{#1}%
+    \hyper@normalise\ef@definePath}
+\def\ef@definePath#1{\expandafter\xdef\ef@ctrlName{#1}}
+\def\FHidden{2}         % bit 2: hidden field
+\def\FPrint{4}          % bit 3: print (we set this bit by default)
+\def\FNoPrint{-4}       % bit 3: -print (this clears the bit)
+\def\FNoView{32}        % bit 6: no view
+\def\FLock{128}         % bit 8: locked field (PDF 1.4)
+\def\FfReadOnly{1}                   % all
+\def\FfRequired{2}                   % all
+\def\FfNoExport{4}                   % all
+\def\FfMultiline{4096}               % text
+\def\FfPassword{8192}                % text
+\def\FfNoToggleToOff{16384}          % radio
+\def\FfRadio{32768}                  % radio
+\def\FfPushButton{65536}             % Push button
+\def\FfCombo{131072}                 % choice
+\def\FfEdit{262144}                  % combo
+\def\FfSort{524288}                  % choice
+\def\FfFileSelect{1048576}           % text (PDF 1.4)
+\def\FfMultiSelect{2097152}          % choice (PDF 1.4)
+\def\FfDoNotSpellCheck{4194304}      % text, combo (PDF 1.4)
+\def\FfDoNotScroll{8388608}          % text (PDF 1.4)
+\def\FfComb{16777216}                % text (PDF 1.5)
+\def\FfRadiosInUnison{33554432}      % radio (PDF 1.5)
+\def\FfCommitOnSelChange{67108864}   % choice (PDF 1.5)
+\def\FfRichText{33554432}            % radio (PDF 1.5)
+\def\getFfValue/Ff#1\@nil{\def\eq@FfValue{#1}}
+\def\getFValue/F#1\@nil{\def\eq@FValue{#1}}
+\def\@getCmdName#1{\edef\@CmdName{\expandafter\@gobble\string#1}}
+\newcommand{\everyTextField}[1]{\def\every@TextField{#1}}
+\def\every@TextField{}
+\newcommand{\everySigField}[1]{\def\every@sigField{#1}}
+\def\every@sigField{}
+\newcommand{\everyCheckBox}[1]{\def\every@CheckBox{#1}}
+\def\every@CheckBox{}
+\newcommand{\everyRadioButton}[1]{\def\every@RadioButton{#1}}
+\def\every@RadioButton{}
+\newcommand{\everyButtonField}[1]{\def\every@ButtonField{#1}}
+\def\every@ButtonField{}
+\newcommand{\everyPushButton}[1]{\def\every@PushButton{#1}}
+\def\every@PushButton{}
+\newcommand{\everyListBox}[1]{\def\every@listBox{#1}}
+\newcommand{\everyComboBox}[1]{\def\every@comboBox{#1}}
+\def\every@listBox{}\def\every@comboBox{}
+\newcommand{\everyLink}[1]{\def\every@Link{#1}}
+\def\every@Link{}
+\def\ef@adjrectWH#1{\dimen@ii#1\relax
+    \ifx\eq@rectW\@empty\else
+        \eflength\eq@rectW\relax
+        \advance\eflength\dimen@ii
+        \edef\eq@rectW{\the\eflength}%
+        \eflength\eq@rectH\relax
+        \advance\eflength\dimen@ii
+        \edef\eq@rectH{\the\eflength}%
+    \fi
+}
+\def\ef@djXPD{\ifxetex\ifmakeXasPD\ef@adjrectWH{2bp}\fi
+    \else\ifmakePDasX\ef@adjrectWH{-2bp}\fi\fi}
+\def\ef@btnspcr{}
+\def\eq@setButtonProps#1#2{%
+    \makeJSspecials
+    \processAppArgs#2\end\@nil  % set widget properties
+    \ifx\eq@BC\@empty\@eqW{}\else
+        \if\eq@W@value0\let\eq@BC\@empty\fi\fi
+    \Hy@pdfstringfalse
+    \ifx\eq@rectW\@empty
+        \ifnum\eq@textSize=0 \else
+            \dimen@=\eq@textSize bp
+            \dimen@1.00375\dimen@
+            \edef\eq@textSize@pt{\strip@pt\dimen@}%
+            \fontsize{\eq@textSize@pt}{0}\selectfont
+        \fi
+        \dimen@\eq@W@value bp
+        \def\eq@S@B{B}\ifx\eq@S@value\eq@S@B
+            \def\eq@btn@sp{\hbox to2\dimen@{\hfill}}%
+        \else
+            \def\eq@btn@sp{\hbox to\dimen@{\hfill}}%
+        \fi
+        \expandafter\def\expandafter
+            \ef@btnspcr\expandafter{\ef@btnspcr\eq@btn@sp}%
+        \sbox{\eq@tmpbox}{\ef@btnspcr\eq@CA\ef@btnspcr}%
+           \eq@tmpdima=\wd\eq@tmpbox
+        \sbox{\eq@tmpbox}{\ef@btnspcr\eq@RC\ef@btnspcr}%
+        \ifdim\eq@tmpdima>\wd\eq@tmpbox\else
+           \eq@tmpdima=\wd\eq@tmpbox\fi%
+        \sbox{\eq@tmpbox}{\ef@btnspcr\eq@AC\ef@btnspcr}%
+        \ifdim\eq@tmpdima>\wd\eq@tmpbox\else
+            \eq@tmpdima=\wd\eq@tmpbox\fi
+        \ifmakePDasX\advance\eq@tmpdima2bp\fi
+        \wd\eq@tmpbox=\eq@tmpdima
+    \else
+       \wd\eq@tmpbox=\eq@rectW
+    \fi
+    \ef@djXPD#1% dps 12/22
+}
+\def\eq@setWidgetProps#1#2{%
+    \makeJSspecials
+    \processAppArgs#2\end\@nil  % set widget properties
+    \ifx\annot@type@link\annot@type\else
+        \ifx\eq@BC\@empty\@eqW{}\else
+        \if\eq@W@value0\let\eq@BC\@empty\fi\fi
+    \fi
+    \ef@djXPD#1% dps 12/22
+}
+\def\ef@sanitize@toks{\@makeother\~\@makeother\#\@makeother\&%
+    \@makeother\"\@makeother\_}
+\newcommand\efKern[2]{\ifxetex\kern#2\else\kern#1\fi}
+\newcommand\olBdry{\bgroup\ifxetex % dps 12/22
+    \@tempdima-\g@eq@W@value@bp\relax
+    \edef\@mtkern{\the\@tempdima}\else
+    \@tempdima2bp\relax\advance\@tempdima-\g@eq@W@value@bp\relax % 12/26
+    \edef\@mtkern{\the\@tempdima}\fi\kern\@mtkern\egroup
+}
+\newcommand\cgBdry[1][0bp]{\bgroup\def\ef@rgi{#1}\ifx\ef@rgi\@empty
+    \def\ef@rgi{0bp}\fi\setlength{\@tempdima}{\ef@rgi}%
+    \ifxetex\else\addtolength{\@tempdima}{2bp}\fi
+    \kern\@tempdima\egroup\ignorespaces}
+\newcommand{\efSupprIndent}{\ef@scratchtoks=\expandafter{\the\everypar}%
+  \everypar{{\setbox\z@\lastbox}\clubpenalty\@M
+  \everypar=\expandafter{\the\ef@scratchtoks}}}
+\newcommand\volBdry{\bgroup\parskip0pt\relax\@@par\nointerlineskip
+    \olBdry\egroup\efSupprIndent}
+\newcommand\vcgBdry{\@ifstar{\edef\ef@offset{\the\parskip}\vcgBdry@i}
+    {\def\ef@offset{0pt}\vcgBdry@i}}
+\newcommand\vcgBdry@i[1][0bp]{\bgroup
+    \setlength{\ef@dimena}{#1-\ef@offset}\parskip0pt\relax
+    \par\nointerlineskip\cgBdry[\ef@dimena]%
+    \egroup\ignorespaces\efSupprIndent}
+\def\common@choiceCode{%
+    /Subtype/Widget
+    /T (\Fld@name)
+    /FT/Ch
+    \eq@Ff
+    \eq@F
+    \eq@TU
+    \eq@TI
+    /BS << \eq@W\eq@S >>
+    /MK <<\eq@R\eq@BC\eq@BG\eq@mkIns>>
+    /DA (\eq@DA)
+    /Opt [\eq@Opt]
+    \eq@DV\eq@V
+    \eq@A\eq@AA
+    \eq@rawPDF
+}
+\def\eqf@setDimens#1#2{\@eqrectW{#1}\@eqrectH{#2}}
+\let\ef@@nil\relax
+\def\@gobbleto@@nil#1\ef@@nil{}%
+\long\def\g@addto@macrogobble#1#2{\g@addto@macro{#1}{#2}\@gobbleto@@nil}
+\def\passthruCLOpts{*}
+\def\ef@pdfstrCLOpt{\Hy@unicodefalse\def\eq@Opt{}\ef@pdfstrCLOpti}
+\def\ef@pdfstrCLOpti{\@ifnextchar\ef@@nil{\@gobble}{\ef@pdfstrCLOptia}}
+\def\ef@pdfstrCLOptia{\@ifnextchar[{\expandafter
+    \ef@pdfstrOptWBii\@gobble}{\ef@pdfstrCLOptb}}
+\def\ef@pdfstrCLOptb{\@ifstar{\g@addto@macrogobble\eq@Opt}
+    {\ef@pdfstrOptWPi}}
+\def\ef@pdfstrOptWBii{%
+    \@ifnextchar({\ef@pdfstrOptWBiia}{\PackageError{eforms}
+        {Left parenthesis expected here}{}}%
+}
+\def\ef@pdfstrOptWBiia(#1){%
+    \g@addto@macro\eq@Opt{[(}%
+    \pdfstringdef\@optTokstemp{#1}%
+    \expandafter\g@addto@macro\expandafter\eq@Opt
+        \expandafter{\@optTokstemp}%
+    \@ifnextchar({\ef@pdfstrOptWBiib}{\PackageError{eforms}
+        {Left parenthesis expected here}{}}%
+}
+\def\ef@pdfstrOptWBiib(#1){%
+    \g@addto@macro\eq@Opt{)(}%
+    \pdfstringdef\@optTokstemp{#1}%
+    \expandafter\g@addto@macro\expandafter\eq@Opt
+        \expandafter{\@optTokstemp}%
+    \g@addto@macro\eq@Opt{)]}%
+    \expandafter\ef@pdfstrCLOpti\@gobble
+}
+\def\ef@pdfstrOptWPi{\@ifnextchar\ef@@nil{\@gobble}{\ef@pdfstrOptWPii}}
+\def\ef@pdfstrOptWPii(#1){%
+    \g@addto@macro\eq@Opt{(}%
+    \pdfstringdef\@optTokstemp{#1}%
+    \expandafter\g@addto@macro\expandafter\eq@Opt
+        \expandafter{\@optTokstemp}%
+    \g@addto@macro\eq@Opt{)}%
+    \ef@pdfstrCLOpti}
+\def\annot@type@listbox{listbox}
+\newcommand\list@@Box[8]{\begingroup
+    \edef\annot@type{\annot@type@listbox}%
+    \pdfstringdef\Fld@name{#2}%
+    \expandafter\ef@pdfstrCLOpt#5\ef@@nil
+    \eqf@setDimens{#3}{#4}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \@processEvery#8\end\noindent#6#7{#1}%
+}
+\def\listBoxDefaults{%
+    \W{1}\S{I}\F{\FPrint}\BC{0 0 0}
+}
+\newcommand\listBox{\begingroup
+    \ef@sanitize@toks\ef@listbox
+}
+\newcommand{\ef@listbox}[1][]{%
+    \endgroup\ef@listBox[#1]%
+}
+\newcommand\ef@listBox[5][]{%
+    \mbox{\list@@Box{#1}{#2}{#3}{#4}{#5}{}{\eq@setWidgetProps
+        \eq@choice@driver}{\listBoxDefaults\every@listBox}}%
+}
+\def\annot@type@combobox{combobox}
+\newcommand\combo@@Box[8]{\begingroup
+   \edef\annot@type{\annot@type@combobox}%
+    \@eqFf{\FfCombo}\pdfstringdef\Fld@name{#2}%
+    \expandafter\ef@pdfstrCLOpt#5\ef@@nil
+    \eqf@setDimens{#3}{#4}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \@processEvery#8\end\noindent#6#7{#1}%
+}
+\def\comboBoxDefaults{%
+    \W{1}\S{I}\F{\FPrint}\BC{0 0 0}
+}
+\newcommand\comboBox{\begingroup
+    \ef@sanitize@toks\ef@combobox
+}
+\newcommand{\ef@combobox}[1][]{%
+    \endgroup\ef@comboBox[#1]%
+}
+\newcommand\ef@comboBox[5][]{%
+    \mbox{\combo@@Box{#1}{#2}{#3}{#4}{#5}{}{\eq@setWidgetProps
+        \eq@choice@driver}{\comboBoxDefaults\every@comboBox}}%
+}
+\def\common@pushButtonCode{%
+    /Subtype/Widget
+    /T (\Fld@name)
+    /FT/Btn
+    \eq@Ff
+    \eq@TU
+    \eq@H
+    \eq@F
+    /BS <<\eq@W\eq@S >>
+\ifx\eq@AP\@empty
+    /MK <<\eq@R\eq@BC\eq@BG%
+         \ef@kvCA\ef@kvRC\ef@kvAC\eq@IconMK\eq@mkIns>>
+\else
+    \eq@AP
+\fi
+    /DA (\eq@DA)
+    \eq@A\eq@AA
+    \eq@rawPDF
+}
+\def\common@RadioCheckCode{%
+    /Subtype/Widget
+    /T (\Fld@name)
+    /FT/Btn
+    \eq@Ff
+    \eq@F
+    \eq@TU
+    /BS <<\eq@W\eq@S>>
+\ifx\eq@AP\@empty
+    /AP<< /N <<\eq@On<<>>>> >>
+    \eq@MK
+\else
+    \eq@AP
+\fi
+    /DA (\eq@DA)
+    \eq@AS
+    \eq@DV\eq@V
+    \eq@A\eq@AA
+    \eq@rawPDF
+}
+\def\annot@type@button{pushbtn}
+\newcommand\push@@Button[7]{\begingroup
+    \edef\annot@type{\annot@type@button}%
+    \pdfstringdef\Fld@name{#2}%\edef\Fld@name{#2}%
+    \makeJSspecials\ef@preProcDefns
+    \def\eq@Ff{/Ff \FfPushButton}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \eqf@setDimens{#3}{#4}%
+    \@processEvery#7\end\noindent#5#6{#1}%
+}
+\def\pushButtonDefaults{%
+    \W{1}\S{B}\F{\FPrint}\BC{0 0 0}
+    \H{P}\BG{.7529 .7529 .7529}
+}
+\newcommand\pushButton{\begingroup
+    \ef@sanitize@toks\ef@pushbutton
+}
+\newcommand{\ef@pushbutton}[1][]{%
+    \endgroup\ef@pushButton[#1]%
+}
+\newcommand\ef@pushButton[4][]{%
+    \mbox{\push@@Button{#1}{#2}{#3}{#4}{}{%
+        \eq@setButtonProps\eq@Button@driver}%
+        {\pushButtonDefaults\every@PushButton}}%
+}
+\def\annot@type@checkbox{checkbox}
+\newcommand\check@@Box[8]
+{%
+    \begingroup\let\#\ef@Hx
+    \edef\annot@type{\annot@type@checkbox}%
+    \pdfstringdef\Fld@name{#2}\@eqAS{Off}%
+    \def\@eqDV##1{\def\eq@arg{##1}\ifx\eq@arg\@empty\let\eq@DV\@empty
+        \else\ifpdfmarkup\def\eq@DV{/DV(##1) cvn }\else
+        \def\eq@DV{/DV/##1}\fi\fi}%
+    \def\@eqV##1{\def\eq@arg{##1}\ifx\eq@arg\@empty
+        \let\eq@V\@empty\else\ifpdfmarkup\def\eq@V{/V(##1) cvn }\else
+        \def\eq@V{/V/##1}\fi\@eqAS{##1}\fi}%
+    \eqf@setDimens{#3}{#4}%
+    \ifpdfmarkup\def\eq@On{(#5) cvn }\else
+        \def\eq@On{/#5}\fi\@eqtextFont{ZaDb}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \@eqMK{\eq@R\eq@BC\eq@BG/CA(\symbol@choice)\eq@mkIns}%
+    \@processEvery#8\end\noindent#6#7{#1}%
+}
+\def\checkBoxDefaults{%
+    \F{\FPrint}\W{1}\S{S}\BC{0 0 0}%
+}
+\newcommand\checkBox{\begingroup
+    \ef@sanitize@toks\ef@checkbox
+}
+\newcommand{\ef@checkbox}[5][]{%
+    \endgroup\mbox{\check@@Box{#1}{#2}{#3}{#4}{#5}{}{\eq@setWidgetProps
+    \eq@RadioCheck@driver}{\checkBoxDefaults\every@CheckBox}}%
+}
+\def\annot@type@radio{radiobtn}
+\newcommand\radio@@Button[8]{\begingroup\let\#\ef@Hx
+    \edef\annot@type{\annot@type@radio}%
+    \pdfstringdef\Fld@name{#2}\@eqAS{Off}%
+    \def\@eqDV##1{\def\eq@arg{##1}\ifx\eq@arg\@empty\let\eq@DV\@empty
+        \else\ifpdfmarkup\def\eq@DV{/DV(##1) cvn }\else
+        \def\eq@DV{/DV/##1}\fi\fi}%
+    \def\@eqV##1{\def\eq@arg{##1}\ifx\eq@arg\@empty
+        \let\eq@V\@empty\else\ifpdfmarkup\def\eq@V{/V(##1) cvn }\else
+        \def\eq@V{/V/##1}\fi\@eqAS{##1}\fi}%
+    \eqf@setDimens{#3}{#4}%
+    \ifpdfmarkup\def\eq@On{(#5) cvn }\else\def\eq@On{/#5}\fi
+    \def\eq@Ff{/Ff \FfRadio}\@eqtextFont{ZaDb}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \@eqMK{\eq@R\eq@BC\eq@BG/CA(\symbol@choice)\eq@mkIns}%
+    \@processEvery#8\end\noindent#6#7{#1}%
+}
+\def\radioButtonDefaults
+{%
+    \W{1}\S{S}\BC{0 0 0}\F{\FPrint}
+}
+\newcommand\radioButton{\begingroup
+    \ef@sanitize@toks\ef@radiobutton
+}
+\newcommand{\ef@radiobutton}[5][]{\endgroup
+    \mbox{\radio@@Button{#1}{#2}{#3}{#4}{#5}{}{\eq@setWidgetProps
+    \eq@RadioCheck@driver}{\radioButtonDefaults\every@RadioButton}}%
+}
+\newcommand\ef@radioButton[5][]
+{%
+    \mbox{\radio@@Button{#1}{#2}{#3}{#4}{#5}{}{\eq@setWidgetProps
+        \eq@RadioCheck@driver}{\radioButtonDefaults\every@RadioButton}}%
+}
+\def\common@TextFieldCode
+{%
+    /Subtype/Widget
+    /T (\Fld@name)
+    /FT/Tx
+    \eq@Ff
+    \eq@F
+    \eq@Q
+    \eq@TU
+    \eq@MaxLen
+    /BS <<\eq@W\eq@S>>
+    /MK <<\eq@R\eq@BC\eq@BG\eq@mkIns>>
+    /DA (\eq@DA)
+    \eq@DV\eq@V
+    \eq@RV\eq@DS
+    \eq@A\eq@AA
+    \eq@rawPDF
+}
+\def\annot@type@text{textfld}
+\newcommand\text@@Field[7]
+{%
+    \begingroup
+    \edef\annot@type{\annot@type@text}%
+    \pdfstringdef\Fld@name{#2}\def\eq@Title{#2}%
+    \eqf@setDimens{#3}{#4}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \@processEvery#7\end\noindent#5#6{#1}%
+}
+\def\textFieldDefaults
+{%
+    \F{\FPrint}\BC{0 0 0}\W{1}\S{S}
+}
+\newcommand\textField{\begingroup
+    \ef@sanitize@toks\ef@textfield
+}
+\newcommand{\ef@textfield}[2][]{%
+    \endgroup\ef@textField[#1]{#2}%
+}
+\newcommand\ef@textField[4][]
+{%
+    \mbox{\text@@Field{#1}{#2}{#3}{#4}{}%
+        {\eq@setWidgetProps\eq@TextField}%
+        {\textFieldDefaults\every@TextField}}%
+}
+\let\eqTextField\textField
+\let\calcTextField\textField
+\def\common@SigFieldCode
+{%
+    /Subtype /Widget
+    /T (\Fld@name)
+    /FT/Sig
+    \eq@F
+    \eq@TU
+    /BS <<\eq@W\eq@S>>
+    /MK <<\eq@R\eq@BC\eq@BG\eq@mkIns>>
+    /DA (\eq@DA)
+    \eq@Lock
+    \eq@A\eq@AA
+    \eq@rawPDF
+}
+\def\annot@type@sig{sigfld}
+\newcommand\sig@@Field[7]{%
+    \begingroup
+    \edef\annot@type{\annot@type@sig}%
+    \pdfstringdef\Fld@name{#2}\def\eq@Title{#2}%
+    \eqf@setDimens{#3}{#4}%
+    \def\eq@DA{\eq@textFont\space\eq@textSize\space Tf \eq@textColor}%
+    \@processEvery#7\end\noindent#5#6{#1}%
+}
+\def\sigFieldDefaults
+{%
+    \F{\FPrint}\BC{}\BG{}\W{1}\S{S}
+}
+\newcommand\sigField{\begingroup
+    \ef@sanitize@toks\ef@sigfield
+}
+\newcommand{\ef@sigfield}[1][]{%
+    \endgroup\ef@sigField[#1]%
+}
+\newcommand\ef@sigField[4][]
+{%
+    \mbox{\sig@@Field{#1}{#2}{#3}{#4}{}{\eq@setWidgetProps\eq@SigField}%
+        {\sigFieldDefaults\every@sigField}}%
+}
+\def\common@LinkCode
+{%
+    \eq@A           % Action
+    \eq@H           % Highlight
+    \eq@Color       % Border color
+    \link@BS        % Border styles
+    \eq@rawPDF      % everything else
+}
+\def\annot@type@link{link}
+\newcommand\set@@Link[7]
+{%
+    \begingroup
+    \makeJSspecials
+    \edef\annot@type{\annot@type@link}%
+    \ef@preProcDefns
+    \eqf@setDimens{#2}{#3}%
+    \ifx\eq@rectW\@empty\def\link@@Box{#4}\else
+        \def\eq@arg{#4}\ifx\eq@arg\@empty
+            \def\eq@content{\hfill\vfill}\else\def\eq@content{#4}\fi
+        \def\link@@Box{\parbox[\eq@pos][\eq@rectH][\eq@innerpos]%
+            {\eq@rectW}{\centering\eq@content}}%
+    \fi
+    \@processEvery#7\end\noindent#5#6{#1}%
+}
+\def\defaultlinkcolor{\@linkcolor}
+\def\setDef@ultLinkColor{\ifHy@colorlinks
+    \def\ef@thislinkcolor{\defaultlinkcolor}
+    \def\ef@colorthislink{\color{\ef@thislinkcolor}}\else
+    \let\ef@colorthislink\relax\fi
+}
+\AtBeginDocument{\setDef@ultLinkColor}
+\def\set@LinkTextDefaults{\S{S}\Border{0 0 0}}
+\newcommand\setLink{\begingroup
+    \ef@sanitize@toks\ef@setlinktext
+}
+\let\setLinkText\setLink
+\newcommand{\ef@setlinktext}[1][]{%
+    \endgroup\ef@searchmlLink#1\mlLink\end\@nil
+    \ifx\ef@mlLink\ef@Zero\def\ef@next{\set@LinkText[#1]}\else
+    \def\ef@next{\mlhypertext[#1]}\fi\ef@next
+}
+\newcommand\set@LinkText[2][]{%
+    \set@@Link{#1}{}{}{\ef@colorthislink#2}{}%
+        {\eq@setWidgetProps{\ef@postProcLinkProps\setLink@driver}}%
+        {\set@LinkTextDefaults\every@Link}%
+}
+\def\ef@preProcDefns{%
+    \def\Win##1{/Win <<##1>>}%
+    \def\fitpage{\dl@fitpage}\def\actualsize{\dl@actualsize}%
+    \def\fitwidth{\dl@fitwidth}\def\fitheight{\dl@fitheight}%
+    \def\fitvisible{\dl@fitvisible}\def\inheritzoom{\dl@inheritzoom}%
+    \let\rPage\ef@rPage
+    \edef\Page##1{\ifcase\eq@drivernum
+        {Page##1}\or
+        \noexpand\pdfpageref##1\space\space 0 R\or
+        \noexpand @page##1\fi
+    }%
+}
+\def\ef@postProcLinkProps{}
+\newcommand{\mlsetLink}{\mlhypertext}
+\newcommand{\mlhypertext}[2][]{\@ifundefined{mlhypertext@i}
+  {\PackageWarning{eforms}{The \string\mlhypertext\space command
+  does nothing unless\MessageBreak the aeb_mlink package is loaded}}{}%
+  #2}
+\def\set@LinkBboxDefaults{\S{S}\Border{0 0 0}}
+\newcommand{\setLinkBbox}{\begingroup
+    \ef@sanitize@toks\ef@linkbbox
+}
+\newcommand{\ef@linkbbox}[1][]{%
+    \endgroup\ef@setLinkBbox[#1]%
+}
+\newcommand{\ef@setLinkBbox}[3][]{%
+    \@setLinkBbox{#1}{#2}{#3}%
+}
+\def\@setLinkBbox#1#2#3{\@ifnextchar[{\@@setLinkBbox{#1}{#2}{#3}}%
+    {\@@setLinkBbox{#1}{#2}{#3}[c]}}
+\def\@@setLinkBbox#1#2#3[#4]{%
+    \@ifnextchar[{\@@@setLinkBbox{#1}{#2}{#3}{#4}}%
+        {\@@@setLinkBbox{#1}{#2}{#3}{#4}[#4]}%
+}
+\def\@@@setLinkBbox#1#2#3#4[#5]#6{%
+    \def\eq@pos{#4}\def\eq@innerpos{#5}%
+    \set@@Link{#1}{#2}{#3}{\ef@colorthislink#6}%
+        {\eq@setWidgetProps\setLink@driver}{}%
+        {\set@LinkBboxDefaults\every@Link}%
+}
+\def\set@LinkPboxDefaults{\S{S}\Border{0 0 0}}
+\newcommand\setLinkPbox{\begingroup
+    \ef@sanitize@toks\ef@linkpbox
+}
+\newcommand{\ef@linkpbox}[1]{%
+    \endgroup\ef@setLinkPbox{#1}%
+}
+\newcommand\ef@setLinkPbox[1]{%
+    \@setLinkPbox{#1\BS{}}{}{}{\hfill\vfill}%
+}
+\def\@setLinkPbox#1#2#3{\@ifnextchar[{\@@setLinkPbox{#1}{#2}{#3}}%
+    {\@@setLinkPbox{#1}{#2}{#3}[c]}}
+\def\@@setLinkPbox#1#2#3[#4]{%
+    \@ifnextchar[{\@@@setLinkPbox{#1}{#2}{#3}{#4}}%
+        {\@@@setLinkPbox{#1}{#2}{#3}{#4}[#4]}
+}
+\def\@@@setLinkPbox#1#2#3#4[#5]#6{%
+    \def\eq@pos{#4}\def\eq@innerpos{#5}%
+    \set@@Link{#1}{#2}{#3}{#6}{\eq@setWidgetProps\setLinkPbox@driver}%
+        {}{\set@LinkPboxDefaults\every@Link}%
+}
+\input{\eq@drivercode}
+\inputCalcOrderJS
+\endinput
+%%
+%% End of file `eforms.sty'.
