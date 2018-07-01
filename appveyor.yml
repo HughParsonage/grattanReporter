@@ -19,4 +19,6 @@ build_script:
   - cmd: cd tests\testthat\SchoolFunding
   - ps: wget https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls -Outfile grattan.cls
   - cmd: erase SchoolFunding.bbl
-  - cmd: texify --pdf SchoolFunding.tex
+  - cmd: pdflatex -interaction=batchmode SchoolFunding.tex
+  - cmd: biber SchoolFunding
+  - cmd: pdflatex -interaction=batchmode SchoolFunding.tex
