@@ -8,13 +8,13 @@ environment:
 install:
   - ps: choco install -y miktex
   - ps: choco update miktex
-  - ps: choco install -y r.project
   - cmd: refreshenv
+  - ps: choco install -y r.project
+
 
 build_script:
   - cmd: Rscript -e "stys <- dir(pattern = '.sty$', path = 'data-raw/miktex/sty', full.names = TRUE); file.copy(stys, file.path('tests/testthat/SchoolFunding', basename(stys)))"
   - cmd: cd tests\testthat\SchoolFunding
   - ps: wget https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls -Outfile grattan.cls
   - cmd: erase SchoolFunding.bbl
-  - cmd: Rscript -e "file.copy(dir(path = ) "
   - cmd: pdflatex -interaction=nonstopmode SchoolFunding.tex
