@@ -10,7 +10,7 @@ cache:
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
 
 install:
-  - ps: choco install -y miktex
+  - ps: choco install -silent -y miktex
   - ps: choco update miktex
   - cmd: refreshenv
   - ps: choco install -y r.project
@@ -26,3 +26,4 @@ build_script:
   - cmd: pdflatex -interaction=batchmode SchoolFunding.tex
   - cmd: biber SchoolFunding
   - cmd: pdflatex -interaction=batchmode SchoolFunding.tex
+  - cmd: choco install /?
