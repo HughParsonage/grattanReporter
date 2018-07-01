@@ -3,7 +3,11 @@ image: Visual Studio 2017
 
 environment:
   global:
-    APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=9
+    APPVEYOR_CACHE_ENTRY_ZIP_ARGS: -t7z -m0=lzma -mx=3
+
+cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
 
 install:
   - ps: choco install -y miktex
