@@ -10,6 +10,8 @@ install:
   - ps: choco update miktex
   - cmd: refreshenv
   - ps: choco install -y r.project
+  - ps: $env:Path += ";C:\Program Files\R\R-3.5.0"
+  - ps: $env:Path += ";C:\Program Files\R\R-3.5.0\bin"
 
 
 build_script:
