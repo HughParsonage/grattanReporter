@@ -10,10 +10,10 @@ cache:
   - C:\ProgramData\chocolatey\lib
 
 install:
-  - ps: choco install miktex > temp.txt
-  - ps: choco update miktex > temp2.txt
+  - ps: choco install -y --no-progress miktex
+  - ps: choco update miktex
   - cmd: refreshenv
-  - ps: choco install -y r.project > temp3.txt
+  - ps: choco install -y --no-progress r.project
   - ps: $env:Path += ";C:\Program Files\R\R-3.5.0"
   - ps: $env:Path += ";C:\Program Files\R\R-3.5.0\bin"
 
