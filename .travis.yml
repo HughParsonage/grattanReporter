@@ -21,10 +21,10 @@ after_failure:
 after_success:
 - Rscript -e 'if (FALSE) devtools::test()'
 - Rscript -e 'covr::codecov()'
-- test $TRAVIS_PULL_REQUEST == "false" &&
+- test Rscript -e 'read.dcf("DESCRIPTION")[,"Version"] > available.packages(repos = "https://hughparsonage.github.io/drat/", type = "source")["grattanReporter", "Version"]' &&
+        test $TRAVIS_PULL_REQUEST == "false" &&
         test $TRAVIS_BRANCH == "master" &&
         # dumb way
-        test Rscript -e 'read.dcf("DESCRIPTION")[,"Version"] > available.packages(repos = "https://hughparsonage.github.io/drat/", type = "source")["grattanReporter", "Version"]' &&
         bash deploy.sh
 env:
   global:
