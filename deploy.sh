@@ -13,7 +13,7 @@ addToDrat(){
   git config --global push.default simple
 
   ## Get drat repo
-  git remote add upstream "https://$GH_TOKEN@github.com/hughparsonage/grattanReporter.git"
+  git remote add upstream "https://$GH_TOKEN@github.com/hughparsonage/drat.git"
   git fetch upstream 2>err.txt
   git checkout gh-pages
 
