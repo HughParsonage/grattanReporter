@@ -140,36 +140,44 @@ test_that("Higher ed report 2018 (esp. Century footnote)", {
   get_report <- function(name) {
     temp_dir <- tempdir()
     setwd(temp_dir)
-    if (.Platform$OS.type == "windows") {
-      dest_file <- paste0(gsub("[^A-Za-z0-9]", "", name), "temp.zip")
-      download.file(url = paste0("https://github.com/grattan/",
-                                 name,
-                                 "/zipball/master"),
-                    mode = "wb",
-                    destfile = dest_file)
-      unzip(dest_file, exdir = ".")
-      setwd(grep(name,
-                 list.dirs(),
-                 fixed = TRUE,
-                 value = TRUE))
+    WIN <- .Platform$OS.type == "windows"
+
+    dest_file <- paste0(gsub("[^A-Za-z0-9]", "", name),
+                        if (WIN) "temp.zip" else "temp.tar.tz")
+    download.file(url = paste0("https://github.com/grattan/",
+                               name,
+                               "/",
+                               if (WIN) "zipball" else "tarball",
+                               "/master"),
+                  mode = "wb",
+                  quiet = TRUE,
+                  destfile = dest_file)
+    unzip(dest_file, exdir = ".")
+    setwd(grep(name,
+               list.dirs(),
+               fixed = TRUE,
+               value = TRUE))
+    checkGrattanReports(compile = TRUE,
+                        pre_release = TRUE,
+                        release = FALSE,
+                        update_grattan.cls = FALSE)
+    file.tex <- dir(pattern = "\\.tex$")[1]
+    if (WIN) {
+      shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+      shell(paste("biber", sub("\\.tex$", "", file.tex)))
+      shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+      shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
     } else {
-      dest_file <- paste0(gsub("[^A-Za-z0-9]", "", name), "temp.tar.gz")
-      download.file(url = paste0("https://github.com/grattan/",
-                                 name,
-                                 "/tarball/master"),
-                    mode = "wb",
-                    destfile = dest_file)
-      unzip(dest_file, exdir = ".")
-      setwd(grep(name,
-                 list.dirs(),
-                 fixed = TRUE,
-                 value = TRUE))
+      system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+      system(paste("biber", sub("\\.tex$", "", file.tex)))
+      system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+      system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
     }
+    check_CenturyFootnote()
+    expect_false(CenturyFootnote_suspect)
   }
   current_wd <- getwd()
   get_report("zzz-2018-highered-selection")
-  checkGrattanReports(compile = TRUE, pre_release = TRUE, release = FALSE, update_grattan.cls = FALSE)
-  expect_false(CenturyFootnote_suspect)
   setwd(current_wd)
 })
 
