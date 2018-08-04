@@ -6,8 +6,9 @@
 \title{Check Grattan Report}
 \usage{
 checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
-  release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
-  rstudio = FALSE, update_grattan.cls = pre_release, filename = NULL)
+  release = FALSE, .proceed_after_rerun, .no_log = TRUE, .log_psv = FALSE,
+  embed = TRUE, rstudio = FALSE, update_grattan.cls = pre_release,
+  filename = NULL)
 
 checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
@@ -26,7 +27,9 @@ checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
 are required, include this to skip the error. Note that this will result in false cross-references
 or incompletely formatted bibliographies.}
 
-\item{.no_log}{Make no entry in the log file on the check's outcome.}
+\item{.no_log}{Make no entry in the log file on the check's outcome. (Deprecated.)}
+
+\item{.log_psv}{If \code{TRUE}, return a table of the error details as pipe separated table.}
 
 \item{embed}{If \code{FALSE}, not attempt to embed the fonts using Ghostscript is attempted. Useful if Ghostscript cannot easily be installed.
 Set to \code{TRUE} for debugging or repetitive use (as in benchmarking).}
