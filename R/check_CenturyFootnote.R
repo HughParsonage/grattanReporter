@@ -176,7 +176,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
       # and before that column's footnote
       grep("newlabel{footnote@@@100", aux_contents, fixed = TRUE, value = TRUE) %>%
       {
-        data.table(
+        list(
           page = gsub("^.*@cref.*[^0-9]([0-9]+)[}][}]$",
                       "\\1",
                       grep("@cref", x = ., fixed = TRUE, value = TRUE),
@@ -187,6 +187,7 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                       perl = TRUE)
         )
       } %>%
+      setDT %>%
       .[, lapply(.SD, as.numeric), .SDcols = 1:2] %>%
       .[, column := if_else(posx > page_middle, 1, 2)] %>%
       .[, page := if_else(posx > page_middle, page, page - 1L)] %>%
@@ -231,7 +232,8 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
           .[["fno."]]
 
         CenturyFootnote_written_after <-
-          readLines(dir(path = path, pattern = "\\.fn100$", full.names = TRUE)[[1]]) %>%
+          dir(path = path, pattern = "\\.fn100$", full.names = TRUE)[[1]] %>%
+          read_lines %>%
           last %>%
           .[[1]]
 
