@@ -31,7 +31,7 @@ compare_xrefs_to_anchors <- function(path = ".",
            "table" = "tbl",
            "boxe"  = "box")
 
-
+  xref_page <- fig_page <- NULL
 
   figure_xrefs <-
     aux_contents %>%
