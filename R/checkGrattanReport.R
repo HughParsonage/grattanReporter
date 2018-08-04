@@ -8,7 +8,8 @@
 #' @param .proceed_after_rerun On the occasions where infinitely many passes of \code{pdflatex}
 #' are required, include this to skip the error. Note that this will result in false cross-references
 #' or incompletely formatted bibliographies.
-#' @param .no_log Make no entry in the log file on the check's outcome.
+#' @param .no_log Make no entry in the log file on the check's outcome. (Deprecated.)
+#' @param .log_psv If \code{TRUE}, return a table of the error details as pipe separated table.
 #' @param embed If \code{FALSE}, not attempt to embed the fonts using Ghostscript is attempted. Useful if Ghostscript cannot easily be installed.
 #' Set to \code{TRUE} for debugging or repetitive use (as in benchmarking).
 #' @param rstudio Use the RStudio API if available.
@@ -27,6 +28,7 @@
 #' @importFrom magrittr and
 #' @importFrom magrittr or
 #' @importFrom magrittr not
+#' @importFrom methods hasArg
 #' @importFrom clisymbols symbol
 #' @importFrom crayon green red bgGreen bgRed bold
 #' @importFrom grDevices embedFonts
@@ -51,6 +53,7 @@ checkGrattanReport <- function(path = ".",
                                release = FALSE,
                                .proceed_after_rerun,
                                .no_log = TRUE,
+                               .log_psv = FALSE,
                                embed = TRUE,
                                rstudio = FALSE,
                                update_grattan.cls = pre_release,
@@ -84,6 +87,8 @@ checkGrattanReport <- function(path = ".",
     cat <- function(...) NULL
   }
 
+
+
   current_wd <- getwd()
   setwd(path)
   on.exit(setwd(current_wd))
@@ -98,18 +103,47 @@ checkGrattanReport <- function(path = ".",
     filename <- tex_file[[1]]
   }
 
+  if (!dir.exists("./travis/grattanReport/")){
+    stop("./travis/grattanReport/ does not exist. Create this directory and try again.")
+  }
 
-  if("compile" %in% release_status(filename)){
+  if ("compile" %in% release_status(filename)){
     compile = TRUE
   }
 
-  if("pre_release" %in% release_status(filename)){
+  if ("pre_release" %in% release_status(filename)){
     pre_release = TRUE
   }
 
-  if("release" %in% release_status(filename)){
+  if ("release" %in% release_status(filename)){
     release = TRUE
   }
+
+  file_remove <- function(x) {
+    file.exists(x) && file.remove(x)
+  }
+
+  if (compile) {
+    file.create("./travis/grattanReport/compile")
+  } else {
+    file_remove("./travis/grattanReport/compile")
+  }
+  if (pre_release) {
+    file.create("./travis/grattanReport/pre_release")
+  } else {
+    file_remove("./travis/grattanReport/pre_release")
+  }
+  if (release) {
+    file.create("./travis/grattanReport/release")
+  } else {
+    file_remove("./travis/grattanReport/release")
+  }
+
+
+
+
+
+
 
   if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
     download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
@@ -141,9 +175,7 @@ checkGrattanReport <- function(path = ".",
 
   }
 
-  if (!dir.exists("./travis/grattanReport/")){
-    stop("./travis/grattanReport/ does not exist. Create this directory and try again.")
-  }
+
 
   if (release){
     if (!dir.exists("RELEASE")){
@@ -179,12 +211,42 @@ checkGrattanReport <- function(path = ".",
   }
 
   if (.no_log) {
-    .report_error <- function(...){
-      report2console(..., rstudio = rstudio, file = filename)
+    if (.log_psv) {
+      .report_error <- function(...) {
+        if (hasArg(file)) {
+          report2console(...,
+                         rstudio = rstudio,
+                         log_file = "./travis/grattanReport/error-log.psv",
+                         log_file_sep = "|")
+        } else {
+          report2console(...,
+                         rstudio = rstudio,
+                         file = filename,
+                         log_file = "./travis/grattanReport/error-log.psv",
+                         log_file_sep = "|")
+        }
+      }
+    } else {
+      .report_error <- function(...){
+        report2console(..., rstudio = rstudio, file = filename)
+      }
     }
   } else {
-    .report_error <- function(...){
-      report2console(..., log_file = "./travis/grattanReport/error-log.tsv", rstudio = rstudio, file = filename)
+    if (.log_psv) {
+      stop("`.log_psv = TRUE`, yet `.no_log = TRUE`. ",
+           "They must be mutually exclusive.")
+    }
+    .report_error <- function(...) {
+      if (hasArg(file)) {
+        report2console(...,
+                       log_file = "./travis/grattanReport/error-log.tsv",
+                       rstudio = rstudio)
+      } else {
+        report2console(...,
+                       log_file = "./travis/grattanReport/error-log.tsv",
+                       rstudio = rstudio,
+                       file = filename)
+      }
     }
   }
 
@@ -253,7 +315,7 @@ checkGrattanReport <- function(path = ".",
   check_cite_pagerefs(filename, .report_error = .report_error)
   cat(green(symbol$tick, "Cite and pagerefs checked.\n"), sep = "")
 
-  check_escapes(filename)
+  check_escapes(filename, .report_error = .report_error)
   cat(green(symbol$tick, "No unescaped $.\n"))
 
   check_dashes(filename, .report_error = .report_error)
