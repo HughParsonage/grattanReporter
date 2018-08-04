@@ -112,6 +112,7 @@ test_that("Health report 2018", {
   if (.Platform$OS.type == "windows") {
     download.file(url = "https://github.com/grattan/zzz-2018-Health-Using-data-to-reduce-health-complications/zipball/master",
                   mode = "wb",
+                  quiet = TRUE,
                   destfile = "Health2018A.zip")
     unzip("Health2018A.zip", exdir = ".")
     setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications",
@@ -122,6 +123,7 @@ test_that("Health report 2018", {
   } else {
     download.file(url = "https://github.com/grattan/zzz-2018-Health-Using-data-to-reduce-health-complications/tarball/master",
                   mode = "wb",
+                  quiet = TRUE,
                   destfile = "Health2018A.tar.gz")
     untar("Health2018A.tar.gz", exdir = ".")
     setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications",
