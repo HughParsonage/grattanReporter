@@ -156,10 +156,18 @@ test_that("Higher ed report 2018 (esp. Century footnote)", {
                   quiet = TRUE,
                   destfile = dest_file)
     unzip(dest_file, exdir = ".")
-    setwd(grep(name,
-               list.dirs(),
-               fixed = TRUE,
-               value = TRUE))
+    new_path <- grep(name,
+                     list.dirs(),
+                     fixed = TRUE,
+                     value = TRUE)
+
+    if (!length(new_path) || !is.character(new_path)) {
+      setwd(current_wd)
+      skip(paste0(list.dirs(), collapse = "  "))
+    } else {
+      setwd(new_path)
+    }
+
     checkGrattanReports(compile = TRUE,
                         pre_release = TRUE,
                         release = FALSE,
