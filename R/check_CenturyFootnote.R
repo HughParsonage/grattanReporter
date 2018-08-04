@@ -241,7 +241,8 @@ check_CenturyFootnote <- function(path = ".", strict = FALSE){
                      cat(e)
                    })
 
-        if (!is.na(CenturyFootnote_written_after) && last_footnote_no != CenturyFootnote_written_after){
+        if (!is.na(CenturyFootnote_written_after) &&
+            last_footnote_no != CenturyFootnote_written_after){
           stop("\\CenturyFootnote in correct column but needs to be placed after that column's last footnote: ",
                last_footnote_no)
         }

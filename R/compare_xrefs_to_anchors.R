@@ -17,6 +17,11 @@ compare_xrefs_to_anchors <- function(path = ".",
   AUX <- caption_id <- page <-
     fig_no <- caption <- NULL
   aux_files <- paste0(tools::file_path_sans_ext(c(project_root, inputs_of_project)), ".aux")
+  aux_files <- aux_files[file.exists(aux_files)]
+  if (length(aux_files) == 0L) {
+    stop("No `.aux` files found in `path`. Ensure you run 'pdflatex' on ", project_root, ".")
+  }
+
   aux_contents <-
     rbindlist(setNames(lapply(aux_files, fread, header = FALSE, sep = NULL),
                        aux_files),
@@ -33,6 +38,20 @@ compare_xrefs_to_anchors <- function(path = ".",
 
   xref_page <- fig_page <- NULL
 
+  if (aux_contents[, length(grep("crefa([^\\}]+)\\}.*[0-9]\\}\\}$", AUX))] == 0L) {
+    stop("No `crefa` pattern found in auxiliary file. ",
+         "Add the following to your preamble:\n  ",
+         paste0(c("\\makeatletter",
+                  "\\newcounter{crefa}",
+                  paste0("\\apptocmd",
+                         "{\\@cref}",
+                         "{\\stepcounter{crefa}",
+                         "\\label{crefa@@@#2@@@\\thecrefa}",
+                         "\\zsavepos{crefa@@@#2@@@\\thecrefa}}{}"),
+                  "\\makeatother"),
+                collapse = "\n  "), "\n")
+  }
+
   figure_xrefs <-
     aux_contents %>%
     .[AUX %pin% "crefa([^\\}]+)\\}.*[0-9]\\}\\}$"] %>%
@@ -42,7 +61,7 @@ compare_xrefs_to_anchors <- function(path = ".",
     .[, .(caption_id, xref_page = as.integer(page))]
 
   first_figure_xref <-
-    figure_xrefs[grepl(sprintf("[%s]", lab), caption_id, fixed = TRUE),
+    figure_xrefs[grepl(sprintf("%s", lab), caption_id, fixed = TRUE),
                  .(xref_page = min(xref_page)), by = "caption_id"]
 
   fig_no <- page_no <- caption <- href <- SINK <- NULL
