@@ -475,9 +475,21 @@ checkGrattanReport <- function(path = ".",
       }
     }
 
+    do_biber <- function(file.tex) {
+      file. <- sub("\\.tex$", "", file.tex)
+      if (WIN) {
+        shell(paste("biber --onlylog -V", file.), intern = TRUE)
+      } else {
+        system2(command = "biber",
+                args = c("--onlylog", "-V", file.),
+                stdout = tempfile())
+      }
+    }
+
+    do_pdflatex()
     cat("complete.\n")
     cat("   Invoking biber...\n")
-    do_pdflatex()
+    do_biber(filename)
 
     check_biber()
     cat(green(symbol$tick, "biber validated citations.\n"))
