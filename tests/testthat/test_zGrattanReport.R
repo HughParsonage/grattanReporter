@@ -137,8 +137,11 @@ test_that("Health report 2018", {
 })
 
 test_that("Higher ed report 2018 (esp. Century footnote)", {
-  get_report <- function(name) {
-    temp_dir <- tempdir()
+  get_report <- function(name, century = FALSE) {
+    current_wd <- getwd()
+    temp_dir <- tempfile(pattern = "")
+    hutils::provide.dir(temp_dir)
+    temp_dir <- normalizePath(temp_dir, winslash = "/")
     setwd(temp_dir)
     WIN <- .Platform$OS.type == "windows"
 
@@ -161,24 +164,29 @@ test_that("Higher ed report 2018 (esp. Century footnote)", {
                         pre_release = TRUE,
                         release = FALSE,
                         update_grattan.cls = FALSE)
-    file.tex <- dir(pattern = "\\.tex$")[1]
-    if (WIN) {
-      shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
-      shell(paste("biber", sub("\\.tex$", "", file.tex)))
-      shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
-      shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
-    } else {
-      system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
-      system(paste("biber", sub("\\.tex$", "", file.tex)))
-      system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
-      system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+    if (century) {
+      file.tex <- dir(pattern = "\\.tex$")[1]
+      if (WIN) {
+        shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+        shell(paste("biber", sub("\\.tex$", "", file.tex)))
+        shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+        shell(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+      } else {
+        system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+        system(paste("biber", sub("\\.tex$", "", file.tex)))
+        system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+        system(paste("pdflatex -interaction=batchmode", file.tex), intern = TRUE)
+      }
+      check_CenturyFootnote()
+      expect_false(CenturyFootnote_suspect)
     }
-    check_CenturyFootnote()
-    expect_false(CenturyFootnote_suspect)
+    setwd(current_wd)
   }
-  current_wd <- getwd()
-  get_report("zzz-2018-highered-selection")
-  setwd(current_wd)
+
+  get_report("zzz-2018-highered-selection", century = TRUE)
+  get_report("zzz-2018-Energy-Stranded-assets", century = TRUE)
+  get_report("zzz-2018-Transport-Discount-rates", century = TRUE)
+
 })
 
 
