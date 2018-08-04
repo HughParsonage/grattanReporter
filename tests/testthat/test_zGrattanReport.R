@@ -2,14 +2,14 @@ context("GrattanReport")
 
 test_that("SchoolFunding.tex doesn't fail", {
   expect_null(checkGrattanReport(path = "./SchoolFunding"))
-  invisible(vapply(dir(path = "./SchoolFunding/travis/grattanReport/md5/", 
-                       full.names = TRUE), 
-                   file.remove, 
+  invisible(vapply(dir(path = "./SchoolFunding/travis/grattanReport/md5/",
+                       full.names = TRUE),
+                   file.remove,
                    FALSE))
-  invisible(vapply(dir(path = "./SchoolFunding", 
+  invisible(vapply(dir(path = "./SchoolFunding",
                        pattern = "((pdf)|(cls))$",
-                       full.names = TRUE), 
-                   file.remove, 
+                       full.names = TRUE),
+                   file.remove,
                    FALSE))
 })
 
@@ -18,17 +18,17 @@ test_that("SchoolFunding.tex", {
   if (!dir.exists("./SchoolFunding/PRE-RELEASE")){
     dir.create("./SchoolFunding/PRE-RELEASE")
   }
-  
+
   if (file.exists("./SchoolFunding/PRE-RELEASE/SchoolFunding.pdf")){
     file.remove("./SchoolFunding/PRE-RELEASE/SchoolFunding.pdf")
   }
-  
+
   checkGrattanReport(path = "./SchoolFunding", compile = TRUE, pre_release = TRUE, release = FALSE)
-  
+
   expect_true(file.exists("./SchoolFunding/PRE-RELEASE/SchoolFunding.pdf"))
-  invisible(vapply(dir(path = "./SchoolFunding/travis/grattanReport/md5/", 
-                       full.names = TRUE), 
-                   file.remove, 
+  invisible(vapply(dir(path = "./SchoolFunding/travis/grattanReport/md5/",
+                       full.names = TRUE),
+                   file.remove,
                    FALSE))
 })
 
@@ -39,19 +39,19 @@ test_that("Engaging-students", {
   if (!dir.exists("./Engaging-students/RELEASE")){
     dir.create("./Engaging-students/RELEASE")
   }
-  
+
   if (file.exists("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")){
     file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
   }
-  
+
   checkGrattanReport(path = "./Engaging-students/", compile = TRUE, pre_release = TRUE, release = TRUE)
-  
+
   file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
-  invisible(vapply(dir(path = "./Engaging-students/travis/grattanReport/md5/", 
+  invisible(vapply(dir(path = "./Engaging-students/travis/grattanReport/md5/",
                        recursive = TRUE,
                        include.dirs = FALSE,
-                       full.names = TRUE), 
-                   file.remove, 
+                       full.names = TRUE),
+                   file.remove,
                    FALSE))
 })
 
@@ -61,16 +61,16 @@ test_that("Check NEM 2017 Sep paper", {
   Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
   expect_null(checkGrattanReport("./NEM-capacity-markets/", update_grattan.cls = FALSE))
   expect_null(checkGrattanReport("./NEM-capacity-markets/",
-                                 compile = TRUE, 
-                                 pre_release = TRUE, 
+                                 compile = TRUE,
+                                 pre_release = TRUE,
                                  release = TRUE))
   expect_true(file.exists("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf"))
   file.remove("./NEM-capacity-markets/RELEASE/Next-Generation--the-long-term-future-of-the-National-Electricity-Market.pdf")
   invisible(vapply(dir(path = "./NEM-capacity-markets/travis/grattanReport/md5/",
                        recursive = TRUE,
                        include.dirs = FALSE,
-                       full.names = TRUE), 
-                   file.remove, 
+                       full.names = TRUE),
+                   file.remove,
                    FALSE))
 })
 
@@ -80,8 +80,8 @@ test_that("Competition report", {
   Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
   expect_null(checkGrattanReport("./CompetitionReport/", update_grattan.cls = FALSE))
   expect_null(checkGrattanReport("./CompetitionReport/",
-                                 compile = TRUE, 
-                                 pre_release = TRUE, 
+                                 compile = TRUE,
+                                 pre_release = TRUE,
                                  release = TRUE))
   expect_true(file.exists("./CompetitionReport/RELEASE/Competition-in-Australia--Too-little-of-a-good-thing-.pdf"))
   file.remove("./CompetitionReport/RELEASE/Competition-in-Australia--Too-little-of-a-good-thing-.pdf")
@@ -114,9 +114,9 @@ test_that("Health report 2018", {
                   mode = "wb",
                   destfile = "Health2018A.zip")
     unzip("Health2018A.zip", exdir = ".")
-    setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications", 
-               list.dirs(), 
-               fixed = TRUE, 
+    setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications",
+               list.dirs(),
+               fixed = TRUE,
                value = TRUE))
     checkGrattanReports(compile = TRUE, pre_release = TRUE, release = FALSE, update_grattan.cls = FALSE)
   } else {
@@ -124,16 +124,53 @@ test_that("Health report 2018", {
                   mode = "wb",
                   destfile = "Health2018A.tar.gz")
     untar("Health2018A.tar.gz", exdir = ".")
-    setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications", 
-               list.dirs(), 
-               fixed = TRUE, 
+    setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications",
+               list.dirs(),
+               fixed = TRUE,
                value = TRUE))
     checkGrattanReports(compile = !identical(Sys.getenv("TRAVIS"), "true"),
                         pre_release = !identical(Sys.getenv("TRAVIS"), "true"),
-                        release = FALSE, 
+                        release = FALSE,
                         update_grattan.cls = FALSE)
     setwd(current_wd)
   }
+})
+
+test_that("Higher ed report 2018 (esp. Century footnote)", {
+  get_report <- function(name) {
+    temp_dir <- tempdir()
+    setwd(temp_dir)
+    if (.Platform$OS.type == "windows") {
+      dest_file <- paste0(gsub("[^A-Za-z0-9]", "", name), "temp.zip")
+      download.file(url = paste0("https://github.com/grattan/",
+                                 name,
+                                 "/zipball/master"),
+                    mode = "wb",
+                    destfile = dest_file)
+      unzip(dest_file, exdir = ".")
+      setwd(grep(name,
+                 list.dirs(),
+                 fixed = TRUE,
+                 value = TRUE))
+    } else {
+      dest_file <- paste0(gsub("[^A-Za-z0-9]", "", name), "temp.tar.gz")
+      download.file(url = paste0("https://github.com/grattan/",
+                                 name,
+                                 "/tarball/master"),
+                    mode = "wb",
+                    destfile = dest_file)
+      unzip(dest_file, exdir = ".")
+      setwd(grep(name,
+                 list.dirs(),
+                 fixed = TRUE,
+                 value = TRUE))
+    }
+  }
+  current_wd <- getwd()
+  get_report("zzz-2018-highered-selection")
+  checkGrattanReports(compile = TRUE, pre_release = TRUE, release = FALSE, update_grattan.cls = FALSE)
+  expect_false(CenturyFootnote_suspect)
+  setwd(current_wd)
 })
 
 
