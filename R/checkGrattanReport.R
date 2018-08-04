@@ -464,35 +464,35 @@ checkGrattanReport <- function(path = ".",
     current_warn <-  getOption("warn")
     on.exit(options(warn = current_warn), add = TRUE)
     options(warn = 2)
-    system2(command = "pdflatex",
-            args = c("-interaction=batchmode", "-halt-on-error", filename),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    WIN <- .Platform$OS.type == "windows"
+    do_pdflatex <- function() {
+      if (WIN) {
+        shell(paste("pdflatex -interaction=batchmode -halt-on-error", filename), intern = TRUE)
+      } else {
+        system2(command = "pdflatex",
+                args = c("-interaction=batchmode", "-halt-on-error", filename),
+                stdout = tempfile())
+      }
+    }
+
     cat("complete.\n")
     cat("   Invoking biber...\n")
-    system2(command = "biber",
-            args = c("--onlylog", "-V", gsub("\\.tex$", "", filename)),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    do_pdflatex()
 
     check_biber()
     cat(green(symbol$tick, "biber validated citations.\n"))
 
     cat("   Rerunning pdflatex. Starting pass number 1")
-    system2(command = "pdflatex",
-            args = c("-interaction=batchmode", "-halt-on-error", filename),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    do_pdflatex()
 
     cat(" 2 ")
-    system2(command = "pdflatex",
-            args = c("-interaction=batchmode", filename),
-            stdout = gsub("\\.tex$", ".log2", filename))
+    do_pdflatex()
 
     log_result <- check_log(check_for_rerun_only = TRUE)
     reruns_required <- 2
     while (pre_release && !is.null(log_result) && log_result == "Rerun LaTeX."){
       cat(reruns_required + 1, " ", sep = "")
-      system2(command = "pdflatex",
-              args = c("-interaction=batchmode", "-halt-on-error", filename),
-              stdout = gsub("\\.tex$", ".log2", filename))
+      do_pdflatex()
       log_result <- check_log(check_for_rerun_only = TRUE)
 
       reruns_required <- reruns_required + 1
