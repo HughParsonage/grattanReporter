@@ -107,16 +107,21 @@ checkGrattanReport <- function(path = ".",
     stop("./travis/grattanReport/ does not exist. Create this directory and try again.")
   }
 
-  if ("compile" %in% release_status(filename)){
-    compile = TRUE
-  }
+  if (missing(compile) &&
+      missing(pre_release) &&
+      missing(release) &&
+      !is.null(the_release_status <- release_status(filename))) {
+    if ("compile" %in% the_release_status) {
+      compile = TRUE
+    }
 
-  if ("pre_release" %in% release_status(filename)){
-    pre_release = TRUE
-  }
+    if ("pre_release" %in% the_release_status) {
+      pre_release = TRUE
+    }
 
-  if ("release" %in% release_status(filename)){
-    release = TRUE
+    if ("release" %in% the_release_status) {
+      release = TRUE
+    }
   }
 
   file_remove <- function(x) {
@@ -145,12 +150,15 @@ checkGrattanReport <- function(path = ".",
 
 
 
-  if (pre_release && update_grattan.cls && !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
-    download_failure <- download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
-                                      destfile = "grattan.cls",
-                                      quiet = TRUE)
+  if (pre_release &&
+      update_grattan.cls &&
+      !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
+    download_failure <-
+      download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
+                    destfile = "grattan.cls",
+                    quiet = TRUE)
 
-    if (download_failure){
+    if (download_failure) {
       stop("grattan.cls failed to download from master branch (and be updated).")
     }
   }
@@ -171,11 +179,7 @@ checkGrattanReport <- function(path = ".",
         stop(l, " failed to download from master branch. (May be out-of-date.)")
       }
     }
-
-
   }
-
-
 
   if (release){
     if (!dir.exists("RELEASE")){
@@ -402,7 +406,9 @@ checkGrattanReport <- function(path = ".",
                  pre_release = pre_release,
                  bib_files = bib_files,
                  rstudio = rstudio)
-  if (!pre_release && exists("authors_in_bib_and_doc") && not_length0(authors_in_bib_and_doc)){
+  if (!pre_release &&
+      exists("authors_in_bib_and_doc") &&
+      not_length0(authors_in_bib_and_doc)) {
     notes <- notes + 1L
 
     authors_in_bib_and_doc <-
