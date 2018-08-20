@@ -109,6 +109,19 @@ test_that("Health report 2018", {
   current_wd <- getwd()
   temp_dir <- tempdir()
   setwd(temp_dir)
+  health_repo <- grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications",
+                      list.dirs(recursive = FALSE),
+                      fixed = TRUE,
+                      value = TRUE)
+  ok_to_download <-
+    if (length(health_repo)) {
+      !unlink(health_repo, recursive = TRUE)
+    } else {
+      TRUE
+    }
+
+  skip_if_not(ok_to_download)
+
   if (.Platform$OS.type == "windows") {
     download.file(url = "https://github.com/grattan/zzz-2018-Health-Using-data-to-reduce-health-complications/zipball/master",
                   mode = "wb",
@@ -194,6 +207,7 @@ test_that("Higher ed report 2018 (esp. Century footnote)", {
   }
 
   get_report("zzz-2018-highered-selection", century = TRUE)
+  get_report("zzz-2018-Health-Using-data-to-reduce-health-complications", century = TRUE)
   get_report("zzz-2018-Energy-Stranded-assets", century = TRUE)
   get_report("zzz-2018-Transport-Discount-rates", century = TRUE)
 
