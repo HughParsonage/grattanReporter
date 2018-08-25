@@ -6,12 +6,13 @@
 \title{Check Grattan Report}
 \usage{
 checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
-  release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
-  rstudio = FALSE, update_grattan.cls = pre_release, filename = NULL)
+  release = FALSE, .proceed_after_rerun, .no_log = TRUE,
+  embed = TRUE, rstudio = FALSE, update_grattan.cls = pre_release,
+  filename = NULL)
 
 checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
-  release = FALSE, .proceed_after_rerun, .no_log = TRUE, embed = TRUE,
-  rstudio = FALSE, update_grattan.cls = TRUE)
+  release = FALSE, .proceed_after_rerun, .no_log = TRUE,
+  embed = TRUE, rstudio = FALSE, update_grattan.cls = TRUE)
 }
 \arguments{
 \item{path}{Path to search for the tex source file.}
