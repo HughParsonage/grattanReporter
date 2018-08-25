@@ -2,12 +2,12 @@ Package: grattanReporter
 Type: Package
 Title: Parses Grattan Reports, Possibly Creating PDFs also
 Date: 2018-04-29
-Version: 0.27.0
+Version: 0.28.0
 Author: Hugh Parsonage
 Maintainer: Hugh Parsonage <hugh.parsonage@gmail.com>
 Description: Checks whether the LaTeX document compiled in accordance with Grattan style.
 License: GPL-2
-Depends: R (>= 2.10), TeXCheckR (>= 0.4.2)
+Depends: R (>= 2.10), TeXCheckR (>= 0.6.0)
 Remotes: HughParsonage/TeXCheckR
 Imports: 
   magrittr, 

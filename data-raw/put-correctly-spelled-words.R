@@ -6,6 +6,8 @@ correctly_spelled_words_txt <- correctly_spelled_words_txt[order(correctly_spell
 verboten <- c(correctly_spelled_words_txt,
               "anywheres")
 
+correctly_spelled_words_fixed_txt <- NULL
+
 if (identical(Sys.getenv("USERNAME"), "hughp") &&
     path.expand("~") == "C:/Users/hughp/Documents") {
   for (xd in list.dirs(path = "~", recursive = FALSE, full.names = TRUE)) {
@@ -24,13 +26,14 @@ if (identical(Sys.getenv("USERNAME"), "hughp") &&
             if (length(additions)) crayon::green(length(additions)) else crayon::silver(length(additions)),
             "\n",
             sep = "\t")
-        correctly_spelled_words_txt <- c(correctly_spelled_words_txt, additions)
+        correctly_spelled_words_fixed_txt <- c(correctly_spelled_words_fixed_txt, additions)
       }
+
     }
   }
 }
 
-writeLines(sort(unique(correctly_spelled_words_txt)), "./data-raw/correctly_spelled_words.txt")
+readr::write_lines(sort(unique(correctly_spelled_words_fixed_txt)), "./data-raw/fixed-words.txt")
 
 CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE <-
   grep("[A-Z]", correctly_spelled_words_txt, value = TRUE)
@@ -43,4 +46,5 @@ grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE <- CORRECTLY_SPELLED_WORDS_CASE_S
 
 devtools::use_data(grattan_correctly_spelled_words,
                    grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE,
+                   correctly_spelled_words_fixed_txt,
                    overwrite = TRUE)
