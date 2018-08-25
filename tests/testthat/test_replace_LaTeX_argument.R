@@ -25,10 +25,15 @@ test_that("nth argument when command absent", {
 })
 
 test_that("When command_name is a subset of other command", {
-  replace_nth_LaTeX_argument(tex_lines = c("Two commands \\abc{1}{2} and \\ab{1}{2}",
-                                           "nothing",
-                                           "\\abc{1}{2}", 
-                                           "\\ab{1}{2}"),
-                             command_name = "ab")
+  ans <-
+    replace_nth_LaTeX_argument(tex_lines = c("Two commands \\abc{1}{2} and \\ab{1}{2}",
+                                             "nothing",
+                                             "\\abc{1}{2}",
+                                             "\\ab{1}{2}"),
+                               command_name = "ab")
+  expect_equal(ans, c("Two commands \\abc{1}{2} and \\ab{correct}{2}",
+                      "nothing",
+                      "\\abc{1}{2}",
+                      "\\ab{correct}{2}"))
 })
 
