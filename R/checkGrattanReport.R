@@ -482,13 +482,13 @@ checkGrattanReport <- function(path = ".",
       }
     }
 
-    do_biber <- function(file.tex) {
+    do_biber <- function(file.tex, validate = FALSE) {
       file. <- sub("\\.tex$", "", file.tex)
       if (WIN) {
-        shell(paste("biber --onlylog -V", file.), intern = TRUE)
+        shell(paste("biber --onlylog", if (validate) "-V", file.), intern = TRUE)
       } else {
         system2(command = "biber",
-                args = c("--onlylog", "-V", file.),
+                args = c("--onlylog", if (validate) "-V", file.),
                 stdout = tempfile())
       }
     }
