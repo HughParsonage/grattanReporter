@@ -1,6 +1,7 @@
 
 * Checks now skips the second argument of chapter range cross-references
 * Spell checks draw on a larger number of words via hunspell's add to dictionary (requires TeXCheckR 0.6.0)
+* `biber` checks are now more lenient by using avoiding the validation flag
 
 # grattanReporter 0.25.2
 * Fix false pass from `check_CenturyFootnote` when multiple auxiliary files are legitimately produced (say from `\include`).
