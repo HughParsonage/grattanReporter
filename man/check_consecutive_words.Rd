@@ -4,7 +4,8 @@
 \alias{check_consecutive_words}
 \title{Check consecutive typeset words}
 \usage{
-check_consecutive_words(path = ".", latex_file = NULL, md5sum.ok = NULL)
+check_consecutive_words(path = ".", latex_file = NULL,
+  md5sum.ok = NULL)
 }
 \arguments{
 \item{path}{Path containing the latex file.}
