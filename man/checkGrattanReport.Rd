@@ -6,9 +6,9 @@
 \title{Check Grattan Report}
 \usage{
 checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
-  release = FALSE, .proceed_after_rerun, .no_log = TRUE, .log_psv = FALSE,
-  embed = TRUE, rstudio = FALSE, update_grattan.cls = pre_release,
-  filename = NULL)
+  release = FALSE, .proceed_after_rerun, .no_log = TRUE,
+  .log_psv = FALSE, embed = TRUE, rstudio = FALSE,
+  update_grattan.cls = pre_release, filename = NULL)
 
 checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE,

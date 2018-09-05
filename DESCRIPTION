@@ -1,7 +1,8 @@
 Package: grattanReporter
 Type: Package
 Title: Parses Grattan Reports, Possibly Creating PDFs also
-Version: 0.28.0
+Date: 2018-09-01
+Version: 0.29.0
 Author: Hugh Parsonage
 Maintainer: Hugh Parsonage <hugh.parsonage@gmail.com>
 Description: Checks whether the LaTeX document compiled in accordance with Grattan style.
@@ -19,4 +20,15 @@ Imports:
 LazyData: TRUE
 Encoding: UTF-8
 RoxygenNote: 6.1.0
-Suggests: testthat, devtools, stringi, readr, ggplot2, ggrepel, tinytex
+Encoding: UTF-8
+Suggests: 
+  devtools,
+  ggplot2,
+  ggrepel,
+  jsonlite,
+  readr,
+  readxl,
+  rlang,
+  stringi,
+  testthat,
+  tinytex

@@ -1,6 +1,8 @@
 
 * Checks now skips the second argument of chapter range cross-references
 * Spell checks draw on a larger number of words via hunspell's add to dictionary (requires TeXCheckR 0.6.0)
+* `biber` checks are now more lenient by avoiding the validation flag
+* `check_preamble` now gives a provisional ISBN in the error message when the default ISBN is used (and `pre_release` is `TRUE`)
 
 # grattanReporter 0.25.2
 * Fix false pass from `check_CenturyFootnote` when multiple auxiliary files are legitimately produced (say from `\include`).
