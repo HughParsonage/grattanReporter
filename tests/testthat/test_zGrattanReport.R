@@ -34,8 +34,7 @@ test_that("SchoolFunding.tex", {
 
 test_that("Engaging-students", {
   skip_on_travis()
-  skip_if_not(file.exists('C:/Program Files/gs/gs9.20/bin/gswin64c.exe'))
-  Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
+  skip_if_not(nzchar(tools::find_gs_cmd()))
   if (!dir.exists("./Engaging-students/RELEASE")){
     dir.create("./Engaging-students/RELEASE")
   }
@@ -57,8 +56,7 @@ test_that("Engaging-students", {
 
 test_that("Check NEM 2017 Sep paper", {
   skip_on_travis()
-  skip_if_not(file.exists('C:/Program Files/gs/gs9.20/bin/gswin64c.exe'))
-  Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
+  skip_if_not(nzchar(tools::find_gs_cmd()))
   expect_null(checkGrattanReport("./NEM-capacity-markets/", update_grattan.cls = FALSE))
   expect_null(checkGrattanReport("./NEM-capacity-markets/",
                                  compile = TRUE,
@@ -76,8 +74,8 @@ test_that("Check NEM 2017 Sep paper", {
 
 test_that("Competition report", {
   skip_on_travis()
-  skip_if_not(file.exists('C:/Program Files/gs/gs9.20/bin/gswin64c.exe'))
-  Sys.setenv(R_GSCMD = 'C:/Program Files/gs/gs9.20/bin/gswin64c.exe')
+  skip_if_not(nzchar(tools::find_gs_cmd()))
+
   expect_null(checkGrattanReport("./CompetitionReport/", update_grattan.cls = FALSE))
   expect_null(checkGrattanReport("./CompetitionReport/",
                                  compile = TRUE,
