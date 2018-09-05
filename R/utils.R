@@ -142,5 +142,25 @@ WINDOWS <- function() {
   identical(.Platform$OS, "windows")
 }
 
+dropbox_path <- function() {
+  if (!requireNamespace("jsonlite", quietly = TRUE)) {
+    message("jsonlite not available, so Dropbox path unknown")
+    return(NA_character_)
+  }
 
+  DropboxInfo <-
+    if (WINDOWS() || nzchar(Sys.getenv("LOCALAPPDATA"))) {
+      file.path(Sys.getenv("LOCALAPPDATA"), "Dropbox", "info.json")
+    } else if (file.exists("~/.dropbox/info.json")) {
+      "~/.dropbox/info.json"
+    } else {
+      message("jsonlite is available, but unable to locate info.json")
+      return(NA_character_)
+    }
+
+  jsonlite::fromJSON(DropboxInfo) %>%
+    magrittr::use_series("business") %>%
+    magrittr::use_series("path") %>%
+    normalizePath(winslash = "/")
+}
 

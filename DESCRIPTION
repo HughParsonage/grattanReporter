@@ -19,4 +19,13 @@ Imports:
   utils,
 LazyData: TRUE
 RoxygenNote: 6.1.0
-Suggests: testthat, devtools, stringi, readr, ggplot2, ggrepel, tinytex
+Suggests: 
+  devtools,
+  ggplot2,
+  ggrepel,
+  jsonlite,
+  readr,
+  readxl,
+  stringi,
+  testthat,
+  tinytex
