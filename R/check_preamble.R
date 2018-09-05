@@ -275,10 +275,29 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     if (identical(isbn,
                   as.integer(c(9, 7, 8, 1, 9, 2, 5, 0, 1, 5, 9, 6, 6)))){
       if (AND(the_title != "Circuit breaker: a new compact for school funding",
-              !identical(Sys.getenv("TRAVIS"), "true"))){
+              !identical(Sys.getenv("TRAVIS"), "true"))) {
+        the_next_isbn <- next_isbn()
+        the_next_isbn_age <-
+          if (is.null(attr(the_next_isbn, "isbn_age"))) {
+            "(The ISBN table may be old: its age could not be determined.)"
+          } else {
+            paste0("(The ISBN table was updated ",
+                   attr(the_next_isbn, "isbn_age"),
+                   " days ago.)")
+          }
+
+        AdvisoryISBN <-
+          if (nzchar(the_next_isbn)) {
+            paste0("The next ISBN is ", as.character(the_next_isbn), ". ",
+                   the_next_isbn_age)
+          } else {
+            "See grattan-admin for a new ISBN."
+          }
+
         .report_error(line_no = isbn_line,
                       context = lines_before_begin_document[isbn_line],
-                      error_message = "ISBN has already been used.")
+                      error_message = "ISBN has already been used in 'Circuit breaker'.",
+                      advice = AdvisoryISBN)
         stop("ISBN has already been used in 'Circuit breaker'.")
       }
     }
