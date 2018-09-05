@@ -19,6 +19,7 @@ Imports:
   utils,
 LazyData: TRUE
 RoxygenNote: 6.1.0
+Encoding: UTF-8
 Suggests: 
   devtools,
   ggplot2,
@@ -26,6 +27,7 @@ Suggests:
   jsonlite,
   readr,
   readxl,
+  rlang,
   stringi,
   testthat,
   tinytex
