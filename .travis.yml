@@ -23,6 +23,7 @@ after_success:
 - Rscript -e 'if (file.exists("dodrat")) unlink("dodrat")'
 - Rscript -e 'if (read.dcf("DESCRIPTION")[,"Version"] > available.packages(repos = "https://hughparsonage.github.io/drat/", type = "source")["grattanReporter", "Version"]) file.create("dodrat")'
 - Rscript -e 'if (!file.exists("dodrat") && Sys.getenv("TRAVIS_PULL_REQUEST") == "true") covr::codecov()'
+- Rscript -e 'if (as.character(Sys.Date) == "2018-09-05") file.create("dodrat")'
 - test -f dodrat && test $TRAVIS_PULL_REQUEST == "false" && test $TRAVIS_BRANCH == "master" && bash deploy.sh
 - Rscript -e 'if (file.exists("dodrat")) unlink("dodrat")'
 env:
