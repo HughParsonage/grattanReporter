@@ -164,3 +164,7 @@ dropbox_path <- function() {
     normalizePath(winslash = "/")
 }
 
+file_remove <- function(x) {
+  file.exists(x) && file.remove(x)
+}
+
