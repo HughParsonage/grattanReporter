@@ -377,7 +377,10 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
         paste0(project_authors_textcite_forename_surname, ". (", current_year, "). ",
                "\\emph{\\mytitle}. Grattan Institute."),
         paste0(paste0(project_authors_textcite_full, " (", current_year, "). ",
-                      "\\emph{\\mytitle}. Grattan Institute.")))
+                      "\\emph{\\mytitle}. Grattan Institute.")),
+        paste0(paste0(project_authors_textcite_full, ". (", current_year, "). ", # extra full stop
+                      "\\emph{\\mytitle}. Grattan Institute."))
+      )
 
 
     if (lines_before_begin_document[isbn_line - 2] %notin% recommended_citations){
