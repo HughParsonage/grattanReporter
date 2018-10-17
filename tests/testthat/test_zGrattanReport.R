@@ -47,8 +47,8 @@ test_that("Engaging-students", {
     file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
   }
 
-  checkGrattanReport(path = "./Engaging-students/",
-                     compile = TRUE, pre_release = TRUE, release = TRUE)
+  expect_null(checkGrattanReport(path = "./Engaging-students/",
+                                 compile = TRUE, pre_release = TRUE, release = TRUE))
 
   file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
   invisible(vapply(dir(path = "./Engaging-students/travis/grattanReport/md5/",
