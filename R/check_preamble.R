@@ -316,17 +316,16 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
       stop(paste0("Invalid ISBN. Checksum was ", check_sum))
     }
 
-    if (!OR(OR(lines_before_begin_document[isbn_line - 3] %in% c("This report may be cited as:",
-                                                              "This working paper may be cited as:",
-                                                              "This discussion paper may be cited as:",
-                                                              "This background paper may be cited as:"),
-               lines_before_begin_document[isbn_line - 4] %in% c("This report may be cited as:",
-                                                                 "This working paper may be cited as:",
-                                                                 "This background paper may be cited as:")),
-            OR(identical(lines_before_begin_document[isbn_line - c(4:3)],
-                         c("This report may be cited as:", "\\newline")),
-               identical(lines_before_begin_document[isbn_line - c(4:3)],
-                         c("This working paper may be cited as:", "\\newline"))))) {
+    rmbca <- function(x) {
+      # This x may be cited as
+      sprintf("This %s may be cited as:", reporttype(x))
+    }
+    preamble <- lines_before_begin_document
+
+    if (!OR(OR(preamble[isbn_line - 3] %in% rmbca(preamble),
+               preamble[isbn_line - 4] %in% rmbca(preamble)),
+            identical(preamble[isbn_line - c(4:3)],
+                      c(rmbca(preamble), "\\newline")))) {
       stop("When parsing the document preamble, I could not find 'This report/working paper may be cited as:' on the 3rd or 4th lines before 'ISBN: '.", "\n",
            "You must place that text on one of those lines for the check to continue.")
     }
@@ -444,5 +443,22 @@ check_preamble <- function(filename, .report_error, pre_release = FALSE, release
     }
 
   }
+}
+
+ReportType <- function(preamble) {
+  # Title case Report / Working Paper or other
+  if (any(grepl("\\ReportOrWorkingPaper", preamble, fixed = TRUE))) {
+    extract_LaTeX_argument(grep("\\ReportOrWorkingPaper",
+                                preamble,
+                                fixed = TRUE,
+                                value = TRUE),
+                           "ReportOrWorkingPaper")
+  } else {
+    "Report"
+  }
+}
+
+reporttype <- function(preamble) {
+  tolower(ReportType(preamble))
 }
 

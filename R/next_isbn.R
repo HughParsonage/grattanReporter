@@ -25,6 +25,7 @@ isbn_table <- function() {
     readxl::read_excel(file.path(dropbox.path, "ISBN", "Grattan-ISBNs.xlsx")) %>%
     as.data.table
 
+  stopifnot("Title" %in% names(out))
   setattr(out, "isbn_updated_at", ISBN_updated_at)
   return(out)
 }
@@ -35,8 +36,9 @@ next_isbn <- function() {
     age <-
       difftime(Sys.time(),
                attr(the_isbn_table, "isbn_updated_at"),
-               unit = "days") %>%
+               units = "days") %>%
       as.integer
+    Title <- NULL
     out <- isbn_table()[which.max(is.na(Title))][["ISBN"]]
     setattr(out, "isbn_age", age)
     return(out)
