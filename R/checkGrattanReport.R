@@ -370,7 +370,7 @@ checkGrattanReport <- function(path = ".",
         next
       }
     } else {
-      validate_bibliography(file = bib_file, rstudio = rstudio)
+      validate_bibliography(file = bib_file, rstudio = rstudio, .report_error = .report_error)
     }
     if (grepl("ropbox", full_bib_file, fixed = TRUE)) {
       cat("N: Not marking MD5 sum of valid file as the project",

@@ -11,7 +11,7 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
   if (missing(.report_error)){
     .report_error <- function(...) report2console(file = file, ..., rstudio = rstudio)
   }
-  
+
   if (is.null(file)){
     bib_files <- dir(path = path, pattern = "\\.bib$", full.names = TRUE)
     stopifnot(length(bib_files) == 1L)
@@ -22,42 +22,42 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
 
   bib <-
     read_lines(bib_file) %>%
-    trimws 
-  
+    trimws
+
   # Protect from misshapen bibliography entries
   is_key <- grepl("^@", bib, perl = TRUE)
   is_field <- grepl("^[a-z]+\\s* = \\{", bib, perl = TRUE)
   is_closing = bib == "}"
   is_null <- bib == ""
-  
+
   if (!all(is_key | is_field | is_closing | is_null)){
     bad_lines <- which(!(is_key | is_field | is_closing | is_null))
     first_bad_line <- bad_lines[[1]]
     .report_error(line_no = first_bad_line,
                   context = bib[first_bad_line],
-                  error_message = paste0(bib_file, " contains line which is neither a key, nor field, nor closing.") 
-                  ,advice = paste0("Ensure every line in bibliography is one of the following:", 
-                                   "\n\n", 
+                  error_message = paste0(bib_file, " contains line which is neither a key, nor field, nor closing.")
+                  ,advice = paste0("Ensure every line in bibliography is one of the following:",
+                                   "\n\n",
                                    "An entry type,\n\t",
                                     "@<EntryType>\n",
                                    "\n",
                                    "a field,\n\t",
-                                  "field = {  \t<- including spaces around the equals sign\n", 
+                                  "field = {  \t<- including spaces around the equals sign\n",
                                    "\n",
-                                  "a single closing brace,\n\t", 
+                                  "a single closing brace,\n\t",
                                     "}\n",
                                     "\n",
                                     "or a blank line.\n",
                                     "\n\n",
-                                    "If you can, run\n\t", 
+                                    "If you can, run\n\t",
                                     "lint_bib('", bib_file, "')")
                   )
     stop(bib_file, " contains line which is neither a key, nor field, nor closing.")
   }
-  
-  bib <- 
+
+  bib <-
     bib[!grepl("% Valid", bib, fixed = TRUE)]
-  
+
   if (any(grepl(".[}]$", bib, perl = TRUE))){
     line_no <- grep(".[}]$", bib, perl = TRUE)[[1]]
     .report_error(line_no = line_no,
@@ -203,67 +203,67 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
          "but\n\t",
          "journal = {", incorrect_journal_entries[1][["journal_actual"]], "} .")
   }
-  
+
   check_legislation <- function(bb){
-    is_bill_title <- 
-      and(grepl("^(?:@Misc).*(?:Bill)", 
+    is_bill_title <-
+      and(grepl("^(?:@Misc).*(?:Bill)",
                 shift(bib, type = "lag"),
-                perl = TRUE, 
+                perl = TRUE,
                 ignore.case = TRUE),
           grepl("^(?:title).*(?:Bill)",
-                bib, 
-                perl = TRUE, 
+                bib,
+                perl = TRUE,
                 ignore.case = TRUE))
-    
+
     if (any(!grepl("\\textup", bb[is_bill_title], fixed = TRUE))){
-      .report_error(line_no = which(is_bill_title)[1], 
-                    context = bb[is_bill_title[1]], 
+      .report_error(line_no = which(is_bill_title)[1],
+                    context = bb[is_bill_title[1]],
                     error_message = "Bill title in upright font.")
       stop("When citing a Bill of Parliament, the title must be in upright font.", "\n",
            "Use\n\ttitle = {\\textup{...}},\n\t\t\t\t\tin the .bib file.")
     }
-      
+
   }
-  
+
   check_legislation(bib)
-  
+
   ## Grattan Institute
-  
+
   ## All TechReports should use the /report/ url
   ## All TechReports should have a number
-  
+
   check_Grattan_entries <- function(trimmed_bib){
-    
+
     techReport_at <- grepl("^@TechReport", trimmed_bib, perl = TRUE, ignore.case = TRUE)
     is_closing <- trimmed_bib == "}"
-    
+
     is_TechReport <- techReport_at
     is_TechReport[!or(techReport_at, is_closing)] <- NA
-    
+
     is_TechReport <- fill_blanks(is_TechReport)
     is_TechReport[is.na(is_TechReport)] <- FALSE
-    
+
     is_GrattanReport_url <-
       grepl("^url.*https?[:]//grattan\\.edu\\.au", trimmed_bib, perl = TRUE)
-    
+
     if (any(and(is_GrattanReport_url & is_TechReport,
                 !grepl("https?[:]//grattan\\.edu\\.au/report/", trimmed_bib, perl = TRUE)))){
-      line_nos <- 
+      line_nos <-
         which(and(is_GrattanReport_url & is_TechReport,
                   !grepl("grattan\\.edu\\.au/report/", trimmed_bib, perl = TRUE)))
       for (x in line_nos)
         cat(x, ": ", trimmed_bib[[x]], "\n")
       stop("URL to Grattan Report does not use https://grattan.edu.au/report/ domain.")
     }
-    
-    
+
+
     if (any(and(is_GrattanReport_url,
                 grepl(".pdf", trimmed_bib, fixed = TRUE)))){
       stop("URLs to Grattan Report points to pdf. The URL should be of the landing page.")
     }
-      
+
   }
-  
+
   # check_Grattan_entries(bib)
 
   # Peter Goss or Pete Goss?
@@ -274,7 +274,7 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
     .report_error(line_no = line_no,
                   context = bib[line_no],
                   error_message = "Use 'Peter Goss', not 'Pete Goss', in bibliography.")
-    
+
     stop("Use 'Peter Goss', not 'Pete Goss', in bibliography.")
   }
 
@@ -307,15 +307,16 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
         bad_entry[4], "\n")
     stop("Date and year should not both appear in bibliography.")
   }
-  
+
   if (utils::packageVersion("TeXCheckR") > package_version("0.4.4")) {
     field <- value <- key <- NULL
     bib_DT <- fread_bib(file.bib = bib_file,
                         check.dup.keys = FALSE,
-                        strip.braces = FALSE)
-    
+                        strip.braces = FALSE,
+                        .report_error = .report_error)
+
     # Issue 75
-    AG_keys <- 
+    AG_keys <-
       bib_DT[field %in% c("author", "url")] %>%
       .[or(grepl("Attorney.General.s.Department",
                  value,
@@ -323,32 +324,32 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
                  ignore.case = TRUE),
            grepl("\\bag\\.gov\\.au", value, perl = TRUE))] %>%
       .[["key"]] %>%
-      unique 
-    
-    AG_authors <- 
+      unique
+
+    AG_authors <-
       bib_DT[key %in% AG_keys] %>%
       .[field == "author"] %>%
-      .[["value"]] 
-    
+      .[["value"]]
+
     if (any(AG_authors != "{{Attorney-General's Department}}")) {
       the_entry <-
         bib_DT[key %in% AG_keys] %>%
         .[field == "author"] %>%
         .[value != "{{Attorney-General's Department}}"] %>%
         .[1]
-      
-      .report_error(line_no = the_entry[["line_no"]], 
-                    error_message = paste0("Author needs to be:\n\t", 
+
+      .report_error(line_no = the_entry[["line_no"]],
+                    error_message = paste0("Author needs to be:\n\t",
                                            "{{Attorney-General's Department}}\n",
                                            "precisely."))
       stop("Attorney-General's Department: author")
     }
-    
+
     AG_urls <-
       bib_DT[key %in% AG_keys] %>%
       .[field == "url"] %>%
       .[["value"]]
-    
+
     if (any(!grepl("\\bag\\.gov\\.au", AG_urls, perl = TRUE))) {
       the_entry <-
         bib_DT[key %in% AG_keys] %>%
@@ -357,19 +358,19 @@ validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudi
         .[nzchar(value)] %>%
         .[!grepl("\\bag\\.gov\\.au", value, perl = TRUE)] %>%
         .[1]
-      
-      .report_error(line_no = the_entry[["line_no"]], 
+
+      .report_error(line_no = the_entry[["line_no"]],
                     error_message = paste0("Reference to a URL the Cth ",
-                                           "Attorney-General's Department ", 
-                                           "but url did not contain ", 
+                                           "Attorney-General's Department ",
+                                           "but url did not contain ",
                                            ".ag.gov.au"))
       stop("Attorney-General's Department: url")
     }
   }
-  
-  
-  
-  
+
+
+
+
 
   invisible(NULL)
 }
