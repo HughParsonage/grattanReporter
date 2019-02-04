@@ -44,7 +44,7 @@ correctly_spelled_words <- setdiff(correctly_spelled_words_txt, CORRECTLY_SPELLE
 grattan_correctly_spelled_words <- correctly_spelled_words
 grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE <- CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE
 
-devtools::use_data(grattan_correctly_spelled_words,
+usethis::use_data(grattan_correctly_spelled_words,
                    grattan_CORRECTLY_SPELLED_WORDS_CASE_SENSITIVE,
                    correctly_spelled_words_fixed_txt,
                    overwrite = TRUE)
