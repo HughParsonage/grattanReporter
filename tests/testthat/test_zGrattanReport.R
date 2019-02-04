@@ -118,7 +118,7 @@ test_that("Health report 2018", {
                   destfile = "Health2018A.zip")
     unzip("Health2018A.zip", exdir = ".")
     setwd(grep("grattan-zzz-2018-Health-Using-data-to-reduce-health-complications",
-               list.dirs(),
+               list.dirs(recursive = FALSE),
                fixed = TRUE,
                value = TRUE))
     checkGrattanReports(compile = TRUE, pre_release = TRUE, release = FALSE, update_grattan.cls = FALSE)
