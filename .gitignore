@@ -1,3 +1,11 @@
+tests/testthat/check-CenturyFootnote/rprt1/travis/grattanReport/compile
+tests/testthat/check-CenturyFootnote/rprt1/travis/grattanReport/pre_release
+tests/testthat/check-log/travis/grattanReport/compile
+tests/testthat/check-log/travis/grattanReport/pre_release
+tests/testthat/check-smallbox/travis/grattanReport/compile
+tests/testthat/CompetitionReport/travis/grattanReport/compile
+tests/testthat/CompetitionReport/travis/grattanReport/pre_release
+tests/testthat/CompetitionReport/travis/grattanReport/release
 .Rproj.user
 .Rhistory
 .RData
@@ -21,4 +29,3 @@ grattanReporter.Rproj
 
 tests/testthat/fnote-typogr/*
 !tests/testthat/fnote-typogr/*.tex
-
