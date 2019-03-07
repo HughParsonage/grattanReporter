@@ -152,7 +152,7 @@ checkGrattanReport <- function(path = ".",
 
   if (pre_release &&
       update_grattan.cls &&
-      !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "hughparsonage/grattex")){
+      !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "grattan/grattex")){
     download_failure <-
       download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
                     destfile = "grattan.cls",
