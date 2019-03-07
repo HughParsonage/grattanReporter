@@ -686,12 +686,12 @@ It may have mandatory or optional arguments, which occur immediately after \verb
   This can be difficult, and a naming convention has not yet been established; however, names like `HigherEd-report' or `Inquiry-submission' will be rejected---or purged if they slip through.
   \item They will perform the following steps:
     \begin{enumerate}
-      \item Visit \url{https://travis-ci.org/HughParsonage/grattex.svg?branch=master} and verify: \includegraphics[height=1em]{figure/passing.png}.
+      \item Visit \url{https://travis-ci.org/grattan/grattex.svg?branch=master} and verify: \includegraphics[height=1em]{figure/passing.png}.
       If it shows another image (or no image), please do not proceed (as the report template is broken) and contact Hugh Parsonage as the repository owner. 
       \item Login as the `grattaninstitute` super user in \href{https://github.com}{github.com} and `publisher@grattan.edu.au' at \href{https://sharelatex.com}{sharelatex.com}.
-      \item Copy \verb=https://github.com/HughParsonage/grattex= to your clipboard
+      \item Copy \verb=https://github.com/grattan/grattex= to your clipboard
       \item Visit \url{https://github.com/new/import}
-      \item Paste \verb=https://github.com/HughParsonage/grattex= into the \textbf{Your old repository's clone URL} field.
+      \item Paste \verb=https://github.com/grattan/grattex= into the \textbf{Your old repository's clone URL} field.
       \item Choose an evocative name for your repository under \textbf{Name}
       \item Select \textbf{Private}
       \item Click \textbf{Begin Import}.

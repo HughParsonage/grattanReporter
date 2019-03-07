@@ -13,7 +13,7 @@
 #' @param embed If \code{FALSE}, not attempt to embed the fonts using Ghostscript is attempted. Useful if Ghostscript cannot easily be installed.
 #' Set to \code{TRUE} for debugging or repetitive use (as in benchmarking).
 #' @param rstudio Use the RStudio API if available.
-#' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/HughParsonage/grattex/blob/master/grattan.cls}?
+#' @param update_grattan.cls Download \code{grattan.cls} from \url{https://github.com/grattan/grattex/blob/master/grattan.cls}?
 #' Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads the logos associated with the repository.
 #' @param filename If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the
 #' set to the sole \code{.tex} file within \code{path}.
@@ -154,7 +154,7 @@ checkGrattanReport <- function(path = ".",
       update_grattan.cls &&
       !identical(tolower(Sys.getenv("TRAVIS_REPO_SLUG")), "grattan/grattex")){
     download_failure <-
-      download.file("https://raw.githubusercontent.com/HughParsonage/grattex/master/grattan.cls",
+      download.file("https://raw.githubusercontent.com/grattan/grattex/master/grattan.cls",
                     destfile = "grattan.cls",
                     quiet = TRUE)
 
@@ -170,7 +170,7 @@ checkGrattanReport <- function(path = ".",
 
     for (l in logos) {
       download_logos_failure <-
-        download.file(paste0("https://raw.githubusercontent.com/HughParsonage/grattex/master/logos/", l),
+        download.file(paste0("https://raw.githubusercontent.com/grattan/grattex/master/logos/", l),
                       destfile = file.path(".", "logos", l),
                       mode = "wb",
                       quiet = TRUE)
