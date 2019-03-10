@@ -1,8 +1,8 @@
 Package: grattanReporter
 Type: Package
 Title: Parses Grattan Reports, Possibly Creating PDFs also
-Date: 2018-09-01
-Version: 0.29.0
+Date: 2019-02-05
+Version: 0.30.0
 Author: Hugh Parsonage
 Maintainer: Hugh Parsonage <hugh.parsonage@gmail.com>
 Description: Checks whether the LaTeX document compiled in accordance with Grattan style.
@@ -18,7 +18,7 @@ Imports:
   crayon,
   utils,
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Encoding: UTF-8
 Suggests: 
   devtools,

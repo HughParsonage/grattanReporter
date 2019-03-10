@@ -86,7 +86,7 @@ test_that("Check NEM 2017 Sep paper", {
 test_that("Competition report", {
   skip_on_travis()
   skip_if_not(nzchar(tools::find_gs_cmd()))
-
+  hutils::provide.dir("./CompetitionReport/travis/grattanReport")
   expect_null(checkGrattanReport("./CompetitionReport/", update_grattan.cls = FALSE))
   expect_null(checkGrattanReport("./CompetitionReport/",
                                  compile = TRUE,

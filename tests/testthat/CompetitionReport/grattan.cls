@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{grattan}[2017/11/03 v1.3.2 Reports of the Grattan Institute, Melbourne]
+\ProvidesClass{grattan}[2018-09-07 v1.4.0 Reports of the Grattan Institute, Melbourne]
 % >gswin64 -dBATCH -dNOPAUSE -sDEVICE=png16m -r300 -sOutputFile=./tests/Report%03d.png Report.pdf
 % for png files
 \LoadClass[%
@@ -14,7 +14,9 @@ numbers=noenddot,
 ]{scrreprt}
 
 % Continuous numbering
+\@ifundefined{counterwithout}{
 \RequirePackage{chngcntr}
+}{}
 \RequirePackage{etoolbox}
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
@@ -31,8 +33,15 @@ numbers=noenddot,
   {\ddt}
 
 % avoid non-discretionary hyphens 
-\exhyphenpenalty=900
-\hyphenpenalty=800
+\IfFileExists{logos/grattex-2018-09-07.tex}{
+  \exhyphenpenalty=2200
+  \hyphenpenalty=2000
+}{
+  % Defaults pre 2018-09-07: retain for backwards compatibility
+  \exhyphenpenalty=900
+  \hyphenpenalty=800
+}
+
 \brokenpenalty=3000
 
 \RequirePackage{cmap}
@@ -138,6 +147,7 @@ numbers=noenddot,
 \newcommand*{\Chapref}[1]{\nameCref{#1}~\topref{#1}}
 \newcommand*{\Chapsref}[1]{\nameCrefs{#1}~\topref{#1}}
 \newcommand*{\Chaprefrange}[2]{\nameCrefs{#1}~\topref{#1} to~\topref{#2}}
+\newcommand*{\Chaprefand}[2]{\nameCrefs{#1}~\topref{#1} and~\topref{#2}}
 
 % Footnote layout (koma)
 % \makebox left-aligned numbers.
@@ -403,6 +413,9 @@ numbers=noenddot,
 
 \newcommand*{\boxsources}[1]{\footnotesize\textit{#1}\@addpunct{.}}
 
+% More consistent fonts for quotes:
+\AtBeginEnvironment{quote}{\small\justifying}
+
 \setkomafont{disposition}{\color{Orange}}
 \addtokomafont{chapter}{\bfseries\Large}
 \addtokomafont{section}{\bfseries\normalsize}
@@ -607,7 +620,8 @@ numbers=noenddot,
 \IfFileExists{GrattanSVGLogo.pdf}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{GrattanSVGLogo}}{\includegraphics[width=0.225\paperwidth,keepaspectratio]{./logos/GrattanSVGLogo}}
 \vspace{30pt}
 \vfil % Whitespace at the top of the page
-{\bfseries\textcolor{Orange}{\fontsize{30}{30}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
+{\bfseries\textcolor{Orange}{\fontsize{30}{35}\selectfont \mytitle}}\\[\baselineskip] % Title page font size
+{\bfseries\fontsize{18}{35}\selectfont \textcolor{Orange}{\mysubtitle}}\\[\baselineskip]
 
 {\LARGE \myauthor}
 
@@ -702,17 +716,19 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{17pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
-  Google 
-
   Medibank Private
+
+  Susan McKinnon Foundation
   
-  \vspace{17pt}
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
+ 
+  Google 
 
   Maddocks
 
@@ -724,7 +740,9 @@ numbers=noenddot,
 
   Wesfarmers
 
-  \vspace{17pt}
+  Westpac
+
+  \vspace{15pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
 
@@ -732,15 +750,13 @@ numbers=noenddot,
 
   Corrs
 
-  Deloitte
-
   GE ANZ
 
   Jemena
 
   Urbis
 
-  Westpac\rule[-1.5ex]{0pt}{0pt} % for BHp
+  Woodside\rule[-1.5ex]{0pt}{0pt} % for BHp
   \end{multicols}
   \end{minipage} 
   \eject \normalsize
@@ -789,39 +805,78 @@ numbers=noenddot,
 ]{biblatex}
 
 \@ifpackagelater{biblatex}{2016/09/01}{%
-  \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
-  \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
-  \ExecuteBibliographyOptions{sorting=gratt}
+% Maintain backwards-compatibility between these dates
+  \@ifpackagelater{biblatex}{2017/11/04}{
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingTemplate{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}\sort{\field{author}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
 
-  \newtoggle{bbx:dowehavemorenames}
-  \DeclareNameFormat{dowehavemorenames}{%
-   \ifboolexpr{
-     test {\ifnumequal{\value{listcount}}{\value{liststop}}}
-     and
-     test \ifmorenames
-   }
-     {\global\toggletrue{bbx:dowehavemorenames}}
-     {\global\togglefalse{bbx:dowehavemorenames}}}
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
 
-  \newcounter{mymaxcitenames}
-  \AtBeginDocument{%
-   \setcounter{mymaxcitenames}{\value{maxnames}}%
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extradate}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
+    }
+  }{
+  %% biblatex version 3.7
+    \DeclareLabelalphaTemplate{\labelelement{\field{labelname}\field{labelyear}}}
+    \DeclareSortingScheme{gratt}{\sort{\field{labelalpha}}\sort{\field{labelyear}}}
+    \ExecuteBibliographyOptions{sorting=gratt}
+
+    \newtoggle{bbx:dowehavemorenames}
+    \DeclareNameFormat{dowehavemorenames}{%
+     \ifboolexpr{
+       test {\ifnumequal{\value{listcount}}{\value{liststop}}}
+       and
+       test \ifmorenames
+     }
+       {\global\toggletrue{bbx:dowehavemorenames}}
+       {\global\togglefalse{bbx:dowehavemorenames}}}
+
+    \newcounter{mymaxcitenames}
+    \AtBeginDocument{%
+     \setcounter{mymaxcitenames}{\value{maxnames}}%
+    }
+
+    \renewbibmacro*{begentry}{%
+      \begingroup
+        \defcounter{maxnames}{\value{mymaxcitenames}}%
+        \printnames[dowehavemorenames]{labelname}%
+        \iftoggle{bbx:dowehavemorenames}
+          {\printnames{labelname}%
+           \setunit{\printdelim{nameyeardelim}}%
+           \usebibmacro{date+extrayear}%
+           \space\space\newunit\newblock}
+          {}%
+      \endgroup
+      \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extrayear}{}}{}%
+    }
   }
-
-  \renewbibmacro*{begentry}{%
-    \begingroup
-      \defcounter{maxnames}{\value{mymaxcitenames}}%
-      \printnames[dowehavemorenames]{labelname}%
-      \iftoggle{bbx:dowehavemorenames}
-        {\printnames{labelname}%
-         \setunit{\printdelim{nameyeardelim}}%
-         \usebibmacro{date+extradate}%
-         \space\space\newunit\newblock}
-        {}%
-    \endgroup
-    \iftoggle{bbx:dowehavemorenames}{\renewbibmacro*{date+extradate}{}}{}%
-  }
-}
+}%
+% do nothing
+{}
 
 \DeclareLanguageMapping{english}{british-apa}
 \DeclareNameAlias{author}{last-first} % for last name, first name in bibliography
@@ -910,7 +965,11 @@ numbers=noenddot,
 \DeclareCiteCommand{\footcite}[\mkbibfootnote]
   {\boolfalse{cbx:parens}}
   {\usebibmacro{citeindex}%
-  \ifciteibid{Ibid.}{%  % for ibidem
+  % https://github.com/grattaninstitute/AP-Housing-affordability-2017/commit/55757ed2c625d4e18ada5a71edfdb5fbd88f56d1
+  % Ibid. -> Ibid\adddot
+  % Otherwise the . in Ibid. is interprted as the end of a sentence
+  % which means the first letter in a postnote will be uppercase
+  \ifciteibid{Ibid\adddot}{%  % for ibidem
    \iffirstcitekey
      {\setcounter{textcitetotal}{1}}
      {\stepcounter{textcitetotal}%
@@ -991,6 +1050,7 @@ numbers=noenddot,
 \AtBeginDocument{%
   \pagestyle{empty}
   \let\mytitle\@title
+  \let\mysubtitle\@subtitle
   \let\myauthor\@author
   
   % TitlePage
