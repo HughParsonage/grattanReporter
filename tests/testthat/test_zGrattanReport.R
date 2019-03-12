@@ -39,13 +39,11 @@ test_that("SchoolFunding.tex", {
 test_that("Engaging-students", {
   skip_on_travis()
   skip_if_not(nzchar(tools::find_gs_cmd()))
-  if (!dir.exists("./Engaging-students/RELEASE")){
-    dir.create("./Engaging-students/RELEASE")
-  }
+  library(hutils)
+  provide.dir("./Engaging-students/RELEASE")
+  provide.dir("./Engaging-students/travis/grattanReport")
 
-  if (file.exists("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")){
-    file.remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
-  }
+  file_remove("./Engaging-students/RELEASE/Engaging-students--creating-classrooms-that-improve-learning.pdf")
 
   expect_null(checkGrattanReport(path = "./Engaging-students/",
                                  compile = TRUE, pre_release = TRUE, release = TRUE))
@@ -65,6 +63,8 @@ test_that("Engaging-students", {
 test_that("Check NEM 2017 Sep paper", {
   skip_on_travis()
   skip_if_not(nzchar(tools::find_gs_cmd()))
+  library(hutils)
+  provide.dir("./NEM-capacity-markets/travis/grattanReport")
   expect_null(checkGrattanReport("./NEM-capacity-markets/", update_grattan.cls = FALSE))
   expect_null(checkGrattanReport("./NEM-capacity-markets/",
                                  compile = TRUE,
