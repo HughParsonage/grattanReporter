@@ -3,11 +3,19 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/HughParsonage/grattanReporter?branch=master&svg=true)](https://ci.appveyor.com/project/HughParsonage/grattanReporter)
 
 # grattanReporter
-Parsing grattan reports for errors
+Parsing grattan reports for errors.
 
 This package assists with enforcing style in reports by the Grattan Institute, Melbourne.
 
-In the working directory containing your report, run
+Use the `remotes` package to install `grattanReporter` from Github: 
+
+```r
+install.packages("remotes")
+remotes::install_github("grattan/grattanReporter")
+```
+
+
+In the working directory containing your report, run:
 
 ```r
 library(grattanReporter)
