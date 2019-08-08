@@ -21,6 +21,7 @@ numbers=noenddot,
 \RequirePackage{footmisc}
 \RequirePackage{tablefootnote} % for footnotes within tables
 \RequirePackage{zref-savepos}
+\RequirePackage{longtable}
 
 % Record number and page of footnote:
 % http://tex.stackexchange.com/questions/348891/determine-which-page-all-footnotes-landed-on#348940 
@@ -716,43 +717,53 @@ numbers=noenddot,
 
   Susan McKinnon Foundation
 
-  \vspace{15pt}
+  \vspace{5pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliate Partners}}
 
   Medibank Private
 
   Susan McKinnon Foundation
+
+  Veitch Lister Consulting
   
-  \vspace{15pt}
+  \vspace{5pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Senior Affiliates}}
  
-  Google 
+  Cuffe Family Foundation
 
   Maddocks
-
-  PwC
   
   McKinsey \& Company
 
-  The Scanlon Foundation
+  The Myer Foundation
+
+  PwC
+
+  Scanlon Foundation
+
+  Trawalla Foundation
 
   Wesfarmers
 
   Westpac
 
-  \vspace{15pt}
+  \vspace{5pt}
 
   \textbf{\textcolor{theGrey}{\normalsize Affiliates}}
+
+  Allens
 
   Ashurst
 
   Corrs
 
-  GE ANZ
+  Flagstaff Partners
 
   Jemena
+
+  Silver Chain
 
   Urbis
 

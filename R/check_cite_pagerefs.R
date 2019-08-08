@@ -39,16 +39,16 @@ check_cite_pagerefs <- function(filename, .report_error, rstudio = FALSE){
                   error_message = "Unnecessary p in postnote.")
     stop("Unnecessary p in postnote.")
   }
-  # Check single hyphen between pagerefs
-  if (any(grepl("cites?\\[\\]\\[[0-9]+-[0-9]+\\]", lines[line_nos_with_cites], perl = TRUE))){
-    line_no <- line_nos_with_cites[grepl("cites?\\[\\]\\[[0-9]+-[0-9]+\\]",
+  # Check double hyphen between pagerefs
+  if (any(grepl("cites?\\[\\]\\[[0-9]+--[0-9]+\\]", lines[line_nos_with_cites], perl = TRUE))){
+    line_no <- line_nos_with_cites[grepl("cites?\\[\\]\\[[0-9]+--[0-9]+\\]",
                                          lines[line_nos_with_cites],
                                          perl = TRUE)][[1]]
     context <- lines[[line_no]]
     .report_error(line_no = line_no,
                   context = context,
-                  error_message = "Page ranges should be separated by two hyphens (--).")
-    stop("Page ranges should be separated by two hyphens (--).")
+                  error_message = "Page ranges should be separated by one hyphen (-).")
+    stop("Page ranges should be separated by one hyphen (-).")
   }
 
   # Check footcites when only one key:
