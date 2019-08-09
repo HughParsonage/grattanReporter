@@ -3,6 +3,7 @@
 export(checkGrattanReport)
 export(checkGrattanReports)
 export(check_CenturyFootnote)
+export(check_biber)
 export(check_consecutive_words)
 export(check_preamble)
 export(check_smallbox_caption_positions)
