@@ -8,7 +8,8 @@
 checkGrattanReport(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE,
   .log_psv = FALSE, embed = TRUE, rstudio = FALSE,
-  update_grattan.cls = pre_release, filename = NULL)
+  update_grattan.cls = pre_release, filename = NULL,
+  bib_warn_only = FALSE)
 
 checkGrattanReports(path = ".", compile = FALSE, pre_release = FALSE,
   release = FALSE, .proceed_after_rerun, .no_log = TRUE,
@@ -41,6 +42,8 @@ Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads
 
 \item{filename}{If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the
 set to the sole \code{.tex} file within \code{path}.}
+
+\item{bib_warn_only}{IF \code{TRUE}, show biber warnings as messages rather than errors.}
 }
 \value{
 Called for its side-effect.

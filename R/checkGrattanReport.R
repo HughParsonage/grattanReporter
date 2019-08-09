@@ -18,6 +18,7 @@
 #' @param filename If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the
 #' set to the sole \code{.tex} file within \code{path}.
 #' @return Called for its side-effect.
+#' @param bib_warn_only If \code{TRUE}, show biber warnings as messages rather than errors.
 #' @export checkGrattanReport checkGrattanReports
 #' @import data.table
 #' @importFrom hutils if_else
@@ -57,7 +58,8 @@ checkGrattanReport <- function(path = ".",
                                embed = TRUE,
                                rstudio = FALSE,
                                update_grattan.cls = pre_release,
-                               filename = NULL) {
+                               filename = NULL,
+                               bib_warn_only = FALSE) {
   if (Sys.getenv("TRAVIS") == "true") {
     print(utils::packageVersion("grattanReporter"))
   }
@@ -498,7 +500,7 @@ checkGrattanReport <- function(path = ".",
     cat("   Invoking biber...\n")
     do_biber(filename)
 
-    check_biber()
+    check_biber(.bib_warn_only = bib_warn_only)
     cat(green(symbol$tick, "biber validated citations.\n"))
 
     cat("   Rerunning pdflatex. Starting pass number 1")
