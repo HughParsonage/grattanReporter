@@ -9,7 +9,7 @@ check_biber(path = ".", .bib_warn_only = FALSE, rstudio = FALSE)
 \arguments{
 \item{path}{The path containing the \code{blg} file, following successful compilation.}
 
-\item{.bib_warn_only}{IF \code{TRUE}, show biber warnings as messages rather than errors.}
+\item{.bib_warn_only}{If \code{TRUE}, show biber warnings as messages rather than errors.}
 
 \item{rstudio}{Use the RStudio API?}
 }
