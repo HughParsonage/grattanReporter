@@ -43,7 +43,7 @@ Set to \code{FALSE} when checking the \code{grattex} repo itself. Also downloads
 \item{filename}{If provided, the \code{.tex} file inside \code{path} to check. By default, \code{NULL} so the
 set to the sole \code{.tex} file within \code{path}.}
 
-\item{bib_warn_only}{IF \code{TRUE}, show biber warnings as messages rather than errors.}
+\item{bib_warn_only}{If \code{TRUE}, show biber warnings as messages rather than errors.}
 }
 \value{
 Called for its side-effect.
