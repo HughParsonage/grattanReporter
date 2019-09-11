@@ -8,6 +8,7 @@
 
 
 validate_bibliography <- function(path = ".", file = NULL, .report_error, rstudio = FALSE) {
+  
   if (missing(.report_error)){
     .report_error <- function(...) report2console(file = file, ..., rstudio = rstudio)
   }
